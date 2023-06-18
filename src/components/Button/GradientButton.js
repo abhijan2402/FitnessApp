@@ -7,11 +7,11 @@ import { TouchableOpacity } from 'react-native';
 function GradientButton({colors,conatinerStyle,children,onPress}) {
     return (
         <TouchableOpacity onPress={onPress}>
-        <LinearGradient
-            start={{x: 0, y: 0}} end={{x: 1, y: 0}}
-            colors={colors} style={conatinerStyle}>
-            {children}
-        </LinearGradient>
+            <LinearGradient
+                start={{x: 0, y: 0}} end={{x: 1, y: 0}}
+                colors={colors} style={conatinerStyle}>
+                {children}
+            </LinearGradient>
         </TouchableOpacity>
         
     );

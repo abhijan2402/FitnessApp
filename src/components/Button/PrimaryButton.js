@@ -9,7 +9,7 @@ function PrimaryButton({title,onPress,containerStyle,textStyle}) {
     return (
         <GradientButton
             onPress={onPress}
-        colors={[COLORS.PRIMARY_BUTTON_GRADIENT.BLUE1,COLORS.PRIMARY_BUTTON_GRADIENT.BLUE2]}
+            colors={[COLORS.PRIMARY_BUTTON_GRADIENT.BLUE1,COLORS.PRIMARY_BUTTON_GRADIENT.BLUE2]}
             conatinerStyle={{...styles.container,...containerStyle}}
         >
         <Text style={{...styles.buttonText,...textStyle}}>
