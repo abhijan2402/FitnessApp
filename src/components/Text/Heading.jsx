@@ -20,7 +20,8 @@ Heading.propTypes = {
 const styles = StyleSheet.create({
     container:{
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
+        marginBottom:30
     }
 })
 export default Heading;

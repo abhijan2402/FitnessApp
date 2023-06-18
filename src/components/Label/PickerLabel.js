@@ -1,22 +1,19 @@
 import React from 'react';
-import { View,StyleSheet,TextInput } from 'react-native';
+import { View,StyleSheet,Text, TouchableOpacity } from 'react-native';
 import { FONTS } from '../../constants/Fonts';
+import UserSvg from '../../../assets/icons/User.svg';
 import { SIZES } from '../../constants/Size';
 
-
-function Input({value,onChangeText,customStyle,icon,placeholder}) {
+function PickerLabel({customStyle,title,icon}) {
     return (
         <View style={[styles.container,customStyle]}>
-            <View style={styles.imageContainer}>
-                {icon}
-            </View>
-            <TextInput
-                style={styles.input}
-                onChangeText={onChangeText}
-                placeholder={placeholder}
-                value={value}
-            />
+            {
+                icon && <View style={styles.imageContainer}>{icon}</View>
+            }
+            <Text style={styles.input}>{title}</Text>
         </View>
+        
+        
     );
 }
 const styles = StyleSheet.create({
@@ -37,9 +34,8 @@ const styles = StyleSheet.create({
     input:{
         flexGrow:1,
         marginLeft:10,
-        height:65,
         fontFamily:FONTS.FONT_POPPINS_MEDIUM,
         fontSize:SIZES.INPUT_FONT_SIZE
     }
 })
-export default Input;
+export default PickerLabel;
