@@ -1,13 +1,12 @@
 import {
-  StyleSheet,View,
+  StyleSheet, View,
 } from 'react-native';
 import CreateProfile from './src/screens/profile/CreateProfile';
 
-
 function App() {
   return (
-    <View style={{flex:1}}>
-      <CreateProfile/>
+    <View style={{ flex: 1 }}>
+      <CreateProfile />
     </View>
   );
 }
