@@ -1,0 +1,4 @@
+export const SIZES = {
+    H4_HEADING_SIZE:20,
+    SMALL_HEADING_SIZE:12
+}
