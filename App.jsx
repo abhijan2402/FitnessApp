@@ -1,15 +1,17 @@
 import {
+  Animated,
+  FlatList,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
+import Goal from './src/screens/auth/Goal';
+import { useEffect } from 'react';
 
 function App() {
     return (
       <View style={styles.container}>
-        <Text style={{color:"black"}}>
-          Apps
-        </Text>
+        <Goal/>
       </View>
     );
   }
@@ -22,3 +24,4 @@ const styles = StyleSheet.create({
 });
 
 export default App;
+
