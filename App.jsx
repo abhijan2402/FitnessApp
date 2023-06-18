@@ -12,25 +12,27 @@ import SecondaryLabel from './src/components/Label/SecondaryLabel';
 import Input from './src/components/Form/Input';
 import Heading from './src/components/Text/Heading';
 import Goal from './src/screens/auth/Goal';
+import Otp from './src/components/auth/Otp';
 
 function App() {
-    return (
-      <View style={styles.container}>
-        <Goal/>
-        {/* <TextH4>Let’s complete your profile</TextH4>
+  return (
+    <View style={styles.container}>
+      <Otp />
+      {/* <Goal /> */}
+      {/* <TextH4>Let’s complete your profile</TextH4>
         <SmallText>It will help us to know more about you!</SmallText>
         <PrimaryButton title={'Register'} onPress={()=>console.log('Hello')}/>
         <SecondaryLabel title={'KG'} containerStyle={{width:60,height:60,borderRadius:15}}/>
         <Input/>
         <Heading heading={'What is your goal ?'} subheading={'It will help us to choose a best program for you'}/> */}
-      </View>
-    );
-  }
+    </View>
+  );
+}
 
 const styles = StyleSheet.create({
-  container:{
-    flex:1,
-    backgroundColor:"white"
+  container: {
+    flex: 1,
+    backgroundColor: "white"
   }
 });
 
