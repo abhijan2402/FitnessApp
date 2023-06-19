@@ -1,7 +1,9 @@
 import React from 'react';
-import { View,StyleSheet } from 'react-native';
+import { View,StyleSheet, ScrollView } from 'react-native';
 
-function ScreenContainer({children,paddingTop}) {
+function ScreenContainer({children,paddingTop,scroll=false}) {
+    if(scroll)
+        return<ScrollView style={[styles.container,{paddingTop}]}>{children}</ScrollView> 
     return (
         <View style={[styles.container,{paddingTop}]}>
             {children}
@@ -10,7 +12,8 @@ function ScreenContainer({children,paddingTop}) {
 }
 const styles = StyleSheet.create({
     container:{
-        padding:30
+        padding:30,
+        backgroundColor:'white'
     }
 })
 export default ScreenContainer;

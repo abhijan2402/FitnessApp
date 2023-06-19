@@ -8,5 +8,9 @@ export const COLORS = {
     SECONDARY_BUTTON_GRADIENT:{
         PURPLE1:'#C58BF2',
         PURPLE2:'#EEA4CE'
+    },
+    PROGRESS_BAR_GRADIENT:{
+        COLOR1:'#C58BF2',
+        COLOR2:'#B4C0FE'
     }
 }
