@@ -2,6 +2,9 @@ import { View, FlatList, StyleSheet, Animated, Dimensions, Text } from 'react-na
 import React from 'react'
 import { COLORS } from '../../constants/Colors';
 import LinearGradient from 'react-native-linear-gradient';
+import FirstCardImage from '../../../assets/images/goalCardImage1.svg'
+import SecondCardImage from '../../../assets/images/SecondCardImage.svg'
+import ThirdImage from '../../../assets/images/thirdImage.svg'
 
 const { width, height } = Dimensions.get('window');
 
@@ -10,17 +13,20 @@ const GoalSlider = () => {
         {
             id:1,
             title:"Improve Shape",
-            subTitle:"I have a low amount of body fat and need / want to build more muscle"
+            subTitle:"I have a low amount of body fat and need / want to build more muscle",
+            svgComponent:<FirstCardImage width={200} height={300}/>
         },
         {
             id:2,
             title:"Lean & Tone",
-            subTitle:"I’m “skinny fat”. look thin but have no shape. I want to add learn muscle in the right way"
+            subTitle:"I’m “skinny fat”. look thin but have no shape. I want to add learn muscle in the right way",
+            svgComponent:<SecondCardImage width={200} height={300}/>
         },
         {
             id:3,
             title:"Lose a Fat",
-            subTitle:"I have over 20 lbs to lose. I want to drop all this fat and gain muscle mass"
+            subTitle:"I have over 20 lbs to lose. I want to drop all this fat and gain muscle mass",
+            svgComponent:<ThirdImage width={200} height={300}/>
         },
     ]
     const scrollX = React.useRef(new Animated.Value(0)).current;
@@ -49,6 +55,7 @@ const GoalSlider = () => {
                             <Animated.View
                                 style={styles.animatedView}
                             >
+                                {item.svgComponent}
                                 <Text style={styles.title}>{item.title}</Text>
                                 <View style={{width:40,height:2,backgroundColor:"white",marginTop:5}}/>
                                 <Text style={styles.subTitle}>{item.subTitle}</Text>
