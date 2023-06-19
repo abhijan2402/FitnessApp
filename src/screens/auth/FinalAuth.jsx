@@ -3,12 +3,13 @@ import React from 'react'
 import TextH4 from '../../components/Text/TextH4';
 import SmallText from '../../components/Text/SmallText';
 import PrimaryButton from '../../components/Button/PrimaryButton';
+import BoyGirl from "../../../assets/icons/BoyGirl.svg";
 const { width, height } = Dimensions.get('window');
 const FinalAuth = () => {
     return (
         <View style={{ width: width, height: height, backgroundColor: "white" }}>
             <View style={{ width: width, height: height / 2.2, marginTop: "10%" }}>
-                <Image source={require('../../../assets/images/FinalAuthImage.png')} style={{ width: "100%", height: "100%" }} />
+                <BoyGirl width={"100%"} height={"100%"} />
             </View>
             <View style={{ alignItems: "center", marginTop: "8%" }}>
                 <TextH4>Welcome, Stefani</TextH4>
