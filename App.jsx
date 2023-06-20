@@ -5,7 +5,7 @@ import WaterDrink from './src/screens/dashboard/WaterDrink';
 function App() {
   return (
     <View style={{ flex: 1 }}>
-      <WaterDrink/>
+      <WaterDrink />
     </View>
   );
 }
