@@ -12,7 +12,7 @@ function ScreenContainer({children,paddingTop,scroll=false}) {
 }
 const styles = StyleSheet.create({
     container:{
-        padding:30,
+        padding:20,
         backgroundColor:'white'
     }
 })

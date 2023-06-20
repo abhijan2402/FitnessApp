@@ -1,19 +1,21 @@
 import React from 'react';
 import { View,StyleSheet } from 'react-native';
 import { Dropdown  } from 'react-native-element-dropdown';
-
 import { FONTS } from '../../constants/Fonts';
 import { SIZES } from '../../constants/Size';
+import GradientLabel from '../Label/GradientLabel';
+import { COLORS } from '../../constants/Colors';
 
 
-function DropdownPicker({data=[],placeholder="Select Item",value,setValue,
+function GradientDropdown({iconColor,colors,data=[],placeholder="Select Item",value,setValue,
     containerStyle,
     placeholderStyle,
     selectedTextStyle,
     iconStyle,
     icon}) {
     return (
-        <View style={[styles.container,containerStyle]}>
+        <GradientLabel colors={colors?colors:[COLORS.PRIMARY_BUTTON_GRADIENT.BLUE2,COLORS.PRIMARY_BUTTON_GRADIENT.BLUE1]} 
+        conatinerStyle={{...styles.container,...containerStyle}}>
         <Dropdown
           data={data}
           maxHeight={300} 
@@ -23,7 +25,8 @@ function DropdownPicker({data=[],placeholder="Select Item",value,setValue,
           valueField="value"
           placeholder={placeholder}
           value={value}
-          iconStyle={{...styles.iconStyle,iconStyle}}
+          iconStyle={{...styles.iconStyle,...iconStyle}}
+          iconColor={iconColor || 'white'}
           onChange={item => setValue(item.value)}
           renderLeftIcon={() => (
             <View style={{marginLeft:icon?20:0}}>
@@ -31,7 +34,7 @@ function DropdownPicker({data=[],placeholder="Select Item",value,setValue,
             </View>
           )}
         />
-      </View>
+      </GradientLabel>
     );
 }
 const styles = StyleSheet.create({
@@ -46,14 +49,15 @@ const styles = StyleSheet.create({
   placeholderStyle:{
     marginLeft:15,
     fontSize:SIZES.INPUT_FONT_SIZE,
-    fontFamily:FONTS.FONT_POPPINS_MEDIUM
+    fontFamily:FONTS.FONT_POPPINS_MEDIUM,
+    color:'white'
   },
   iconStyle:{
-    marginRight:10
+    marginRight:10,
   },
   dropdown:{
     fontFamily:FONTS.FONT_POPPINS_MEDIUM
   },
   
 })
-export default DropdownPicker;
+export default GradientDropdown;

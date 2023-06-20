@@ -11,7 +11,6 @@ function SmallText({children,style}) {
     );
 }
 SmallText.propTypes = {
-    children:PropTypes.string.isRequired,
     style:PropTypes.object
 }
 const styles = StyleSheet.create({

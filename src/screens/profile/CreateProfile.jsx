@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View,StyleSheet } from 'react-native';
 import GirlSvg from '../../../assets/icons/dumble_girl.svg';
+import UserSvg from '../../../assets/icons/User.svg';
 import ScreenContainer from '../../components/container/ScreenContainer';
 import Heading from '../../components/Text/Heading';
 import DropdownPicker from '../../components/Utils/DropdownPicker';
@@ -33,6 +34,7 @@ function CreateProfile(props) {
                 value={gender} 
                 setValue={setGender}
                 placeholder='Choose Gender'
+                icon={<UserSvg width={20} height={20}/>}
                 />
                 <CalenderPicker
                 setDate={setDate}

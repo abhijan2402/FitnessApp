@@ -12,7 +12,7 @@ import Profile from './src/screens/dashboard/Profile';
 function App() {
   return (
     <View style={{ flex: 1 }}>
-      <Profile />
+      <Dashboard/>
     </View>
   );
 }
