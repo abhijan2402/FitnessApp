@@ -14,4 +14,49 @@ export const stepData = [
     { x: 13, y: 5 },
     { x: 14, y: 4 },
     { x: 15, y: 7 },
-    ]
+]
+
+
+export const NotifiactionData = [
+    {
+        title: "Hey, it’s time for lunch",
+        Time: "About 1 minutes ago"
+    },
+    {
+        title: "Hey, it’s time for lunch",
+        Time: "About 1 minutes ago"
+    },
+    {
+        title: "Hey, it’s time for lunch",
+        Time: "About 1 minutes ago"
+    },
+    {
+        title: "Hey, it’s time for lunch",
+        Time: "About 1 minutes ago"
+    },
+    {
+        title: "Hey, it’s time for lunch",
+        Time: "About 1 minutes ago"
+    },
+    {
+        title: "Hey, it’s time for lunch",
+        Time: "About 1 minutes ago"
+    },
+    {
+        title: "Hey, it’s time for lunch",
+        Time: "About 1 minutes ago"
+    },
+    {
+        title: "Hey, it’s time for lunch",
+        Time: "About 1 minutes ago"
+    },
+    {
+        title: "Hey, it’s time for lunch",
+        Time: "About 1 minutes ago"
+    },
+    {
+        title: "Hey, it’s time for lunch",
+        Time: "About 1 minutes ago"
+    },
+
+]
