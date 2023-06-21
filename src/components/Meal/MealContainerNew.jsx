@@ -1,25 +1,23 @@
 import React from 'react';
 import { View,StyleSheet,Text,Image } from 'react-native';
-
-import DataContainer from './DataContainer';
+import DataContainer from '../container/DataContainer';
 import TextMedium from '../Text/TextMedium';
 import SmallText from '../Text/SmallText';
-import SwitchIconButton from '../Button/SwitchIconButton';
-import NoNotification from '../../../assets/icons/no_notification.svg';
-import Notification from '../../../assets/icons/Notification.svg';
 
-function MealContainer({containerStyle,img,imgStyle,title="",date="", time=""}) {
+import CicrleArrowRight from '../../../assets/images/circulararrow.svg';
+import GradientContainer from '../container/GradientContainer';
+
+function MealContainerNew({containerStyle,img,title="", time="",colors}) {
     return (
         <DataContainer containerStyle={{...styles.container,...containerStyle}}>
-            <Image source={img} style={imgStyle}/>
+            <GradientContainer colors={colors}  styles={{borderRadius:12,width:70,height:70,justifyContent: 'center',alignItems:"center"}}>
+                <Image source={img} style={{width:45,height:45,resizeMode:'contain'}} />
+            </GradientContainer>
             <View style={styles.info}>
                 <TextMedium>{title}</TextMedium>
-                <SmallText>{date} | {time}</SmallText>
+                <SmallText>{time}</SmallText>
             </View>
-            <SwitchIconButton
-                icon1={<Notification width={20} height={20}/>}
-                icon2={<NoNotification width={20} height={20}/>}
-            />
+            <CicrleArrowRight width={30} height={30}/>
         </DataContainer>
     );
 }
@@ -38,4 +36,4 @@ const styles = StyleSheet.create({
         flexGrow:1
     }
 })
-export default MealContainer;
+export default MealContainerNew;
