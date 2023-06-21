@@ -29,7 +29,7 @@ const ActivityTracker = () => {
                 <TextH4 >Activity Tracker</TextH4>
             </View>
             <CustomDatePicker/>
-            <GradientContainer colors={['rrgba(157, 206, 255, 0.2)','rgba(157, 206, 255, 0.2)']}  styles={{padding:20,borderRadius:20,height:180,justifyContent:"space-around",marginVertical: 30,}}>
+            <GradientContainer colors={['rgba(157, 206, 255, 0.2)','rgba(157, 206, 255, 0.2)']}  styles={{padding:20,borderRadius:20,height:180,justifyContent:"space-around",marginVertical: 30,}}>
                 <SolidContainer containerStyle={styles.continerTopStyles} >
                     <TextH4>
                         Today Target

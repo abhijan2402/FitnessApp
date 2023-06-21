@@ -10,7 +10,7 @@ let INCREASE="Increase";
 let NONE="None";
 
 var SELECTED_MONTH_INDEX=0;
-const DashBoard=()=>{
+const CustomDatePicker=()=>{
 
     let newDayDateArray=[];
     const d = new Date();
@@ -171,4 +171,4 @@ const styles=StyleSheet.create({
         elevation: 5,       
     },
 })
-export default DashBoard;
+export default CustomDatePicker;
