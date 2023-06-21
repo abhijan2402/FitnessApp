@@ -12,5 +12,5 @@ export const COLORS = {
     PROGRESS_BAR_GRADIENT:{
         COLOR1:'#C58BF2',
         COLOR2:'#B4C0FE'
-    }
+    },
 }

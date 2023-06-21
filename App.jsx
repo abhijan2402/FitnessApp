@@ -1,11 +1,12 @@
 import {
   StyleSheet, View,
 } from 'react-native';
-import WaterDrink from './src/screens/dashboard/WaterDrink';
+import Dashboard from './src/screens/dashboard/Dashboard';
+import ActivityTracker from './src/screens/dashboard/ActivityTracker';
 function App() {
   return (
     <View style={{ flex: 1 }}>
-      <Dashboard/>
+      <ActivityTracker/>
     </View>
   );
 }
