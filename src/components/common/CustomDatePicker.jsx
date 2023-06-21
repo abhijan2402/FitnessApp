@@ -10,7 +10,7 @@ let INCREASE="Increase";
 let NONE="None";
 
 var SELECTED_MONTH_INDEX=0;
-const CustomDatePicker=()=>{
+const CustomDatePicker=({showMonth=true})=>{
 
     let newDayDateArray=[];
     const d = new Date();
@@ -107,6 +107,8 @@ const CustomDatePicker=()=>{
     return(
 
             <ScrollView style={{flex:1,backgroundColor:"white"}}>
+                {
+                    showMonth &&
                     <View style={{flexDirection:"row",padding:10,alignItems:"center",alignSelf:"center",paddingVertical:20}}>
                         <TouchableOpacity  onPress={()=>setMonthAsSelected(SELECTED_MONTH_INDEX,DECREASE)} >
                             <Back width={30} height={30}/>
@@ -118,7 +120,7 @@ const CustomDatePicker=()=>{
                             <Back width={30} height={30}/>
                         </TouchableOpacity>
                     </View>
-                
+                }
                 <ScrollView style={styles.container} horizontal={true} zIndex={-5}  >
                     {
                         dateStateArray.length === 0 ?null:
