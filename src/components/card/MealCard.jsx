@@ -9,7 +9,7 @@ const MealCard = ({ Type, NOFood, backgroundColor, btnBackGround, img }) => {
             <View style={styles.ImageAlign}>
                 <Image source={img} style={styles.FoodImage} />
             </View>
-            <View style={{ marginHorizontal: 10 }}>
+            <View style={{ marginHorizontal: 15 }}>
                 <Text style={styles.Type}>{Type}</Text>
                 <Text style={styles.NOF}>{NOFood}+ Foods</Text>
                 <TouchableOpacity style={[styles.Btn, { backgroundColor: btnBackGround }]}>

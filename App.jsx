@@ -8,7 +8,7 @@ import MealScheduler from './src/screens/Meal/MealScheduler';
 function App() {
   return (
     <View style={{ flex: 1 }}>
-      <MealScheduler/>
+      <MealHome />
     </View>
   );
 }

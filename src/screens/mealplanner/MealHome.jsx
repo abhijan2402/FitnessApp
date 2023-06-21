@@ -76,7 +76,6 @@ const MealHome = () => {
                         <MealCard Type="BreakFast" NOFood="120" backgroundColor={"#D9FFFD"} btnBackGround={"#82E1FF"} img={require('../../../assets/images/BreakFast_meal.png')} />
                         <MealCard Type="Lunch" NOFood="102" backgroundColor={"#FFE0DC"} btnBackGround={"#FF8ECB"} img={require('../../../assets/images/BreakFast_meal.png')} />
                         <MealCard Type="Dinner" NOFood="20" backgroundColor={"#D9FFFD"} btnBackGround={"#82E1FF"} img={require('../../../assets/images/BreakFast_meal.png')} />
-
                     </ScrollView>
                 </View>
             </View>
