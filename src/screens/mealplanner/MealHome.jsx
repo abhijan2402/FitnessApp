@@ -10,6 +10,7 @@ import { FONTS } from '../../constants/Fonts';
 import TextMedium from '../../components/Text/TextMedium';
 import PrimaryButton from '../../components/Button/PrimaryButton';
 import MealContainer from '../../components/container/MealContainer';
+import MealCard from '../../components/card/MealCard';
 const { width, height } = Dimensions.get('window');
 
 const MealHome = () => {
@@ -51,8 +52,8 @@ const MealHome = () => {
                         data={MEALS}
                         value={meals}
                         setValue={setMeals}
-                        placeholder='Select Item'
-                        containerStyle={{ width: width / 3.7, height: 40, borderRadius: 30 }}
+                        placeholder='Select'
+                        containerStyle={{ width: width / 2.8, height: 40, borderRadius: 30 }}
                     />
                 </SolidContainer>
                 <View style={{ paddingHorizontal: 10 }}>
@@ -69,10 +70,42 @@ const MealHome = () => {
                         date={'Today'}
                     />
                 </View>
+                <View style={{ marginHorizontal: 20, marginVertical: "5%" }}>
+                    <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_SEMIBOLD, color: 'black', flexGrow: 1, marginVertical: 5 }}>Meal</LargeText>
+                    <ScrollView horizontal>
+                        <MealCard Type="BreakFast" NOFood="120" backgroundColor={"#D9FFFD"} btnBackGround={"#82E1FF"} img={require('../../../assets/images/BreakFast_meal.png')} />
+                        <MealCard Type="Lunch" NOFood="102" backgroundColor={"#FFE0DC"} btnBackGround={"#FF8ECB"} img={require('../../../assets/images/BreakFast_meal.png')} />
+                        <MealCard Type="Dinner" NOFood="20" backgroundColor={"#D9FFFD"} btnBackGround={"#82E1FF"} img={require('../../../assets/images/BreakFast_meal.png')} />
 
+                    </ScrollView>
+                </View>
             </View>
-
-
+            <View style={{ marginHorizontal: 15, marginBottom: "5%" }}>
+                <SolidContainer containerStyle={{ ...styles.solidcontainer, backgroundColor: 'white', paddingHorizontal: 10, marginBottom: 0 }}>
+                    <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_SEMIBOLD, color: 'black', flexGrow: 1 }}>Skipped Meals</LargeText>
+                    <GradientDropdown
+                        data={MEALS}
+                        value={meals}
+                        setValue={setMeals}
+                        placeholder='Select'
+                        containerStyle={{ width: width / 2.8, height: 40, borderRadius: 30 }}
+                    />
+                </SolidContainer>
+                <View style={{ paddingHorizontal: 10 }}>
+                    <MealContainer
+                        img={require('../../../assets/images/sushi.png')}
+                        title={'Salmon Nigiri'}
+                        time={'7am'}
+                        date={'Today'}
+                    />
+                    <MealContainer
+                        img={require('../../../assets/images/glass-of-milk.png')}
+                        title={'Lowfat Milk'}
+                        time={'8am'}
+                        date={'Today'}
+                    />
+                </View>
+            </View>
         </ScrollView>
     )
 }
