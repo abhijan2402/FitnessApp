@@ -38,7 +38,7 @@ const MealHome = () => {
             </View>
             <View style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: "5%" }}>
                 <SolidContainer containerStyle={[styles.solidcontainer, { marginHorizontal: 10 }]}>
-                    <TextMedium style={{ flexGrow: 1 }}>Today Target</TextMedium>
+                    <TextMedium style={{ flexGrow: 1 }}>Daily Meal Schedule</TextMedium>
                     <PrimaryButton
                         containerStyle={styles.targetButton}
                         textStyle={styles.targetButtonText}
