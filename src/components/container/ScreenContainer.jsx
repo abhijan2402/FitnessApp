@@ -1,5 +1,5 @@
 import React from 'react';
-import { View,StyleSheet, ScrollView } from 'react-native';
+import { View,StyleSheet, ScrollView, Dimensions } from 'react-native';
 
 function ScreenContainer({children,paddingTop,scroll=false,width,padding}) {
     if(scroll)
@@ -13,7 +13,7 @@ function ScreenContainer({children,paddingTop,scroll=false,width,padding}) {
 const styles = StyleSheet.create({
     container:{
         padding:20,
-        backgroundColor:'white'
+        backgroundColor:'white',
     }
 })
 export default ScreenContainer;

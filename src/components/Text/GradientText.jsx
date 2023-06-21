@@ -2,9 +2,9 @@ import React from 'react';
 import { View } from 'react-native';
 import { Svg, Defs, LinearGradient, Stop, Text as SVGText } from 'react-native-svg';
 
-const GradientText = ({ text, colors ,fontSize,x,y }) => {
+const GradientText = ({ text, colors ,fontSize,x,y,style }) => {
   return (
-      <Svg >
+      <Svg style={style}>
         <Defs>
           <LinearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
             {colors.map((color, index) => (

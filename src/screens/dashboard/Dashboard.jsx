@@ -43,8 +43,8 @@ function Dashboard(props) {
                 </SolidButton>
             </View>
             <GradientLabel 
-            colors={[COLORS.PRIMARY_BUTTON_GRADIENT.BLUE1,COLORS.PRIMARY_BUTTON_GRADIENT.BLUE2]}
-            conatinerStyle={styles.gradientContainer}
+                colors={[COLORS.PRIMARY_BUTTON_GRADIENT.BLUE1,COLORS.PRIMARY_BUTTON_GRADIENT.BLUE2]}
+                conatinerStyle={styles.gradientContainer}
             >
                 <View style={styles.bmiContainer}>
                     <View style={{flexGrow:1}}>

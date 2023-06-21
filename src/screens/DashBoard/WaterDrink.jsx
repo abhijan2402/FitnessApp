@@ -13,7 +13,6 @@ import Back from '../../../assets/icons/Back.svg'
 import Setting from '../../../assets/icons/Setting.svg';
 import SolidContainer from '../../components/container/SolidContainer';
 import TextH4 from '../../components/Text/TextH4';
-import GradientText from '../../components/Text/GradientText';
 
 
 const {width,height}=Dimensions.get("window");
