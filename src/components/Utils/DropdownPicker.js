@@ -23,7 +23,7 @@ function DropdownPicker({data=[],placeholder="Select Item",value,setValue,
           valueField="value"
           placeholder={placeholder}
           value={value}
-          iconStyle={{...styles.iconStyle,iconStyle}}
+          iconStyle={{...styles.iconStyle,...iconStyle}}
           onChange={item => setValue(item.value)}
           renderLeftIcon={() => (
             <View style={{marginLeft:icon?20:0}}>

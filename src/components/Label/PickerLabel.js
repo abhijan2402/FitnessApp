@@ -4,13 +4,16 @@ import { FONTS } from '../../constants/Fonts';
 import UserSvg from '../../../assets/icons/User.svg';
 import { SIZES } from '../../constants/Size';
 
-function PickerLabel({customStyle,title,icon}) {
+function PickerLabel({customStyle,title,icon,icon2=null}) {
     return (
         <View style={[styles.container,customStyle]}>
             {
                 icon && <View style={styles.imageContainer}>{icon}</View>
             }
             <Text style={styles.input}>{title}</Text>
+            {
+                icon2 && <View style={styles.imageContainer2}>{icon2}</View>
+            }
         </View>
         
         
@@ -30,6 +33,9 @@ const styles = StyleSheet.create({
     },
     imageContainer:{
         marginLeft:20
+    },
+    imageContainer2:{
+        marginRight:20
     },
     input:{
         flexGrow:1,

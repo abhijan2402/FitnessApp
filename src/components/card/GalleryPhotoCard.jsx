@@ -6,7 +6,7 @@ import { FONTS } from '../../constants/Fonts'
 const GalleryPhotoCard = ({ Date }) => {
     return (
         <View>
-            <SmallText style={{ FontFamily: FONTS.FONT_POPPINS_REGULAR, marginHorizontal: 30, marginTop: "5%" }}>{Date}</SmallText>
+            <SmallText style={{ fontFamily: FONTS.FONT_POPPINS_REGULAR, marginHorizontal: 30, marginTop: "5%" }}>{Date}</SmallText>
             <ScrollView horizontal style={{ marginHorizontal: 10 }}>
                 <Image source={require('../../../assets/images/GirlImage.png')} style={styles.Image} />
                 <Image source={require('../../../assets/images/GirlImage.png')} style={styles.Image} />
