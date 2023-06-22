@@ -1,12 +1,12 @@
 import {
   StyleSheet, View,
 } from 'react-native';
-import WaterDrink from './src/screens/dashboard/WaterDrink';
+import ProgressPhoto from './src/screens/progressTracker/ProgressPhoto';
 
 function App() {
   return (
     <View style={{ flex: 1 }}>
-      <WaterDrink/>
+      <ProgressPhoto />
     </View>
   );
 }
