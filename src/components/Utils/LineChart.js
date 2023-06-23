@@ -3,7 +3,7 @@ import { COLORS } from "../../constants/Colors";
 import { FONTS } from "../../constants/Fonts";
 
 
-function AnimatedLineChart(){
+function AnimatedLineChart({labelStyleX,labelStyleY,width,height,color=COLORS.PRIMARY_BUTTON_GRADIENT.BLUE1}){
     const data = [
     {value: 10,label:'Sun'}, 
     {value: 50,label:'Mon'}, 
@@ -18,13 +18,15 @@ function AnimatedLineChart(){
     curved 
     data={data}
     scrollToEnd
+    width={width}
+    height={height}
     isAnimated
-    xAxisLabelTextStyle={{fontFamily:FONTS.FONT_POPPINS_MEDIUM}}
-    yAxisTextStyle={{fontFamily:FONTS.FONT_POPPINS_MEDIUM}}
+    xAxisLabelTextStyle={{fontFamily:FONTS.FONT_POPPINS_MEDIUM,...labelStyleX}}
+    yAxisTextStyle={{fontFamily:FONTS.FONT_POPPINS_MEDIUM,...labelStyleY}}
     xAxisThickness={0}
     yAxisThickness={0}
     thickness1={3}
-    color1={COLORS.PRIMARY_BUTTON_GRADIENT.BLUE1}
+    color1={color}
     />
     
         

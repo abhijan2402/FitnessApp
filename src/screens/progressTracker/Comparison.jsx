@@ -1,9 +1,7 @@
 import React from 'react';
 import { View,StyleSheet } from 'react-native';
 import ScreenContainer from '../../components/container/ScreenContainer';
-import SolidContainer from '../../components/container/SolidContainer';
 import BackSvg from '../../../assets/icons/ArrowLeft.svg';
-import LargeText from '../../components/Text/LargeText';
 import LoadMoreSvg from '../../../assets/icons/MoreSquare.svg';
 import { FONTS } from '../../constants/Fonts';
 
@@ -12,6 +10,7 @@ import { MONTHS } from '../../constants/Data';
 import { useState } from 'react';
 import PrimaryButton from '../../components/Button/PrimaryButton';
 import DropdownPicker from '../../components/Utils/DropdownPicker';
+import TextCenterHeader from '../header/TextCenterHeader';
 
 function Comparison(props) {
     const [month1,setMonth1] = useState('');
@@ -26,17 +25,11 @@ function Comparison(props) {
     
     return (
        <ScreenContainer flex={1}>
-        
-            <View style={styles.header}>
-                <SolidContainer containerStyle={{width:40,height:40,borderRadius:10}}>
-                    <BackSvg width={20} height={20}/>
-                </SolidContainer>
-                <LargeText style={styles.headingText}>Comparison</LargeText>
-                <SolidContainer containerStyle={{width:40,height:40,borderRadius:10}}>
-                    <LoadMoreSvg width={20} height={20}/>
-                </SolidContainer>
-                
-            </View>
+            <TextCenterHeader
+            icon1={<BackSvg width={20} height={20}/>}
+            icon2={<LoadMoreSvg width={20} height={20}/>}
+            title='Comparison'
+            />
             <View style={styles.content}>
                     <DropdownPicker
                     data={getOnlyPreviousMonth(false)} 

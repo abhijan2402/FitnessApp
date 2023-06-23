@@ -175,9 +175,7 @@ function Dashboard(props) {
         </ScreenContainer>
     );
 }
-const chartConfig = {
-    color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
-};
+
 
 
 const styles = StyleSheet.create({
