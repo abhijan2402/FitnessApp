@@ -7,15 +7,13 @@ import SmallText from '../Text/SmallText';
 import SwitchIconButton from '../Button/SwitchIconButton';
 import NoNotification from '../../../assets/icons/no_notification.svg';
 import Notification from '../../../assets/icons/Notification.svg';
+import SplitHeading from '../Text/SplitHeading';
 
 function MealContainer({containerStyle,img,imgStyle,title="",date="", time=""}) {
     return (
         <DataContainer containerStyle={{...styles.container,...containerStyle}}>
             <Image source={img} style={imgStyle}/>
-            <View style={styles.info}>
-                <TextMedium>{title}</TextMedium>
-                <SmallText>{date} | {time}</SmallText>
-            </View>
+            <SplitHeading title={title} subtitle1={date} subtitle2={time} containerStyle={{marginLeft:15}}/>
             <SwitchIconButton
                 icon1={<Notification width={20} height={20}/>}
                 icon2={<NoNotification width={20} height={20}/>}
@@ -33,9 +31,6 @@ const styles = StyleSheet.create({
         marginBottom:12
     },
     
-    info:{
-        marginLeft:15,
-        flexGrow:1
-    }
+    
 })
 export default MealContainer;
