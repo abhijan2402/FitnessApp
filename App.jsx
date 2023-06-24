@@ -11,7 +11,7 @@ import SleepScheduler from './src/screens/Sleep/SleepScheduler';
 function App() {
   return (
     <View style={{ flex: 1 }}>
-      <SleepScheduler />
+      <ActivityTracker />
     </View>
   );
 }
