@@ -46,9 +46,11 @@ const CustomDatePicker=({showMonth=true})=>{
                 return item;
             })
         );
+        // console.log(new Date(year,currentMonth?.index,dateObj.date));
         setSelectedDate(dateObj.date)
     }   
     const setMonthAsSelected=(monthIndex,buttonType)=>{
+        let currentYear=year;
         if(monthIndex>0 && monthIndex<11){
             if(buttonType===DECREASE){
                 SELECTED_MONTH_INDEX--;
@@ -62,6 +64,17 @@ const CustomDatePicker=({showMonth=true})=>{
         }
         if(monthIndex===11 && buttonType===DECREASE){
             SELECTED_MONTH_INDEX--;
+        }
+        if(monthIndex===0 && buttonType===DECREASE){
+            currentYear--;
+            SELECTED_MONTH_INDEX=11;
+            setYear(currentYear)
+        }
+        if(monthIndex===11 && buttonType===INCREASE){
+            currentYear++;
+            SELECTED_MONTH_INDEX=0;
+            setYear(currentYear)
+            
         }
         var currentMonthsObject=MONTHS_NAME.filter((item)=>{
             return item.index === SELECTED_MONTH_INDEX;
@@ -78,7 +91,7 @@ const CustomDatePicker=({showMonth=true})=>{
                 return item;
             })
         );
-        getSelectDateMonth(currentMonthsObject[0]);
+        getSelectDateMonth(currentYear,currentMonthsObject[0]);
     }
     const getArrayDataSet=(dayName,dayIndex,monthName)=>{
         newDayDateArray=[]
@@ -95,12 +108,11 @@ const CustomDatePicker=({showMonth=true})=>{
 
     }
 
-    const getSelectDateMonth=(monthName)=>{
+    const getSelectDateMonth=(year,monthName)=>{
         function getFirstDayOfMonth(year, month) {
             return new Date(year,month,1);
         }
         const firstDayIndex = getFirstDayOfMonth(year,monthName.index);
-        
         getArrayDataSet(WEEK_DAYS_NAMES[firstDayIndex.getDay()],firstDayIndex.getDay(),monthName);
     }
 

@@ -12,11 +12,12 @@ import Dashboard from './src/screens/dashboard/Dashboard';
 import BottomTab from './src/Navigators/BottomTab'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import ActivityTracker from './src/screens/dashboard/ActivityTracker';
 function App() {
   const Stack = createNativeStackNavigator();
   return (
-    <View>
-      <FullBodyWorkout/>
+    <View style={{ flex: 1 }}>
+      <ActivityTracker />
     </View>
   //   <NavigationContainer>
   //   <Stack.Navigator initialRouteName='Bottomtab' screenOptions={{
