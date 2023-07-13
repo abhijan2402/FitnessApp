@@ -13,20 +13,23 @@ import BottomTab from './src/Navigators/BottomTab'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ActivityTracker from './src/screens/dashboard/ActivityTracker';
+import WorkOutHome from './src/screens/workoutTracker/WorkOutHome';
+import WorkOutInfo from './src/screens/workoutTracker/WordOutInfo';
 function App() {
   const Stack = createNativeStackNavigator();
   return (
     <View style={{ flex: 1 }}>
-      <ActivityTracker />
+      {/* <ActivityTracker /> */}
+      <WorkOutInfo />
     </View>
-  //   <NavigationContainer>
-  //   <Stack.Navigator initialRouteName='Bottomtab' screenOptions={{
-  //       headerShown:false
-  //     }}>
-  //    <Stack.Screen name='BottomTab'  component={BottomTab}/>    
-  //   </Stack.Navigator>
- 
-  // </NavigationContainer>
+    //   <NavigationContainer>
+    //   <Stack.Navigator initialRouteName='Bottomtab' screenOptions={{
+    //       headerShown:false
+    //     }}>
+    //    <Stack.Screen name='BottomTab'  component={BottomTab}/>    
+    //   </Stack.Navigator>
+
+    // </NavigationContainer>
   );
 }
 export default App;
