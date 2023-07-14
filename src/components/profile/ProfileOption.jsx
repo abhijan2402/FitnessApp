@@ -1,14 +1,15 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { FONTS } from '../../constants/Fonts'
+import { Pressable } from 'react-native'
 
-const ProfileOption = ({ leftIcon, rightIcon, Title }) => {
+const ProfileOption = ({ leftIcon, rightIcon, Title,onPress }) => {
     return (
-        <View style={styles.Container}>
+        <Pressable onPress={onPress} style={styles.Container}>
             {leftIcon}
             <Text style={styles.OptionTitle}>{Title}</Text>
             {rightIcon}
-        </View>
+        </Pressable>
     )
 }
 

@@ -15,8 +15,10 @@ import Weight from '../../../assets/icons/weight-scale.svg';
 import Swap from '../../../assets/icons/Swap.svg';
 import Input from '../../components/Form/Input';
 import SecondaryLabel from '../../components/Label/SecondaryLabel';
+import { useNavigation } from '@react-navigation/native';
 
 function CreateProfile(props) {
+    const navigation=useNavigation();
     const [gender,setGender] = useState('');
     const [date,setDate] = useState('');
     return (
@@ -59,7 +61,7 @@ function CreateProfile(props) {
                     />
                     <SecondaryLabel title={'FT'} containerStyle={styles.weightLabelContainer}/>
                 </View>
-                <PrimaryButton title={'Next'} containerStyle={{marginTop:15}}>
+                <PrimaryButton onPress={()=>navigation.navigate("Goal")} title={'Next'} containerStyle={{marginTop:15}}>
                     <View style={{marginLeft:5,bottom:1.5}}>
                         <ArrowRight width={15} height={15}/>
                     </View>

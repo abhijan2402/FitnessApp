@@ -3,7 +3,11 @@ import React from 'react'
 import NotifImage from '../../../assets/icons/NotifImage.svg'
 import { FONTS } from '../../constants/Fonts'
 import PrimaryButton from '../Button/PrimaryButton'
+import { useNavigation } from '@react-navigation/native'
+import { SCREENS } from '../../constants/Screens'
 const ProfileTop = ({ name, Program }) => {
+    const navigation=useNavigation();
+
     return (
         <View style={styles.Container}>
             <NotifImage width={50} height={50} />
@@ -12,7 +16,7 @@ const ProfileTop = ({ name, Program }) => {
                 <Text style={{ fontSize: 12, fontFamily: FONTS.FONT_POPPINS_MEDIUM, color: "grey" }}>{Program}</Text>
             </View>
             <View style={{ width: "25%", }}>
-                <PrimaryButton title={'Edit'} containerStyle={{ height: 30, dispaly: "flex", alignItems: "center" }} />
+                <PrimaryButton onPress={()=>navigation.navigate(SCREENS.EDITPROFILE)} title={'Edit'} containerStyle={{ height: 30, dispaly: "flex", alignItems: "center" }} />
             </View>
         </View>
     )

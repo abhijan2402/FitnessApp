@@ -4,10 +4,12 @@ import TextH4 from '../../components/Text/TextH4';
 import SmallText from '../../components/Text/SmallText';
 import PrimaryButton from '../../components/Button/PrimaryButton';
 import BoyGirl from "../../../assets/icons/BoyGirl.svg";
+import { useNavigation } from '@react-navigation/native';
 const { width, height } = Dimensions.get('window');
 const FinalAuth = () => {
+    const navigation=useNavigation();
     return (
-        <View style={{ width: width, height: height, backgroundColor: "white" }}>
+        <View style={{ flex:1,backgroundColor: "white" }}>
             <View style={{ width: width, height: height / 2.2, marginTop: "10%" }}>
                 <BoyGirl width={"100%"} height={"100%"} />
             </View>

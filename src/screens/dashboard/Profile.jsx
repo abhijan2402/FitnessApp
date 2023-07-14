@@ -15,7 +15,11 @@ import Privacy from '../../../assets/icons/Privacy.svg';
 import Setting from '../../../assets/icons/Setting.svg';
 import Contact from '../../../assets/icons/Contact.svg';
 import PopUp from '../../../assets/icons/PopUp.svg';
+import { useNavigation } from '@react-navigation/native';
+import { SCREENS } from '../../constants/Screens';
 const Profile = () => {
+    const navigation=useNavigation();
+
     return (
         <View style={styles.Container}>
             <Header title="Profile" />
@@ -28,10 +32,10 @@ const Profile = () => {
                 </View>
                 <View style={{ marginLeft: "9%", marginRight: 5, marginTop: "10%" }}>
                     <TextH4 style={{ marginVertical: 10 }}>Account</TextH4>
-                    <ProfileOption leftIcon={<UserIcon width={20} height={20} />} rightIcon={<Right width={20} height={20} />} Title={"Personal Data"} />
-                    <ProfileOption leftIcon={<Achivement width={20} height={20} />} rightIcon={<Right width={20} height={20} />} Title={"Achievement"} />
-                    <ProfileOption leftIcon={<Activity width={20} height={20} />} rightIcon={<Right width={20} height={20} />} Title={"Activity History"} />
-                    <ProfileOption leftIcon={<Workout width={20} height={20} />} rightIcon={<Right width={20} height={20} />} Title={"Workout Progress"} />
+                    <ProfileOption onPress={()=>navigation.navigate(SCREENS.ACCOUNT)} leftIcon={<UserIcon width={20} height={20} />} rightIcon={<Right width={20} height={20} />} Title={"Personal Data"} />
+                    <ProfileOption onPress={()=>navigation.navigate(SCREENS)} leftIcon={<Achivement width={20} height={20} />} rightIcon={<Right width={20} height={20} />} Title={"Achievement"} />
+                    <ProfileOption onPress={()=>navigation.navigate(SCREENS)} leftIcon={<Activity width={20} height={20} />} rightIcon={<Right width={20} height={20} />} Title={"Activity History"} />
+                    <ProfileOption onPress={()=>navigation.navigate(SCREENS)} leftIcon={<Workout width={20} height={20} />} rightIcon={<Right width={20} height={20} />} Title={"Workout Progress"} />
                 </View>
                 <View style={{ marginLeft: "9%", marginRight: 5, marginTop: "10%" }}>
                     <TextH4 style={{ marginVertical: 10 }}>Notification</TextH4>
@@ -52,7 +56,7 @@ export default Profile
 
 const styles = StyleSheet.create({
     Container: {
-        height: height,
+        flex:1,
         backgroundColor: "white"
     }
 })

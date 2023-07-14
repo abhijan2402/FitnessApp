@@ -14,15 +14,17 @@ import {
 import GoalSlider from '../../components/auth/GoalSlider';
 import Heading from '../../components/Text/Heading';
 import PrimaryButton from '../../components/Button/PrimaryButton';
+import { useNavigation } from '@react-navigation/native';
+import { SCREENS } from '../../constants/Screens';
 
 const { width, height } = Dimensions.get('window');
 export default function Goal() {
-
+  const navigation=useNavigation();
   return (
     <View style={styles.container}>
       <Heading heading={'What is your goal ?'} subheading={'It will help us to choose a best program for you'}/>
       <GoalSlider/>
-      <PrimaryButton containerStyle={{width:width-40}} title={'Confirm'} onPress={()=>console.log('Hello')}/>
+      <PrimaryButton onPress={()=>navigation.navigate(SCREENS.FINALAUTH)} containerStyle={{width:width-40}} title={'Confirm'}/>
     </View>
   );
 }

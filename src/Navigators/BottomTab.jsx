@@ -13,6 +13,11 @@ import Task from '../BottomScreen/Task';
 import Camera from '../BottomScreen/Camera';
 import Profile from '../BottomScreen/Profile';
 import Search from '../BottomScreen/Search';
+import ProfileStack from './Stacks/ProfileStack';
+import { SCREENS } from '../constants/Screens';
+import DashboardStack from './Stacks/DashboardStack';
+import ProgressStack from './Stacks/ProgressStask';
+import MealStack from './Stacks/MealStack';
 const windwoheight = Dimensions.get('window').height
 const Tab = createBottomTabNavigator();
 const BottomTab = () => {
@@ -28,14 +33,13 @@ const BottomTab = () => {
                    
                     backgroundColor: "white",
                     height: 80,
-                    position: 'absolute',
-                    paddingVertical: 10,
+                    // paddingVertical: 10,
                     ...styles.shadow,
                 },
 
             }}
         >
-            <Tab.Screen name="Home" component={Home}
+            <Tab.Screen name={SCREENS.DASHBOARDTAB} component={DashboardStack}
                 options={{
                     tabBarIcon: ({ focused }) => {
                         return (
@@ -47,7 +51,7 @@ const BottomTab = () => {
                     }
                 }}
             />
-            <Tab.Screen name="Task" component={Task}
+            <Tab.Screen name={SCREENS.MEALTAB} component={MealStack}
                 options={{
                     tabBarIcon: ({ focused }) => {
                         return (
@@ -80,7 +84,7 @@ const BottomTab = () => {
                     ),
                 }}
             />
-            <Tab.Screen name="Camera" component={Camera}
+            <Tab.Screen name={SCREENS.PROGRESSTAB} component={ProgressStack}
                 options={{
                     tabBarIcon: ({ focused }) => {
                         return (
@@ -92,7 +96,7 @@ const BottomTab = () => {
                     }
                 }}
             />
-            <Tab.Screen name="Profile" component={Profile}
+            <Tab.Screen name={SCREENS.PROFILETAB} component={ProfileStack}
                 options={{
                     tabBarIcon: ({ focused }) => {
                         return (

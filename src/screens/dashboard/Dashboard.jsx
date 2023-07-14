@@ -25,10 +25,14 @@ import AnimatedLineChart from '../../components/Utils/LineChart';
 import WorkoutContainer from '../../components/container/WorkoutContainer';
 import CustomPieChart from '../../components/Utils/PieChart';
 import LineGraphWithoutLabel from '../../components/Utils/LineGraphWithoutLabel';
+import { useNavigation } from '@react-navigation/native';
+import { SCREENS } from '../../constants/Screens';
 
 const BASE_TRACKER_CONTAINER_HEIGHT = 350;
 
 function Dashboard(props) {
+    const navigation=useNavigation();
+
     const [meals,setMeals] = useState(MEALS[0])
     const [workout,setWorkout] = useState(WORKOUTS[0])
     return (
@@ -38,7 +42,7 @@ function Dashboard(props) {
                     <SmallText>Welcome Back,</SmallText>
                     <TextH4>INZAMAMUL</TextH4>
                 </View>
-                <SolidButton containerStyle={styles.solidButtonContainer}>
+                <SolidButton onPress={()=>navigation.navigate(SCREENS.NOTIFICATION)} containerStyle={styles.solidButtonContainer}>
                     <Notification width={30} height={30}/>
                 </SolidButton>
             </View>

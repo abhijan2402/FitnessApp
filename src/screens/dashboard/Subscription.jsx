@@ -43,6 +43,7 @@ export default Subscription
 const styles = StyleSheet.create({
     Container: {
         height: height,
-        borderWidth: 1
+        borderWidth: 1,
+        backgroundColor:"white"
     }
 })

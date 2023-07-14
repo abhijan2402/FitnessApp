@@ -7,8 +7,12 @@ import TextH4 from '../../components/Text/TextH4';
 import Email from '../../../assets/icons/email.svg';
 import Eye from '../../../assets/icons/eye.svg';
 import { COLORS } from '../../constants/Colors';
+import { useNavigation } from '@react-navigation/native';
+import { Pressable } from 'react-native';
+import { SCREENS } from '../../constants/Screens';
 const { width, height } = Dimensions.get('window');
 const Otp = () => {
+    const navigation=useNavigation();
     return (
         <View style={styles.MainView}>
             <View style={styles.Heading}>
@@ -28,7 +32,7 @@ const Otp = () => {
             </View>
             <SmallText style={{ textAlign: "center", marginTop: "7%" }}>You can request the next code in 49 seconds</SmallText>
             <View style={{ alignItems: "center", marginTop: "45%" }}>
-                <PrimaryButton containerStyle={{ width: width - 30, }} title={'Login'} onPress={() => console.log('Hello')} />
+                <PrimaryButton containerStyle={{ width: width - 30, }} title={'Login'} onPress={()=>navigation.navigate(SCREENS.REGISTER)}/>
             </View>
             <Text style={{ marginTop: "14%" }}>Or</Text>
             <View style={[styles.IconView, { marginTop: "5%" }]}>
@@ -39,10 +43,10 @@ const Otp = () => {
                     <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/4922/4922978.png" }} style={styles.icon} />
                 </View>
             </View>
-            <View style={[styles.IconView, { alignItems: "center" }]}>
+            <Pressable onPress={()=>navigation.navigate(SCREENS.REGISTER)}  style={[styles.IconView, { alignItems: "center" }]}>
                 <SmallText style={{ fontSize: 14 }}>Don't have an account yet?</SmallText>
                 <TextH4 style={{ fontSize: 14, color: "#C58BF2", marginLeft: 5 }}>Register</TextH4>
-            </View>
+            </Pressable>
         </View>
     )
 }
@@ -51,8 +55,7 @@ export default Otp
 
 const styles = StyleSheet.create({
     MainView: {
-        height: height,
-        width: width,
+        flex:1,
         backgroundColor: "white",
         display: "flex",
         alignItems: "center"
