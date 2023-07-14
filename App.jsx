@@ -15,13 +15,13 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import WorkOutHome from './src/screens/workoutTracker/WorkOutHome';
 import WorkOutInfo from './src/screens/workoutTracker/WordOutInfo';
 import AddSchedule from './src/screens/workoutTracker/AddSchedule';
+import Result from './src/screens/progressTracker/Result';
 function App() {
   const Stack = createNativeStackNavigator();
   return (
     <View style={{ flex: 1 }}>
       {/* <ActivityTracker /> */}
       <WorkOutInfo />
-     
     </View>
     //   <NavigationContainer>
     //   <Stack.Navigator initialRouteName='Bottomtab' screenOptions={{
