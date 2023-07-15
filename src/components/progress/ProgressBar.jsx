@@ -3,13 +3,13 @@ import { View,StyleSheet } from 'react-native';
 import GradientLabel from '../Label/GradientLabel';
 import { COLORS } from '../../constants/Colors';
 
-function ProgressBar({containerStyle,gradientContainerStyle,vertical=false}) {
+function ProgressBar({containerStyle,gradientContainerStyle,vertical=false,colors=[]}) {
     return (
         <View style={[styles.container,containerStyle]}>
             <GradientLabel 
             vertical={vertical}
             conatinerStyle={{...styles.gradientContainer,...gradientContainerStyle}}
-            colors={[COLORS.PROGRESS_BAR_GRADIENT.COLOR2,COLORS.PROGRESS_BAR_GRADIENT.COLOR1]}/>
+            colors={colors.length > 0 ? colors:[COLORS.PROGRESS_BAR_GRADIENT.COLOR2,COLORS.PROGRESS_BAR_GRADIENT.COLOR1]}/>
         </View>
     );
 }

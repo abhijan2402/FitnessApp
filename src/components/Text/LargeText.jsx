@@ -10,10 +10,7 @@ function LargeText({children,style}) {
         <Text style={[styles.font,style]}>{children}</Text>
     );
 }
-LargeText.propTypes = {
-    children:PropTypes.string.isRequired,
-    style:PropTypes.object
-}
+
 const styles = StyleSheet.create({
     font:{
         fontSize:SIZES.LARGE_HEADING_SIZE,

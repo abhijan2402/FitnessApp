@@ -21,9 +21,9 @@ import WorkOutInfo from './src/screens/workoutTracker/WordOutInfo';
 import AddSchedule from './src/screens/workoutTracker/AddSchedule';
 import WorkoutSchedule from './src/screens/workoutTracker/WorkoutSchedult';
 import WorkoutDetails from './src/components/workout/WorkoutDetails';
-import MealHome from './src/screens/Meal/MealHome';
-import MealScheduler from './src/screens/Meal/MealScheduler';
-import DietDetails from './src/screens/Meal/DietDetails';
+import MealHome from './src/screens/meal/MealHome';
+import MealScheduler from './src/screens/meal/MealScheduler';
+import DietDetails from './src/screens/meal/DietDetails';
 import SleepTracker from './src/screens/Sleep/SleepTracker';
 import SleepScheduler from './src/screens/Sleep/SleepScheduler';
 import Reminders from './src/screens/Sleep/Reminders';
@@ -31,10 +31,13 @@ import ProgressPhoto from './src/screens/progressTracker/ProgressPhoto';
 import Comparison from './src/screens/progressTracker/Comparison';
 import Result from './src/screens/progressTracker/Result';
 import { SCREENS } from './src/constants/Screens';
+import WeightProgress from './src/screens/progressTracker/WeightProgress';
+import AddProgress from './src/screens/progressTracker/AddProgress';
 
 function App() {
     const Stack = createNativeStackNavigator();
     return (
+     
       <NavigationContainer>
         <Stack.Navigator  screenOptions={{
             headerShown:false

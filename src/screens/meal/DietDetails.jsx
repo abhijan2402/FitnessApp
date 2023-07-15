@@ -158,7 +158,7 @@ function DietDetails(props) {
                         showLine={(index === stepData.length - 1)?false:true}
                         />)
                     }
-                    <View style={{marginRight:35,marginBottom:30}}>
+                    <View style={{paddingBottom:35,paddingRight:30}}>
                         <PrimaryButton
                         title={'Add to Breakfast Meal'}
                         />
@@ -175,6 +175,7 @@ const styles = StyleSheet.create({
         flex:1,
     },
     detailContainer:{
+        width:Dimensions.get('screen').width,
         borderTopRightRadius:30,
         borderTopLeftRadius:30,
         backgroundColor:'white',

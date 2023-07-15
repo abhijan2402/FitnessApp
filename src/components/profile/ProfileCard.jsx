@@ -3,10 +3,10 @@ import React from 'react'
 import { FONTS } from '../../constants/Fonts'
 import Edit from '../../../assets/icons/Edit.svg'
 const { width, height } = Dimensions.get('window');
-const ProfileCard = ({ type, value,icon }) => {
+const ProfileCard = ({ type, value,icon,containerStyle }) => {
     return (
        
-           <View style={[styles.Container, styles.shadowProp]}>
+           <View style={[styles.Container, styles.shadowProp,containerStyle]}>
              <View style={styles.image}>
                 {icon}
               </View>
@@ -37,8 +37,7 @@ const styles = StyleSheet.create({
         marginBottom:"4%"
     },
     shadowProp: {  
-        shadowColor: '#1D1617',  
-        elevation: 15,  
+        elevation:5,  
       },  
     image:{
         marginLeft:"10%",

@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View,Dimensions,Image, ScrollView } from 'react-native'
-import React from 'react'
+import React,{useState} from 'react'
 import ResultHeader from '../../components/Result/ResultHeader'
 import BackSvg from '../../../assets/icons/ArrowLeft.svg';
 import Share from '../../../assets/icons/Share.svg'
@@ -9,17 +9,28 @@ import { FONTS } from '../../constants/Fonts';
 import ScreenContainer from '../../components/container/ScreenContainer';
 import PrimaryButton from '../../components/Button/PrimaryButton';
 import LongProgressBar from '../../components/progress/LongProgressBar';
+import AnimatedLineChart from '../../components/Utils/LineChart';
+import ProgressBar from '../../components/progress/ProgressBar';
+import LargeText from '../../components/Text/LargeText';
+import HeadingProgressBar from '../../components/progress/HeadingProgressBar';
 const { width, height } = Dimensions.get('window');
+
+
+
 const Result = () => {
+  const category = ['Photo','Statistic']
+  const [active,setActive] = useState(category[0]);
   return (
-    <ScreenContainer flex={1}>
+    <ScreenContainer scroll>
          <ResultHeader
             icon1={<BackSvg width={20} height={20}/>}
             icon2={<Share width={20} height={20}/>}
             icon3={<MoreInfo width={14} height={10}/>}
             title='Result'
             />
-        <Button/>
+        <Button category={category} active={active} setActive={setActive}/>
+        {active === category[0] && 
+        <>
         <View style={{display:"flex",flexDirection:"row",marginTop:20}}>
            <Text style={{fontFamily:FONTS.FONT_POPPINS_BOLD,fontSize:16,color:"#1D1617"}}>Average Progress</Text>
            <Text style={{color:"#42D742",fontSize:13,fontFamily:FONTS.FONT_POPPINS_MEDIUM,marginHorizontal:150}}>Good</Text>
@@ -42,9 +53,41 @@ const Result = () => {
             <Image source={require('../../../assets/images/GirlImage.png')} style={styles.Image} />
             </View>
         </View>
-        <View style={{ alignItems: "center" }}>
-                <PrimaryButton containerStyle={{ width: width - 80, }} title={'Back to Home'} />
-      </View>
+       
+        </> }
+        {
+          active === category[1] &&
+          <View style={styles.resultStatsContainer}>
+            <AnimatedLineChart/>
+            <View style={styles.monthDuration}>
+              <LargeText style={{fontFamily:FONTS.FONT_POPPINS_SEMIBOLD}}>May</LargeText>
+              <LargeText style={{fontFamily:FONTS.FONT_POPPINS_SEMIBOLD}}>June</LargeText>
+            </View>
+            <HeadingProgressBar 
+            heading={'Lose Weight'}
+            percentage1={'33%'}
+            percentage2={'67%'}
+            />
+            <HeadingProgressBar 
+            heading={'Height Increase'}
+            percentage1={'88%'}
+            percentage2={'12%'}
+            />
+            <HeadingProgressBar 
+            heading={'Muscle Mass Increase'}
+            percentage1={'57%'}
+            percentage2={'43%'}
+            />
+            <HeadingProgressBar 
+            heading={'Abs'}
+            percentage1={'89%'}
+            percentage2={'11%'}
+            />
+          </View>
+        }
+         <View style={{ alignItems: "center",paddingBottom:30 }}>
+                <PrimaryButton containerStyle={{ width: width - 80,elevation:5 }} title={'Back to Home'} />
+         </View>
     </ScreenContainer>
   )
 }
@@ -63,5 +106,15 @@ const styles = StyleSheet.create({
         height: 150,
         borderWidth: 1,
         margin: 10
+    },
+    resultStatsContainer:{
+      paddingTop:30
+    },
+    
+    monthDuration:{
+      paddingTop:20,
+      flexDirection:'row',
+      justifyContent:'space-between',
+      marginBottom:30
     }
 })
