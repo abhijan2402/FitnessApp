@@ -21,16 +21,16 @@ import MealStack from './Stacks/MealStack';
 const windwoheight = Dimensions.get('window').height
 const Tab = createBottomTabNavigator();
 const BottomTab = () => {
-   
+
     return (
         <Tab.Navigator
             screenOptions={{
                 headerShown: false,
                 tabBarShowLabel: false,
                 borderColor: "white",
-                
+
                 tabBarStyle: {
-                   
+
                     backgroundColor: "white",
                     height: 80,
                     // paddingVertical: 10,
@@ -43,9 +43,9 @@ const BottomTab = () => {
                 options={{
                     tabBarIcon: ({ focused }) => {
                         return (
-                            <View style={{ alignItems: "center", justifyContent: 'center', marginTop: 10, marginBottom: 20,color:focused?'pink':'blue' }}>
-                                <Hom height={24} width={24} xml={(focused ? '#7FCBD3' : 'grey')}/>
-                                
+                            <View style={{ alignItems: "center", justifyContent: 'center', marginTop: 10, marginBottom: 20, color: focused ? 'pink' : 'blue' }}>
+                                <Hom height={24} width={24} xml={(focused ? '#7FCBD3' : 'grey')} />
+
                             </View>
                         )
                     }
@@ -56,41 +56,18 @@ const BottomTab = () => {
                     tabBarIcon: ({ focused }) => {
                         return (
                             <View style={{ alignItems: "center", justifyContent: 'center', marginTop: 10, marginBottom: 20 }}>
-                               <Tas height={24} width={24}/>
+                                <Tas height={24} width={24} />
                             </View>
                         )
                     }
-                }}
-            />
-            <Tab.Screen name="Search" component={Search}
-                options={{
-                    tabBarIcon: ({ focused }) => (
-                        <View
-                            style={{
-                                marginBottom: 40,
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                // zIndex: 10,
-                                backgroundColor: "white",
-                                width: 60,
-                                height: 60,
-                                borderRadius: 30,
-                                borderWidth: 5,
-                                borderColor: focused ? '#FDC1FA' : "white"
-                            }}
-                        >
-                             <NavSearch />
-                        </View>
-                    ),
                 }}
             />
             <Tab.Screen name={SCREENS.PROGRESSTAB} component={ProgressStack}
                 options={{
                     tabBarIcon: ({ focused }) => {
                         return (
-                            <View style={{ alignItems: "center", justifyContent: 'center', marginTop: 10, marginBottom: 20 }}>
-                              <Cam height={24} width={24}/>
-
+                            <View style={{ alignItems: "center", justifyContent: 'center', marginTop: 10, marginBottom: 20, }}>
+                                <Cam height={24} width={24} />
                             </View>
                         )
                     }
@@ -101,7 +78,7 @@ const BottomTab = () => {
                     tabBarIcon: ({ focused }) => {
                         return (
                             <View style={{ alignItems: "center", justifyContent: 'center', marginTop: 10, marginBottom: 20 }}>
-                               <Pro height={24} width={24}/>
+                                <Pro height={24} width={24} />
                             </View>
                         )
                     }
