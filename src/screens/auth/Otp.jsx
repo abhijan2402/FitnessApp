@@ -10,9 +10,12 @@ import { COLORS } from '../../constants/Colors';
 import { useNavigation } from '@react-navigation/native';
 import { Pressable } from 'react-native';
 import { SCREENS } from '../../constants/Screens';
+import { GlobalContext } from '../../../App';
+import { useContext } from 'react';
 const { width, height } = Dimensions.get('window');
 const Otp = () => {
     const navigation=useNavigation();
+    const {setLoggedInUser}=useContext(GlobalContext)
     return (
         <View style={styles.MainView}>
             <View style={styles.Heading}>
@@ -32,7 +35,7 @@ const Otp = () => {
             </View>
             <SmallText style={{ textAlign: "center", marginTop: "7%" }}>You can request the next code in 49 seconds</SmallText>
             <View style={{ alignItems: "center", marginTop: "45%" }}>
-                <PrimaryButton containerStyle={{ width: width - 30, }} title={'Login'} onPress={()=>navigation.navigate(SCREENS.REGISTER)}/>
+                <PrimaryButton containerStyle={{ width: width - 30, }} title={'Login'} onPress={()=>setLoggedInUser({uid:Math.random()*1000})}/>
             </View>
             <Text style={{ marginTop: "14%" }}>Or</Text>
             <View style={[styles.IconView, { marginTop: "5%" }]}>
