@@ -162,7 +162,7 @@ function DietDetails(props) {
                                 showLine={(index === stepData.length - 1) ? false : true}
                             />)
                     }
-                    <View style={{paddingBottom:35,paddingRight:30}}>
+                    <View style={{ paddingBottom: 35, paddingRight: 30 }}>
                         <PrimaryButton
                             onPress={() => navigation.navigate(SCREENS.FINISHWO)}
                             title={'Add to Breakfast Meal'}
@@ -179,14 +179,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flex: 1,
     },
-    detailContainer:{
-        width:Dimensions.get('screen').width,
-        borderTopRightRadius:30,
-        borderTopLeftRadius:30,
-        backgroundColor:'white',
-        paddingTop:50,
-        paddingLeft:35,
-        
+    detailContainer: {
+        width: Dimensions.get('screen').width,
+        borderTopRightRadius: 30,
+        borderTopLeftRadius: 30,
+        backgroundColor: 'white',
+        paddingTop: 50,
+        paddingLeft: 35,
+
     },
     image: {
         marginTop: 80

@@ -9,7 +9,7 @@ import PrimaryButton from '../../components/Button/PrimaryButton';
 import TextH4 from '../../components/Text/TextH4';
 import SmallText from '../../components/Text/SmallText';
 import GalleryPhotoCard from '../../components/card/GalleryPhotoCard';
-import Add from '../../../assets/icons/plus.svg';
+import Camera from '../../../assets/icons/Camera.svg';
 import FloatingGradingButton from '../../components/Button/FloatingGradingButton';
 const { width, height } = Dimensions.get('window');
 
@@ -49,7 +49,7 @@ const ProgressPhoto = () => {
 
             </ScrollView>
             <FloatingGradingButton colors={['rgba(197, 139, 242, 1)', 'rgba(238, 164, 206, 1)']}>
-                <Add width={25} height={25} />
+                <Camera width={25} height={25} />
             </FloatingGradingButton>
 
         </>

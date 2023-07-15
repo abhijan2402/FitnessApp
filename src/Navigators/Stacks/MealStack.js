@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import MealHome from '../../screens/meal/MealHome';
-import MealScheduler from '../../screens/meal/MealScheduler';
-import DietDetails from '../../screens/meal/DietDetails';
+import MealHome from '../../screens/Meal/MealHome';
+import MealScheduler from '../../screens/Meal/MealScheduler';
+import DietDetails from '../../screens/Meal/DietDetails';
 import FinishWO from '../../screens/dashboard/FinishWO';
 import { SCREENS } from '../../constants/Screens';
 import FinalMealScreen from '../../screens/Meal/FinalMealScreen';
