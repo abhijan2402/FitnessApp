@@ -9,6 +9,7 @@ import WaterDrink from '../../screens/dashboard/WaterDrink';
 import Subscription from '../../screens/dashboard/Subscription';
 import Notification from '../../screens/dashboard/Notification';
 import { SCREENS } from '../../constants/Screens';
+import SleepStack from './SleepSchedule';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,9 @@ function DashboardStack() {
             <Stack.Screen name={SCREENS.FINISHWO}  component={FinishWO}/> 
             <Stack.Screen name={SCREENS.WATERDRINK}  component={WaterDrink}/> 
             <Stack.Screen name={SCREENS.SUBSCRIPTION}  component={Subscription}/> 
+            <Stack.Screen name={SCREENS.SLEEPSTACK}  component={SleepStack}/> 
+
+           
         </Stack.Navigator>
     );
 }

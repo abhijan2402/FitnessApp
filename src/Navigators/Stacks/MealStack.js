@@ -4,18 +4,21 @@ import MealScheduler from '../../screens/meal/MealScheduler';
 import DietDetails from '../../screens/meal/DietDetails';
 import FinishWO from '../../screens/dashboard/FinishWO';
 import { SCREENS } from '../../constants/Screens';
+import FinalMealScreen from '../../screens/Meal/FinalMealScreen';
+import DashboardStack from './DashboardStack';
 
 const Stack = createNativeStackNavigator();
 
 function MealStack() {
     return (
         <Stack.Navigator screenOptions={{
-            headerShown:false
-            }}>
-            <Stack.Screen name={SCREENS.MEALHOME}  component={MealHome}/>     
-            <Stack.Screen name={SCREENS.MEALSCHEDULER} component={MealScheduler}/>     
-            <Stack.Screen name={SCREENS.DIETDETAILS} component={DietDetails}/>     
-            <Stack.Screen name={SCREENS.FINISHWO} component={FinishWO}/>     
+            headerShown: false
+        }}>
+            <Stack.Screen name={SCREENS.MEALHOME} component={MealHome} />
+            <Stack.Screen name={SCREENS.MEALSCHEDULER} component={MealScheduler} />
+            <Stack.Screen name={SCREENS.DIETDETAILS} component={DietDetails} />
+            <Stack.Screen name={SCREENS.FINISHWO} component={FinalMealScreen} />
+            <Stack.Screen name={SCREENS.DASHBOARDSTACK} component={DashboardStack} />
         </Stack.Navigator>
     );
 }

@@ -11,9 +11,12 @@ import TextMedium from '../../components/Text/TextMedium';
 import PrimaryButton from '../../components/Button/PrimaryButton';
 import MealContainer from '../../components/container/MealContainer';
 import MealCard from '../../components/card/MealCard';
+import { SCREENS } from '../../constants/Screens';
+import { useNavigation } from '@react-navigation/native';
 const { width, height } = Dimensions.get('window');
 
 const MealHome = () => {
+    const navigation = useNavigation();
     const [mealPlan, setMealPlan] = useState(WORKOUTS[0])
     const [meals, setMeals] = useState(WORKOUTS[0])
 
@@ -42,7 +45,8 @@ const MealHome = () => {
                     <PrimaryButton
                         containerStyle={styles.targetButton}
                         textStyle={styles.targetButtonText}
-                        title={'Check'} />
+                        title={'Check'}
+                        onPress={() => navigation.navigate(SCREENS.MEALSCHEDULER)} />
                 </SolidContainer>
             </View>
             <View style={{ marginHorizontal: 15 }}>
