@@ -14,7 +14,10 @@ import TextMedium from '../../components/Text/TextMedium'
 import PrimaryButton from '../../components/Button/PrimaryButton'
 import SleepMeasureCard from '../../components/card/SleepMeasureCard'
 import AnimatedLineChart from '../../components/Utils/LineChart'
+import { SCREENS } from '../../constants/Screens'
+import { useNavigation } from '@react-navigation/native'
 const SleepTracker = () => {
+    const navigation = useNavigation();
     return (
         <ScrollView>
             <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginTop: "5%" }}>
@@ -38,7 +41,8 @@ const SleepTracker = () => {
                     <PrimaryButton
                         containerStyle={styles.targetButton}
                         textStyle={styles.targetButtonText}
-                        title={'Check'} />
+                        title={'Check'}
+                        onPress={() => navigation.navigate(SCREENS.SLEEPSCHEDULER)} />
                 </SolidContainer>
             </View>
             <View style={{ marginHorizontal: 15 }}>

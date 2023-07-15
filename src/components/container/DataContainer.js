@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 
-function DataContainer({ containerStyle, children }) {
+function DataContainer({ containerStyle, children, onPress }) {
     return (
-        <View style={[styles.waterIntakeTracker, containerStyle]}>
+        <TouchableOpacity style={[styles.waterIntakeTracker, containerStyle]} onPress={onPress}>
             {children}
-        </View>
+        </TouchableOpacity>
     );
 }
 const styles = StyleSheet.create({
