@@ -11,13 +11,13 @@ const Stack = createNativeStackNavigator();
 function AuthStack() {
     return (
         <Stack.Navigator screenOptions={{
-            headerShown:false
-            }}>
-            <Stack.Screen name={SCREENS.OTP}  component={Otp}/>    
-            <Stack.Screen name={SCREENS.REGISTER}  component={Register}/>    
-            <Stack.Screen name={SCREENS.CREATEPROFILE}  component={CreateProfile}/>    
-            <Stack.Screen name={SCREENS.GOAL} component={Goal}/>    
-            <Stack.Screen name={SCREENS.FINALAUTH} component={FinalAuth}/>    
+            headerShown: false
+        }}>
+            <Stack.Screen name={SCREENS.OTP} component={Otp} />
+            <Stack.Screen name={SCREENS.REGISTER} component={Register} />
+            <Stack.Screen name={SCREENS.CREATEPROFILE} component={CreateProfile} />
+            <Stack.Screen name={SCREENS.GOAL} component={Goal} />
+            <Stack.Screen name={SCREENS.FINALAUTH} component={FinalAuth} />
         </Stack.Navigator>
     );
 }
