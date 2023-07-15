@@ -30,7 +30,10 @@ import PrimaryButton from '../../components/Button/PrimaryButton';
 import TextMedium from '../../components/Text/TextMedium';
 import DIfferentBWContainer from '../../components/workout/DIfferentBWContainer';
 import WorkOutForms from '../../components/workout/WorkOutForms';
+import { SCREENS } from '../../constants/Screens';
+import { useNavigation } from '@react-navigation/native';
 function WorkOutHome(props) {
+    const navigation = useNavigation();
     return (
         <>
             <GradientLabel
@@ -43,6 +46,7 @@ function WorkOutHome(props) {
                         <SolidContainer containerStyle={[styles.solidcontainer, {}]}>
                             <TextMedium style={{ flexGrow: 1 }}>Daily Workout Schedule</TextMedium>
                             <PrimaryButton
+                                onPress={() => navigation.navigate(SCREENS.WORLOUTINFO)}
                                 containerStyle={styles.targetButton}
                                 textStyle={styles.targetButtonText}
                                 title={'Check'} />

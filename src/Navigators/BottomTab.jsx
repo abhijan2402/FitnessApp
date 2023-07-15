@@ -18,6 +18,7 @@ import { SCREENS } from '../constants/Screens';
 import DashboardStack from './Stacks/DashboardStack';
 import ProgressStack from './Stacks/ProgressStask';
 import MealStack from './Stacks/MealStack';
+import { COLORS } from '../constants/Colors';
 const windwoheight = Dimensions.get('window').height
 const Tab = createBottomTabNavigator();
 const BottomTab = () => {
@@ -43,9 +44,8 @@ const BottomTab = () => {
                 options={{
                     tabBarIcon: ({ focused }) => {
                         return (
-                            <View style={{ alignItems: "center", justifyContent: 'center', marginTop: 10, marginBottom: 20, color: focused ? 'pink' : 'blue' }}>
-                                <Hom height={24} width={24} xml={(focused ? '#7FCBD3' : 'grey')} />
-
+                            <View style={{ alignItems: "center", justifyContent: 'center', marginTop: 10, marginBottom: 20, backgroundColor: focused ? "#9DCEFF" : 'white', borderRadius: 25, padding: 10 }}>
+                                <Hom height={24} width={24} />
                             </View>
                         )
                     }
@@ -55,7 +55,7 @@ const BottomTab = () => {
                 options={{
                     tabBarIcon: ({ focused }) => {
                         return (
-                            <View style={{ alignItems: "center", justifyContent: 'center', marginTop: 10, marginBottom: 20 }}>
+                            <View style={{ alignItems: "center", justifyContent: 'center', backgroundColor: focused ? '#9DCEFF' : 'white', marginTop: 10, marginBottom: 20, borderRadius: 25, padding: 10 }}>
                                 <Tas height={24} width={24} />
                             </View>
                         )
@@ -66,7 +66,7 @@ const BottomTab = () => {
                 options={{
                     tabBarIcon: ({ focused }) => {
                         return (
-                            <View style={{ alignItems: "center", justifyContent: 'center', marginTop: 10, marginBottom: 20, }}>
+                            <View style={{ alignItems: "center", justifyContent: 'center', backgroundColor: focused ? '#9DCEFF' : 'white', marginTop: 10, marginBottom: 20, borderRadius: 25, padding: 10 }}>
                                 <Cam height={24} width={24} />
                             </View>
                         )
@@ -77,7 +77,7 @@ const BottomTab = () => {
                 options={{
                     tabBarIcon: ({ focused }) => {
                         return (
-                            <View style={{ alignItems: "center", justifyContent: 'center', marginTop: 10, marginBottom: 20 }}>
+                            <View style={{ alignItems: "center", justifyContent: 'center', backgroundColor: focused ? '#9DCEFF' : 'white', marginTop: 10, marginBottom: 20, borderRadius: 25, padding: 10 }}>
                                 <Pro height={24} width={24} />
                             </View>
                         )

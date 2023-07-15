@@ -27,6 +27,7 @@ import CustomPieChart from '../../components/Utils/PieChart';
 import LineGraphWithoutLabel from '../../components/Utils/LineGraphWithoutLabel';
 import { useNavigation } from '@react-navigation/native';
 import { SCREENS } from '../../constants/Screens';
+import { TouchableOpacity } from 'react-native';
 
 const BASE_TRACKER_CONTAINER_HEIGHT = 350;
 
@@ -164,7 +165,9 @@ function Dashboard(props) {
             </View>
             <SolidContainer containerStyle={{ ...styles.solidcontainer, backgroundColor: 'white', paddingHorizontal: 10, marginBottom: 0 }}>
                 <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_SEMIBOLD, color: 'black', flexGrow: 1 }}>Workout Progress</LargeText>
-                <SmallText style={{ fontFamily: FONTS.FONT_POPPINS_MEDIUM }}>See More</SmallText>
+                <TouchableOpacity onPress={() => navigation.navigate(SCREENS.WORKOUTSTACK)}>
+                    <SmallText style={{ fontFamily: FONTS.FONT_POPPINS_MEDIUM }} >See More</SmallText>
+                </TouchableOpacity>
             </SolidContainer>
             <View style={{ marginBottom: 80, paddingHorizontal: 10 }}>
                 <WorkoutContainer
@@ -203,10 +206,10 @@ const styles = StyleSheet.create({
         flexGrow: 1
     },
     waterIntakeTracker: {
-        width: '50%',
+        width: '46%',
         flexDirection: 'row',
         alignItems: 'center',
-        marginLeft: 5,
+        marginLeft: 1,
         height: BASE_TRACKER_CONTAINER_HEIGHT,
         marginBottom: 0
     },

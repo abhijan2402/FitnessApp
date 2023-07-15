@@ -15,7 +15,10 @@ import WorkOutHeader from '../../components/workout/WorkOutHeader';
 import WorkoutOption from '../../components/workout/WorkoutOption';
 import ExerciseItems from '../../components/card/ExerciseItems';
 import ExerciseInfoCard from '../../components/card/ExerciseInfoCard';
+import { SCREENS } from '../../constants/Screens';
+import { useNavigation } from '@react-navigation/native';
 function WorkOutInfo(props) {
+    const navigation = useNavigation();
     return (
         <>
             <GradientLabel
@@ -53,7 +56,7 @@ function WorkOutInfo(props) {
                     </View>
                 </ScrollView>
                 <View style={{ position: "absolute", bottom: "4%", width: "100%" }}>
-                    <PrimaryButton containerStyle={{ width: "80%", alignSelf: "center" }} title={'Start Workout'} onPress={() => console.log('Hello')} />
+                    <PrimaryButton onPress={() => navigation.navigate(SCREENS.WODKOUTDETAILS)} containerStyle={{ width: "80%", alignSelf: "center" }} title={'Start Workout'} />
                 </View>
             </GradientLabel>
         </>

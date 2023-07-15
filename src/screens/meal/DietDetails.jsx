@@ -184,8 +184,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 30,
         backgroundColor: 'white',
         paddingTop: 50,
-        paddingLeft: 35,
-
+        paddingLeft: "5%",
     },
     image: {
         marginTop: 80

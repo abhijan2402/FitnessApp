@@ -3,7 +3,7 @@ import React from 'react'
 import { FONTS } from '../../constants/Fonts'
 import { Pressable } from 'react-native'
 
-const ProfileOption = ({ leftIcon, rightIcon, Title,onPress }) => {
+const ProfileOption = ({ leftIcon, rightIcon, Title, onPress }) => {
     return (
         <Pressable onPress={onPress} style={styles.Container}>
             {leftIcon}
@@ -21,7 +21,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: "center",
         paddingHorizontal: 10,
-        paddingVertical: 10
+        paddingVertical: 10,
+        marginRight: "7%"
     },
     OptionTitle: {
         fontSize: 12,
