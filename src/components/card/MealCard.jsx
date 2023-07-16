@@ -3,7 +3,7 @@ import React from 'react'
 import { FONTS } from '../../constants/Fonts'
 const { width, height } = Dimensions.get('window');
 
-const MealCard = ({ Type, NOFood, backgroundColor, btnBackGround, img }) => {
+const MealCard = ({ Type, NOFood, backgroundColor, btnBackGround, img ,onPress}) => {
     return (
         <View style={[styles.Container, { backgroundColor: backgroundColor }]}>
             <View style={styles.ImageAlign}>
@@ -12,7 +12,7 @@ const MealCard = ({ Type, NOFood, backgroundColor, btnBackGround, img }) => {
             <View style={{ marginHorizontal: 15 }}>
                 <Text style={styles.Type}>{Type}</Text>
                 <Text style={styles.NOF}>{NOFood}+ Foods</Text>
-                <TouchableOpacity style={[styles.Btn, { backgroundColor: btnBackGround }]}>
+                <TouchableOpacity onPress={onPress} style={[styles.Btn, { backgroundColor: btnBackGround }]}>
                     <Text style={styles.btnText}>Select</Text>
                 </TouchableOpacity>
             </View>

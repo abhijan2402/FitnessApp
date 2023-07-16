@@ -11,6 +11,8 @@ import Notification from '../../screens/dashboard/Notification';
 import { SCREENS } from '../../constants/Screens';
 import SleepStack from './SleepSchedule';
 import WorkoutStack from './WorkoutStack';
+import MealStack from './MealStack';
+import ProgressStack from './ProgressStask';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +29,8 @@ function DashboardStack() {
             <Stack.Screen name={SCREENS.SUBSCRIPTION} component={Subscription} />
             <Stack.Screen name={SCREENS.SLEEPSTACK} component={SleepStack} />
             <Stack.Screen name={SCREENS.WORKOUTSTACK} component={WorkoutStack} />
+            <Stack.Screen name={SCREENS.MEALSTACK} component={MealStack} />
+            <Stack.Screen name={SCREENS.PROGRESSTACK} component={ProgressStack} />
 
         </Stack.Navigator>
     );

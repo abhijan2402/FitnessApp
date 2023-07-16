@@ -11,7 +11,7 @@ const Stack = createNativeStackNavigator();
 
 function MealStack() {
     return (
-        <Stack.Navigator screenOptions={{
+        <Stack.Navigator initialRouteName={SCREENS.MEALHOME} screenOptions={{
             headerShown: false
         }}>
 

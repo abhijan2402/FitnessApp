@@ -61,6 +61,7 @@ function Dashboard(props) {
                             title={'View More'}
                             containerStyle={{ width: 100, height: 40, elevation: 0 }}
                             textStyle={{ fontSize: 12 }}
+                            onPress={()=>navigation.navigate(SCREENS.PROGRESSTACK,{screen:SCREENS.WEIGHTTRACKER})}
                         />
                     </View>
                     <View>
@@ -145,12 +146,14 @@ function Dashboard(props) {
                     title={'Salmon Nigiri'}
                     time={'7am'}
                     date={'Today'}
+                    onpress={()=>navigation.navigate(SCREENS.MEALSTACK,{screen:SCREENS.MEALSCHEDULER})}
                 />
                 <MealContainer
                     img={require('../../../assets/images/glass-of-milk.png')}
                     title={'Lowfat Milk'}
                     time={'8am'}
                     date={'Today'}
+                    onpress={()=>navigation.navigate(SCREENS.MEALSTACK,{screen:SCREENS.MEALSCHEDULER})}
                 />
             </View>
             <SolidContainer containerStyle={{ ...styles.solidcontainer, backgroundColor: 'white', paddingHorizontal: 10, marginBottom: 0 }}>
@@ -180,6 +183,7 @@ function Dashboard(props) {
                     title={'Fullbody Workout'}
                     time={'20min'}
                     cal={'180 Calories Burn'}
+                    onPress={()=>navigation.navigate(SCREENS.WORKOUTSTACK,{screen:SCREENS.WORLOUTINFO})}
                 />
                 <View style={{}}>
                     <PrimaryButton

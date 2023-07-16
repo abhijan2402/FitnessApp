@@ -66,20 +66,22 @@ const MealHome = () => {
                         title={'Salmon Nigiri'}
                         time={'7am'}
                         date={'Today'}
+                        onpress={()=>navigation.navigate(SCREENS.MEALSCHEDULER)}
                     />
                     <MealContainer
                         img={require('../../../assets/images/glass-of-milk.png')}
                         title={'Lowfat Milk'}
                         time={'8am'}
                         date={'Today'}
+                        onpress={()=>navigation.navigate(SCREENS.MEALSCHEDULER)}
                     />
                 </View>
                 <View style={{ marginHorizontal: 20, marginVertical: "5%" }}>
                     <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_SEMIBOLD, color: 'black', flexGrow: 1, marginVertical: 5 }}>Meal</LargeText>
                     <ScrollView horizontal>
-                        <MealCard Type="BreakFast" NOFood="120" backgroundColor={"#D9FFFD"} btnBackGround={"#82E1FF"} img={require('../../../assets/images/BreakFast_meal.png')} />
-                        <MealCard Type="Lunch" NOFood="102" backgroundColor={"#FFE0DC"} btnBackGround={"#FF8ECB"} img={require('../../../assets/images/BreakFast_meal.png')} />
-                        <MealCard Type="Dinner" NOFood="20" backgroundColor={"#D9FFFD"} btnBackGround={"#82E1FF"} img={require('../../../assets/images/BreakFast_meal.png')} />
+                        <MealCard onPress={()=>navigation.navigate(SCREENS.MEALSCHEDULER)} Type="BreakFast" NOFood="120" backgroundColor={"#D9FFFD"} btnBackGround={"#82E1FF"} img={require('../../../assets/images/BreakFast_meal.png')} />
+                        <MealCard onPress={()=>navigation.navigate(SCREENS.MEALSCHEDULER)} Type="Lunch" NOFood="102" backgroundColor={"#FFE0DC"} btnBackGround={"#FF8ECB"} img={require('../../../assets/images/BreakFast_meal.png')} />
+                        <MealCard onPress={()=>navigation.navigate(SCREENS.MEALSCHEDULER)} Type="Dinner" NOFood="20" backgroundColor={"#D9FFFD"} btnBackGround={"#82E1FF"} img={require('../../../assets/images/BreakFast_meal.png')} />
                     </ScrollView>
                 </View>
             </View>
@@ -100,12 +102,14 @@ const MealHome = () => {
                         title={'Salmon Nigiri'}
                         time={'7am'}
                         date={'Today'}
+                        onpress={()=>navigation.navigate(SCREENS.MEALSCHEDULER)}
                     />
                     <MealContainer
                         img={require('../../../assets/images/glass-of-milk.png')}
                         title={'Lowfat Milk'}
                         time={'8am'}
                         date={'Today'}
+                        onpress={()=>navigation.navigate(SCREENS.MEALSCHEDULER)}
                     />
                 </View>
             </View>

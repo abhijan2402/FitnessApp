@@ -10,7 +10,7 @@ const Stack = createNativeStackNavigator();
 
 function ProgressStack() {
     return (
-        <Stack.Navigator screenOptions={{
+        <Stack.Navigator initialRouteName={SCREENS.PROGRESSPHOTO} screenOptions={{
             headerShown: false
         }}>
             <Stack.Screen name={SCREENS.PROGRESSPHOTO} component={ProgressPhoto} />

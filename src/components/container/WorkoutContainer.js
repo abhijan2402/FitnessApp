@@ -10,9 +10,9 @@ import ProgressBar from '../progress/ProgressBar';
 
 
 
-function WorkoutContainer({containerStyle,img,imgStyle,imgBackground,title="",cal="", time=""}) {
+function WorkoutContainer({containerStyle,img,imgStyle,imgBackground,title="",cal="", time="",onPress={onPress}}) {
     return (
-        <DataContainer containerStyle={{...styles.container,...containerStyle}}>
+        <DataContainer onPress={onPress} containerStyle={{...styles.container,...containerStyle}}>
             <View style={[styles.imageContainer,{backgroundColor:imgBackground}]}>
                 <Image source={img} style={imgStyle}/>
             </View>

@@ -46,7 +46,7 @@ const MealScheduler = ({ navigation }) => {
                                 time={item.time}
                                 containerStyle={{ width: '98%', alignSelf: 'center', }}
                                 img={item.img}
-                                onPress={() => navigation.navigate(SCREENS.MEALSCHEDULER)}
+                                onPress={() => navigation.navigate(SCREENS.DIETDETAILS)}
                             />
                         ))
                     }
@@ -62,7 +62,7 @@ const MealScheduler = ({ navigation }) => {
                                 time={item.time}
                                 containerStyle={{ width: '99%', alignSelf: 'center', }}
                                 img={item.img}
-                                onPress={() => navigation.navigate(SCREENS.MEALSCHEDULER)}
+                                onPress={() => navigation.navigate(SCREENS.DIETDETAILS)}
                             />
                         ))
                     }
@@ -78,7 +78,7 @@ const MealScheduler = ({ navigation }) => {
                                 time={item.time}
                                 containerStyle={{ width: '99%', alignSelf: 'center', }}
                                 img={item.img}
-                                onPress={() => navigation.navigate(SCREENS.MEALSCHEDULER)}
+                                onPress={() => navigation.navigate(SCREENS.DIETDETAILS)}
                             />
                         ))
                     }
@@ -94,6 +94,7 @@ const MealScheduler = ({ navigation }) => {
                                 time={item.time}
                                 containerStyle={{ width: '99%', alignSelf: 'center', }}
                                 img={item.img}
+                                onPress={() => navigation.navigate(SCREENS.DIETDETAILS)}
                             />
                         ))
                     }
@@ -107,9 +108,9 @@ const MealScheduler = ({ navigation }) => {
                     <TodayMealPlannerCard mealattributes={"Fats"} attributesvalue={"100 g"} attributeicon={<Fat width={25} height={25} />} progress={150} />
                 </View>
             </ScreenContainer>
-            <FloatingGradingButton colors={['rgba(197, 139, 242, 1)', 'rgba(238, 164, 206, 1)']}>
+            {/* <FloatingGradingButton colors={['rgba(197, 139, 242, 1)', 'rgba(238, 164, 206, 1)']}>
                 <Add width={25} height={25} />
-            </FloatingGradingButton>
+            </FloatingGradingButton> */}
         </>
     )
 }

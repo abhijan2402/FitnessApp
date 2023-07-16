@@ -9,9 +9,9 @@ import NoNotification from '../../../assets/icons/no_notification.svg';
 import Notification from '../../../assets/icons/Notification.svg';
 import SplitHeading from '../Text/SplitHeading';
 
-function MealContainer({containerStyle,img,imgStyle,title="",date="", time=""}) {
+function MealContainer({containerStyle,img,imgStyle,title="",date="", time="",onpress}) {
     return (
-        <DataContainer containerStyle={{...styles.container,...containerStyle}}>
+        <DataContainer onPress={onpress} containerStyle={{...styles.container,...containerStyle}}>
             <Image source={img} style={imgStyle}/>
             <SplitHeading title={title} subtitle1={date} subtitle2={time} containerStyle={{marginLeft:15}}/>
             <SwitchIconButton
