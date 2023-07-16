@@ -7,6 +7,7 @@ import Cam from '../../assets/icons/Cam.svg'
 import NavSearch from '../../assets/icons/NavSearch.svg'
 import Pro from '../../assets/icons/Pro.svg'
 import Tas from '../../assets/icons/Tas.svg'
+import Dumbleicon from '../../assets/icons/Dumbleicon.svg'
 //screens for tab
 import Home from '../BottomScreen/Home';
 import Task from '../BottomScreen/Task';
@@ -68,7 +69,7 @@ const BottomTab = () => {
                     tabBarIcon: ({ focused }) => {
                         return (
                             <View style={{ alignItems: "center", justifyContent: 'center', backgroundColor: focused ? '#9DCEFF' : 'white', marginTop: 10, marginBottom: 20, borderRadius: 25, padding: 10 }}>
-                                <Tas height={24} width={24} />
+                                <Dumbleicon height={28} width={28} color={"grey"} />
                             </View>
                         )
                     }

@@ -28,6 +28,7 @@ import LineGraphWithoutLabel from '../../components/Utils/LineGraphWithoutLabel'
 import { useNavigation } from '@react-navigation/native';
 import { SCREENS } from '../../constants/Screens';
 import { TouchableOpacity } from 'react-native';
+import HomeSwiper from '../../components/Utils/HomeSwiper';
 
 const BASE_TRACKER_CONTAINER_HEIGHT = 350;
 
@@ -47,6 +48,7 @@ function Dashboard(props) {
                     <Notification width={30} height={30} />
                 </SolidButton>
             </View>
+            <HomeSwiper />
             <GradientLabel
                 colors={[COLORS.PRIMARY_BUTTON_GRADIENT.BLUE1, COLORS.PRIMARY_BUTTON_GRADIENT.BLUE2]}
                 conatinerStyle={styles.gradientContainer}
@@ -115,7 +117,7 @@ function Dashboard(props) {
                         />
                         <Image style={{ marginTop: 15 }} source={require('../../../assets/images/Sleep-Graph.png')} />
                     </DataContainer>
-                    <DataContainer containerStyle={{ ...styles.sleepContainer, ...{ marginBottom: 0 } }} onPress={()=>navigation.navigate(SCREENS.ACTIVITYTRACKER)}>
+                    <DataContainer containerStyle={{ ...styles.sleepContainer, ...{ marginBottom: 0 } }} onPress={() => navigation.navigate(SCREENS.ACTIVITYTRACKER)}>
                         <PairText
                             heading='Calories'
                             subHeading='760 kCal'

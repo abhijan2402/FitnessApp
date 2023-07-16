@@ -2,7 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Dashboard from '../../screens/dashboard/Dashboard';
 import EditProfile from '../../screens/dashboard/Notification';
 import ActivityTracker from '../../screens/dashboard/ActivityTracker';
-// import Profile from '../../screens/dashboard/Profile';
+import Profile from '../../screens/dashboard/Profile';
 import Account from '../../screens/profile/Account';
 import FinishWO from '../../screens/dashboard/FinishWO';
 import WaterDrink from '../../screens/dashboard/WaterDrink';
@@ -27,7 +27,6 @@ function DashboardStack() {
             <Stack.Screen name={SCREENS.SUBSCRIPTION} component={Subscription} />
             <Stack.Screen name={SCREENS.SLEEPSTACK} component={SleepStack} />
             <Stack.Screen name={SCREENS.WORKOUTSTACK} component={WorkoutStack} />
-
 
         </Stack.Navigator>
     );
