@@ -19,6 +19,7 @@ import DashboardStack from './Stacks/DashboardStack';
 import ProgressStack from './Stacks/ProgressStask';
 import MealStack from './Stacks/MealStack';
 import { COLORS } from '../constants/Colors';
+import WorkoutStack from './Stacks/WorkoutStack';
 const windwoheight = Dimensions.get('window').height
 const Tab = createBottomTabNavigator();
 const BottomTab = () => {
@@ -52,6 +53,17 @@ const BottomTab = () => {
                 }}
             />
             <Tab.Screen name={SCREENS.MEALTAB} component={MealStack}
+                options={{
+                    tabBarIcon: ({ focused }) => {
+                        return (
+                            <View style={{ alignItems: "center", justifyContent: 'center', backgroundColor: focused ? '#9DCEFF' : 'white', marginTop: 10, marginBottom: 20, borderRadius: 25, padding: 10 }}>
+                                <Tas height={24} width={24} />
+                            </View>
+                        )
+                    }
+                }}
+            />
+            <Tab.Screen name={SCREENS.WORKOUTSTACK} component={WorkoutStack}
                 options={{
                     tabBarIcon: ({ focused }) => {
                         return (

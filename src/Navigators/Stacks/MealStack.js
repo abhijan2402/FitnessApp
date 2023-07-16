@@ -2,10 +2,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MealHome from '../../screens/Meal/MealHome';
 import MealScheduler from '../../screens/Meal/MealScheduler';
 import DietDetails from '../../screens/Meal/DietDetails';
-import FinishWO from '../../screens/dashboard/FinishWO';
 import { SCREENS } from '../../constants/Screens';
 import FinalMealScreen from '../../screens/Meal/FinalMealScreen';
 import DashboardStack from './DashboardStack';
+import FinishWO from '../../screens/dashBoard/FinishWO';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,6 +14,7 @@ function MealStack() {
         <Stack.Navigator screenOptions={{
             headerShown: false
         }}>
+
             <Stack.Screen name={SCREENS.MEALHOME} component={MealHome} />
             <Stack.Screen name={SCREENS.MEALSCHEDULER} component={MealScheduler} />
             <Stack.Screen name={SCREENS.DIETDETAILS} component={DietDetails} />

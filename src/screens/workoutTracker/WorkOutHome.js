@@ -32,6 +32,8 @@ import DIfferentBWContainer from '../../components/workout/DIfferentBWContainer'
 import WorkOutForms from '../../components/workout/WorkOutForms';
 import { SCREENS } from '../../constants/Screens';
 import { useNavigation } from '@react-navigation/native';
+import AnimatedLineChart from '../../components/Utils/LineChart';
+import TextH4 from '../../components/Text/TextH4';
 function WorkOutHome(props) {
     const navigation = useNavigation();
     return (
@@ -40,7 +42,11 @@ function WorkOutHome(props) {
                 colors={[COLORS.PRIMARY_BUTTON_GRADIENT.BLUE1, COLORS.PRIMARY_BUTTON_GRADIENT.BLUE2]}
                 conatinerStyle={styles.container}
             >
-                <Image source={require('../../../assets/images/cake.png')} style={styles.image} />
+                {/* <Image source={require('../../../assets/images/cake.png')} style={styles.image} /> */}
+                <View style={{ overflow: "hidden", width: "90%", marginTop: "5%", marginBottom: "5%" }}>
+                    <TextH4 style={{ textAlign: "center", marginVertical: 10 }} >Workout Tracker</TextH4>
+                    <AnimatedLineChart />
+                </View>
                 <ScrollView contentContainerStyle={[styles.detailContainer]}>
                     <View style={{ display: "flex", flexDirection: "column", alignItems: "center", marginVertical: "8%" }}>
                         <SolidContainer containerStyle={[styles.solidcontainer, {}]}>

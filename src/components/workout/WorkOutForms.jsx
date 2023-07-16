@@ -4,8 +4,11 @@ import LargeText from '../Text/LargeText'
 import SmallText from '../Text/SmallText'
 import { TouchableOpacity } from 'react-native'
 import { FONTS } from '../../constants/Fonts'
+import { SCREENS } from '../../constants/Screens'
+import { useNavigation } from '@react-navigation/native'
 
 const WorkOutForms = ({ title, NOfExercise, Time, icon }) => {
+    const navigation = useNavigation();
     return (
         <View style={styles.mainConatiner}>
             <View>
@@ -14,7 +17,7 @@ const WorkOutForms = ({ title, NOfExercise, Time, icon }) => {
                     <SmallText style={{ fontFamily: FONTS.FONT_POPPINS_REGULAR }}>{NOfExercise} Exercises | </SmallText>
                     <SmallText>{Time}</SmallText>
                 </View>
-                <TouchableOpacity style={styles.btn}>
+                <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate(SCREENS.WORLOUTINFO)}>
                     <Text style={styles.BtnText}>View More</Text>
                 </TouchableOpacity>
             </View>

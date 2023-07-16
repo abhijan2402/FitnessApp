@@ -11,9 +11,11 @@ import SmallText from '../../components/Text/SmallText';
 import GalleryPhotoCard from '../../components/card/GalleryPhotoCard';
 import Camera from '../../../assets/icons/Camera.svg';
 import FloatingGradingButton from '../../components/Button/FloatingGradingButton';
+import { SCREENS } from '../../constants/Screens';
 const { width, height } = Dimensions.get('window');
 
-const ProgressPhoto = () => {
+const ProgressPhoto = ({ navigation }) => {
+
     return (
         <>
             <ScrollView>
@@ -26,7 +28,9 @@ const ProgressPhoto = () => {
                         <PrimaryButton
                             containerStyle={styles.targetButton}
                             textStyle={styles.targetButtonText}
-                            title={'Compare'} />
+                            title={'Compare'}
+                            onPress={() => navigation.navigate(SCREENS.COMPARISION)}
+                        />
                     </SolidContainer>
                 </View>
                 <View style={{ display: "flex", flexDirection: "column", alignItems: "center", marginVertical: "1%" }}>

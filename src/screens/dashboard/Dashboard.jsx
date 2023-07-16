@@ -72,7 +72,8 @@ function Dashboard(props) {
                 <PrimaryButton
                     containerStyle={styles.targetButton}
                     textStyle={styles.targetButtonText}
-                    title={'Check'} />
+                    title={'Check'}
+                    onPress={() => navigation.navigate(SCREENS.ACTIVITYTRACKER)} />
             </SolidContainer>
             <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_SEMIBOLD, color: 'black', marginBottom: 15 }}>Activity Status</LargeText>
             <SolidContainer containerStyle={styles.lineGraphContainer}>
@@ -93,7 +94,7 @@ function Dashboard(props) {
                             gradientContainerStyle={{ ...styles.waterInTakeGradient, height: (200 % BASE_TRACKER_CONTAINER_HEIGHT) }}
                         />
                     </View>
-                    <View style={{ alignSelf: 'flex-start', paddingTop: 15, marginLeft: 10 }}>
+                    <TouchableOpacity style={{ alignSelf: 'flex-start', paddingTop: 15, marginLeft: 10 }} onPress={() => navigation.navigate(SCREENS.WATERDRINK)}>
                         <PairText
                             heading={'Water Intake'}
                             subHeading='4 Liters'
@@ -104,7 +105,7 @@ function Dashboard(props) {
                         <ListBullet title={'11am - 2pm'} subTitle={'1000ml'} />
                         <ListBullet title={'2pm - 4pm'} subTitle={'700ml'} />
                         <ListBullet title={'4pm - now'} subTitle={'900ml'} showLine={false} />
-                    </View>
+                    </TouchableOpacity>
                 </DataContainer>
                 <View style={{ flexGrow: 1, height: BASE_TRACKER_CONTAINER_HEIGHT, marginRight: 10 }}>
                     <DataContainer containerStyle={styles.sleepContainer} onPress={() => navigation.navigate(SCREENS.SLEEPSTACK)}>
@@ -165,7 +166,7 @@ function Dashboard(props) {
             </View>
             <SolidContainer containerStyle={{ ...styles.solidcontainer, backgroundColor: 'white', paddingHorizontal: 10, marginBottom: 0 }}>
                 <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_SEMIBOLD, color: 'black', flexGrow: 1 }}>Workout Progress</LargeText>
-                <TouchableOpacity onPress={() => navigation.navigate(SCREENS.WORKOUTSTACK)}>
+                <TouchableOpacity>
                     <SmallText style={{ fontFamily: FONTS.FONT_POPPINS_MEDIUM }} >See More</SmallText>
                 </TouchableOpacity>
             </SolidContainer>
@@ -178,6 +179,13 @@ function Dashboard(props) {
                     time={'20min'}
                     cal={'180 Calories Burn'}
                 />
+                <View style={{}}>
+                    <PrimaryButton
+                        onPress={() => navigation.navigate(SCREENS.WORKOUTSTACK)}
+                        title={'View More'}
+
+                    />
+                </View>
             </View>
         </ScreenContainer>
     );
