@@ -21,8 +21,8 @@ function AnimatedLineChart({labelStyleX,labelStyleY,width,height,color=COLORS.PR
     width={width}
     height={height}
     isAnimated
-    xAxisLabelTextStyle={{fontFamily:FONTS.FONT_POPPINS_MEDIUM,...labelStyleX}}
-    yAxisTextStyle={{fontFamily:FONTS.FONT_POPPINS_MEDIUM,...labelStyleY}}
+    xAxisLabelTextStyle={{color:'#7B6F72',fontFamily:FONTS.FONT_POPPINS_MEDIUM,...labelStyleX}}
+    yAxisTextStyle={{color:'#7B6F72',fontFamily:FONTS.FONT_POPPINS_MEDIUM,...labelStyleY}}
     xAxisThickness={0}
     yAxisThickness={0}
     thickness1={3}

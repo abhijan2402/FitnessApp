@@ -115,7 +115,7 @@ function Dashboard(props) {
                         />
                         <Image style={{ marginTop: 15 }} source={require('../../../assets/images/Sleep-Graph.png')} />
                     </DataContainer>
-                    <DataContainer containerStyle={{ ...styles.sleepContainer, ...{ marginBottom: 0 } }}>
+                    <DataContainer containerStyle={{ ...styles.sleepContainer, ...{ marginBottom: 0 } }} onPress={()=>navigation.navigate(SCREENS.ACTIVITYTRACKER)}>
                         <PairText
                             heading='Calories'
                             subHeading='760 kCal'

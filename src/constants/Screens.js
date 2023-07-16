@@ -51,5 +51,8 @@ export const SCREENS = {
     WORLOUTINFO: "WorkOutInfo",
     WODKOUTDETAILS: "WorkoutDetails",
     WODKOUTSCHEDULE: "WorkoutSchedule",
-    ADDSHCEDULE: "AddSchedule"
+    ADDSHCEDULE: "AddSchedule",
+    
+    //WEIGHT
+    WEIGHTTRACKER:"WeightProgress"
 }

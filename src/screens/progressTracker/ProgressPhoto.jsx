@@ -15,7 +15,7 @@ import { SCREENS } from '../../constants/Screens';
 const { width, height } = Dimensions.get('window');
 
 const ProgressPhoto = ({ navigation }) => {
-
+    
     return (
         <>
             <ScrollView>
@@ -39,7 +39,7 @@ const ProgressPhoto = ({ navigation }) => {
                         <PrimaryButton
                             containerStyle={styles.targetButton}
                             textStyle={styles.targetButtonText}
-                            title={'Track'} />
+                            title={'Track'} onPress={()=>navigation.navigate(SCREENS.WEIGHTTRACKER)}/>
                     </SolidContainer>
                 </View>
                 <View style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginHorizontal: 30, marginVertical: "2%" }}>
