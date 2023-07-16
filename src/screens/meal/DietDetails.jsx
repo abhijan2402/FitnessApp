@@ -99,77 +99,81 @@ function DietDetails(props) {
 
     return (
         <>
-            <GradientLabel
-                colors={[COLORS.PRIMARY_BUTTON_GRADIENT.BLUE1, COLORS.PRIMARY_BUTTON_GRADIENT.BLUE2]}
-                conatinerStyle={styles.container}
-            >
-                <Image source={require('../../../assets/images/cake.png')} style={styles.image} />
-                <ScrollView contentContainerStyle={[styles.detailContainer]}>
-                    <View style={{ marginBottom: 30 }}>
-                        <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_BOLD, color: 'black' }}>Blueberry Pancake</LargeText>
-                        <SmallText style={{ color: COLORS.PRIMARY_BUTTON_GRADIENT.BLUE1 }}>by James Ruth</SmallText>
-                    </View>
-                    <View style={{ marginBottom: 15 }}>
-                        <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_SEMIBOLD, color: 'black', marginBottom: 15 }}>Nutrition</LargeText>
+            <ScrollView>
+
+
+                <GradientLabel
+                    colors={[COLORS.PRIMARY_BUTTON_GRADIENT.BLUE1, COLORS.PRIMARY_BUTTON_GRADIENT.BLUE2]}
+                    conatinerStyle={styles.container}
+                >
+                    <Image source={require('../../../assets/images/cake.png')} style={styles.image} />
+                    <ScrollView contentContainerStyle={[styles.detailContainer]}>
+                        <View style={{ marginBottom: 30 }}>
+                            <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_BOLD, color: 'black' }}>Blueberry Pancake</LargeText>
+                            <SmallText style={{ color: COLORS.PRIMARY_BUTTON_GRADIENT.BLUE1 }}>by James Ruth</SmallText>
+                        </View>
+                        <View style={{ marginBottom: 15 }}>
+                            <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_SEMIBOLD, color: 'black', marginBottom: 15 }}>Nutrition</LargeText>
+                            <FlatList
+                                data={tags}
+                                renderItem={({ item }) => <Tag icon={item.icon} tag={item.tag} />}
+                                keyExtractor={item => item.id}
+                                horizontal
+                                showsHorizontalScrollIndicator={false}
+                            />
+                        </View>
+                        <View style={{ paddingRight: 35 }}>
+                            <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_SEMIBOLD, color: 'black', marginBottom: 10 }}>Descriptions</LargeText>
+                            <SmallText style={styles.descriptions}>
+                                {descriptions}
+                                <SmallText style={{ color: COLORS.PRIMARY_BUTTON_GRADIENT.BLUE1 }}>
+                                    Read More...
+                                </SmallText>
+                            </SmallText>
+                        </View>
+
+                        <SolidContainer containerStyle={styles.solidcontainer}>
+                            <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_SEMIBOLD, color: 'black', width: 180 }}>Ingredients That You Will Need</LargeText>
+                            <SmallText style={{ fontFamily: FONTS.FONT_POPPINS_MEDIUM, flexGrow: 1, textAlign: 'right' }}>{`${nutrientData.length} items`}</SmallText>
+                        </SolidContainer>
                         <FlatList
-                            data={tags}
-                            renderItem={({ item }) => <Tag icon={item.icon} tag={item.tag} />}
-                            keyExtractor={item => item.id}
+                            data={nutrientData}
+                            renderItem={({ item }) =>
+                                <IngridientCard
+                                    icon={item.icon}
+                                    title={item.title}
+                                    value={item.value}
+                                    keyExtractor={item => item.id}
+                                    containerStyle={{ marginRight: 15, marginBottom: 20 }}
+                                />}
                             horizontal
                             showsHorizontalScrollIndicator={false}
                         />
-                    </View>
-                    <View style={{ paddingRight: 35 }}>
-                        <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_SEMIBOLD, color: 'black', marginBottom: 10 }}>Descriptions</LargeText>
-                        <SmallText style={styles.descriptions}>
-                            {descriptions}
-                            <SmallText style={{ color: COLORS.PRIMARY_BUTTON_GRADIENT.BLUE1 }}>
-                                Read More...
-                            </SmallText>
-                        </SmallText>
-                    </View>
-
-                    <SolidContainer containerStyle={styles.solidcontainer}>
-                        <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_SEMIBOLD, color: 'black', width: 180 }}>Ingredients That You Will Need</LargeText>
-                        <SmallText style={{ fontFamily: FONTS.FONT_POPPINS_MEDIUM, flexGrow: 1, textAlign: 'right' }}>{`${nutrientData.length} items`}</SmallText>
-                    </SolidContainer>
-                    <FlatList
-                        data={nutrientData}
-                        renderItem={({ item }) =>
-                            <IngridientCard
-                                icon={item.icon}
-                                title={item.title}
-                                value={item.value}
-                                keyExtractor={item => item.id}
-                                containerStyle={{ marginRight: 15, marginBottom: 20 }}
-                            />}
-                        horizontal
-                        showsHorizontalScrollIndicator={false}
-                    />
-                    <SolidContainer containerStyle={styles.solidcontainer}>
-                        <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_SEMIBOLD, color: 'black', flexGrow: 1 }}>Step by Step</LargeText>
-                        <SmallText style={{ fontFamily: FONTS.FONT_POPPINS_MEDIUM }}>8 Steps</SmallText>
-                    </SolidContainer>
-                    {
-                        stepData.map((item, index) =>
-                            <ActivePassiveList
-                                width={340}
-                                key={index}
-                                id={`${index < 10 ? '0' + (index + 1) : index}`}
-                                isComplete={item.isComplete}
-                                title={item.title}
-                                subtitle={item.subtitle}
-                                showLine={(index === stepData.length - 1) ? false : true}
-                            />)
-                    }
-                    <View style={{ paddingBottom: 35, paddingRight: 30 }}>
-                        <PrimaryButton
-                            onPress={() => navigation.navigate(SCREENS.FINISHWO)}
-                            title={'Add to Breakfast Meal'}
-                        />
-                    </View>
-                </ScrollView>
-            </GradientLabel>
+                        <SolidContainer containerStyle={styles.solidcontainer}>
+                            <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_SEMIBOLD, color: 'black', flexGrow: 1 }}>Step by Step</LargeText>
+                            <SmallText style={{ fontFamily: FONTS.FONT_POPPINS_MEDIUM }}>8 Steps</SmallText>
+                        </SolidContainer>
+                        {
+                            stepData.map((item, index) =>
+                                <ActivePassiveList
+                                    width={340}
+                                    key={index}
+                                    id={`${index < 10 ? '0' + (index + 1) : index}`}
+                                    isComplete={item.isComplete}
+                                    title={item.title}
+                                    subtitle={item.subtitle}
+                                    showLine={(index === stepData.length - 1) ? false : true}
+                                />)
+                        }
+                        <View style={{ paddingBottom: 35, paddingRight: 30 }}>
+                            <PrimaryButton
+                                onPress={() => navigation.navigate(SCREENS.FINISHWO)}
+                                title={'Add to Breakfast Meal'}
+                            />
+                        </View>
+                    </ScrollView>
+                </GradientLabel>
+            </ScrollView>
 
         </>
     );

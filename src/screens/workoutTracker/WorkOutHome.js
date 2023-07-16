@@ -38,42 +38,44 @@ function WorkOutHome(props) {
     const navigation = useNavigation();
     return (
         <>
-            <GradientLabel
-                colors={[COLORS.PRIMARY_BUTTON_GRADIENT.BLUE1, COLORS.PRIMARY_BUTTON_GRADIENT.BLUE2]}
-                conatinerStyle={styles.container}
-            >
-                {/* <Image source={require('../../../assets/images/cake.png')} style={styles.image} /> */}
-                <View style={{ overflow: "hidden", width: "90%", marginTop: "5%", marginBottom: "5%" }}>
-                    <TextH4 style={{ textAlign: "center", marginVertical: 10 }} >Workout Tracker</TextH4>
-                    <AnimatedLineChart />
-                </View>
-                <ScrollView contentContainerStyle={[styles.detailContainer]}>
-                    <View style={{ display: "flex", flexDirection: "column", alignItems: "center", marginVertical: "8%" }}>
-                        <SolidContainer containerStyle={[styles.solidcontainer, {}]}>
-                            <TextMedium style={{ flexGrow: 1 }}>Daily Workout Schedule</TextMedium>
-                            <PrimaryButton
-                                onPress={() => navigation.navigate(SCREENS.WORLOUTINFO)}
-                                containerStyle={styles.targetButton}
-                                textStyle={styles.targetButtonText}
-                                title={'Check'} />
-                        </SolidContainer>
+            <ScrollView>
+                <GradientLabel
+                    colors={[COLORS.PRIMARY_BUTTON_GRADIENT.BLUE1, COLORS.PRIMARY_BUTTON_GRADIENT.BLUE2]}
+                    conatinerStyle={styles.container}
+                >
+                    {/* <Image source={require('../../../assets/images/cake.png')} style={styles.image} /> */}
+                    <View style={{ overflow: "hidden", width: "90%", marginTop: "5%", marginBottom: "5%" }}>
+                        <TextH4 style={{ textAlign: "center", marginVertical: 10 }} >Workout Tracker</TextH4>
+                        <AnimatedLineChart />
                     </View>
-                    <View style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginHorizontal: "5%" }}>
-                        <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_BOLD, color: 'black' }}>Upcoming Workout</LargeText>
-                        <TextMedium style={{}}>See more</TextMedium>
-                    </View>
-                    <View>
-                        <DIfferentBWContainer title={"Diabetes Workout"} time={"Today, 03pm"} icon={<WorkoutPic width={50} height={50} />} />
-                        <DIfferentBWContainer title={"Upperbody Workout"} time={"Today, 03pm"} icon={<WorkoutPic1 width={50} height={50} />} />
-                    </View>
-                    <View style={{ marginHorizontal: "5%", marginTop: "5%" }}>
-                        <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_BOLD, color: 'black' }}>What Do You Want to Train</LargeText>
-                        <WorkOutForms title={"Fullbody Workout"} NOfExercise={"10"} Time={"30mins"} icon={<BoyJumping width={75} height={105} />} />
-                        <WorkOutForms title={"Lowebody Workout"} NOfExercise={"10"} Time={"30mins"} icon={<GirlLifting width={75} height={105} />} />
-                        <WorkOutForms title={"AB Workout"} NOfExercise={"10"} Time={"30mins"} icon={<BoyLifting width={75} height={105} />} />
-                    </View>
-                </ScrollView>
-            </GradientLabel>
+                    <ScrollView contentContainerStyle={[styles.detailContainer]}>
+                        <View style={{ display: "flex", flexDirection: "column", alignItems: "center", marginVertical: "8%" }}>
+                            <SolidContainer containerStyle={[styles.solidcontainer, {}]}>
+                                <TextMedium style={{ flexGrow: 1 }}>Daily Workout Schedule</TextMedium>
+                                <PrimaryButton
+                                    onPress={() => navigation.navigate(SCREENS.WORLOUTINFO)}
+                                    containerStyle={styles.targetButton}
+                                    textStyle={styles.targetButtonText}
+                                    title={'Check'} />
+                            </SolidContainer>
+                        </View>
+                        <View style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginHorizontal: "5%" }}>
+                            <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_BOLD, color: 'black' }}>Upcoming Workout</LargeText>
+                            <TextMedium style={{}}>See more</TextMedium>
+                        </View>
+                        <View>
+                            <DIfferentBWContainer title={"Diabetes Workout"} time={"Today, 03pm"} icon={<WorkoutPic width={50} height={50} />} />
+                            <DIfferentBWContainer title={"Upperbody Workout"} time={"Today, 03pm"} icon={<WorkoutPic1 width={50} height={50} />} />
+                        </View>
+                        <View style={{ marginHorizontal: "5%", marginTop: "5%" }}>
+                            <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_BOLD, color: 'black' }}>What Do You Want to Train</LargeText>
+                            <WorkOutForms title={"Fullbody Workout"} NOfExercise={"10"} Time={"30mins"} icon={<BoyJumping width={75} height={105} />} />
+                            <WorkOutForms title={"Lowebody Workout"} NOfExercise={"10"} Time={"30mins"} icon={<GirlLifting width={75} height={105} />} />
+                            <WorkOutForms title={"AB Workout"} NOfExercise={"10"} Time={"30mins"} icon={<BoyLifting width={75} height={105} />} />
+                        </View>
+                    </ScrollView>
+                </GradientLabel>
+            </ScrollView>
         </>
     );
 }
