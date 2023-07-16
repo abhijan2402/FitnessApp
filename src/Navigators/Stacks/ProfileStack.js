@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Profile from '../../screens/dashBoard/Profile';
+import Profile from '../../screens/dashboard/Profile';
 import Account from '../../screens/profile/Account';
 import { SCREENS } from '../../constants/Screens';
 import EditProfile from '../../screens/profile/EditProfile';
