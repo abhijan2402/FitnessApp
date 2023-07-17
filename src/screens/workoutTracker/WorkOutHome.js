@@ -34,11 +34,16 @@ import { SCREENS } from '../../constants/Screens';
 import { useNavigation } from '@react-navigation/native';
 import AnimatedLineChart from '../../components/Utils/LineChart';
 import TextH4 from '../../components/Text/TextH4';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import BottomSheet from '../../components/container/BottomSheet';
+import { useRef } from 'react';
+import useLayout from '../../hooks/useLayout';
 function WorkOutHome(props) {
     const navigation = useNavigation();
+    const sheetRef = useRef(null);
+    const [viewHeight,getViewHeight] = useLayout()
     return (
-        <>
-            <ScrollView>
+        <GestureHandlerRootView style={{flex:1}}>
                 <GradientLabel
                     colors={[COLORS.PRIMARY_BUTTON_GRADIENT.BLUE1, COLORS.PRIMARY_BUTTON_GRADIENT.BLUE2]}
                     conatinerStyle={styles.container}
@@ -48,35 +53,36 @@ function WorkOutHome(props) {
                         <TextH4 style={{ textAlign: "center", marginVertical: 10 }} >Workout Tracker</TextH4>
                         <AnimatedLineChart />
                     </View>
-                    <ScrollView contentContainerStyle={[styles.detailContainer]}>
-                        <View style={{ display: "flex", flexDirection: "column", alignItems: "center", marginVertical: "8%" }}>
-                            <SolidContainer containerStyle={[styles.solidcontainer, {}]}>
-                                <TextMedium style={{ flexGrow: 1 }}>Daily Workout Schedule</TextMedium>
-                                <PrimaryButton
-                                    onPress={() => navigation.navigate(SCREENS.WORLOUTINFO)}
-                                    containerStyle={styles.targetButton}
-                                    textStyle={styles.targetButtonText}
-                                    title={'Check'} />
-                            </SolidContainer>
-                        </View>
-                        <View style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginHorizontal: "5%" }}>
-                            <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_BOLD, color: 'black' }}>Upcoming Workout</LargeText>
-                            <TextMedium style={{}}>See more</TextMedium>
-                        </View>
-                        <View>
-                            <DIfferentBWContainer title={"Diabetes Workout"} time={"Today, 03pm"} icon={<WorkoutPic width={50} height={50} />} />
-                            <DIfferentBWContainer title={"Upperbody Workout"} time={"Today, 03pm"} icon={<WorkoutPic1 width={50} height={50} />} />
-                        </View>
-                        <View style={{ marginHorizontal: "5%", marginTop: "5%" }}>
-                            <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_BOLD, color: 'black' }}>What Do You Want to Train</LargeText>
-                            <WorkOutForms title={"Fullbody Workout"} NOfExercise={"10"} Time={"30mins"} icon={<BoyJumping width={75} height={105} />} />
-                            <WorkOutForms title={"Lowebody Workout"} NOfExercise={"10"} Time={"30mins"} icon={<GirlLifting width={75} height={105} />} />
-                            <WorkOutForms title={"AB Workout"} NOfExercise={"10"} Time={"30mins"} icon={<BoyLifting width={75} height={105} />} />
-                        </View>
-                    </ScrollView>
                 </GradientLabel>
-            </ScrollView>
-        </>
+                <BottomSheet ref={sheetRef} extraRequiredHeight={viewHeight}>
+                        <View style={styles.detailContainer} onLayout={getViewHeight}>
+                        <View style={{ display: "flex", flexDirection: "column", alignItems: "center", marginVertical: "8%" }}>
+                                <SolidContainer containerStyle={[styles.solidcontainer]}>
+                                    <TextMedium style={{ flexGrow: 1 }}>Daily Workout Schedule</TextMedium>
+                                    <PrimaryButton
+                                        onPress={() => navigation.navigate(SCREENS.WODKOUTSCHEDULE)}
+                                        containerStyle={styles.targetButton}
+                                        textStyle={styles.targetButtonText}
+                                        title={'Check'} />
+                                </SolidContainer>
+                            </View>
+                            <View style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginHorizontal: "5%" }}>
+                                <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_BOLD, color: 'black' }}>Upcoming Workout</LargeText>
+                                <TextMedium style={{}}>See more</TextMedium>
+                            </View>
+                            <View>
+                                <DIfferentBWContainer title={"Diabetes Workout"} time={"Today, 03pm"} icon={<WorkoutPic width={50} height={50} />} />
+                                <DIfferentBWContainer title={"Upperbody Workout"} time={"Today, 03pm"} icon={<WorkoutPic1 width={50} height={50} />} />
+                            </View>
+                            <View style={{ marginHorizontal: "5%", marginTop: "5%",paddingBottom:90 }}>
+                                <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_BOLD, color: 'black' }}>What Do You Want to Train</LargeText>
+                                <WorkOutForms title={"Fullbody Workout"} NOfExercise={"10"} Time={"30mins"} icon={<BoyJumping width={75} height={105} />} />
+                                <WorkOutForms title={"Lowebody Workout"} NOfExercise={"10"} Time={"30mins"} icon={<GirlLifting width={75} height={105} />} />
+                                <WorkOutForms title={"AB Workout"} NOfExercise={"10"} Time={"30mins"} icon={<BoyLifting width={75} height={105} />} />
+                            </View>
+                        </View>
+                    </BottomSheet>
+        </GestureHandlerRootView>
     );
 }
 const styles = StyleSheet.create({
