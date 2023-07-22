@@ -18,9 +18,6 @@ function AuthStack() {
         <Stack.Navigator screenOptions={{
             headerShown: false
         }}>
-            <Stack.Screen name={SCREENS.LOGIN}>
-                {() => <Login user={user} setUser={setUser} />}
-            </Stack.Screen>
             <Stack.Screen name={SCREENS.REGISTEROTP}>
                 {() => <RegisterOTP user={user} setUser={setUser} />}
             </Stack.Screen>
@@ -32,6 +29,9 @@ function AuthStack() {
             </Stack.Screen>
             <Stack.Screen name={SCREENS.GOAL}>
                 {() => <Goal user={user} setUser={setUser} />}
+            </Stack.Screen>
+            <Stack.Screen name={SCREENS.LOGIN}>
+                {() => <Login user={user} setUser={setUser} />}
             </Stack.Screen>
             <Stack.Screen name={SCREENS.OTP} component={Otp} />
             <Stack.Screen name={SCREENS.FINALAUTH} component={FinalAuth} />

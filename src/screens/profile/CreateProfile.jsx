@@ -25,11 +25,15 @@ function CreateProfile({user,setUser}) {
     const [date,setDate] = useState('');
     const [weight,setWeight] = useState('')
     const [height,setHeight] = useState('')
-    function reverseString(str){
-        return str.split("").reverse().join("")
+    function reverseDate(){
+        const date_splitted = date.split('/')
+        const day = date_splitted[0];
+        const month = date_splitted[1];
+        const year = date_splitted[2];
+        return year+"/"+month+"/"+day
     }
     function onNext(){
-        setUser({...user,gender,dob:reverseString(date),weight,height})
+        setUser({...user,gender,dob:reverseDate(),weight,height})
         navigation.navigate(SCREENS.GOAL)
     }
     return (
