@@ -13,12 +13,13 @@ export const SCREENS = {
     MEALTAB: "MealTab",
 
     //auth
+    LOGIN: "Login",
     OTP: "Otp",
     REGISTER: "Register",
     CREATEPROFILE: "CreateProfile",
     GOAL: "Goal",
     FINALAUTH: "FinalAuth",
-    REGISTEROTP:"RegisterOTP",
+    REGISTEROTP: "RegisterOTP",
 
     //dashboard
     DASHBOARD: 'Dashboard',
@@ -53,7 +54,7 @@ export const SCREENS = {
     WODKOUTDETAILS: "WorkoutDetails",
     WODKOUTSCHEDULE: "WorkoutSchedule",
     ADDSHCEDULE: "AddSchedule",
-    
+
     //WEIGHT
-    WEIGHTTRACKER:"WeightProgress"
+    WEIGHTTRACKER: "WeightProgress"
 }
