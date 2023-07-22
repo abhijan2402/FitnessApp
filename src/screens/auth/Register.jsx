@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View,Dimensions,Image } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import SmallText from '../../components/Text/SmallText';
 import TextH4 from '../../components/Text/TextH4';
 import Input from '../../components/Form/Input';
@@ -15,6 +15,7 @@ import { Pressable } from 'react-native';
 import { SCREENS } from '../../constants/Screens';
 const { width, height } = Dimensions.get('window');
 const Register = () => {
+    const [user,setUser] = useState({});
     const navigation=useNavigation();
     return (
         <View style={styles.MainView}>
@@ -24,7 +25,10 @@ const Register = () => {
             </View>
 
             <View style={styles.first }>
-                        <Input placeholder={'First Name'} customStyle={{width:'80%'}} icon={<Profile width={20} height={20} />}/>
+                        <Input 
+                        placeholder={'First Name'} 
+                        customStyle={{width:'80%'}} 
+                        icon={<Profile width={20} height={20} />}/>
             </View>
 
             <View style={styles.weight}>

@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import { COLORS } from '../../constants/Colors';
 import { SIZES } from '../../constants/Size';
 
-function SmallText({children,style}) {
+function SmallText({children,style,onPress}) {
     return (
-        <Text style={[styles.font,style]}>{children}</Text>
+        <Text style={[styles.font,style]} onPress={onPress}>{children}</Text>
     );
 }
 SmallText.propTypes = {
