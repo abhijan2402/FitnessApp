@@ -16,11 +16,22 @@ import Swap from '../../../assets/icons/Swap.svg';
 import Input from '../../components/Form/Input';
 import SecondaryLabel from '../../components/Label/SecondaryLabel';
 import { useNavigation } from '@react-navigation/native';
+import { SCREENS } from '../../constants/Screens';
 
-function CreateProfile(props) {
+function CreateProfile({user,setUser}) {
+    
     const navigation=useNavigation();
     const [gender,setGender] = useState('');
     const [date,setDate] = useState('');
+    const [weight,setWeight] = useState('')
+    const [height,setHeight] = useState('')
+    function reverseString(str){
+        return str.split("").reverse().join("")
+    }
+    function onNext(){
+        setUser({...user,gender,dob:reverseString(date),weight,height})
+        navigation.navigate(SCREENS.GOAL)
+    }
     return (
         <View style={styles.container}>
             <View style={{justifyContent:'center',alignItems:'center'}}>
@@ -49,6 +60,8 @@ function CreateProfile(props) {
                     <Input
                     placeholder={'Your Weight'}
                     customStyle={{width:'80%'}}
+                    value={weight}
+                    onChangeText={(text)=>setWeight(text)}
                     icon={<Weight width={20} height={20}/>}
                     />
                     <SecondaryLabel title={'KG'} containerStyle={styles.weightLabelContainer}/>
@@ -57,11 +70,13 @@ function CreateProfile(props) {
                     <Input
                     placeholder={'Your Height'}
                     customStyle={{width:'80%'}}
+                    value={height}
+                    onChangeText={(text)=>setHeight(text)}
                     icon={<Swap width={20} height={20}/>}
                     />
                     <SecondaryLabel title={'FT'} containerStyle={styles.weightLabelContainer}/>
                 </View>
-                <PrimaryButton onPress={()=>navigation.navigate("Goal")} title={'Next'} containerStyle={{marginTop:15}}>
+                <PrimaryButton onPress={()=>onNext()} title={'Next'} containerStyle={{marginTop:15}}>
                     <View style={{marginLeft:5,bottom:1.5}}>
                         <ArrowRight width={15} height={15}/>
                     </View>

@@ -18,6 +18,7 @@ export const SCREENS = {
     CREATEPROFILE: "CreateProfile",
     GOAL: "Goal",
     FINALAUTH: "FinalAuth",
+    REGISTEROTP:"RegisterOTP",
 
     //dashboard
     DASHBOARD: 'Dashboard',

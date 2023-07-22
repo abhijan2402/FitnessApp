@@ -14,9 +14,16 @@ import { useNavigation } from '@react-navigation/native';
 import { Pressable } from 'react-native';
 import { SCREENS } from '../../constants/Screens';
 const { width, height } = Dimensions.get('window');
-const Register = () => {
-    const [user,setUser] = useState({});
+const Register = ({user,setUser}) => {
     const navigation=useNavigation();
+    const [firstName,setFirstName] = useState('');
+    const [lastName,setLastName] = useState('');
+    const [email,setEmail] = useState('');
+    const [password,setPassword] = useState('');
+    function onNext(){
+        setUser({...user,first_name:firstName,last_name:lastName,email,password})
+        navigation.navigate(SCREENS.CREATEPROFILE)
+    }
     return (
         <View style={styles.MainView}>
             <View style={styles.Heading}>
@@ -28,19 +35,38 @@ const Register = () => {
                         <Input 
                         placeholder={'First Name'} 
                         customStyle={{width:'80%'}} 
+                        value={firstName}
+                        onChangeText={(text)=>setFirstName(text)}
                         icon={<Profile width={20} height={20} />}/>
             </View>
 
             <View style={styles.weight}>
-                        <Input placeholder={'Last Name'} customStyle={{width:'80%'}} icon={<Profile width={20} height={20}/>}/>
+                        <Input placeholder={'Last Name'} 
+                        customStyle={{width:'80%'}} 
+                        icon={<Profile width={20} height={20}/>}
+                        value={lastName}
+                        onChangeText={(text)=>setLastName(text)}
+                        />
             </View>
 
             <View style={styles.weight}>
-                        <Input placeholder={'Mobile'} customStyle={{width:'80%'}} icon={<Message width={20} height={20}/>}/>
+                        <Input 
+                        placeholder={'Email'} 
+                        customStyle={{width:'80%'}} 
+                        icon={<Message width={20} height={20}/>}
+                        value={email}
+                        onChangeText={text=>setEmail(text)}
+                        />
             </View>
 
             <View style={styles.weight}>
-                        <Input placeholder={'Password'} customStyle={{width:'80%'}} icon={<Lock width={20} height={20}/>}/>
+                        <Input 
+                        placeholder={'Password'} 
+                        customStyle={{width:'80%'}} 
+                        icon={<Lock width={20} height={20}/>}
+                        value={password}
+                        onChangeText={text=>setPassword(text)}
+                        />
         </View>  
         
         <View style={{display:"flex",flexDirection:"row"}}>
@@ -49,7 +75,7 @@ const Register = () => {
         </View>
 
         <View style={{ alignItems: "center", marginTop: "18%" }}>
-            <PrimaryButton onPress={()=>navigation.navigate(SCREENS.CREATEPROFILE)} containerStyle={{ width: width - 80, }} title={'Register'} />
+            <PrimaryButton onPress={onNext} containerStyle={{ width: width - 80, }} title={'Next'} />
         </View>
                     <Text style={{ marginTop: "8%" }}>Or</Text>
 

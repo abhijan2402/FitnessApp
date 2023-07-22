@@ -18,13 +18,17 @@ import { useNavigation } from '@react-navigation/native';
 import { SCREENS } from '../../constants/Screens';
 
 const { width, height } = Dimensions.get('window');
-export default function Goal() {
+export default function Goal({user,setUser}) {
   const navigation=useNavigation();
+  function onRegister(){
+    
+    navigation.navigate(SCREENS.FINALAUTH)
+  }
   return (
     <View style={styles.container}>
       <Heading heading={'What is your goal ?'} subheading={'It will help us to choose a best program for you'}/>
       <GoalSlider/>
-      <PrimaryButton onPress={()=>navigation.navigate(SCREENS.FINALAUTH)} containerStyle={{width:width-40}} title={'Confirm'}/>
+      <PrimaryButton onPress={()=>onRegister()} containerStyle={{width:width-40}} title={'Confirm'}/>
     </View>
   );
 }
