@@ -4,13 +4,14 @@ import { FONTS } from '../../constants/Fonts';
 import { SIZES } from '../../constants/Size';
 
 
-function Input({value,onChangeText,customStyle,icon,placeholder}) {
+function Input({value,onChangeText,customStyle,icon,placeholder,keyboardType="default"}) {
     return (
         <View style={[styles.container,customStyle]}>
             <View style={styles.imageContainer}>
                 {icon}
             </View>
             <TextInput
+                keyboardType={keyboardType}
                 style={styles.input}
                 onChangeText={onChangeText}
                 placeholder={placeholder}

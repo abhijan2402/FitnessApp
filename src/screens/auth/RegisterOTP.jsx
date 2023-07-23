@@ -102,18 +102,18 @@ const RegisterOTP = ({user,setUser}) => {
                 <TextH4 style={{ marginTop: 7 }}>Register Youself</TextH4>
             </View>
             <View style={{ width: "85%", marginTop: 7 }}>
-                <Input placeholder={"Phone"} onChangeText={(value) =>setPhone(value)} icon={<Email width={20} height={20} />} />
+                <Input keyboardType='numeric' placeholder={"Phone"} onChangeText={(value) =>setPhone(value)} icon={<Email width={20} height={20} />} />
             </View>
             {!resendAvailable && TIMER_SECONDS > 0 && <SmallText style={{ textAlign: "center", marginVertical: 20, color: "#92A3FD" }} onPress={onPressSendOTP}>{timerMinutes<10?`0${timerMinutes}`:timerMinutes}:{timerSeconds<10?`0${timerSeconds}`:timerSeconds}</SmallText>}
             {phone.length === 10 && resendAvailable && <SmallText style={{ textAlign: "center", marginVertical: 20, color: "#92A3FD" }} onPress={onPressSendOTP}>Send OTP</SmallText>}
             <SmallText style={{ textAlign: "center", marginVertical: 20, color: "#343965" }}>Verification Code</SmallText>
             <View style={styles.InputOTP}>
-                <TextInput placeholderTextColor='grey' style={styles.OTPInput} onChangeText={(value)=>updatePositionBasedOnOtp(1,value)} maxLength={1} ref={otpBox1}/>
-                <TextInput placeholderTextColor='grey' style={styles.OTPInput} onChangeText={(value)=>updatePositionBasedOnOtp(2,value)} maxLength={1} ref={otpBox2}/>
-                <TextInput placeholderTextColor='grey' style={styles.OTPInput} onChangeText={(value)=>updatePositionBasedOnOtp(3,value)} maxLength={1} ref={otpBox3}/>
-                <TextInput placeholderTextColor='grey' style={styles.OTPInput} onChangeText={(value)=>updatePositionBasedOnOtp(4,value)} maxLength={1} ref={otpBox4}/>
-                <TextInput placeholderTextColor='grey' style={styles.OTPInput} onChangeText={(value)=>updatePositionBasedOnOtp(5,value)} maxLength={1} ref={otpBox5}/>
-                <TextInput placeholderTextColor='grey' style={styles.OTPInput} onChangeText={(value)=>updatePositionBasedOnOtp(6,value)} maxLength={1} ref={otpBox6}/>
+                <TextInput keyboardType='numeric' placeholderTextColor='grey' style={styles.OTPInput} onChangeText={(value)=>updatePositionBasedOnOtp(1,value)} maxLength={1} ref={otpBox1}/>
+                <TextInput keyboardType='numeric' placeholderTextColor='grey' style={styles.OTPInput} onChangeText={(value)=>updatePositionBasedOnOtp(2,value)} maxLength={1} ref={otpBox2}/>
+                <TextInput keyboardType='numeric' placeholderTextColor='grey' style={styles.OTPInput} onChangeText={(value)=>updatePositionBasedOnOtp(3,value)} maxLength={1} ref={otpBox3}/>
+                <TextInput keyboardType='numeric' placeholderTextColor='grey' style={styles.OTPInput} onChangeText={(value)=>updatePositionBasedOnOtp(4,value)} maxLength={1} ref={otpBox4}/>
+                <TextInput keyboardType='numeric' placeholderTextColor='grey' style={styles.OTPInput} onChangeText={(value)=>updatePositionBasedOnOtp(5,value)} maxLength={1} ref={otpBox5}/>
+                <TextInput keyboardType='numeric' placeholderTextColor='grey' style={styles.OTPInput} onChangeText={(value)=>updatePositionBasedOnOtp(6,value)} maxLength={1} ref={otpBox6}/>
             </View>
                 {/* <Eye width={18} height={18} /> */}
             <SmallText style={{ textAlign: "center", marginTop: "5%" }}>You can request the next code in </SmallText>

@@ -27,3 +27,9 @@ export async function registerUser(user){
     data.append('goal','improve shape')
     return await api.post('/register-user',data)
 }
+export async function loginUser(credentials){
+    const data = new FormData()
+    data.append('email',credentials.email)
+    data.append('password',credentials.password)
+    return await api.post('/login-user',data)
+}

@@ -30,3 +30,5 @@ export const MONTHS = [
     {label:'November',value:'November'},
     {label:'December',value:'December'},
 ]
+
+export const storageKeyName = "jwtDietAndCare"

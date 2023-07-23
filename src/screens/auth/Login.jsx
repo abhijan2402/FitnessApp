@@ -1,5 +1,4 @@
 import { StyleSheet, Text, View, Dimensions, Image, TextInput } from 'react-native'
-import React, { useEffect, useRef } from 'react'
 import PrimaryButton from '../../components/Button/PrimaryButton';
 import Input from '../../components/Form/Input';
 import SmallText from '../../components/Text/SmallText';
@@ -12,20 +11,30 @@ import { SCREENS } from '../../constants/Screens';
 import { GlobalContext } from '../../../App';
 import { useContext } from 'react';
 import { useState } from 'react';
-import { getOtp } from '../../backend/utilFunctions';
+import { loginUser } from '../../backend/utilFunctions';
+import { storeDataInAsyncStorage } from '../../utils/common';
+import { storageKeyName } from '../../constants/Data';
 
 const { width, height } = Dimensions.get('window');
 
-const TIMER_SECONDS = 59;
-const TIMER_MINUTES = 1;
-const SECONDS = 59
-let timeInterval = null;
+
+
 const Login = () => {
     const navigation = useNavigation();
     const { setLoggedInUser } = useContext(GlobalContext)
-    const [phone, setPhone] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState("")
-
+    function onLogin(){
+        const credentials = {email,password}
+        loginUser(credentials)
+        .then(res=>{
+            storeDataInAsyncStorage(storageKeyName,res.data.token)
+            .then(res=>console.log('Stored in async storage'))
+            .catch(err=>console.log('something went wrong while storing the token',err))
+        })
+        .catch(err=>console.log(err))
+    }
+    
     return (
         <View style={styles.MainView}>
             <View style={styles.Heading}>
@@ -33,13 +42,13 @@ const Login = () => {
                 <TextH4 style={{ marginTop: 7 }}>Welcome Back</TextH4>
             </View>
             <View style={{ width: "85%", marginTop: 7 }}>
-                <Input placeholder={"Email"} onChangeText={(value) => setPhone(value)} icon={<Email width={20} height={20} />} />
+                <Input placeholder={"Email"} onChangeText={(value) => setEmail(value)} icon={<Email width={20} height={20} />} />
             </View>
             <View style={{ width: "85%", marginTop: 15 }}>
                 <Input placeholder={"Password"} onChangeText={(value) => setPassword(value)} icon={<Pass width={20} height={20} />} />
             </View>
             <View style={{ alignItems: "center", marginTop: "25%" }}>
-                <PrimaryButton containerStyle={{ width: width - 30, }} title={'Login'} onPress={() => setLoggedInUser({ uid: Math.random() * 1000 })} />
+                <PrimaryButton containerStyle={{ width: width - 30, }} title={'Login'} onPress={() => onLogin()} />
             </View>
             <Text style={{ marginTop: "14%" }}>Or</Text>
             <View style={[styles.IconView, { marginTop: "5%" }]}>
