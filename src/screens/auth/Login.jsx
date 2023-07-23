@@ -43,8 +43,11 @@ const Login = () => {
             loginUser(credentials)
             .then(res=>{
                 storeDataInAsyncStorage(storageKeyName,res.data.token)
-                .then(res=>{throw 'Stored in async storage'})
-                .catch(err=>{throw 'something went wrong while storing the token'})
+                .then(res=>{
+                    // nvaigate to the main screeen
+                    navigation.navigate(SCREENS.FINALAUTH)
+                })
+                .catch(err=>console.log('error while storing',err))
             })
             .catch(err=>console.log(err))
             .finally(()=>setLoading(false))
@@ -91,7 +94,7 @@ const Login = () => {
                     <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/4922/4922978.png" }} style={styles.icon} />
                 </View>
             </View>
-            <Pressable onPress={() => navigation.navigate(SCREENS.REGISTER)} style={[styles.IconView, { alignItems: "center" }]}>
+            <Pressable onPress={() => navigation.navigate(SCREENS.REGISTEROTP)} style={[styles.IconView, { alignItems: "center" }]}>
                 <SmallText style={{ fontSize: 14 }}>Don't have an account yet?</SmallText>
                 <TextH4 style={{ fontSize: 14, color: "#C58BF2", marginLeft: 5 }}>Register</TextH4>
             </Pressable>

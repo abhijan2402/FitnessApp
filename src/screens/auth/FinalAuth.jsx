@@ -1,5 +1,5 @@
 import { Image, StyleSheet, Text, View, Dimensions, ScrollView } from 'react-native'
-import React from 'react'
+import React,{useState}from 'react'
 import TextH4 from '../../components/Text/TextH4';
 import SmallText from '../../components/Text/SmallText';
 import PrimaryButton from '../../components/Button/PrimaryButton';

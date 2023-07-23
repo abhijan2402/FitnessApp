@@ -159,7 +159,7 @@ const RegisterOTP = ({user,setUser}) => {
                     <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/4922/4922978.png" }} style={styles.icon} />
                 </View>
             </View>
-            <Pressable onPress={()=>navigation.navigate(SCREENS.REGISTER)}  style={[styles.IconView, { alignItems: "center" }]}>
+            <Pressable onPress={()=>navigation.navigate(SCREENS.LOGIN)}  style={[styles.IconView, { alignItems: "center" }]}>
                 <SmallText style={{ fontSize: 14 }}>Already have a account ?</SmallText>
                 <TextH4 style={{ fontSize: 14, color: "#C58BF2", marginLeft: 5 }}>Login</TextH4>
             </Pressable>
