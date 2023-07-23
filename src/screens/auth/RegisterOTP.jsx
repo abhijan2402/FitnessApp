@@ -14,6 +14,8 @@ import { GlobalContext } from '../../../App';
 import { useContext } from 'react';
 import { useState } from 'react';
 import { getOtp } from '../../backend/utilFunctions';
+import { ActivityIndicator } from 'react-native';
+import CustomToast from '../../components/common/Toast';
 
 const { width, height } = Dimensions.get('window');
 
@@ -28,17 +30,26 @@ const RegisterOTP = ({user,setUser}) => {
     const [timerSeconds,setTimerSeconds] = useState(TIMER_SECONDS)
     const [timerMinutes,setTimerMinutes] = useState(TIMER_MINUTES)
     const [resendAvailable,setResendAvailable] = useState(true);
+    const [loading,setLoading]=useState(false);
+
+
+    const childRef = useRef(null);
+    const [toastColorState, setToastColorState] = useState('');
+    const [toastTextColorState, setToastTextColorState] = useState('');
+    const [toastMessage, setToastMessage] = useState('');
+
     const [otp,setOtp] = useState({1:'',2:'',3:'',4:'',5:'',6:''})
     
     // request
     function getOtpByPhone(){
+        setLoading(true)
         //validation required
         getOtp(phone)
         .then(res=>setUser({...user,hash:res.data.hash}))
         .catch(error=>{
             console.log(error.message);
             console.log("Message ",error.message)
-        })  
+        }).finally(()=>setLoading(false))
     }
     // refs
     const otpBox1 = useRef();
@@ -73,15 +84,24 @@ const RegisterOTP = ({user,setUser}) => {
     }
     function onVerify(){
         //collect the otp
-        let otpAsString = "";
-        if(!otp[1] || !otp[2] || !otp[3] || !otp[4] || !otp[5] || !otp[6]){
-            alert('Not a valid OTP received')
-            return;
+        try {
+            if(!phone){
+                throw "Enter Phone Number";
+            }
+            let otpAsString = "";
+            if(!otp[1] || !otp[2] || !otp[3] || !otp[4] || !otp[5] || !otp[6]){
+                throw 'Not a valid OTP received'
+            }
+            // valid otp
+            otpAsString = otp[1] + otp[2] + otp[3] + otp[4] + otp[5] + otp[6] 
+            setUser({...user,otp:otpAsString,phone:phone})     
+            navigation.navigate(SCREENS.REGISTER)
+        } catch (error) {
+            setToastMessage(error);
+            setToastTextColorState("white");
+            setToastColorState("red");
+            childRef.current.showToast()
         }
-        // valid otp
-        otpAsString = otp[1] + otp[2] + otp[3] + otp[4] + otp[5] + otp[6] 
-        setUser({...user,otp:otpAsString,phone:phone})     
-        navigation.navigate(SCREENS.REGISTER)
     }
     useEffect(()=>{
         if(timerSeconds === 0 && timerMinutes === 0){
@@ -97,6 +117,12 @@ const RegisterOTP = ({user,setUser}) => {
     
     return (
         <View style={styles.MainView}>
+            <CustomToast
+                toastColor={toastColorState}
+                toastTextColor={toastTextColorState}
+                toastMessage={toastMessage}
+                ref={childRef}
+            />
             <View style={styles.Heading}>
                 <SmallText style={{ fontWeight: "700", color: "black", fontSize: 16, }}>Hey there,</SmallText>
                 <TextH4 style={{ marginTop: 7 }}>Register Youself</TextH4>
@@ -118,7 +144,11 @@ const RegisterOTP = ({user,setUser}) => {
                 {/* <Eye width={18} height={18} /> */}
             <SmallText style={{ textAlign: "center", marginTop: "5%" }}>You can request the next code in </SmallText>
             <View style={{ alignItems: "center", marginTop: "25%" }}>
-                <PrimaryButton containerStyle={{ width: width - 30, }} title={'Next'} onPress={()=>onVerify()}/>
+                {
+                    loading?
+                    <ActivityIndicator size={30}color={'blue'} />:
+                    <PrimaryButton containerStyle={{ width: width - 30, }} title={'Next'} onPress={()=>onVerify()}/>
+                }
             </View>
             <Text style={{ marginTop: "14%" }}>Or</Text>
             <View style={[styles.IconView, { marginTop: "5%" }]}>

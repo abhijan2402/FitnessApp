@@ -17,21 +17,40 @@ import PrimaryButton from '../../components/Button/PrimaryButton';
 import { useNavigation } from '@react-navigation/native';
 import { SCREENS } from '../../constants/Screens';
 import { registerUser } from '../../backend/utilFunctions';
+import CustomToast from '../../components/common/Toast';
+import { useState } from 'react';
+import { useRef } from 'react';
 
 const { width, height } = Dimensions.get('window');
 export default function Goal({user,setUser}) {
   const navigation=useNavigation();
+  const [loading,setLoading]=useState(false)
+  const childRef = useRef(null);
+  const [toastColorState, setToastColorState] = useState('');
+  const [toastTextColorState, setToastTextColorState] = useState('');
+  const [toastMessage, setToastMessage] = useState('');
+
   function onRegister(){
-    registerUser(user).then(res=>{
-      console.log(res.data)
-      navigation.navigate(SCREENS.FINALAUTH)
-    })
-    .catch(err=>console.log(err.message))
-    
-    
+        registerUser(user).then(res=>{
+          console.log(res.data)
+          navigation.navigate(SCREENS.FINALAUTH)
+        })
+        .catch(err=>{
+          console.log(err.message,"j")
+          setToastMessage(err.message);
+          setToastTextColorState("white");
+          setToastColorState("red");
+          childRef.current.showToast()
+        }).finally(setLoading(false))
   }
   return (
     <View style={styles.container}>
+      <CustomToast
+        toastColor={toastColorState}
+        toastTextColor={toastTextColorState}
+        toastMessage={toastMessage}
+        ref={childRef}
+      />
       <Heading heading={'What is your goal ?'} subheading={'It will help us to choose a best program for you'}/>
       <GoalSlider/>
       <PrimaryButton onPress={()=>onRegister()} containerStyle={{width:width-40}} title={'Register'}/>

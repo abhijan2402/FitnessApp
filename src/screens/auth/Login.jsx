@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Dimensions, Image, TextInput } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, Image, TextInput, ActivityIndicator } from 'react-native'
 import PrimaryButton from '../../components/Button/PrimaryButton';
 import Input from '../../components/Form/Input';
 import SmallText from '../../components/Text/SmallText';
@@ -14,6 +14,8 @@ import { useState } from 'react';
 import { loginUser } from '../../backend/utilFunctions';
 import { storeDataInAsyncStorage } from '../../utils/common';
 import { storageKeyName } from '../../constants/Data';
+import CustomToast from '../../components/common/Toast';
+import { useRef } from 'react';
 
 const { width, height } = Dimensions.get('window');
 
@@ -23,20 +25,46 @@ const Login = () => {
     const navigation = useNavigation();
     const { setLoggedInUser } = useContext(GlobalContext)
     const [email, setEmail] = useState('')
-    const [password, setPassword] = useState("")
+    const [password, setPassword] = useState("");
+    const [loading,setLoading]=useState(false)
+    const childRef = useRef(null);
+    const [toastColorState, setToastColorState] = useState('');
+    const [toastTextColorState, setToastTextColorState] = useState('');
+    const [toastMessage, setToastMessage] = useState('');
+
     function onLogin(){
-        const credentials = {email,password}
-        loginUser(credentials)
-        .then(res=>{
-            storeDataInAsyncStorage(storageKeyName,res.data.token)
-            .then(res=>console.log('Stored in async storage'))
-            .catch(err=>console.log('something went wrong while storing the token',err))
-        })
-        .catch(err=>console.log(err))
+        try {
+            if(email==='')
+                throw "Enter Email";
+            if(password==='')
+                throw "Enter password";
+            const credentials = {email,password}
+            setLoading(true)
+            loginUser(credentials)
+            .then(res=>{
+                storeDataInAsyncStorage(storageKeyName,res.data.token)
+                .then(res=>{throw 'Stored in async storage'})
+                .catch(err=>{throw 'something went wrong while storing the token'})
+            })
+            .catch(err=>console.log(err))
+            .finally(()=>setLoading(false))
+        } catch (error) {
+            setToastMessage(error);
+            setToastTextColorState("white");
+            setToastColorState("red");
+            childRef.current.showToast()
+            setLoading(false)
+        }
     }
     
     return (
         <View style={styles.MainView}>
+            <CustomToast
+                toastColor={toastColorState}
+                toastTextColor={toastTextColorState}
+                toastMessage={toastMessage}
+                ref={childRef}
+            />
             <View style={styles.Heading}>
                 <SmallText style={{ fontWeight: "700", color: "black", fontSize: 16, }}>Hey there,</SmallText>
                 <TextH4 style={{ marginTop: 7 }}>Welcome Back</TextH4>
@@ -48,7 +76,11 @@ const Login = () => {
                 <Input placeholder={"Password"} onChangeText={(value) => setPassword(value)} icon={<Pass width={20} height={20} />} />
             </View>
             <View style={{ alignItems: "center", marginTop: "25%" }}>
-                <PrimaryButton containerStyle={{ width: width - 30, }} title={'Login'} onPress={() => onLogin()} />
+                {
+                    loading?
+                    <ActivityIndicator size={30}color={'blue'} />:
+                    <PrimaryButton containerStyle={{ width: width - 30, }} title={'Login'} onPress={() => onLogin()} />
+                }
             </View>
             <Text style={{ marginTop: "14%" }}>Or</Text>
             <View style={[styles.IconView, { marginTop: "5%" }]}>

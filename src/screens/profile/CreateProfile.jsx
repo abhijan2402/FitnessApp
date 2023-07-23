@@ -17,6 +17,9 @@ import Input from '../../components/Form/Input';
 import SecondaryLabel from '../../components/Label/SecondaryLabel';
 import { useNavigation } from '@react-navigation/native';
 import { SCREENS } from '../../constants/Screens';
+import CustomToast from '../../components/common/Toast';
+import { useRef } from 'react';
+import { ActivityIndicator } from 'react-native';
 
 function CreateProfile({user,setUser}) {
     
@@ -24,7 +27,14 @@ function CreateProfile({user,setUser}) {
     const [gender,setGender] = useState('');
     const [date,setDate] = useState('');
     const [weight,setWeight] = useState('')
-    const [height,setHeight] = useState('')
+    const [height,setHeight] = useState('');
+
+    const [loading,setLoading]=useState(false)
+    const childRef = useRef(null);
+    const [toastColorState, setToastColorState] = useState('');
+    const [toastTextColorState, setToastTextColorState] = useState('');
+    const [toastMessage, setToastMessage] = useState('');
+
     function reverseDate(){
         const date_splitted = date.split('/')
         const day = date_splitted[0];
@@ -33,11 +43,32 @@ function CreateProfile({user,setUser}) {
         return year+"/"+month+"/"+day
     }
     function onNext(){
-        setUser({...user,gender,dob:reverseDate(),weight,height})
-        navigation.navigate(SCREENS.GOAL)
+        try {
+            if(!gender)
+                throw "Select Your Gender";
+            if(!date)
+                throw "Select your Date of Birth";
+            if(!weight)
+                throw "Enter your weight"
+            if(!height)
+                throw "Enter your height"
+            setUser({...user,gender,dob:reverseDate(),weight,height})
+            navigation.navigate(SCREENS.GOAL)
+        } catch (error) {
+            setToastMessage(error);
+            setToastTextColorState("white");
+            setToastColorState("red");
+            childRef.current.showToast()
+        }finally{setLoading(false)}
     }
     return (
         <View style={styles.container}>
+             <CustomToast
+                toastColor={toastColorState}
+                toastTextColor={toastTextColorState}
+                toastMessage={toastMessage}
+                ref={childRef}
+            />
             <View style={{justifyContent:'center',alignItems:'center'}}>
                 <GirlSvg width={270} height={270}/>
             </View>
@@ -80,11 +111,15 @@ function CreateProfile({user,setUser}) {
                     />
                     <SecondaryLabel title={'FT'} containerStyle={styles.weightLabelContainer}/>
                 </View>
-                <PrimaryButton onPress={()=>onNext()} title={'Next'} containerStyle={{marginTop:15}}>
-                    <View style={{marginLeft:5,bottom:1.5}}>
-                        <ArrowRight width={15} height={15}/>
-                    </View>
-                </PrimaryButton>
+                {
+                    loading?
+                    <ActivityIndicator size={30}color={'blue'} />:
+                    <PrimaryButton onPress={()=>onNext()} title={'Next'} containerStyle={{marginTop:15}}>
+                        <View style={{marginLeft:5,bottom:1.5}}>
+                            <ArrowRight width={15} height={15}/>
+                        </View>
+                    </PrimaryButton>
+                }
             </ScreenContainer>
         </View>
     );

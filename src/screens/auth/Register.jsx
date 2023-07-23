@@ -13,6 +13,9 @@ import Eye from '../../../assets/icons/eye.svg';
 import { useNavigation } from '@react-navigation/native';
 import { Pressable } from 'react-native';
 import { SCREENS } from '../../constants/Screens';
+import CustomToast from '../../components/common/Toast';
+import { useRef } from 'react';
+import { ActivityIndicator } from 'react-native';
 const { width, height } = Dimensions.get('window');
 const Register = ({ user, setUser }) => {
     const navigation = useNavigation();
@@ -20,12 +23,41 @@ const Register = ({ user, setUser }) => {
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const childRef = useRef(null);
+    const [toastColorState, setToastColorState] = useState('');
+    const [toastTextColorState, setToastTextColorState] = useState('');
+    const [toastMessage, setToastMessage] = useState('');
+    const [loading,setLoading]=useState(false);
+
     function onNext() {
-        setUser({ ...user, first_name: firstName, last_name: lastName, email, password })
-        navigation.navigate(SCREENS.CREATEPROFILE)
+        try {
+            if(!firstName)
+                throw "Enter First Name";
+            if(!lastName)
+                throw "Entet Last Name";
+            if(!email)
+                throw "Enter Email";
+            if(!password)
+                throw "Enter Password";
+            setLoading(true)
+            setUser({ ...user, first_name: firstName, last_name: lastName, email, password })
+            navigation.navigate(SCREENS.CREATEPROFILE)
+        } catch (error) {
+            setToastMessage(error);
+            setToastTextColorState("white");
+            setToastColorState("red");
+            childRef.current.showToast()
+        }finally{setLoading(false)}
     }
     return (
         <View style={styles.MainView}>
+            <CustomToast
+                toastColor={toastColorState}
+                toastTextColor={toastTextColorState}
+                toastMessage={toastMessage}
+                ref={childRef}
+            />
             <View style={styles.Heading}>
                 <SmallText style={{ fontWeight: "700", color: "black", fontSize: 16, }}>Hey there,</SmallText>
                 <TextH4 style={{ marginTop: 7 }}>Create an Account</TextH4>
@@ -75,7 +107,11 @@ const Register = ({ user, setUser }) => {
             </View>
 
             <View style={{ alignItems: "center", marginTop: "18%" }}>
-                <PrimaryButton onPress={onNext} containerStyle={{ width: width - 80, }} title={'Next'} />
+                {
+                    loading?
+                    <ActivityIndicator size={30}color={'blue'} />:
+                    <PrimaryButton onPress={onNext} containerStyle={{ width: width - 80, }} title={'Next'} />
+                }
             </View>
             <Text style={{ marginTop: "8%" }}>Or</Text>
 
