@@ -11,6 +11,7 @@ const { width, height } = Dimensions.get('window');
 const FinalAuth = () => {
     const {setLoggedInUser}=useContext(GlobalContext)
     const navigation=useNavigation();
+    const [loading,setLoading]=useState(false)
     return (
         <View style={{ flex:1,backgroundColor: "white" }}>
             <View style={{ width: width, height: height / 2.2, marginTop: "10%" }}>
@@ -21,7 +22,11 @@ const FinalAuth = () => {
                 <SmallText style={{ width: "60%", textAlign: "center", marginTop: 5 }}>You are all set now, let’s reach your goals together with us</SmallText>
             </View>
             <View style={{ alignItems: "center", marginTop: "50%" }}>
+            {
+                loading?
+                <ActivityIndicator size={30} color="blue" />:
                 <PrimaryButton containerStyle={{ width: width - 30, }} title={'Go To Home'} onPress={() => setLoggedInUser({uid:Math.random()*1000})} />
+            }
             </View>
         </View>
     )

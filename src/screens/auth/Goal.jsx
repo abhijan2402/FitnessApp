@@ -20,6 +20,7 @@ import { registerUser } from '../../backend/utilFunctions';
 import CustomToast from '../../components/common/Toast';
 import { useState } from 'react';
 import { useRef } from 'react';
+import { ActivityIndicator } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
 export default function Goal({user,setUser}) {
@@ -31,17 +32,18 @@ export default function Goal({user,setUser}) {
   const [toastMessage, setToastMessage] = useState('');
 
   function onRegister(){
-        registerUser(user).then(res=>{
-          console.log(res.data)
-          navigation.navigate(SCREENS.FINALAUTH)
-        })
-        .catch(err=>{
-          console.log(err.message,"j")
-          setToastMessage(err.message);
-          setToastTextColorState("white");
-          setToastColorState("red");
-          childRef.current.showToast()
-        }).finally(setLoading(false))
+    setLoading(true)  
+    registerUser(user).then(res=>{
+      console.log(res.data)
+      navigation.navigate(SCREENS.FINALAUTH)
+    })
+    .catch(err=>{
+      console.log(err.message,"j")
+      setToastMessage(err.message);
+      setToastTextColorState("white");
+      setToastColorState("red");
+      childRef.current.showToast()
+    }).finally(setLoading(false))
   }
   return (
     <View style={styles.container}>
@@ -53,7 +55,11 @@ export default function Goal({user,setUser}) {
       />
       <Heading heading={'What is your goal ?'} subheading={'It will help us to choose a best program for you'}/>
       <GoalSlider/>
-      <PrimaryButton onPress={()=>onRegister()} containerStyle={{width:width-40}} title={'Register'}/>
+      {
+        loading?
+        <ActivityIndicator size={30} color="blue" />:
+        <PrimaryButton onPress={()=>onRegister()} containerStyle={{width:width-40}} title={'Register'}/>
+      }
     </View>
   );
 }
