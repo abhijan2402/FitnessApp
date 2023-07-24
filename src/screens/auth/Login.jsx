@@ -26,31 +26,34 @@ const Login = () => {
     const { setLoggedInUser } = useContext(GlobalContext)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState("");
-    const [loading,setLoading]=useState(false)
+    const [loading, setLoading] = useState(false)
     const childRef = useRef(null);
     const [toastColorState, setToastColorState] = useState('');
     const [toastTextColorState, setToastTextColorState] = useState('');
     const [toastMessage, setToastMessage] = useState('');
 
-    function onLogin(){
+    function onLogin() {
         try {
-            if(email==='')
+            if (email === '')
                 throw "Enter Email";
-            if(password==='')
+            if (password === '')
                 throw "Enter password";
-            const credentials = {email,password}
+            const credentials = { email, password }
             setLoading(true)
             loginUser(credentials)
-            .then(res=>{
-                storeDataInAsyncStorage(storageKeyName,res.data.token)
-                .then(res=>{
-                    // nvaigate to the main screeen
-                    navigation.navigate(SCREENS.FINALAUTH)
+                .then(res => {
+                    console.log(res.data.token, "ncnjd");
+                    storeDataInAsyncStorage(storageKeyName, res.data.token)
+                        .then(res => {
+                            console.log(res.data, "I am res");
+                            // setLoggedInUser()
+                            // nvaigate to the main screeen
+                            navigation.navigate(SCREENS.FINALAUTH)
+                        })
+                        .catch(err => console.log('error while storing', err))
                 })
-                .catch(err=>console.log('error while storing',err))
-            })
-            .catch(err=>console.log(err))
-            .finally(()=>setLoading(false))
+                .catch(err => console.log(err))
+                .finally(() => setLoading(false))
         } catch (error) {
             setToastMessage(error);
             setToastTextColorState("white");
@@ -59,7 +62,7 @@ const Login = () => {
             setLoading(false)
         }
     }
-    
+
     return (
         <View style={styles.MainView}>
             <CustomToast
@@ -80,9 +83,9 @@ const Login = () => {
             </View>
             <View style={{ alignItems: "center", marginTop: "25%" }}>
                 {
-                    loading?
-                    <ActivityIndicator size={30}color={'blue'} />:
-                    <PrimaryButton containerStyle={{ width: width - 30, }} title={'Login'} onPress={() => onLogin()} />
+                    loading ?
+                        <ActivityIndicator size={30} color={'blue'} /> :
+                        <PrimaryButton containerStyle={{ width: width - 30, }} title={'Login'} onPress={() => onLogin()} />
                 }
             </View>
             <Text style={{ marginTop: "14%" }}>Or</Text>
