@@ -20,9 +20,9 @@ function App() {
               headerShown:false
             }}>
               {
-                user ?
-                <Stack.Screen name={SCREENS.BOTTOMTAB}  component={BottomTab}/>:    
-                <Stack.Screen name={SCREENS.AUTHSTACK}  component={AuthStack}/>    
+                // user ?
+                <Stack.Screen name={SCREENS.BOTTOMTAB}  component={BottomTab}/>    
+                // <Stack.Screen name={SCREENS.AUTHSTACK}  component={AuthStack}/>    
               }
           </Stack.Navigator>
         </NavigationContainer>
