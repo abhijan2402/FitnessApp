@@ -39,32 +39,37 @@ const Login = () => {
             //     throw "Enter Email";
             // if(password==='')
             //     throw "Enter password";
-            const credentials = {email,password}
-            fetch("https://jsonplaceholder.typicode.com/posts/1", {
-                method: "POST",
-                timeoutInterval: 10000,
-                sslPinning: {
-                    certs: ["ca_bundle","certificate"]
-                }
-            })
-            .then(response => {
-                console.log(JSON.stringify(response.bodyString, null, "\t"))
-            })
-            .catch(err => {
-                console.log(`error: ${err}`)
-            });
-            // setLoading(true)
-            // loginUser(credentials)
-        //     .then(res=>{
-        //         storeDataInAsyncStorage(storageKeyName,res.data.token)
-        //         .then(res=>{
-        //             // nvaigate to the main screeen
-        //             navigation.navigate(SCREENS.FINALAUTH)
-        //         })
-        //         .catch(err=>console.log('error while storing',err))
-        //     })
-        //     .catch(err=>console.log(err))
-        //     .finally(()=>setLoading(false))
+            // const data = new FormData()
+            // data.append('email', credentials.email)
+            // data.append('password', credentials.password)
+            // console.log(data, "i amdata");
+            // fetch("https://ec2-15-206-239-93.ap-south-1.compute.amazonaws.com/api/login-user", {
+            //     method: "POST",
+            //     timeoutInterval: 10000,
+            //     headers: { "Content-Type": "multipart/form-data" },
+            //     sslPinning: {
+            //         certs: ["certificat"]
+            //     },
+            // })
+            //     .then(response => {
+            //         console.log(JSON.stringify(response, null, "\t"))
+            //     })
+            //     .catch(err => {
+            //         console.log(`error: ${err}`)
+            //     });
+            const credentials = { email, password }
+            setLoading(true)
+            loginUser(credentials)
+                .then(res => {
+                    storeDataInAsyncStorage(storageKeyName, res.data.token)
+                        .then(res => {
+                            // nvaigate to the main screeen
+                            navigation.navigate(SCREENS.FINALAUTH)
+                        })
+                        .catch(err => console.log('error while storing', err))
+                })
+                .catch(err => console.log(err))
+                .finally(() => setLoading(false))
         } catch (error) {
             setToastMessage(error);
             setToastTextColorState("white");
