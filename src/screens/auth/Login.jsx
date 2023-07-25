@@ -16,6 +16,7 @@ import { storeDataInAsyncStorage } from '../../utils/common';
 import { storageKeyName } from '../../constants/Data';
 import CustomToast from '../../components/common/Toast';
 import { useRef } from 'react';
+import { fetch } from 'react-native-ssl-pinning';
 
 const { width, height } = Dimensions.get('window');
 
@@ -34,23 +35,36 @@ const Login = () => {
 
     function onLogin(){
         try {
-            if(email==='')
-                throw "Enter Email";
-            if(password==='')
-                throw "Enter password";
+            // if(email==='')
+            //     throw "Enter Email";
+            // if(password==='')
+            //     throw "Enter password";
             const credentials = {email,password}
-            setLoading(true)
-            loginUser(credentials)
-            .then(res=>{
-                storeDataInAsyncStorage(storageKeyName,res.data.token)
-                .then(res=>{
-                    // nvaigate to the main screeen
-                    navigation.navigate(SCREENS.FINALAUTH)
-                })
-                .catch(err=>console.log('error while storing',err))
+            fetch("https://jsonplaceholder.typicode.com/posts/1", {
+                method: "POST",
+                timeoutInterval: 10000,
+                sslPinning: {
+                    certs: ["ca_bundle","certificate"]
+                }
             })
-            .catch(err=>console.log(err))
-            .finally(()=>setLoading(false))
+            .then(response => {
+                console.log(JSON.stringify(response.bodyString, null, "\t"))
+            })
+            .catch(err => {
+                console.log(`error: ${err}`)
+            });
+            // setLoading(true)
+            // loginUser(credentials)
+        //     .then(res=>{
+        //         storeDataInAsyncStorage(storageKeyName,res.data.token)
+        //         .then(res=>{
+        //             // nvaigate to the main screeen
+        //             navigation.navigate(SCREENS.FINALAUTH)
+        //         })
+        //         .catch(err=>console.log('error while storing',err))
+        //     })
+        //     .catch(err=>console.log(err))
+        //     .finally(()=>setLoading(false))
         } catch (error) {
             setToastMessage(error);
             setToastTextColorState("white");
