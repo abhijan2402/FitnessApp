@@ -27,13 +27,13 @@ const Login = () => {
     const { setLoggedInUser } = useContext(GlobalContext)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState("");
-    const [loading,setLoading]=useState(false)
+    const [loading, setLoading] = useState(false)
     const childRef = useRef(null);
     const [toastColorState, setToastColorState] = useState('');
     const [toastTextColorState, setToastTextColorState] = useState('');
     const [toastMessage, setToastMessage] = useState('');
 
-    function onLogin(){
+    function onLogin() {
         try {
             // if(email==='')
             //     throw "Enter Email";
@@ -73,7 +73,7 @@ const Login = () => {
             setLoading(false)
         }
     }
-    
+
     return (
         <View style={styles.MainView}>
             <CustomToast
@@ -94,9 +94,9 @@ const Login = () => {
             </View>
             <View style={{ alignItems: "center", marginTop: "25%" }}>
                 {
-                    loading?
-                    <ActivityIndicator size={30}color={'blue'} />:
-                    <PrimaryButton containerStyle={{ width: width - 30, }} title={'Login'} onPress={() => onLogin()} />
+                    loading ?
+                        <ActivityIndicator size={30} color={'blue'} /> :
+                        <PrimaryButton containerStyle={{ width: width - 30, }} title={'Login'} onPress={() => onLogin()} />
                 }
             </View>
             <Text style={{ marginTop: "14%" }}>Or</Text>

@@ -1,9 +1,9 @@
-import { StyleSheet, Text, View, ScrollView, Dimensions } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, Dimensions, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { FONTS } from '../../constants/Fonts'
 import Edit from '../../../assets/icons/Edit.svg'
 const { width, height } = Dimensions.get('window');
-const ProfileCard = ({ type, value, icon, containerStyle }) => {
+const ProfileCard = ({ type, value, icon, containerStyle, onPress }) => {
   return (
 
     <View style={[styles.Container, styles.shadowProp, containerStyle]}>
@@ -14,9 +14,9 @@ const ProfileCard = ({ type, value, icon, containerStyle }) => {
         <Text style={[{ fontSize: 15, color: "#1D1617", fontFamily: FONTS.FONT_POPPINS_MEDIUM }]}>{type} </Text>
         <Text style={[{ fontSize: 13, color: "#1D1617", fontFamily: FONTS.FONT_POPPINS_REGULAR }]}>{value}</Text>
       </View>
-      <View style={{ marginTop: 18 }}>
+      <TouchableOpacity style={{ marginTop: 18 }} onPress={onPress}>
         <Edit />
-      </View>
+      </TouchableOpacity>
     </View>
 
   )
