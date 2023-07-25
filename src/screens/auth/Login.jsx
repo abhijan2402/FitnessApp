@@ -68,7 +68,7 @@ const Login = () => {
                         })
                         .catch(err => console.log('error while storing', err))
                 })
-                .catch(err => console.log(err))
+                .catch(err => console.log(err.message))
                 .finally(() => setLoading(false))
         } catch (error) {
             setToastMessage(error);
