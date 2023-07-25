@@ -4,7 +4,8 @@ import axios from "axios";
 export const api = axios.create({
     baseURL: 'https://ec2-15-206-239-93.ap-south-1.compute.amazonaws.com/api',
     headers: { "Content-Type": "multipart/form-data" },
-    
+    e_platform: 'mobile',
+
 });
 
 export async function getOtp(phone) {
@@ -32,14 +33,14 @@ export async function loginUser(credentials) {
     const data = new FormData()
     data.append('email', credentials.email)
     data.append('password', credentials.password)
-    return await fetch("https://ec2-15-206-239-93.ap-south-1.compute.amazonaws.com/api/login-user", 
-    {
-        method: "POST",
-        timeoutInterval: 10000,
-        headers: { "Content-Type": "multipart/form-data" },
-        sslPinning: {
-            certs: ["certificat"]
-        },
-        body:JSON.stringify(data)
-    })
+    return await fetch("https://ec2-15-206-239-93.ap-south-1.compute.amazonaws.com/api/login-user",
+        {
+            method: "POST",
+            timeoutInterval: 10000,
+            headers: { "Content-Type": "multipart/form-data" },
+            sslPinning: {
+                certs: ["certificat"]
+            },
+            body: JSON.stringify(data)
+        })
 }

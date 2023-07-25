@@ -80,6 +80,8 @@ const Login = () => {
                     console.log("res->", res)
                     response = JSON.parse(res.bodyString);
                     console.log(response)
+                    navigation.navigate(SCREENS.FINALAUTH)
+
                 })
                 .catch(err => console.log(err));
             // setLoading(true)
