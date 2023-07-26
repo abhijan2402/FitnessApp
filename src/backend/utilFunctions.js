@@ -56,3 +56,17 @@ export async function loginUser(credentials) {
     data.append('password', credentials.password)
     return await generateRequest("/login-user","POST",data)
 }
+export async function getUser(){
+    return await generateRequest("/get-user","GET")
+}
+export async function updateUser(updateUser){
+    const data = new FormData()
+    data.append('first_name',updateUser.first_name)
+    data.append('last_name',updateUser.last_name)
+    data.append('gender',updateUser.gender)
+    data.append('dob',updateUser.dob)
+    data.append('weight',updateUser.weight)
+    data.append('height',updateUser.height)
+    data.append('goal',updateUser.goal)
+    return await generateRequest("/update-user-profile","PUT",data)
+}

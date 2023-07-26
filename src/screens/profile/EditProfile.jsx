@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Dimensions, Alert, Modal, Pressable, ScrollView, TextInput, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Header from '../../components/header/Header'
 import EditPro from '../../components/profile/EditPro'
 import EditCard from '../../components/profile/EditCard'
@@ -10,15 +10,19 @@ import Pass from '../../../assets/icons/Pass.svg'
 import Apple from '../../../assets/icons/Apple.svg'
 import Google from '../../../assets/icons/Google.svg'
 import PrimaryButton from '../../components/Button/PrimaryButton';
+import { GlobalContext } from '../../../App'
+import { updateUser } from '../../backend/utilFunctions'
 const { height, width } = Dimensions.get("window")
 const EditProfile = () => {
-
-  const [name, setName] = useState("")
-  const [password, setPassword] = useState("")
+  const {user} = useContext(GlobalContext)
+  const [firstName, setFirstName] = useState(user.first_name)
+  const [lastName, setLastName] = useState(user.last_name)
+  // const [password, setPassword] = useState("")
   const [modalVisible, setModalVisible] = useState(false);
   const UpdateData = () => {
-    console.log(name, password);
+    updateUser({...user,first_name:firstName,last_name:lastName})
   }
+  
   return (
     <>
       <ScrollView style={styles.MainView}>
@@ -27,9 +31,10 @@ const EditProfile = () => {
           <Shape height={100} width={100} />
         </View>
         <View>
-          <EditPro value={"Samtha"} icon={<Account width={18} height={18} Edit={"EditBtn"} />} />
-          <EditPro value={"Email"} icon={<Email1 width={18} height={18} Edit={"EditBtn"} />} />
-          <EditPro value={"Password"} icon={<Pass width={18} height={18} Edit={"EditBtn"} />} />
+          <EditPro value={firstName} icon={<Account width={18} height={18} Edit={"EditBtn"} />} />
+          <EditPro value={lastName} icon={<Account width={18} height={18} Edit={"EditBtn"} />} />
+          <EditPro value={user.email} icon={<Email1 width={18} height={18} Edit={"EditBtn"} />} />
+          {/* <EditPro value={"Change Password"} icon={<Pass width={18} height={18} Edit={"EditBtn"} />} /> */}
         </View>
         <View style={styles.card}>
           <EditCard value={"Connect"} icon={<Apple width={18} height={18} />} />
@@ -54,8 +59,9 @@ const EditProfile = () => {
           }}>
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
-              <TextInput placeholder='Name' placeholderTextColor={"grey"} style={styles.InputFields} onChangeText={value => setName(value)} />
-              <TextInput placeholder='Password' placeholderTextColor={"grey"} style={styles.InputFields} onChangeText={value => setPassword(value)} />
+              <TextInput placeholder='First Name' placeholderTextColor={"grey"} style={styles.InputFields} onChangeText={value => setFirstName(value)} value={user.first_name}/>
+              <TextInput placeholder='Last Name' placeholderTextColor={"grey"} style={styles.InputFields} onChangeText={value => setLastName(value)} value={user.last_name}/>
+              {/* <TextInput placeholder='Password (Optional)' placeholderTextColor={"grey"} style={styles.InputFields} onChangeText={value => setPassword(value)} /> */}
               <TouchableOpacity style={styles.BtnUpdate} onPress={UpdateData}>
                 <Text style={styles.BtnText}>Update Data</Text>
               </TouchableOpacity>

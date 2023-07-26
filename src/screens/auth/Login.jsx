@@ -11,7 +11,7 @@ import { SCREENS } from '../../constants/Screens';
 import { GlobalContext } from '../../../App';
 import { useContext } from 'react';
 import { useState } from 'react';
-import { loginUser } from '../../backend/utilFunctions';
+import { getUser, loginUser } from '../../backend/utilFunctions';
 import { storeDataInAsyncStorage } from '../../utils/common';
 import { storageKeyName } from '../../constants/Data';
 import CustomToast from '../../components/common/Toast';
@@ -89,8 +89,10 @@ const Login = () => {
                 .then(res => {
                     storeDataInAsyncStorage(storageKeyName, res.token)
                         .then(res => {
-                            // nvaigate to the main screeen
-                            navigation.navigate(SCREENS.FINALAUTH)
+                            // fetch user
+                            getUser()
+                            .then(res=>setLoggedInUser(res.user))
+                            .catch(err=>console.log(err))
                         })
                         .catch(err => console.log('error while storing', err))
                 })

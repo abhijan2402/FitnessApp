@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import dashboard from '../../screens/dashboard/Dashboard';
+import Dashboard from '../../screens/dashboard/Dashboard';
 // import EditProfile from '../../screens/dashboard/Notification';
 import ActivityTracker from '../../screens/dashboard/ActivityTracker';
 // import Profile from '../../screens/dashboard/Profile';
@@ -21,7 +21,7 @@ function DashboardStack() {
         <Stack.Navigator screenOptions={{
             headerShown: false
         }}>
-            <Stack.Screen name={SCREENS.dashboard} component={dashboard} />
+            <Stack.Screen name={SCREENS.DASHBOARD} component={Dashboard} />
             <Stack.Screen name={SCREENS.NOTIFICATION} component={Notification} />
             <Stack.Screen name={SCREENS.ACTIVITYTRACKER} component={ActivityTracker} />
             <Stack.Screen name={SCREENS.FINISHWO} component={FinishWO} />

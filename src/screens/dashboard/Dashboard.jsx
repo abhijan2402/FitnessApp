@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import ScreenContainer from '../../components/container/ScreenContainer';
 import { View, StyleSheet, Image } from 'react-native';
 import TextH4 from '../../components/Text/TextH4';
@@ -29,12 +29,13 @@ import { useNavigation } from '@react-navigation/native';
 import { SCREENS } from '../../constants/Screens';
 import { TouchableOpacity } from 'react-native';
 import HomeSwiper from '../../components/Utils/HomeSwiper';
+import { GlobalContext } from '../../../App';
 
 const BASE_TRACKER_CONTAINER_HEIGHT = 350;
 
 function Dashboard(props) {
     const navigation = useNavigation();
-
+    const {user} = useContext(GlobalContext)
     const [meals, setMeals] = useState(MEALS[0])
     const [workout, setWorkout] = useState(WORKOUTS[0])
     return (
@@ -42,7 +43,7 @@ function Dashboard(props) {
             <View style={styles.profileInfo}>
                 <View style={styles.userInfo}>
                     <SmallText>Welcome Back,</SmallText>
-                    <TextH4>INZAMAMUL</TextH4>
+                    <TextH4>{user.first_name}</TextH4>
                 </View>
                 <SolidButton onPress={() => navigation.navigate(SCREENS.NOTIFICATION)} containerStyle={styles.solidButtonContainer}>
                     <Notification width={30} height={30} />
