@@ -60,8 +60,8 @@ const EditProfile = () => {
           }}>
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
-              <TextInput placeholder='First Name' placeholderTextColor={"grey"} style={styles.InputFields} onChangeText={value => setFirstName(value)} value={user.first_name} />
-              <TextInput placeholder='Last Name' placeholderTextColor={"grey"} style={styles.InputFields} onChangeText={value => setLastName(value)} value={user.last_name} />
+              <TextInput placeholder='First Name' placeholderTextColor={"grey"} style={styles.InputFields} onChangeText={value => setFirstName(value)} value={firstName} />
+              <TextInput placeholder='Last Name' placeholderTextColor={"grey"} style={styles.InputFields} onChangeText={value => setLastName(value)} value={lastName} />
               {/* <TextInput placeholder='Password (Optional)' placeholderTextColor={"grey"} style={styles.InputFields} onChangeText={value => setPassword(value)} /> */}
               <TouchableOpacity style={styles.BtnUpdate} onPress={UpdateData}>
                 <Text style={styles.BtnText}>Update Data</Text>
@@ -141,7 +141,8 @@ const styles = StyleSheet.create({
     width: "80%",
     marginVertical: "2%",
     borderRadius: 8,
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
+    color:"black"
   },
   BtnUpdate: {
     width: "80%",
