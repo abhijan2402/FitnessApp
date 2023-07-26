@@ -14,15 +14,17 @@ import { GlobalContext } from '../../../App'
 import { updateUser } from '../../backend/utilFunctions'
 const { height, width } = Dimensions.get("window")
 const EditProfile = () => {
-  const {user} = useContext(GlobalContext)
+  const { user } = useContext(GlobalContext)
   const [firstName, setFirstName] = useState(user.first_name)
   const [lastName, setLastName] = useState(user.last_name)
   // const [password, setPassword] = useState("")
   const [modalVisible, setModalVisible] = useState(false);
   const UpdateData = () => {
-    updateUser({...user,first_name:firstName,last_name:lastName})
+    updateUser({ ...user, first_name: firstName, last_name: lastName })
+    console.log("hi");
+    setModalVisible(false)
   }
-  
+
   return (
     <>
       <ScrollView style={styles.MainView}>
@@ -54,13 +56,12 @@ const EditProfile = () => {
           transparent={true}
           visible={modalVisible}
           onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
             setModalVisible(!modalVisible);
           }}>
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
-              <TextInput placeholder='First Name' placeholderTextColor={"grey"} style={styles.InputFields} onChangeText={value => setFirstName(value)} value={user.first_name}/>
-              <TextInput placeholder='Last Name' placeholderTextColor={"grey"} style={styles.InputFields} onChangeText={value => setLastName(value)} value={user.last_name}/>
+              <TextInput placeholder='First Name' placeholderTextColor={"grey"} style={styles.InputFields} onChangeText={value => setFirstName(value)} value={user.first_name} />
+              <TextInput placeholder='Last Name' placeholderTextColor={"grey"} style={styles.InputFields} onChangeText={value => setLastName(value)} value={user.last_name} />
               {/* <TextInput placeholder='Password (Optional)' placeholderTextColor={"grey"} style={styles.InputFields} onChangeText={value => setPassword(value)} /> */}
               <TouchableOpacity style={styles.BtnUpdate} onPress={UpdateData}>
                 <Text style={styles.BtnText}>Update Data</Text>
