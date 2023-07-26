@@ -1,17 +1,38 @@
-import axios from "axios";
+import { fetch } from "react-native-ssl-pinning";
+import { storageKeyName } from "../constants/Data";
+import { getDataFromAsyncStorage } from "../utils/common";
 
 
-export const api = axios.create({
-    baseURL: 'https://ec2-15-206-239-93.ap-south-1.compute.amazonaws.com/api',
-    headers: { "Content-Type": "multipart/form-data" },
-    e_platform: 'mobile',
-
-});
+const baseURL = 'https://ec2-15-206-239-93.ap-south-1.compute.amazonaws.com/api';
+async function getBaseHeaders(){
+    const baseHeaders = {
+        Accept: 'application/json; charset=utf-8',
+        'Access-Control-Allow-Origin': '*',
+        e_platform: 'mobile',
+    }
+    const jwt = await getDataFromAsyncStorage(storageKeyName);
+    baseHeaders['Authorization'] = `Bearer ${jwt}`;
+    return baseHeaders;
+}
+async function generateRequest(url,method,body,headers={}){
+    const config = {
+        method:method,
+        sslPinning: {
+            certs: ['certificat'],
+        },
+        headers:{...(await getBaseHeaders()),...headers}
+    }
+    if((method === 'POST' || method === 'PUT' || method === 'DELETE') && body)
+        config.body = body;
+    let result = await fetch(baseURL+url,config)
+    console.log(result.bodyString)
+    return JSON.parse(result.bodyString)
+}
 
 export async function getOtp(phone) {
     const data = new FormData();
     data.append('phone', phone)
-    return await api.post('/sendotp', data)
+    return await generateRequest("/sendotp","POST",data)
 }
 export async function registerUser(user) {
     const data = new FormData();
@@ -27,20 +48,11 @@ export async function registerUser(user) {
     data.append('weight', user.weight)
     data.append('height', user.height)
     data.append('goal', 'improve shape')
-    return await api.post('/register-user', data)
+    return await generateRequest("/register-user","POST",data)
 }
 export async function loginUser(credentials) {
     const data = new FormData()
     data.append('email', credentials.email)
     data.append('password', credentials.password)
-    return await fetch("https://ec2-15-206-239-93.ap-south-1.compute.amazonaws.com/api/login-user",
-        {
-            method: "POST",
-            timeoutInterval: 10000,
-            headers: { "Content-Type": "multipart/form-data" },
-            sslPinning: {
-                certs: ["certificat"]
-            },
-            body: JSON.stringify(data)
-        })
+    return await generateRequest("/login-user","POST",data)
 }

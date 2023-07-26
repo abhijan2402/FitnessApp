@@ -1,13 +1,13 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import dashboard from '../../screens/DashBoard/Dashboard';
+import dashboard from '../../screens/dashboard/Dashboard';
 // import EditProfile from '../../screens/dashboard/Notification';
-import ActivityTracker from '../../screens/DashBoard/ActivityTracker';
+import ActivityTracker from '../../screens/dashboard/ActivityTracker';
 // import Profile from '../../screens/dashboard/Profile';
 import Account from '../../screens/profile/Account';
-import FinishWO from '../../screens/DashBoard/FinishWO';
-import WaterDrink from '../../screens/DashBoard/WaterDrink';
-import Subscription from '../../screens/DashBoard/Subscription';
-import Notification from '../../screens/DashBoard/Notification';
+import FinishWO from '../../screens/dashboard/FinishWO';
+import WaterDrink from '../../screens/dashboard/WaterDrink';
+import Subscription from '../../screens/dashboard/Subscription';
+import Notification from '../../screens/dashboard/Notification';
 import { SCREENS } from '../../constants/Screens';
 import SleepStack from './SleepSchedule';
 import WorkoutStack from './WorkoutStack';
@@ -21,7 +21,7 @@ function DashboardStack() {
         <Stack.Navigator screenOptions={{
             headerShown: false
         }}>
-            <Stack.Screen name={SCREENS.DASHBOARD} component={dashboard} />
+            <Stack.Screen name={SCREENS.dashboard} component={dashboard} />
             <Stack.Screen name={SCREENS.NOTIFICATION} component={Notification} />
             <Stack.Screen name={SCREENS.ACTIVITYTRACKER} component={ActivityTracker} />
             <Stack.Screen name={SCREENS.FINISHWO} component={FinishWO} />

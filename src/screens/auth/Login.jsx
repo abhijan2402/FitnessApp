@@ -58,44 +58,44 @@ const Login = () => {
             //         console.log(`error: ${err}`)
             //     });
             const credentials = { email, password }
-            await fetch(`https://ec2-15-206-239-93.ap-south-1.compute.amazonaws.com/api/login-user`, {
-                method: 'POST',
-                timeoutInterval: 10000, // milliseconds
-                // your certificates array (needed only in android) ios will pick it automatically
-                sslPinning: {
-                    // for example key = "sha256/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
-                    certs: ['certificat'], // your certificates name (without extension), for example cert1.cer, cert2.cer
-                },
-                headers: {
-                    Accept: 'application/json; charset=utf-8',
-                    'Access-Control-Allow-Origin': '*',
-                    e_platform: 'mobile',
-                },
-                body: JSON.stringify({
-                    email: "abhishek.jangid643@gmail.com",
-                    password: "abhi@123#k"
-                })
-            })
-                .then(res => {
-                    console.log("res->", res)
-                    response = JSON.parse(res.bodyString);
-                    console.log(response)
-                    navigation.navigate(SCREENS.FINALAUTH)
-
-                })
-                .catch(err => console.log(err));
-            // setLoading(true)
-            // loginUser(credentials)
-            //     .then(res => {
-            //         storeDataInAsyncStorage(storageKeyName, res.data.token)
-            //             .then(res => {
-            //                 // nvaigate to the main screeen
-            //                 navigation.navigate(SCREENS.FINALAUTH)
-            //             })
-            //             .catch(err => console.log('error while storing', err))
+            // await fetch(`https://ec2-15-206-239-93.ap-south-1.compute.amazonaws.com/api/login-user`, {
+            //     method: 'POST',
+            //     timeoutInterval: 10000, // milliseconds
+            //     // your certificates array (needed only in android) ios will pick it automatically
+            //     sslPinning: {
+            //         // for example key = "sha256/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+            //         certs: ['certificat'], // your certificates name (without extension), for example cert1.cer, cert2.cer
+            //     },
+            //     headers: {
+            //         Accept: 'application/json; charset=utf-8',
+            //         'Access-Control-Allow-Origin': '*',
+            //         e_platform: 'mobile',
+            //     },
+            //     body: JSON.stringify({
+            //         email: "abhishek.jangid643@gmail.com",
+            //         password: "abhi@123#k"
             //     })
-            //     .catch(err => console.log(err.message))
-            //     .finally(() => setLoading(false))
+            // })
+            //     .then(res => {
+            //         console.log("res->", res)
+            //         response = JSON.parse(res.bodyString);
+            //         console.log(response)
+            //         navigation.navigate(SCREENS.FINALAUTH)
+
+            //     })
+            //     .catch(err => console.log(err));
+            setLoading(true)
+            loginUser(credentials)
+                .then(res => {
+                    storeDataInAsyncStorage(storageKeyName, res.token)
+                        .then(res => {
+                            // nvaigate to the main screeen
+                            navigation.navigate(SCREENS.FINALAUTH)
+                        })
+                        .catch(err => console.log('error while storing', err))
+                })
+                .catch(err => console.log(err.message))
+                .finally(() => setLoading(false))
         } catch (error) {
             setToastMessage(error);
             setToastTextColorState("white");
