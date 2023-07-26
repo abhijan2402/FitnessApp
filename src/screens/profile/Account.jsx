@@ -22,7 +22,7 @@ const Account = () => {
   const [gender, setGender] = useState(user.gender)
   const [foodType, setFoodType] = useState("")
   const UpdateData = () => {
-    updateUser({...user,weight,height,gender})
+    updateUser({...user,weight:weight.toString(),height:height.toString(),gender})
     .then(res=>console.log(res))
     .catch(err=>console.log(err))
   }
