@@ -39,3 +39,19 @@ export function getAge(dateString) {
   }
   return age;
 }
+export function getTimeInAMPMFormat(date) {
+  // Get hours and minutes from the Date object
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+
+  // Determine if it's AM or PM
+  const period = hours >= 12 ? 'pm' : 'am';
+
+  // Convert hours from 24-hour format to 12-hour format
+  const hours12 = hours % 12 || 12;
+
+  // Format the time as 'Xam' or 'Xpm'
+  const formattedTime = `${hours12}:${minutes.toString().padStart(2, '0')}${period}`;
+
+  return formattedTime;
+}

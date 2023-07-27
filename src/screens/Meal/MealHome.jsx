@@ -13,14 +13,39 @@ import MealContainer from '../../components/container/MealContainer';
 import MealCard from '../../components/card/MealCard';
 import { SCREENS } from '../../constants/Screens';
 import { useNavigation } from '@react-navigation/native';
+import { useEffect } from 'react';
+import { getUserRecommendedMeal } from '../../backend/utilFunctions';
+import { getTimeInAMPMFormat } from '../../utils/common';
 const { width, height } = Dimensions.get('window');
 
 const MealHome = () => {
     const navigation = useNavigation();
     const [mealPlan, setMealPlan] = useState(WORKOUTS[0])
-    const [meals, setMeals] = useState(WORKOUTS[0])
+    const [meals, setMeals] = useState(null)
+    const [recommendedMeals,setRecommendedMeals] = useState([])
+    const [filteredRecommendedMeals,setFilteredRecommendedMeals] = useState([])
+    function filterMealsBasedOnType(type){
+        const filteredMeals = recommendedMeals.filter(meal=>meal.meal_period === type)
+        console.log(filteredMeals)
+        return filteredMeals
+    }
+    useEffect(()=>{
+        getUserRecommendedMeal()
+        .then(res=>setRecommendedMeals(res.data))
+        .catch(err=>console.log(err))
+    },[])
+    useEffect(()=>{
+        if(meals === null)
+            setFilteredRecommendedMeals(recommendedMeals);
+        else if(meals === "BREAKFAST")
+            setFilteredRecommendedMeals(filterMealsBasedOnType("breakfast"))
+        else if(meals === "LUNCH")
+            setFilteredRecommendedMeals(filterMealsBasedOnType("lunch"))
+        else if(meals === "DINNER")
+            setFilteredRecommendedMeals(filterMealsBasedOnType("dinner"))
+    },[meals,recommendedMeals])
 
-
+    
     return (
         <ScrollView style={{ backgroundColor: "white" }}>
             <Header title={"Meal Planner"} />
@@ -61,20 +86,18 @@ const MealHome = () => {
                     />
                 </SolidContainer>
                 <View style={{ paddingHorizontal: 10 }}>
-                    <MealContainer
-                        img={require('../../../assets/images/sushi.png')}
-                        title={'Salmon Nigiri'}
-                        time={'7am'}
-                        date={'Today'}
-                        onpress={()=>navigation.navigate(SCREENS.MEALSCHEDULER)}
-                    />
-                    <MealContainer
-                        img={require('../../../assets/images/glass-of-milk.png')}
-                        title={'Lowfat Milk'}
-                        time={'8am'}
-                        date={'Today'}
-                        onpress={()=>navigation.navigate(SCREENS.MEALSCHEDULER)}
-                    />
+                    {
+                        filteredRecommendedMeals.map(meal=>
+                            <MealContainer
+                            key={meal._id}
+                            img={require('../../../assets/images/sushi.png')}
+                            title={meal.meal.name}
+                            time={getTimeInAMPMFormat(new Date(meal.meal_time))}
+                            date={'Today'}
+                            onpress={()=>navigation.navigate(SCREENS.MEALSCHEDULER)}
+                            />  
+                        )
+                    }
                 </View>
                 <View style={{ marginHorizontal: 20, marginVertical: "5%" }}>
                     <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_SEMIBOLD, color: 'black', flexGrow: 1, marginVertical: 5 }}>Meal</LargeText>

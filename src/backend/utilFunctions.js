@@ -70,3 +70,7 @@ export async function updateUser(updateUser){
     data.append('goal',updateUser.goal)
     return await generateRequest("/update-user-profile","PUT",data)
 }
+export async function getUserRecommendedMeal(){
+    console.log("I was called")
+    return await generateRequest("/fetch-user-meal-recommendation","GET");
+}
