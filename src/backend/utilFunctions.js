@@ -65,8 +65,8 @@ export async function updateUser(updateUser){
     data.append('last_name',updateUser.last_name)
     data.append('gender',updateUser.gender)
     data.append('dob',updateUser.dob)
-    data.append('weight',updateUser.weight)
-    data.append('height',updateUser.height)
+    data.append('weight',updateUser.weight.toString())
+    data.append('height',updateUser.height.toString())
     data.append('goal',updateUser.goal)
     return await generateRequest("/update-user-profile","PUT",data)
 }
