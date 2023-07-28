@@ -45,7 +45,7 @@ const RegisterOTP = ({user,setUser}) => {
         setLoading(true)
         //validation required
         getOtp(phone)
-        .then(res=>setUser({...user,hash:res.data.hash}))
+        .then(res=>setUser({...user,hash:res.hash}))
         .catch(error=>{
             console.log(error.message);
             console.log("Message ",error.message)

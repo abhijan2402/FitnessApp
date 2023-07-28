@@ -24,9 +24,18 @@ async function generateRequest(url,method,body,headers={}){
     }
     if((method === 'POST' || method === 'PUT' || method === 'DELETE') && body)
         config.body = body;
-    let result = await fetch(baseURL+url,config)
-    console.log(result.bodyString)
-    return JSON.parse(result.bodyString)
+    
+    return new Promise(async(resolve,reject)=>{
+        try{
+            let result = await fetch(baseURL+url,config)
+            const data = JSON.parse(result.bodyString)
+            resolve(data);
+        }
+        catch(err){
+            const error = JSON.parse(err.bodyString)
+            reject(error)
+        }
+    })
 }
 
 export async function getOtp(phone) {
@@ -71,6 +80,5 @@ export async function updateUser(updateUser){
     return await generateRequest("/update-user-profile","PUT",data)
 }
 export async function getUserRecommendedMeal(){
-    console.log("I was called")
     return await generateRequest("/fetch-user-meal-recommendation","GET");
 }

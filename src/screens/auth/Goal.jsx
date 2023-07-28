@@ -33,12 +33,11 @@ export default function Goal({user,setUser}) {
 
   function onRegister(){
     setLoading(true)  
-    registerUser(user).then(res=>{
-      console.log(res.data)
-      navigation.navigate(SCREENS.FINALAUTH)
+    registerUser(user)
+    .then(res=>{
+      navigation.navigate(SCREENS.LOGIN)
     })
     .catch(err=>{
-      console.log(err.message,"j")
       setToastMessage(err.message);
       setToastTextColorState("white");
       setToastColorState("red");
