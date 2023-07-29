@@ -14,15 +14,32 @@ import { GlobalContext } from '../../../App'
 import { updateUser } from '../../backend/utilFunctions'
 const { height, width } = Dimensions.get("window")
 const EditProfile = () => {
-  const { user } = useContext(GlobalContext)
+  const { user,setLoggedInUser } = useContext(GlobalContext)
+  
+  // actual data
   const [firstName, setFirstName] = useState(user.first_name)
   const [lastName, setLastName] = useState(user.last_name)
+  // temp data
+  const [tempFirstName,setTempFirstName] = useState(user.first_name);
+  const [tempLastName,setTempLastName] = useState(user.last_name);
   // const [password, setPassword] = useState("")
   const [modalVisible, setModalVisible] = useState(false);
   const UpdateData = () => {
+    
     updateUser({ ...user, first_name: firstName, last_name: lastName })
-    console.log("hi");
-    setModalVisible(false)
+    .then(()=>{
+      setFirstName(tempFirstName)
+      setLastName(tempLastName)
+      // update the global context
+      setLoggedInUser({...user,first_name:tempFirstName,lastName:tempLastName})
+    })
+    .catch((err)=>{
+      // TODO: Make a alert toast for the error
+      console.log(err)
+    })
+    .finally(()=>{
+      setModalVisible(false)
+    })
   }
 
   return (
@@ -60,8 +77,8 @@ const EditProfile = () => {
           }}>
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
-              <TextInput placeholder='First Name' placeholderTextColor={"grey"} style={styles.InputFields} onChangeText={value => setFirstName(value)} value={firstName} />
-              <TextInput placeholder='Last Name' placeholderTextColor={"grey"} style={styles.InputFields} onChangeText={value => setLastName(value)} value={lastName} />
+              <TextInput placeholder='First Name' placeholderTextColor={"grey"} style={styles.InputFields} onChangeText={value => setTempFirstName(value)} value={tempFirstName} />
+              <TextInput placeholder='Last Name' placeholderTextColor={"grey"} style={styles.InputFields} onChangeText={value => setTempLastName(value)} value={tempLastName} />
               {/* <TextInput placeholder='Password (Optional)' placeholderTextColor={"grey"} style={styles.InputFields} onChangeText={value => setPassword(value)} /> */}
               <TouchableOpacity style={styles.BtnUpdate} onPress={UpdateData}>
                 <Text style={styles.BtnText}>Update Data</Text>

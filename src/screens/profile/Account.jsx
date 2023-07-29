@@ -15,17 +15,34 @@ import { updateUser } from '../../backend/utilFunctions';
 const { width, height } = Dimensions.get('window');
 const Account = () => {
   const [modalVisible, setModalVisible] = useState(false);
-  const { user } = useContext(GlobalContext)
+  const { user,setLoggedInUser } = useContext(GlobalContext)
   const [age, setAge] = useState(getAge(user.dob))
   const [weight, setWeight] = useState(user.weight)
   const [height, setHeight] = useState(user.height)
   const [gender, setGender] = useState(user.gender)
   const [foodType, setFoodType] = useState("")
+
+  // temp variables
+  const [tempAge, setTempAge] = useState(getAge(user.dob))
+  const [tempWeight, setTempWeight] = useState(user.weight)
+  const [tempHeight, setTempHeight] = useState(user.height)
+  const [tempGender, setTempGender] = useState(user.gender)
+  const [tempFoodType, setTempFoodType] = useState("")
   const UpdateData = () => {
     updateUser({ ...user, weight, height, gender })
-      .then(res => console.log(res))
-      .catch(err => console.log(err))
-    setModalVisible(false)
+      .then(res =>{
+        setWeight(tempWeight)
+        setHeight(tempHeight)
+        setGender(tempGender)
+        // update the global context
+        setLoggedInUser({...user,weight:tempWeight,height:tempHeight,gender:tempGender})
+      })
+      .catch(err =>{
+        // TODO : Add a toast error here 
+        console.log(err)
+      })
+      .finally(()=>setModalVisible(false))
+   
   }
   return (
     <View style={styles.Mainview}>
@@ -57,11 +74,11 @@ const Account = () => {
             }}>
             <View style={styles.centeredView}>
               <View style={styles.modalView}>
-                <TextInput placeholder='Food Type (Vegan or Non vegan)' placeholderTextColor={"grey"} style={styles.InputFields} onChangeText={value => setFoodType(value)} value={'N/A'} />
-                <TextInput placeholder='Age (yr old)' placeholderTextColor={"grey"} style={styles.InputFields} onChangeText={value => setAge(value)} value={`${age}`} />
-                <TextInput placeholder='Weight (in kgs)' placeholderTextColor={"grey"} style={styles.InputFields} onChangeText={value => setWeight(value)} value={`${weight}`} />
-                <TextInput placeholder='Height (in cms)' placeholderTextColor={"grey"} style={styles.InputFields} onChangeText={value => setHeight(value)} value={`${height}`} />
-                <TextInput placeholder='Gender (Male or Female' placeholderTextColor={"grey"} style={styles.InputFields} onChangeText={value => setGender(value)} value={gender} />
+                <TextInput placeholder='Food Type (Vegan or Non vegan)' placeholderTextColor={"grey"} style={styles.InputFields} onChangeText={value => setTempFoodType(value)} value={'N/A'} />
+                <TextInput placeholder='Age (yr old)' placeholderTextColor={"grey"} style={styles.InputFields} onChangeText={value => setTempAge(value)} value={`${tempAge}`} />
+                <TextInput placeholder='Weight (in kgs)' placeholderTextColor={"grey"} style={styles.InputFields} onChangeText={value => setTempWeight(value)} value={`${tempWeight}`} />
+                <TextInput placeholder='Height (in cms)' placeholderTextColor={"grey"} style={styles.InputFields} onChangeText={value => setTempHeight(value)} value={`${tempHeight}`} />
+                <TextInput placeholder='Gender (Male or Female' placeholderTextColor={"grey"} style={styles.InputFields} onChangeText={value => setTempGender(value)} value={tempGender} />
                 <TouchableOpacity style={styles.BtnUpdate} onPress={UpdateData}>
                   <Text style={styles.BtnText}>Update Data</Text>
                 </TouchableOpacity>
