@@ -82,3 +82,6 @@ export async function updateUser(updateUser){
 export async function getUserRecommendedMeal(){
     return await generateRequest("/fetch-user-meal-recommendation","GET");
 }
+export async function getMealDetails(id){
+    return await generateRequest("/fetch-meal/"+id)
+}
