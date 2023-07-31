@@ -31,6 +31,7 @@ export const SCREENS = {
     WATERDRINK: 'WaterDrink',
     SUBSCRIPTION: 'Subscription',
     EDITPROFILE: 'EditProfile',
+    ADDITIONALINFO: "AdditionalInfo",
 
     //meal
     MEALHOME: "MealHome",
