@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Dimensions, Image } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, Image, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import SmallText from '../../components/Text/SmallText';
 import TextH4 from '../../components/Text/TextH4';
@@ -17,6 +17,8 @@ import CustomToast from '../../components/common/Toast';
 import { useRef } from 'react';
 import { ActivityIndicator } from 'react-native';
 const { width, height } = Dimensions.get('window');
+import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+
 const Register = ({ user, setUser }) => {
     const navigation = useNavigation();
     const [firstName, setFirstName] = useState('');
@@ -28,17 +30,38 @@ const Register = ({ user, setUser }) => {
     const [toastColorState, setToastColorState] = useState('');
     const [toastTextColorState, setToastTextColorState] = useState('');
     const [toastMessage, setToastMessage] = useState('');
-    const [loading,setLoading]=useState(false);
+    const [loading, setLoading] = useState(false);
 
+    //Image States
+    const [galleryPhoto, setGalleryPhoto] = useState();
+    const [Photo, setPhoto] = useState(false)
+    let options = {
+        saveToPhotos: true,
+        mediaType: 'photo',
+    }
+
+    const OpenGallery = async () => {
+        try {
+            setPhoto(false)
+            const result = await launchImageLibrary(options);
+            const data = result.assets[0].uri;
+            setGalleryPhoto(data)
+            setPhoto(true);
+            console.log(galleryPhoto);
+        } catch (error) {
+            console.log(error, "error");
+            setPhoto(false)
+        }
+    }
     function onNext() {
         try {
-            if(!firstName)
+            if (!firstName)
                 throw "Enter First Name";
-            if(!lastName)
+            if (!lastName)
                 throw "Entet Last Name";
-            if(!email)
+            if (!email)
                 throw "Enter Email";
-            if(!password)
+            if (!password)
                 throw "Enter Password";
             setLoading(true)
             setUser({ ...user, first_name: firstName, last_name: lastName, email, password })
@@ -48,7 +71,7 @@ const Register = ({ user, setUser }) => {
             setToastTextColorState("white");
             setToastColorState("red");
             childRef.current.showToast()
-        }finally{setLoading(false)}
+        } finally { setLoading(false) }
     }
     return (
         <View style={styles.MainView}>
@@ -62,7 +85,13 @@ const Register = ({ user, setUser }) => {
                 <SmallText style={{ fontWeight: "700", color: "black", fontSize: 16, }}>Hey there,</SmallText>
                 <TextH4 style={{ marginTop: 7 }}>Create an Account</TextH4>
             </View>
-
+            <TouchableOpacity style={{ marginVertical: 10 }} onPress={OpenGallery}>
+                {
+                    !Photo ?
+                        <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/3237/3237472.png" }} style={{ width: 150, height: 150 }} /> :
+                        <Image source={{ uri: galleryPhoto }} style={{ width: 150, height: 150, borderRadius: 70 }} />
+                }
+            </TouchableOpacity>
             <View style={styles.first}>
                 <Input
                     placeholder={'First Name'}
@@ -108,9 +137,9 @@ const Register = ({ user, setUser }) => {
 
             <View style={{ alignItems: "center", marginTop: "18%" }}>
                 {
-                    loading?
-                    <ActivityIndicator size={30}color={'blue'} />:
-                    <PrimaryButton onPress={onNext} containerStyle={{ width: width - 80, }} title={'Next'} />
+                    loading ?
+                        <ActivityIndicator size={30} color={'blue'} /> :
+                        <PrimaryButton onPress={onNext} containerStyle={{ width: width - 80, }} title={'Next'} />
                 }
             </View>
             <Text style={{ marginTop: "8%" }}>Or</Text>
