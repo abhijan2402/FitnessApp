@@ -35,6 +35,7 @@ const Register = ({ user, setUser }) => {
     //Image States
     const [galleryPhoto, setGalleryPhoto] = useState();
     const [Photo, setPhoto] = useState(false)
+    const [photoResult,setPhotoResult] = useState(null)
     let options = {
         saveToPhotos: true,
         mediaType: 'photo',
@@ -45,10 +46,12 @@ const Register = ({ user, setUser }) => {
             setPhoto(false)
             const result = await launchImageLibrary(options);
             const data = result.assets[0].uri;
+            setPhotoResult((result && result.assets && result.assets[0])?result.assets[0]:null)
             setGalleryPhoto(data)
             setPhoto(true);
             console.log(galleryPhoto);
         } catch (error) {
+            setPhotoResult(null)
             console.log(error, "error");
             setPhoto(false)
         }
@@ -63,8 +66,10 @@ const Register = ({ user, setUser }) => {
                 throw "Enter Email";
             if (!password)
                 throw "Enter Password";
+            if (!photoResult)
+                throw "Add Photo";
             setLoading(true)
-            setUser({ ...user, first_name: firstName, last_name: lastName, email, password })
+            setUser({ ...user, first_name: firstName, last_name: lastName, email, password,image:{uri:photoResult.uri,name:photoResult.filename,type:photoResult.type} })
             navigation.navigate(SCREENS.CREATEPROFILE)
         } catch (error) {
             setToastMessage(error);

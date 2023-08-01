@@ -18,6 +18,9 @@ function AuthStack() {
         <Stack.Navigator screenOptions={{
             headerShown: false
         }}>
+            <Stack.Screen name={SCREENS.REGISTER}>
+                {() => <Register user={user} setUser={setUser} />}
+            </Stack.Screen>
             <Stack.Screen name={SCREENS.LOGIN}>
                 {() => <Login user={user} setUser={setUser} />}
             </Stack.Screen>
@@ -26,9 +29,6 @@ function AuthStack() {
             </Stack.Screen>
             <Stack.Screen name={SCREENS.CREATEPROFILE}>
                 {() => <CreateProfile user={user} setUser={setUser} />}
-            </Stack.Screen>
-            <Stack.Screen name={SCREENS.REGISTER}>
-                {() => <Register user={user} setUser={setUser} />}
             </Stack.Screen>
             <Stack.Screen name={SCREENS.GOAL}>
                 {() => <Goal user={user} setUser={setUser} />}
