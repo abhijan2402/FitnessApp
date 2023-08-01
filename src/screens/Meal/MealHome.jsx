@@ -26,12 +26,13 @@ const MealHome = () => {
     const [filteredRecommendedMeals,setFilteredRecommendedMeals] = useState([])
     function filterMealsBasedOnType(type){
         const filteredMeals = recommendedMeals.filter(meal=>meal.meal_period === type)
-        console.log(filteredMeals)
         return filteredMeals
     }
     useEffect(()=>{
         getUserRecommendedMeal()
-        .then(res=>setRecommendedMeals(res.data))
+        .then(res=>{
+            setRecommendedMeals(res.data)
+        })
         .catch(err=>console.log(err))
     },[])
     useEffect(()=>{
@@ -91,10 +92,10 @@ const MealHome = () => {
                             <MealContainer
                             key={meal._id}
                             img={require('../../../assets/images/sushi.png')}
-                            title={meal.meal.name}
+                            title={(meal && meal.meal)? meal.meal.name:""}
                             time={getTimeInAMPMFormat(new Date(meal.meal_time))}
                             date={'Today'}
-                            onpress={()=>navigation.navigate(SCREENS.MEALSCHEDULER)}
+                            onpress={()=>navigation.navigate(SCREENS.MEALSCHEDULER,{filteredRecommendedMeals})}
                             />  
                         )
                     }

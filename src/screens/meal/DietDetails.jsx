@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { StyleSheet, View, Dimensions } from 'react-native';
 import { COLORS } from '../../constants/Colors';
 import GradientLabel from '../../components/Label/GradientLabel';
@@ -20,11 +20,12 @@ import FlourSvg from '../../../assets/icons/Flour-Icon.svg';
 import SugarSvg from '../../../assets/icons/Sugar-Icon.svg';
 import ActivePassiveList from '../../components/list/ActivePassiveList';
 import PrimaryButton from '../../components/Button/PrimaryButton';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { SCREENS } from '../../constants/Screens';
 import { GestureHandlerRootView,FlatList } from 'react-native-gesture-handler';
 import BottomSheet from '../../components/container/BottomSheet';
 import useLayout from '../../hooks/useLayout';
+import { getMealDetails } from '../../backend/utilFunctions';
 const tags = [
     {
         id: 1,
@@ -98,9 +99,23 @@ const stepData = [
 ]
 const descriptions = `Pancakes are some people's favorite breakfast, who doesn't like pancakes? Especially with the real honey splash on top of the pancakes, of course everyone loves that! besides being  `
 function DietDetails(props) {
+    const route = useRoute()
+    const {id} = route.params;
     const navigation = useNavigation();
     const bottomSheetRef = useRef(null);
     const [viewHeight,getViewHeight] = useLayout()
+    const [mealDetails,setMealDetails] = useState({
+        name:"",nutrient:{},description:""
+    })
+    useEffect(()=>{
+        getMealDetails("64a9ce1d4c52b7ecf30477b7")
+        .then(res=>{
+            const details = res.data
+            setMealDetails({...mealDetails,name:details.name,description:details.description})
+            
+        })
+        .catch(err=>console.log(err))
+    },[])
     return (
         <>
             <GestureHandlerRootView style={{flex:1}}>
@@ -113,7 +128,7 @@ function DietDetails(props) {
                 <BottomSheet ref={bottomSheetRef} extraRequiredHeight={viewHeight} >
                     <View style={styles.detailContainer} onLayout={getViewHeight}>
                         <View style={{ marginBottom: 30 }}>
-                                <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_BOLD, color: 'black' }}>Blueberry Pancake</LargeText>
+                                <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_BOLD, color: 'black' }}>{mealDetails.name}</LargeText>
                                 <SmallText style={{ color: COLORS.PRIMARY_BUTTON_GRADIENT.BLUE1 }}>by James Ruth</SmallText>
                             </View>
                             <View style={{ marginBottom: 15 }}>
@@ -129,7 +144,7 @@ function DietDetails(props) {
                             <View style={{ paddingRight: 35 }}>
                                 <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_SEMIBOLD, color: 'black', marginBottom: 10 }}>Descriptions</LargeText>
                                 <SmallText style={styles.descriptions}>
-                                    {descriptions}
+                                    {mealDetails.description}
                                     <SmallText style={{ color: COLORS.PRIMARY_BUTTON_GRADIENT.BLUE1 }}>
                                         Read More...
                                     </SmallText>

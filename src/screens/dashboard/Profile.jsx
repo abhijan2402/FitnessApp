@@ -24,8 +24,8 @@ import PrimaryButton from '../../components/Button/PrimaryButton';
 import { storageKeyName } from '../../constants/Data';
 const Profile = () => {
     const navigation = useNavigation();
-    const {user,setLoggedInUser} = useContext(GlobalContext)
-    async function onLogout(){
+    const { user, setLoggedInUser } = useContext(GlobalContext)
+    async function onLogout() {
         await removeFromAsyncStorage(storageKeyName);
         setLoggedInUser(null)
     }
@@ -42,6 +42,7 @@ const Profile = () => {
                 <View style={{ marginLeft: "9%", marginRight: 5, marginTop: "10%" }}>
                     <TextH4 style={{ marginVertical: 10 }}>Account</TextH4>
                     <ProfileOption onPress={() => navigation.navigate(SCREENS.ACCOUNT)} leftIcon={<UserIcon width={20} height={20} />} rightIcon={<Right width={20} height={20} />} Title={"Personal Data"} />
+                    <ProfileOption onPress={() => navigation.navigate(SCREENS.ADDITIONALINFO)} leftIcon={<UserIcon width={20} height={20} />} rightIcon={<Right width={20} height={20} />} Title={"Additional Data"} />
                     <ProfileOption onPress={() => console.log('should be navigated to other screen')} leftIcon={<Achivement width={20} height={20} />} rightIcon={<Right width={20} height={20} />} Title={"Achievement"} />
                     <ProfileOption onPress={() => console.log('should be navigated to other screen')} leftIcon={<Activity width={20} height={20} />} rightIcon={<Right width={20} height={20} />} Title={"Activity History"} />
                     <ProfileOption onPress={() => console.log('should be navigated to other screen')} leftIcon={<Workout width={20} height={20} />} rightIcon={<Right width={20} height={20} />} Title={"Workout Progress"} />
@@ -56,8 +57,8 @@ const Profile = () => {
                     <ProfileOption leftIcon={<Privacy width={20} height={20} />} rightIcon={<Right width={20} height={20} />} Title={"Privacy Policy"} />
                     <ProfileOption leftIcon={<Setting width={20} height={20} />} rightIcon={<Right width={20} height={20} />} Title={"Settings"} />
                 </View>
-                <View style={{marginHorizontal:30,marginVertical:40}}>
-                    <PrimaryButton title={'Logout'} onPress={()=>onLogout()}/>
+                <View style={{ marginHorizontal: 30, marginVertical: 40 }}>
+                    <PrimaryButton title={'Logout'} onPress={() => onLogout()} />
                 </View>
             </ScrollView>
         </View>

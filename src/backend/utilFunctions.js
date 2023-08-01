@@ -57,6 +57,8 @@ export async function registerUser(user) {
     data.append('weight', user.weight)
     data.append('height', user.height)
     data.append('goal', 'improve shape')
+    formData.append("profile_image",user.image);
+    
     return await generateRequest("/register-user","POST",data)
 }
 export async function loginUser(credentials) {
@@ -81,4 +83,7 @@ export async function updateUser(updateUser){
 }
 export async function getUserRecommendedMeal(){
     return await generateRequest("/fetch-user-meal-recommendation","GET");
+}
+export async function getMealDetails(id){
+    return await generateRequest("/fetch-meal/"+id)
 }
