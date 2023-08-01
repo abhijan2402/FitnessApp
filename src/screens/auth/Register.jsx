@@ -49,7 +49,6 @@ const Register = ({ user, setUser }) => {
             setPhotoResult((result && result.assets && result.assets[0])?result.assets[0]:null)
             setGalleryPhoto(data)
             setPhoto(true);
-            console.log(galleryPhoto);
         } catch (error) {
             setPhotoResult(null)
             console.log(error, "error");
@@ -69,7 +68,7 @@ const Register = ({ user, setUser }) => {
             if (!photoResult)
                 throw "Add Photo";
             setLoading(true)
-            setUser({ ...user, first_name: firstName, last_name: lastName, email, password,image:{uri:photoResult.uri,name:photoResult.filename,type:photoResult.type} })
+            setUser({ ...user, first_name: firstName, last_name: lastName, email, password,image:{uri:photoResult.uri,name:photoResult.fileName,type:photoResult.type} })
             navigation.navigate(SCREENS.CREATEPROFILE)
         } catch (error) {
             setToastMessage(error);
@@ -80,12 +79,12 @@ const Register = ({ user, setUser }) => {
     }
     return (
         <View style={styles.MainView}>
-            {/* <CustomToast
+            <CustomToast
                 toastColor={toastColorState}
                 toastTextColor={toastTextColorState}
                 toastMessage={toastMessage}
                 ref={childRef}
-            /> */}
+            />
             <View style={styles.Heading}>
                 <SmallText style={{ fontWeight: "700", color: "black", fontSize: 16, }}>Hey there,</SmallText>
                 <TextH4 style={{ marginTop: 7 }}>Create an Account</TextH4>
