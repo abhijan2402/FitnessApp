@@ -42,7 +42,7 @@ export default function Goal({user,setUser}) {
       setToastTextColorState("white");
       setToastColorState("red");
       childRef.current.showToast()
-    }).finally(setLoading(false))
+    }).finally(()=>setLoading(false))
   }
   return (
     <View style={styles.container}>
