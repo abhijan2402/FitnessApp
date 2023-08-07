@@ -91,7 +91,10 @@ const Login = () => {
                         .then(res => {
                             // fetch user
                             getUser()
-                            .then(res=>setLoggedInUser(res.user))
+                            .then(res=>{
+                                console.log(res)
+                                setLoggedInUser(res.user)
+                            })
                             .catch(err=>console.log(err))
                         })
                         .catch(err => console.log('error while storing', err))

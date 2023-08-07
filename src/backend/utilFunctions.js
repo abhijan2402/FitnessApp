@@ -58,8 +58,7 @@ export async function registerUser(user) {
     data.append('height', user.height)
     data.append('goal', 'improve shape')
     data.append("profile_image",user.image);
-    console.log(user.image);
-    // return await generateRequest("/register-user","POST",data)
+    return await generateRequest("/register-user","POST",data)
 }
 export async function loginUser(credentials) {
     const data = new FormData()

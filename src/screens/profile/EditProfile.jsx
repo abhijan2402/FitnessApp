@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Dimensions, Alert, Modal, Pressable, ScrollView, TextInput, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, Alert, Modal, Pressable, ScrollView, TextInput, TouchableOpacity,Image } from 'react-native'
 import React, { useContext, useState } from 'react'
 import Header from '../../components/header/Header'
 import EditPro from '../../components/profile/EditPro'
@@ -47,7 +47,7 @@ const EditProfile = () => {
       <ScrollView style={styles.MainView}>
         <Header title={"Edit Profile"} />
         <View style={styles.image}>
-          <Shape height={100} width={100} />
+          <Image source={{uri:user.image}} width={150} height={150}/>
         </View>
         <View>
           <EditPro value={firstName} icon={<Account width={18} height={18} Edit={"EditBtn"} />} />
@@ -105,6 +105,9 @@ const styles = StyleSheet.create({
   image: {
     alignSelf: "center",
     marginVertical: 50,
+    elevation:5,
+    overflow:'hidden',
+    borderRadius:9999
   },
   card: {
     display: "flex",
