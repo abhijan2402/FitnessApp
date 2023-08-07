@@ -33,7 +33,7 @@ const Profile = () => {
         <View style={styles.Container}>
             <Header title="Profile" />
             <ScrollView>
-                <ProfileTop name={`${user.first_name} ${user.last_name}`} Program={user.goal} />
+                <ProfileTop name={`${user.first_name} ${user.last_name}`} Program={user.goal} image={user.image}/>
                 <View style={{ display: "flex", flexDirection: "row", justifyContent: "space-around", margin: 20 }}>
                     <ProfileDesc value={user.height} vauleOf={"Height"} unit={"cm"} />
                     <ProfileDesc value={user.weight} vauleOf={"Weight"} unit={"kg"} />

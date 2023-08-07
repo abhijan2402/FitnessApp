@@ -5,12 +5,14 @@ import { FONTS } from '../../constants/Fonts'
 import PrimaryButton from '../Button/PrimaryButton'
 import { useNavigation } from '@react-navigation/native'
 import { SCREENS } from '../../constants/Screens'
-const ProfileTop = ({ name, Program }) => {
+import { Image } from 'react-native';
+
+const ProfileTop = ({ name, Program,image }) => {
     const navigation=useNavigation();
 
     return (
         <View style={styles.Container}>
-            <NotifImage width={50} height={50} />
+            <Image source={{uri:image}} width={50} height={50} style={styles.profileImage}/>
             <View style={styles.NotifText}>
                 <Text style={{ fontSize: 14, fontFamily: FONTS.FONT_POPPINS_BOLD, color: "black" }}>{name}</Text>
                 <Text style={{ fontSize: 12, fontFamily: FONTS.FONT_POPPINS_MEDIUM, color: "grey" }}>{Program}</Text>
@@ -30,6 +32,11 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         marginHorizontal: 20
+    },
+    profileImage:{
+        borderRadius:9999,
+        borderWidth:1,
+        borderColor:'black'
     },
     NotifText: {
         width: "55%",
