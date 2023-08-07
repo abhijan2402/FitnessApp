@@ -22,7 +22,7 @@ import ActivePassiveList from '../../components/list/ActivePassiveList';
 import PrimaryButton from '../../components/Button/PrimaryButton';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { SCREENS } from '../../constants/Screens';
-import { GestureHandlerRootView,FlatList } from 'react-native-gesture-handler';
+import { GestureHandlerRootView, FlatList } from 'react-native-gesture-handler';
 import BottomSheet from '../../components/container/BottomSheet';
 import useLayout from '../../hooks/useLayout';
 import { getMealDetails } from '../../backend/utilFunctions';
@@ -100,25 +100,25 @@ const stepData = [
 const descriptions = `Pancakes are some people's favorite breakfast, who doesn't like pancakes? Especially with the real honey splash on top of the pancakes, of course everyone loves that! besides being  `
 function DietDetails(props) {
     const route = useRoute()
-    const {id} = route.params;
-    const navigation = useNavigation();
+    // const {id} = route.params;
+    // const navigation = useNavigation();
     const bottomSheetRef = useRef(null);
-    const [viewHeight,getViewHeight] = useLayout()
-    const [mealDetails,setMealDetails] = useState({
-        name:"",nutrient:{},description:""
+    const [viewHeight, getViewHeight] = useLayout()
+    const [mealDetails, setMealDetails] = useState({
+        name: "", nutrient: {}, description: ""
     })
-    useEffect(()=>{
+    useEffect(() => {
         getMealDetails("64a9ce1d4c52b7ecf30477b7")
-        .then(res=>{
-            const details = res.data
-            setMealDetails({...mealDetails,name:details.name,description:details.description})
-            
-        })
-        .catch(err=>console.log(err))
-    },[])
+            .then(res => {
+                const details = res.data
+                setMealDetails({ ...mealDetails, name: details.name, description: details.description })
+
+            })
+            .catch(err => console.log(err))
+    }, [])
     return (
         <>
-            <GestureHandlerRootView style={{flex:1}}>
+            <GestureHandlerRootView style={{ flex: 1 }}>
                 <GradientLabel
                     colors={[COLORS.PRIMARY_BUTTON_GRADIENT.BLUE1, COLORS.PRIMARY_BUTTON_GRADIENT.BLUE2]}
                     conatinerStyle={styles.container}
@@ -128,68 +128,68 @@ function DietDetails(props) {
                 <BottomSheet ref={bottomSheetRef} extraRequiredHeight={viewHeight} >
                     <View style={styles.detailContainer} onLayout={getViewHeight}>
                         <View style={{ marginBottom: 30 }}>
-                                <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_BOLD, color: 'black' }}>{mealDetails.name}</LargeText>
-                                <SmallText style={{ color: COLORS.PRIMARY_BUTTON_GRADIENT.BLUE1 }}>by James Ruth</SmallText>
-                            </View>
-                            <View style={{ marginBottom: 15 }}>
-                                <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_SEMIBOLD, color: 'black', marginBottom: 15 }}>Nutrition</LargeText>
-                                <FlatList
-                                    data={tags}
-                                    renderItem={({ item }) => <Tag icon={item.icon} tag={item.tag} />}
-                                    keyExtractor={item => item.id}
-                                    horizontal
-                                    showsHorizontalScrollIndicator={false}
-                                />
-                            </View>
-                            <View style={{ paddingRight: 35 }}>
-                                <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_SEMIBOLD, color: 'black', marginBottom: 10 }}>Descriptions</LargeText>
-                                <SmallText style={styles.descriptions}>
-                                    {mealDetails.description}
-                                    <SmallText style={{ color: COLORS.PRIMARY_BUTTON_GRADIENT.BLUE1 }}>
-                                        Read More...
-                                    </SmallText>
-                                </SmallText>
-                            </View>
-
-                            <SolidContainer containerStyle={styles.solidcontainer}>
-                                <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_SEMIBOLD, color: 'black', width: 180 }}>Ingredients That You Will Need</LargeText>
-                                <SmallText style={{ fontFamily: FONTS.FONT_POPPINS_MEDIUM, flexGrow: 1, textAlign: 'right' }}>{`${nutrientData.length} items`}</SmallText>
-                            </SolidContainer>
+                            <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_BOLD, color: 'black' }}>{mealDetails.name}</LargeText>
+                            <SmallText style={{ color: COLORS.PRIMARY_BUTTON_GRADIENT.BLUE1 }}>by James Ruth</SmallText>
+                        </View>
+                        <View style={{ marginBottom: 15 }}>
+                            <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_SEMIBOLD, color: 'black', marginBottom: 15 }}>Nutrition</LargeText>
                             <FlatList
-                                data={nutrientData}
-                                renderItem={({ item }) =>
-                                    <IngridientCard
-                                        icon={item.icon}
-                                        title={item.title}
-                                        value={item.value}
-                                        keyExtractor={item => item.id}
-                                        containerStyle={{ marginRight: 15, marginBottom: 20 }}
-                                    />}
+                                data={tags}
+                                renderItem={({ item }) => <Tag icon={item.icon} tag={item.tag} />}
+                                keyExtractor={item => item.id}
                                 horizontal
                                 showsHorizontalScrollIndicator={false}
                             />
-                            <SolidContainer containerStyle={styles.solidcontainer}>
-                                <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_SEMIBOLD, color: 'black', flexGrow: 1 }}>Step by Step</LargeText>
-                                <SmallText style={{ fontFamily: FONTS.FONT_POPPINS_MEDIUM }}>8 Steps</SmallText>
-                            </SolidContainer>
-                            {
-                                stepData.map((item, index) =>
-                                    <ActivePassiveList
-                                        width={340}
-                                        key={index}
-                                        id={`${index < 10 ? '0' + (index + 1) : index}`}
-                                        isComplete={item.isComplete}
-                                        title={item.title}
-                                        subtitle={item.subtitle}
-                                        showLine={(index === stepData.length - 1) ? false : true}
-                                    />)
-                            }
-                            <View style={{ paddingBottom:90, paddingRight: 30 }}>
-                                <PrimaryButton
-                                    onPress={() => navigation.navigate(SCREENS.FINISHWO)}
-                                    title={'Add to Breakfast Meal'}
-                                />
-                            </View>
+                        </View>
+                        <View style={{ paddingRight: 35 }}>
+                            <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_SEMIBOLD, color: 'black', marginBottom: 10 }}>Descriptions</LargeText>
+                            <SmallText style={styles.descriptions}>
+                                {mealDetails.description}
+                                <SmallText style={{ color: COLORS.PRIMARY_BUTTON_GRADIENT.BLUE1 }}>
+                                    Read More...
+                                </SmallText>
+                            </SmallText>
+                        </View>
+
+                        <SolidContainer containerStyle={styles.solidcontainer}>
+                            <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_SEMIBOLD, color: 'black', width: 180 }}>Ingredients That You Will Need</LargeText>
+                            <SmallText style={{ fontFamily: FONTS.FONT_POPPINS_MEDIUM, flexGrow: 1, textAlign: 'right' }}>{`${nutrientData.length} items`}</SmallText>
+                        </SolidContainer>
+                        <FlatList
+                            data={nutrientData}
+                            renderItem={({ item }) =>
+                                <IngridientCard
+                                    icon={item.icon}
+                                    title={item.title}
+                                    value={item.value}
+                                    keyExtractor={item => item.id}
+                                    containerStyle={{ marginRight: 15, marginBottom: 20 }}
+                                />}
+                            horizontal
+                            showsHorizontalScrollIndicator={false}
+                        />
+                        <SolidContainer containerStyle={styles.solidcontainer}>
+                            <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_SEMIBOLD, color: 'black', flexGrow: 1 }}>Step by Step</LargeText>
+                            <SmallText style={{ fontFamily: FONTS.FONT_POPPINS_MEDIUM }}>8 Steps</SmallText>
+                        </SolidContainer>
+                        {
+                            stepData.map((item, index) =>
+                                <ActivePassiveList
+                                    width={340}
+                                    key={index}
+                                    id={`${index < 10 ? '0' + (index + 1) : index}`}
+                                    isComplete={item.isComplete}
+                                    title={item.title}
+                                    subtitle={item.subtitle}
+                                    showLine={(index === stepData.length - 1) ? false : true}
+                                />)
+                        }
+                        <View style={{ paddingBottom: 90, paddingRight: 30 }}>
+                            <PrimaryButton
+                                onPress={() => navigation.navigate(SCREENS.FINISHWO)}
+                                title={'Add to Breakfast Meal'}
+                            />
+                        </View>
                     </View>
                 </BottomSheet>
             </GestureHandlerRootView>
