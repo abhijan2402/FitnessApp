@@ -46,13 +46,15 @@ const EditProfile = () => {
     }
   }
   const UpdateData = () => {
-
-    updateUser({ ...user, first_name: firstName, last_name: lastName })
+    const updateData = { ...user, first_name: firstName, last_name: lastName }
+    if(photoResult)
+      updateData.image = {uri:photoResult.uri,name:photoResult.fileName,type:photoResult.type}
+    updateUser(updateData)
       .then(() => {
         setFirstName(tempFirstName)
         setLastName(tempLastName)
         // update the global context
-        setLoggedInUser({ ...user, first_name: tempFirstName, lastName: tempLastName })
+        setLoggedInUser({ ...user, first_name: tempFirstName, lastName: tempLastName,image:photoResult?galleryPhoto:user.image })
       })
       .catch((err) => {
         // TODO: Make a alert toast for the error

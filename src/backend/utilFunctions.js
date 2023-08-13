@@ -78,6 +78,8 @@ export async function updateUser(updateUser){
     data.append('weight',updateUser.weight.toString())
     data.append('height',updateUser.height.toString())
     data.append('goal',updateUser.goal)
+    if(updateUser.image)
+        data.append('profile_image',updateUser.image)
     return await generateRequest("/update-user-profile","PUT",data)
 }
 export async function getUserRecommendedMeal(){
@@ -85,4 +87,14 @@ export async function getUserRecommendedMeal(){
 }
 export async function getMealDetails(id){
     return await generateRequest("/fetch-meal/"+id)
+}
+export async function forgotPassword(info){
+    const data = new FormData()
+    data.append('phone',info.phone)
+    data.append('hash',info.hash)
+    data.append('otp',info.otp)
+    data.append('email',info.email)
+    data.append('password',info.password)
+    data.append('confirm_password',info.confirmPassword)
+    return await generateRequest("/forget-password","PUT",data)
 }

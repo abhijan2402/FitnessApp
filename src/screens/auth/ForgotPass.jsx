@@ -9,9 +9,9 @@ import { useNavigation } from '@react-navigation/native';
 import { Pressable } from 'react-native';
 import { SCREENS } from '../../constants/Screens';
 import { GlobalContext } from '../../../App';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { useState } from 'react';
-import { getUser, loginUser } from '../../backend/utilFunctions';
+import { forgotPassword, getOtp, getUser, loginUser } from '../../backend/utilFunctions';
 import { storeDataInAsyncStorage } from '../../utils/common';
 import { storageKeyName } from '../../constants/Data';
 import CustomToast from '../../components/common/Toast';
@@ -20,6 +20,11 @@ import { fetch } from 'react-native-ssl-pinning';
 import { ScrollView } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
+const TIMER_SECONDS = 59;
+const TIMER_MINUTES = 1;
+const SECONDS = 59
+let timeInterval = null;
+
 const ForgotPass = () => {
     const navigation = useNavigation();
     const { setLoggedInUser } = useContext(GlobalContext)
@@ -33,6 +38,55 @@ const ForgotPass = () => {
     const [toastColorState, setToastColorState] = useState('');
     const [toastTextColorState, setToastTextColorState] = useState('');
     const [toastMessage, setToastMessage] = useState('');
+
+    const [timerSeconds,setTimerSeconds] = useState(TIMER_SECONDS)
+    const [timerMinutes,setTimerMinutes] = useState(TIMER_MINUTES)
+    const [resendAvailable,setResendAvailable] = useState(true);
+    const [hash,setHash] = useState();
+
+    function getOtpByPhone(){
+        setLoading(true)
+        //validation required
+        getOtp(phone)
+        .then(res=>setHash(res.hash))
+        .catch(error=>{
+            console.log(error.message);
+            console.log("Message ",error.message)
+        }).finally(()=>setLoading(false))
+    }
+    function onPressSendOTP(){
+        setTimerMinutes(TIMER_MINUTES)
+        setTimerSeconds(TIMER_SECONDS)
+        setResendAvailable(false);
+        getOtpByPhone()
+        timeInterval = setInterval(()=>{
+            setTimerSeconds(prevTime=>prevTime - 1)
+        },1000)
+    }
+    useEffect(()=>{
+        if(timerSeconds === 0 && timerMinutes === 0){
+            clearInterval(timeInterval)
+            setResendAvailable(true);
+        }
+        else if(timerSeconds === 0){
+            setTimerSeconds(SECONDS)
+            setTimerMinutes(prev=>prev - 1);
+        }
+        
+    },[timerSeconds,timerMinutes])
+
+    function onResetPassword(){
+        setLoading(true);
+        const info = {
+            phone,hash,otp,email,password,confirmPassword:confirmPass
+        }
+        forgotPassword(info)
+        .then(()=>{
+            navigation.navigate(SCREENS.LOGIN)
+        })
+        .catch(err=>console.log(err))
+        .finally(()=>setLoading(false))
+    }
     return (
         <View style={styles.MainView}>
             <ScrollView>
@@ -45,28 +99,30 @@ const ForgotPass = () => {
                     />
                     <View style={styles.Heading}>
                         {/* <SmallText style={{ fontWeight: "700", color: "black", fontSize: 16, }}>Hey there,</SmallText> */}
-                        <TextH4 style={{ marginTop: 7 }}>Forgo Password</TextH4>
+                        <TextH4 style={{ marginTop: 7 }}>Forgot Password</TextH4>
                     </View>
                     <View style={{ width: "85%", marginTop: 7 }}>
-                        <Input placeholder={"Phone"} keyboardType='numeric' onChangeText={(value) => setPhone(value)} icon={<Email width={20} height={20} />} />
+                        <Input placeholder={"Phone"} value={phone} keyboardType='numeric' onChangeText={(value) => setPhone(value)} icon={<Email width={20} height={20} />} />
+                        {!resendAvailable && TIMER_SECONDS > 0 && <SmallText style={{ textAlign: "center", marginVertical: 20, color: "#92A3FD" }} onPress={onPressSendOTP}>{timerMinutes<10?`0${timerMinutes}`:timerMinutes}:{timerSeconds<10?`0${timerSeconds}`:timerSeconds}</SmallText>}
+                        {phone.length === 10 && resendAvailable && <SmallText style={{ textAlign: "center", marginVertical: 20, color: "#92A3FD" }} onPress={onPressSendOTP}>Send OTP</SmallText>}
                     </View>
                     <View style={{ width: "85%", marginTop: 7 }}>
-                        <Input placeholder={"OTP"} onChangeText={(value) => setEmail(value)} icon={<Email width={20} height={20} />} />
+                        <Input placeholder={"OTP"} value={otp} onChangeText={(value) => setOtp(value)} icon={<Email width={20} height={20} />} />
                     </View>
                     <View style={{ width: "85%", marginTop: 7 }}>
-                        <Input placeholder={"Email"} onChangeText={(value) => setOtp(value)} icon={<Email width={20} height={20} />} />
+                        <Input placeholder={"Email"} value={email} onChangeText={(value) => setEmail(value)} icon={<Email width={20} height={20} />} />
                     </View>
                     <View style={{ width: "85%", marginTop: 15 }}>
-                        <Input placeholder={"Password"} onChangeText={(value) => setPassword(value)} icon={<Pass width={20} height={20} />} />
+                        <Input placeholder={"Password"} value={password} onChangeText={(value) => setPassword(value)} icon={<Pass width={20} height={20} />} />
                     </View>
                     <View style={{ width: "85%", marginTop: 15 }}>
-                        <Input placeholder={"Confirm Password"} onChangeText={(value) => setconfirmPass(value)} icon={<Pass width={20} height={20} />} />
+                        <Input placeholder={"Confirm Password"} value={confirmPass} onChangeText={(value) => setconfirmPass(value)} icon={<Pass width={20} height={20} />} />
                     </View>
                     <View style={{ alignItems: "center", marginTop: "25%" }}>
                         {
                             loading ?
                                 <ActivityIndicator size={30} color={'blue'} /> :
-                                <PrimaryButton containerStyle={{ width: width - 30, }} title={'Set Password'} onPress={() => Login()} />
+                                <PrimaryButton containerStyle={{ width: width - 30, }} title={'Set Password'} onPress={() => onResetPassword()} />
                         }
                     </View>
                     <Pressable onPress={() => navigation.navigate(SCREENS.LOGIN)} style={[styles.IconView, { alignItems: "center" }]}>

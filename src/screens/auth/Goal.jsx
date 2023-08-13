@@ -41,6 +41,8 @@ export default function Goal({user,setUser}) {
       setToastMessage(err.message);
       setToastTextColorState("white");
       setToastColorState("red");
+      console.log(err)
+      console.log(user)
       childRef.current.showToast()
     }).finally(()=>setLoading(false))
   }
