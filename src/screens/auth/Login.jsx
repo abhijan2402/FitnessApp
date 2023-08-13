@@ -91,11 +91,11 @@ const Login = () => {
                         .then(res => {
                             // fetch user
                             getUser()
-                            .then(res=>{
-                                console.log(res)
-                                setLoggedInUser(res.user)
-                            })
-                            .catch(err=>console.log(err))
+                                .then(res => {
+                                    console.log(res)
+                                    setLoggedInUser(res.user)
+                                })
+                                .catch(err => console.log(err))
                         })
                         .catch(err => console.log('error while storing', err))
                 })
@@ -128,6 +128,10 @@ const Login = () => {
             <View style={{ width: "85%", marginTop: 15 }}>
                 <Input placeholder={"Password"} onChangeText={(value) => setPassword(value)} icon={<Pass width={20} height={20} />} />
             </View>
+            <Pressable onPress={() => navigation.navigate(SCREENS.FORGOPASS)} style={[styles.IconView, { alignItems: "center" }]}>
+                <SmallText style={{ fontSize: 14 }}>Forgot Password ? </SmallText>
+                <TextH4 style={{ fontSize: 14, color: "#C58BF2", marginLeft: 5 }}>Reset Now</TextH4>
+            </Pressable>
             <View style={{ alignItems: "center", marginTop: "25%" }}>
                 {
                     loading ?

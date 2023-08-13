@@ -8,6 +8,7 @@ import { SCREENS } from '../../constants/Screens';
 import RegisterOTP from '../../screens/auth/RegisterOTP';
 import { useState } from 'react';
 import Login from '../../screens/auth/Login';
+import ForgotPass from '../../screens/auth/ForgotPass';
 
 const Stack = createNativeStackNavigator();
 //register -> name,mobile,password
@@ -32,6 +33,9 @@ function AuthStack() {
             </Stack.Screen>
             <Stack.Screen name={SCREENS.GOAL}>
                 {() => <Goal user={user} setUser={setUser} />}
+            </Stack.Screen>
+            <Stack.Screen name={SCREENS.FORGOPASS}>
+                {() => <ForgotPass user={user} setUser={setUser} />}
             </Stack.Screen>
             <Stack.Screen name={SCREENS.OTP} component={Otp} />
             <Stack.Screen name={SCREENS.FINALAUTH} component={FinalAuth} />

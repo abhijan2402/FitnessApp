@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Dimensions, Alert, Modal, Pressable, ScrollView, TextInput, TouchableOpacity,Image } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, Alert, Modal, Pressable, ScrollView, TextInput, TouchableOpacity, Image } from 'react-native'
 import React, { useContext, useState } from 'react'
 import Header from '../../components/header/Header'
 import EditPro from '../../components/profile/EditPro'
@@ -13,42 +13,70 @@ import PrimaryButton from '../../components/Button/PrimaryButton';
 import { GlobalContext } from '../../../App'
 import { updateUser } from '../../backend/utilFunctions'
 const { height, width } = Dimensions.get("window")
+import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 const EditProfile = () => {
-  const { user,setLoggedInUser } = useContext(GlobalContext)
-  
+  const { user, setLoggedInUser } = useContext(GlobalContext)
+  const [galleryPhoto, setGalleryPhoto] = useState();
+  const [Photo, setPhoto] = useState(false)
+  const [photoResult, setPhotoResult] = useState(null)
+  let options = {
+    saveToPhotos: true,
+    mediaType: 'photo',
+  }
   // actual data
   const [firstName, setFirstName] = useState(user.first_name)
   const [lastName, setLastName] = useState(user.last_name)
   // temp data
-  const [tempFirstName,setTempFirstName] = useState(user.first_name);
-  const [tempLastName,setTempLastName] = useState(user.last_name);
+  const [tempFirstName, setTempFirstName] = useState(user.first_name);
+  const [tempLastName, setTempLastName] = useState(user.last_name);
   // const [password, setPassword] = useState("")
   const [modalVisible, setModalVisible] = useState(false);
+  const OpenGallery = async () => {
+    try {
+      setPhoto(false)
+      const result = await launchImageLibrary(options);
+      const data = result.assets[0].uri;
+      setPhotoResult((result && result.assets && result.assets[0]) ? result.assets[0] : null)
+      setGalleryPhoto(data)
+      setPhoto(true);
+    } catch (error) {
+      setPhotoResult(null)
+      console.log(error, "error");
+      setPhoto(false)
+    }
+  }
   const UpdateData = () => {
-    
+
     updateUser({ ...user, first_name: firstName, last_name: lastName })
-    .then(()=>{
-      setFirstName(tempFirstName)
-      setLastName(tempLastName)
-      // update the global context
-      setLoggedInUser({...user,first_name:tempFirstName,lastName:tempLastName})
-    })
-    .catch((err)=>{
-      // TODO: Make a alert toast for the error
-      console.log(err)
-    })
-    .finally(()=>{
-      setModalVisible(false)
-    })
+      .then(() => {
+        setFirstName(tempFirstName)
+        setLastName(tempLastName)
+        // update the global context
+        setLoggedInUser({ ...user, first_name: tempFirstName, lastName: tempLastName })
+      })
+      .catch((err) => {
+        // TODO: Make a alert toast for the error
+        console.log(err)
+      })
+      .finally(() => {
+        setModalVisible(false)
+      })
   }
 
   return (
     <>
       <ScrollView style={styles.MainView}>
         <Header title={"Edit Profile"} />
-        <View style={styles.image}>
-          <Image source={{uri:user.image}} width={150} height={150}/>
-        </View>
+        {/* <View style={styles.image}>
+          <Image source={{ uri: user.image }} width={150} height={150} />
+        </View> */}
+        <TouchableOpacity style={styles.image} onPress={OpenGallery}>
+          {
+            !Photo ?
+              <Image source={{ uri: user.image }} style={{ width: 150, height: 150 }} /> :
+              <Image source={{ uri: galleryPhoto }} style={{ width: 150, height: 150, borderRadius: 70 }} />
+          }
+        </TouchableOpacity>
         <View>
           <EditPro value={firstName} icon={<Account width={18} height={18} Edit={"EditBtn"} />} />
           <EditPro value={lastName} icon={<Account width={18} height={18} Edit={"EditBtn"} />} />
@@ -105,9 +133,9 @@ const styles = StyleSheet.create({
   image: {
     alignSelf: "center",
     marginVertical: 50,
-    elevation:5,
-    overflow:'hidden',
-    borderRadius:9999
+    elevation: 5,
+    overflow: 'hidden',
+    borderRadius: 9999
   },
   card: {
     display: "flex",
@@ -162,7 +190,7 @@ const styles = StyleSheet.create({
     marginVertical: "2%",
     borderRadius: 8,
     paddingHorizontal: 10,
-    color:"black"
+    color: "black"
   },
   BtnUpdate: {
     width: "80%",

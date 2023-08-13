@@ -20,6 +20,7 @@ export const SCREENS = {
     GOAL: "Goal",
     FINALAUTH: "FinalAuth",
     REGISTEROTP: "RegisterOTP",
+    FORGOPASS: "ForgoPass",
 
     //dashboard
     DASHBOARD: 'Dashboard',
