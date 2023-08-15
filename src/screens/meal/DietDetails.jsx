@@ -26,6 +26,7 @@ import { GestureHandlerRootView, FlatList } from 'react-native-gesture-handler';
 import BottomSheet from '../../components/container/BottomSheet';
 import useLayout from '../../hooks/useLayout';
 import { getMealDetails } from '../../backend/utilFunctions';
+import { ActivityIndicator } from 'react-native';
 const tags = [
     {
         id: 1,
@@ -48,56 +49,6 @@ const tags = [
         tag: '180kCal'
     },
 ]
-const nutrientData = [
-    {
-        id: 1,
-        icon: <FlourSvg width={50} height={50} />,
-        title: 'Wheat Flour',
-        value: '100gr'
-    },
-    {
-        id: 2,
-        icon: <SugarSvg width={50} height={50} />,
-        title: 'Sugar',
-        value: '3 tbsp'
-    },
-    {
-        id: 3,
-        icon: <BakingSodaSvg width={50} height={50} />,
-        title: 'Baking Soda',
-        value: '2 tsp'
-    },
-    {
-        id: 4,
-        icon: <EggsSvg width={50} height={50} />,
-        title: 'Eggs',
-        value: '2 items'
-    },
-]
-const stepData = [
-    {
-        title: 'Step 1',
-        subtitle: 'Prepare all of the ingredients that needed',
-        isComplete: true
-    },
-    {
-        title: 'Step 2',
-        subtitle: 'Mix flour, sugar, salt, and baking powder',
-        isComplete: true
-    },
-    {
-        title: 'Step 3',
-        subtitle: 'In a seperate place, mix the eggs and liquid milk until blended',
-        isComplete: false
-    },
-    {
-        title: 'Step 4',
-        subtitle: 'Prepare all of the ingredients that needed',
-        isComplete: false
-    },
-
-]
-const descriptions = `Pancakes are some people's favorite breakfast, who doesn't like pancakes? Especially with the real honey splash on top of the pancakes, of course everyone loves that! besides being  `
 function DietDetails(props) {
     const route = useRoute()
     // const {id} = route.params;
@@ -105,17 +56,69 @@ function DietDetails(props) {
     const bottomSheetRef = useRef(null);
     const [viewHeight, getViewHeight] = useLayout()
     const [mealDetails, setMealDetails] = useState({
-        name: "", nutrient: {}, description: ""
+        name: "", nutrient:[], description: "",steps:[],ingredients:[]
     })
+    function convertStepToArray(steps){
+        const stepsObj = JSON.parse(steps)
+        const stepsArr = []
+        let i = 1;
+        Object.keys(stepsObj).forEach(key=>{
+            stepsArr.push({
+                title:'Step '+i,
+                subtitle:stepsObj[key],
+                isComplete:false
+            })
+            i++;
+        })
+        return stepsArr
+    }
+    function convertIngrediantsToArray(ingredients){
+        const ingrediantsObj = JSON.parse(ingredients)
+        const ingrediantsArr = []
+        let i = 1;
+        Object.keys(ingrediantsObj).forEach(key=>{
+            ingrediantsArr.push(
+                {
+                    id: i,
+                    icon: <EggsSvg width={50} height={50} />,
+                    title: key,
+                    value: `${ingrediantsObj[key].value} ${ingrediantsObj[key].type}`
+                },
+            )
+            i++;
+        })
+        return ingrediantsArr
+    }
+    function convertNutrientsToArray(nutrients){
+        const eliminatorIndex =  nutrients.indexOf('/')
+        const filtered_str = (nutrients.substring(0,eliminatorIndex)) + "}"
+        const nutrientsObj = JSON.parse(filtered_str)
+        const nutrientsArr = []
+        let i = 1;
+        Object.keys(nutrientsObj).forEach(key=>{
+            nutrientsArr.push(
+                {
+                    id: i,
+                    icon: <FireSvg width={20} height={20} />,
+                    tag: `${nutrientsObj[key].value} ${nutrientsObj[key].type} ${key}`
+                }
+            )
+            i++;
+        })
+        console.log(nutrientsArr)
+        return nutrientsArr
+    }
     useEffect(() => {
         getMealDetails("64a9ce1d4c52b7ecf30477b7")
             .then(res => {
                 const details = res.data
-                setMealDetails({ ...mealDetails, name: details.name, description: details.description })
+                setMealDetails({ ...mealDetails, name: details.name, description: details.description,steps:convertStepToArray(details.steps),ingredients:convertIngrediantsToArray(details.required_ingredients),nutrient:convertNutrientsToArray(details.nutritions) })
 
             })
             .catch(err => console.log(err))
     }, [])
+    if(mealDetails.steps.length <= 0 || mealDetails.ingredients.length <=0 || mealDetails.nutrient.length <= 0)
+        return <ActivityIndicator/>
     return (
         <>
             <GestureHandlerRootView style={{ flex: 1 }}>
@@ -134,7 +137,7 @@ function DietDetails(props) {
                         <View style={{ marginBottom: 15 }}>
                             <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_SEMIBOLD, color: 'black', marginBottom: 15 }}>Nutrition</LargeText>
                             <FlatList
-                                data={tags}
+                                data={mealDetails.nutrient}
                                 renderItem={({ item }) => <Tag icon={item.icon} tag={item.tag} />}
                                 keyExtractor={item => item.id}
                                 horizontal
@@ -153,13 +156,13 @@ function DietDetails(props) {
 
                         <SolidContainer containerStyle={styles.solidcontainer}>
                             <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_SEMIBOLD, color: 'black', width: 180 }}>Ingredients That You Will Need</LargeText>
-                            <SmallText style={{ fontFamily: FONTS.FONT_POPPINS_MEDIUM, flexGrow: 1, textAlign: 'right' }}>{`${nutrientData.length} items`}</SmallText>
+                            <SmallText style={{ fontFamily: FONTS.FONT_POPPINS_MEDIUM, flexGrow: 1, textAlign: 'right' }}>{`${mealDetails.ingredients.length} items`}</SmallText>
                         </SolidContainer>
                         <FlatList
-                            data={nutrientData}
+                            data={mealDetails.ingredients}
                             renderItem={({ item }) =>
                                 <IngridientCard
-                                    icon={item.icon}
+                                    icon={<EggsSvg width={50} height={50} />}
                                     title={item.title}
                                     value={item.value}
                                     keyExtractor={item => item.id}
@@ -170,10 +173,10 @@ function DietDetails(props) {
                         />
                         <SolidContainer containerStyle={styles.solidcontainer}>
                             <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_SEMIBOLD, color: 'black', flexGrow: 1 }}>Step by Step</LargeText>
-                            <SmallText style={{ fontFamily: FONTS.FONT_POPPINS_MEDIUM }}>8 Steps</SmallText>
+                            <SmallText style={{ fontFamily: FONTS.FONT_POPPINS_MEDIUM }}>{mealDetails.steps.length}</SmallText>
                         </SolidContainer>
                         {
-                            stepData.map((item, index) =>
+                            mealDetails.steps.map((item, index) =>
                                 <ActivePassiveList
                                     width={340}
                                     key={index}
@@ -181,7 +184,7 @@ function DietDetails(props) {
                                     isComplete={item.isComplete}
                                     title={item.title}
                                     subtitle={item.subtitle}
-                                    showLine={(index === stepData.length - 1) ? false : true}
+                                    showLine={(index === mealDetails.steps.length - 1) ? false : true}
                                 />)
                         }
                         <View style={{ paddingBottom: 90, paddingRight: 30 }}>

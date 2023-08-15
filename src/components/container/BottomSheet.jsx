@@ -15,7 +15,7 @@ const BottomSheet = React.forwardRef( ({children,extraRequiredHeight},ref)=>{
     })
     const minScroll = useMemo(()=>{
         return -height / 2
-    })
+    },[])
     const scrollTo = useCallback((destination)=>{
         "worklet";
         active.value = destination === 0 ?false : true
