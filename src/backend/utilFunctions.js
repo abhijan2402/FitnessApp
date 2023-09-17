@@ -64,10 +64,10 @@ export async function loginUser(credentials) {
     const data = new FormData()
     data.append('email', credentials.email)
     data.append('password', credentials.password)
-    return await generateRequest("/login-user","POST",data)
+    return await generateRequest("/login","POST",data)
 }
 export async function getUser(){
-    return await generateRequest("/get-user","GET")
+    return await generateRequest("/get-user-detail","GET")
 }
 export async function updateUser(updateUser){
     const data = new FormData()
