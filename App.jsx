@@ -23,7 +23,7 @@ function App() {
         return;
       }
       getUser()
-      .then(res=>setUser(res.user))
+      .then(res=> setUser(res.user))
       .catch(err=>console.log(err))
       .finally(()=>setAutoLoginInProgress(false))
     }

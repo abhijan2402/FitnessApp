@@ -14,7 +14,7 @@ async function getBaseHeaders(){
     baseHeaders['Authorization'] = `Bearer ${jwt}`;
     return baseHeaders;
 }
-async function generateRequest(url,method,body,headers={}){
+export async function generateRequest(url,method,body,headers={}){
     const config = {
         method:method,
         sslPinning: {
@@ -83,7 +83,8 @@ export async function updateUser(updateUser){
     return await generateRequest("/update-user-profile","PUT",data)
 }
 export async function getUserRecommendedMeal(){
-    return await generateRequest("/fetch-user-meal-recommendation","GET");
+    // return await generateRequest("/fetch-user-meal-recommendation","GET");
+    return await generateRequest("/meals","GET");
 }
 export async function getMealDetails(id){
     return await generateRequest("/fetch-meal/"+id)
