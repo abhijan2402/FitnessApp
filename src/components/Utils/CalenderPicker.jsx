@@ -3,7 +3,7 @@ import { TouchableOpacity, View } from 'react-native';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 
-function CalenderPicker({setDate,label}) {
+function CalenderPicker({setDate,label, width}) {
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
     const showDatePicker = () => {
         setDatePickerVisibility(true);
@@ -21,7 +21,7 @@ function CalenderPicker({setDate,label}) {
         hideDatePicker();
       };
     return (
-        <View style={{marginBottom:15}}>
+        <View style={{marginBottom:15, width}}>
             <TouchableOpacity onPress={showDatePicker}>
                 {label}
             </TouchableOpacity>

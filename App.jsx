@@ -39,7 +39,7 @@ function App() {
     return (
       <GlobalContext.Provider value={{
         user:user,
-        setLoggedInUser:(userObj)=>setUser(userObj)
+        setLoggedInUser:(userObj)=>setUser(userObj),
       }}>
          <NavigationContainer>
           <Stack.Navigator  screenOptions={{

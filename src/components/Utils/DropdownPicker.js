@@ -15,9 +15,11 @@ function DropdownPicker({
   selectedTextStyle,
   iconStyle,
   icon,
+  width,
+  marginBottom
 }) {
   return (
-    <View style={[styles.container, containerStyle]}>
+    <View style={[styles.container, containerStyle, {width, marginBottom}]}>
       <Dropdown
         data={data}
         maxHeight={300}
@@ -56,6 +58,7 @@ const styles = StyleSheet.create({
   },
   dropdown: {
     fontFamily: FONTS.FONT_POPPINS_MEDIUM,
+    color: 'black'
   },
 });
 export default DropdownPicker;

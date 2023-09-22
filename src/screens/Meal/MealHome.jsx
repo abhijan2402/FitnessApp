@@ -138,14 +138,26 @@ const MealHome = () => {
   }
 
   useEffect(() => {
-    // getUserRecommendedMeal(user._id)
+    // getUserRecommendedMeal('64fa183bb171a981f1cfc819')
     //   .then(res => {
-    //     setRecommendedMeals(res.data);
-    //     console.log('line: 45' + res);
+    //     setRecommendedMeals(JSON.stringify(res)?.data);
+
+    //     console.log('line: 45' + JSON.stringify(res));
     //   })
     //   .catch(err => console.log('line: 47', err));
     setRecommendedMeals(data);
     console.log('first');
+
+    // const getMeal = async () => {
+    //   try {
+    //     const res = getUserRecommendedMeal(user?._id)
+    //     console.log('line: 45', res)
+    //   } catch (error) {
+    //     console.log('line: 47', error)
+    //   }
+    // }
+
+    // getMeal()
   }, []);
 
   useEffect(() => {
@@ -241,21 +253,22 @@ const MealHome = () => {
         </SolidContainer>
         <View style={{paddingHorizontal: 10}}>
           {filteredRecommendedMeals.map((meal, i) => {
-            console.log(i, meal)
+            console.log(i, meal);
             return (
-            <MealContainer
-              key={meal._id}
-              img={require('../../../assets/images/sushi.png')}
-              title={ meal?.name || ' '}
-              time={getTimeInAMPMFormat(new Date(meal.created_time))}
-              date={'Today'}
-              onpress={() =>
-                navigation.navigate(SCREENS.MEALSCHEDULER, {
-                  filteredRecommendedMeals,
-                })
-              }
-            />
-          )})}
+              <MealContainer
+                key={meal._id}
+                img={require('../../../assets/images/sushi.png')}
+                title={meal?.name || ' '}
+                time={getTimeInAMPMFormat(new Date(meal.created_time))}
+                date={'Today'}
+                onpress={() =>
+                  navigation.navigate(SCREENS.MEALSCHEDULER, {
+                    filteredRecommendedMeals,
+                  })
+                }
+              />
+            );
+          })}
         </View>
         <View style={{marginHorizontal: 20, marginVertical: '5%'}}>
           <LargeText
@@ -269,7 +282,11 @@ const MealHome = () => {
           </LargeText>
           <ScrollView horizontal>
             <MealCard
-              onPress={() => navigation.navigate(SCREENS.MEALSCHEDULER)}
+              onPress={() =>
+                navigation.navigate(SCREENS.MEALSCHEDULER, {
+                  filteredRecommendedMeals: filteredRecommendedMeals,
+                })
+              }
               Type="BreakFast"
               NOFood="120"
               backgroundColor={'#D9FFFD'}
@@ -277,7 +294,11 @@ const MealHome = () => {
               img={require('../../../assets/images/BreakFast_meal.png')}
             />
             <MealCard
-              onPress={() => navigation.navigate(SCREENS.MEALSCHEDULER)}
+              onPress={() =>
+                navigation.navigate(SCREENS.MEALSCHEDULER, {
+                  filteredRecommendedMeals: filteredRecommendedMeals,
+                })
+              }
               Type="Lunch"
               NOFood="102"
               backgroundColor={'#FFE0DC'}
@@ -285,7 +306,11 @@ const MealHome = () => {
               img={require('../../../assets/images/BreakFast_meal.png')}
             />
             <MealCard
-              onPress={() => navigation.navigate(SCREENS.MEALSCHEDULER)}
+              onPress={() =>
+                navigation.navigate(SCREENS.MEALSCHEDULER, {
+                  filteredRecommendedMeals: filteredRecommendedMeals,
+                })
+              }
               Type="Dinner"
               NOFood="20"
               backgroundColor={'#D9FFFD'}

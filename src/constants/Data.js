@@ -5,6 +5,13 @@ export const GENDERS=[
     {label:'FEMALE',value:'FEMALE'},
     {label:'OTHER',value:'OTHER'},
 ]
+
+export const FOOD_TYPE=[
+    {label:'VEGAN',value:'VEGAN'},
+    {label:'NON VEGAN',value:'NON VEGAN'},
+    {label:'OTHER',value:'OTHER'},
+]
+
 export const MEALS=[
     {label:'SELECT',value:null},
     {label:'BREAKFAST',value:'BREAKFAST'},

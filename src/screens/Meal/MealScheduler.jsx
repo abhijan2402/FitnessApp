@@ -27,7 +27,7 @@ import {getTimeInAMPMFormat} from '../../utils/common';
 import {useMemo} from 'react';
 const MealScheduler = ({navigation}) => {
   const route = useRoute();
-  const {filteredRecommendedMeals} = route.params;
+  const {filteredRecommendedMeals} = route?.params;
   function filterMealsBasedOnType(type) {
     const filteredMeals = filteredRecommendedMeals.filter(
       meal => meal.meal_period === type,

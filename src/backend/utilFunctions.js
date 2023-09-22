@@ -70,6 +70,7 @@ export async function getUser(){
     return await generateRequest("/get-user-detail","GET")
 }
 export async function updateUser(updateUser){
+    // return console.log('test', updateUser)
     const data = new FormData()
     data.append('first_name',updateUser.first_name)
     data.append('last_name',updateUser.last_name)
@@ -78,6 +79,7 @@ export async function updateUser(updateUser){
     data.append('weight',updateUser.weight.toString())
     data.append('height',updateUser.height.toString())
     data.append('goal',updateUser.goal)
+    
     if(updateUser.image)
         data.append('profile_image',updateUser.image)
     return await generateRequest("/update-user-profile","PUT",data)
@@ -85,7 +87,7 @@ export async function updateUser(updateUser){
 export async function getUserRecommendedMeal(id){
     // return await generateRequest("/fetch-user-meal-recommendation","GET");
     // return await generateRequest("/get-meal/"+id,"GET");
-    return await generateRequest("/meals","GET");
+    return await generateRequest("/assignedMeal/"+id,"GET");
 }
 export async function getMealDetails(id){
     return await generateRequest("/fetch-meal/"+id)
