@@ -51,56 +51,56 @@ const tags = [
 ]
 function DietDetails(props) {
     const route = useRoute()
+    const { meal } = route.params
+    console.log(meal, "Heyy");
     // const {id} = route.params;
-    // const navigation = useNavigation();
+    const navigation = useNavigation();
     const bottomSheetRef = useRef(null);
     const [viewHeight, getViewHeight] = useLayout()
     const [mealDetails, setMealDetails] = useState({
-        name: "", nutrient:[], description: "",steps:[],ingredients:[]
+        name: "", nutrient: [], description: "", steps: [], ingredients: []
     })
-    function convertStepToArray(steps){
-        const stepsObj = JSON.parse(steps)
+    function convertStepToArray(steps) {
         const stepsArr = []
         let i = 1;
-        Object.keys(stepsObj).forEach(key=>{
+        Object.keys(steps).forEach(key => {
+            // console.log(key, steps, "jj");
             stepsArr.push({
-                title:'Step '+i,
-                subtitle:stepsObj[key],
-                isComplete:false
+                title: 'Step ' + i,
+                subtitle: steps[0].description,
+                isComplete: false
             })
             i++;
         })
         return stepsArr
     }
-    function convertIngrediantsToArray(ingredients){
-        const ingrediantsObj = JSON.parse(ingredients)
+    function convertIngrediantsToArray(ingredients) {
         const ingrediantsArr = []
         let i = 1;
-        Object.keys(ingrediantsObj).forEach(key=>{
+        Object.keys(ingredients).forEach(key => {
             ingrediantsArr.push(
                 {
                     id: i,
                     icon: <EggsSvg width={50} height={50} />,
                     title: key,
-                    value: `${ingrediantsObj[key].value} ${ingrediantsObj[key].type}`
+                    value: `${ingredients[key].name} ${ingredients[key].quantity} ${ingredients[key].type}`
                 },
             )
             i++;
         })
         return ingrediantsArr
     }
-    function convertNutrientsToArray(nutrients){
-        const eliminatorIndex =  nutrients.indexOf('/')
-        const filtered_str = (nutrients.substring(0,eliminatorIndex)) + "}"
-        const nutrientsObj = JSON.parse(filtered_str)
+    function convertNutrientsToArray(nutrients) {
+        console.log("I am in CNA", nutrients);
+        const eliminatorIndex = nutrients.indexOf('/')
         const nutrientsArr = []
         let i = 1;
-        Object.keys(nutrientsObj).forEach(key=>{
+        Object.keys(nutrients).forEach(key => {
             nutrientsArr.push(
                 {
                     id: i,
                     icon: <FireSvg width={20} height={20} />,
-                    tag: `${nutrientsObj[key].value} ${nutrientsObj[key].type} ${key}`
+                    tag: `${nutrients[key].value} ${nutrients[key].type}`
                 }
             )
             i++;
@@ -109,16 +109,23 @@ function DietDetails(props) {
         return nutrientsArr
     }
     useEffect(() => {
-        getMealDetails("64a9ce1d4c52b7ecf30477b7")
-            .then(res => {
-                const details = res.data
-                setMealDetails({ ...mealDetails, name: details.name, description: details.description,steps:convertStepToArray(details.steps),ingredients:convertIngrediantsToArray(details.required_ingredients),nutrient:convertNutrientsToArray(details.nutritions) })
+        // getMealDetails("64a9ce1d4c52b7ecf30477b7")
+        //     .then(res => {
+        //         console.log('====================================');
+        //         console.log(res, "i am rees");
+        //         console.log('====================================');
 
-            })
-            .catch(err => console.log(err))
+        //     })
+        //     .catch(err => console.log(err, "I am err"))
+
+        const details = meal
+        console.log('====================================');
+        console.log(details, 'I am ss');
+        console.log('====================================');
+        setMealDetails({ ...mealDetails, name: details.name, description: details.description, steps: convertStepToArray(details.steps), ingredients: convertIngrediantsToArray(details.required_ingredients), nutrient: convertNutrientsToArray(details.nutritions) })
     }, [])
-    if(mealDetails.steps.length <= 0 || mealDetails.ingredients.length <=0 || mealDetails.nutrient.length <= 0)
-        return <ActivityIndicator/>
+    // if (mealDetails.steps.length <= 0 || mealDetails.ingredients.length <= 0 || mealDetails.nutrient.length <= 0)
+    //     return <ActivityIndicator />
     return (
         <>
             <GestureHandlerRootView style={{ flex: 1 }}>
@@ -128,11 +135,11 @@ function DietDetails(props) {
                 >
                     <Image source={require('../../../assets/images/cake.png')} style={styles.image} />
                 </GradientLabel>
-                <BottomSheet ref={bottomSheetRef} extraRequiredHeight={viewHeight} >
+                <BottomSheet ref={bottomSheetRef} extraRequiredHeight={viewHeight} style={{}} >
                     <View style={styles.detailContainer} onLayout={getViewHeight}>
                         <View style={{ marginBottom: 30 }}>
                             <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_BOLD, color: 'black' }}>{mealDetails.name}</LargeText>
-                            <SmallText style={{ color: COLORS.PRIMARY_BUTTON_GRADIENT.BLUE1 }}>by James Ruth</SmallText>
+                            {/* <SmallText style={{ color: COLORS.PRIMARY_BUTTON_GRADIENT.BLUE1 }}>by James Ruth</SmallText> */}
                         </View>
                         <View style={{ marginBottom: 15 }}>
                             <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_SEMIBOLD, color: 'black', marginBottom: 15 }}>Nutrition</LargeText>
@@ -195,6 +202,7 @@ function DietDetails(props) {
                         </View>
                     </View>
                 </BottomSheet>
+
             </GestureHandlerRootView>
 
         </>

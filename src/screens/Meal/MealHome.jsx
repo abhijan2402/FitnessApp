@@ -1,27 +1,27 @@
-import {StyleSheet, Text, View, Dimensions, ScrollView} from 'react-native';
-import React, {useContext, useState} from 'react';
+import { StyleSheet, Text, View, Dimensions, ScrollView } from 'react-native';
+import React, { useContext, useState } from 'react';
 import Header from '../../components/header/Header';
 import SolidContainer from '../../components/container/SolidContainer';
 import GradientDropdown from '../../components/Utils/GradientDropdown';
 import LargeText from '../../components/Text/LargeText';
 import AnimatedLineChart from '../../components/Utils/LineChart';
-import {MEALS, WORKOUTS} from '../../constants/Data';
-import {FONTS} from '../../constants/Fonts';
+import { MEALS, WORKOUTS } from '../../constants/Data';
+import { FONTS } from '../../constants/Fonts';
 import TextMedium from '../../components/Text/TextMedium';
 import PrimaryButton from '../../components/Button/PrimaryButton';
 import MealContainer from '../../components/container/MealContainer';
 import MealCard from '../../components/card/MealCard';
-import {SCREENS} from '../../constants/Screens';
-import {useNavigation} from '@react-navigation/native';
-import {useEffect} from 'react';
+import { SCREENS } from '../../constants/Screens';
+import { useNavigation } from '@react-navigation/native';
+import { useEffect } from 'react';
 import {
   generateRequest,
   getMealDetails,
   getUserRecommendedMeal,
 } from '../../backend/utilFunctions';
-import {getTimeInAMPMFormat} from '../../utils/common';
-import {GlobalContext} from '../../../App';
-const {width, height} = Dimensions.get('window');
+import { getTimeInAMPMFormat } from '../../utils/common';
+import { GlobalContext } from '../../../App';
+const { width, height } = Dimensions.get('window');
 
 const MealHome = () => {
   const navigation = useNavigation();
@@ -129,7 +129,7 @@ const MealHome = () => {
     },
   ];
 
-  const {user} = useContext(GlobalContext);
+  const { user } = useContext(GlobalContext);
   function filterMealsBasedOnType(type) {
     const filteredMeals = recommendedMeals.filter(
       meal => meal.meal_period === type,
@@ -171,7 +171,7 @@ const MealHome = () => {
   }, [meals, recommendedMeals]);
 
   return (
-    <ScrollView style={{backgroundColor: 'white'}}>
+    <ScrollView style={{ backgroundColor: 'white' }}>
       <Header title={'Meal Planner'} />
       <View
         style={{
@@ -202,11 +202,11 @@ const MealHome = () => {
             value={mealPlan}
             setValue={setMealPlan}
             placeholder="Select Item"
-            containerStyle={{width: width / 3.7, height: 40, borderRadius: 30}}
+            containerStyle={{ width: width / 3.7, height: 40, borderRadius: 30 }}
           />
         </SolidContainer>
       </View>
-      <View style={{overflow: 'hidden'}}>
+      <View style={{ overflow: 'hidden' }}>
         <AnimatedLineChart />
       </View>
       <View
@@ -217,8 +217,8 @@ const MealHome = () => {
           marginTop: '5%',
         }}>
         <SolidContainer
-          containerStyle={[styles.solidcontainer, {marginHorizontal: 10}]}>
-          <TextMedium style={{flexGrow: 1}}>Daily Meal Schedule</TextMedium>
+          containerStyle={[styles.solidcontainer, { marginHorizontal: 10 }]}>
+          <TextMedium style={{ flexGrow: 1 }}>Daily Meal Schedule</TextMedium>
           <PrimaryButton
             containerStyle={styles.targetButton}
             textStyle={styles.targetButtonText}
@@ -227,7 +227,7 @@ const MealHome = () => {
           />
         </SolidContainer>
       </View>
-      <View style={{marginHorizontal: 15}}>
+      <View style={{ marginHorizontal: 15 }}>
         <SolidContainer
           containerStyle={{
             ...styles.solidcontainer,
@@ -248,10 +248,10 @@ const MealHome = () => {
             value={meals}
             setValue={setMeals}
             placeholder="Select"
-            containerStyle={{width: width / 2.8, height: 40, borderRadius: 30}}
+            containerStyle={{ width: width / 2.8, height: 40, borderRadius: 30 }}
           />
         </SolidContainer>
-        <View style={{paddingHorizontal: 10}}>
+        <View style={{ paddingHorizontal: 10 }}>
           {filteredRecommendedMeals.map((meal, i) => {
             console.log(i, meal);
             return (
@@ -270,7 +270,7 @@ const MealHome = () => {
             );
           })}
         </View>
-        <View style={{marginHorizontal: 20, marginVertical: '5%'}}>
+        <View style={{ marginHorizontal: 20, marginVertical: '5%' }}>
           <LargeText
             style={{
               fontFamily: FONTS.FONT_POPPINS_SEMIBOLD,
@@ -320,7 +320,7 @@ const MealHome = () => {
           </ScrollView>
         </View>
       </View>
-      <View style={{marginHorizontal: 15, marginBottom: '5%'}}>
+      <View style={{ marginHorizontal: 15, marginBottom: '5%' }}>
         <SolidContainer
           containerStyle={{
             ...styles.solidcontainer,
@@ -341,10 +341,10 @@ const MealHome = () => {
             value={meals}
             setValue={setMeals}
             placeholder="Select"
-            containerStyle={{width: width / 2.8, height: 40, borderRadius: 30}}
+            containerStyle={{ width: width / 2.8, height: 40, borderRadius: 30 }}
           />
         </SolidContainer>
-        <View style={{paddingHorizontal: 10}}>
+        <View style={{ paddingHorizontal: 10 }}>
           <MealContainer
             img={require('../../../assets/images/sushi.png')}
             title={'Salmon Nigiri'}
