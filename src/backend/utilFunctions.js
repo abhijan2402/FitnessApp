@@ -72,16 +72,16 @@ export async function getUser(){
 export async function updateUser(updateUser){
     // return console.log('test', updateUser)
     const data = new FormData()
-    data.append('first_name',updateUser.first_name)
-    data.append('last_name',updateUser.last_name)
-    data.append('gender',updateUser.gender)
-    data.append('dob',updateUser.dob)
-    data.append('weight',updateUser.weight.toString())
-    data.append('height',updateUser.height.toString())
-    data.append('goal',updateUser.goal)
+    data.append('first_name',updateUser?.first_name)
+    data.append('last_name',updateUser?.last_name)
+    data.append('gender',updateUser?.gender)
+    data.append('dob',updateUser?.dob)
+    data.append('weight',updateUser?.weight?.toString())
+    data.append('height',updateUser?.height?.toString())
+    data.append('goal',updateUser?.goal)
     
     if(updateUser.image)
-        data.append('profile_image',updateUser.image)
+        data.append('profile_image',updateUser?.image)
     return await generateRequest("/update-user-profile","PUT",data)
 }
 export async function getUserRecommendedMeal(id){
@@ -90,7 +90,7 @@ export async function getUserRecommendedMeal(id){
     return await generateRequest("/assignedMeal/"+id,"GET");
 }
 export async function getMealDetails(id){
-    return await generateRequest("/fetch-meal/"+id)
+ return await generateRequest("/fetch-meal/"+id)
 }
 export async function forgotPassword(info){
     const data = new FormData()

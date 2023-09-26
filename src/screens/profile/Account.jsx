@@ -65,6 +65,8 @@ const Account = () => {
       })
       .finally(() => setModalVisible(false));
   };
+
+  
   return (
     <View style={styles.Mainview}>
       <Header title={'Profile'} />
