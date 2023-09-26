@@ -85,9 +85,7 @@ export async function updateUser(updateUser){
     return await generateRequest("/update-user-profile","PUT",data)
 }
 export async function getUserRecommendedMeal(id){
-    // return await generateRequest("/fetch-user-meal-recommendation","GET");
-    // return await generateRequest("/get-meal/"+id,"GET");
-    return await generateRequest("/assignedMeal/"+id,"GET");
+    return await generateRequest("/get-assigned-Meal/","GET");
 }
 export async function getMealDetails(id){
  return await generateRequest("/fetch-meal/"+id)

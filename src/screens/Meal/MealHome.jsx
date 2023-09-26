@@ -30,106 +30,7 @@ const MealHome = () => {
   const [recommendedMeals, setRecommendedMeals] = useState([]);
   const [filteredRecommendedMeals, setFilteredRecommendedMeals] = useState([]);
 
-  const data = [
-    {
-      _id: '64e665facd2b7331bb73aa99',
-      name: 'Chicken Curry',
-      nutritions: [
-        {
-          type: 'Protein',
-          value: 25,
-        },
-        {
-          type: 'Carbohydrates',
-          value: 30,
-        },
-        {
-          type: 'Fat',
-          value: 15,
-        },
-      ],
-      required_ingredients: [
-        {
-          name: 'chicken',
-          type: 'grams',
-          quantity: 300,
-        },
-        {
-          name: 'onion',
-          type: 'medium',
-          quantity: 2,
-        },
-        {
-          name: 'tomato',
-          type: 'medium',
-          quantity: 2,
-        },
-        {
-          name: 'spices',
-          type: 'packet',
-          quantity: 1,
-        },
-      ],
-      steps: [
-        {
-          title: 'Step 1',
-          description: 'Chop onions and tomatoes',
-        },
-        {
-          title: 'Step 2',
-          description: 'Cook chicken and spices',
-        },
-        {
-          title: 'Step 3',
-          description: 'Add onions and tomatoes, simmer',
-        },
-      ],
-      description: 'Delicious chicken curry recip',
-      ytlink1: 'https://www.youtube.com/watch?v=abc123',
-      created_by: '64e3c17dd71a6bd71e3fe50c',
-      created_time: '2023-08-23T20:03:06.234Z',
-      __v: 0,
-      meal_image:
-        'https://images.pexels.com/photos/6113813/pexels-photo-6113813.jpeg?cs=srgb&dl=pexels-mian-shahbaz-anjum-6113813.jpg&fm=jpg',
-    },
-    {
-      _id: '64f8cf6cf4640acbcdd4c9a3',
-      name: 'Scrambled Eggssss',
-      nutritions: [
-        {
-          type: 'carbohydrates',
-          value: 29,
-        },
-        {
-          type: 'protein',
-          value: 32,
-        },
-      ],
-      required_ingredients: [
-        {
-          name: 'tomato',
-          type: 'piece',
-          quantity: 21,
-        },
-      ],
-      steps: [
-        {
-          title: 'step 1',
-          description: 'sf',
-        },
-      ],
-      description: 'sfd',
-      ytlink1: 'https://www.youtube.com/watch?v=MGgFEuL0Seg',
-      created_by: '64f0bf519ab01f067b7dcbfb',
-      created_time: '2023-09-06T19:13:48.695Z',
-      meal_image:
-        'https://www.abeautifulplate.com/wp-content/uploads/2023/02/cheesy-scrambled-eggs-2-scaled.jpg',
-      meal_image_key: 'images/mealmeal_image-Scrambled Eggs-739352',
-      __v: 0,
-    },
-  ];
-
-  const { user } = useContext(GlobalContext);
+  
   function filterMealsBasedOnType(type) {
     const filteredMeals = recommendedMeals.filter(
       meal => meal.meal_period === type,
@@ -138,36 +39,25 @@ const MealHome = () => {
   }
 
   useEffect(() => {
-    // getUserRecommendedMeal('64fa183bb171a981f1cfc819')
-    //   .then(res => {
-    //     setRecommendedMeals(JSON.stringify(res)?.data);
+    getUserRecommendedMeal()
+      .then(res => {
+        setRecommendedMeals(res?.data);
 
-    //     console.log('line: 45' + JSON.stringify(res));
-    //   })
-    //   .catch(err => console.log('line: 47', err));
-    setRecommendedMeals(data);
+        console.log(res?.data);
+      })
     console.log('first');
 
-    // const getMeal = async () => {
-    //   try {
-    //     const res = getUserRecommendedMeal(user?._id)
-    //     console.log('line: 45', res)
-    //   } catch (error) {
-    //     console.log('line: 47', error)
-    //   }
-    // }
-
-    // getMeal()
+ 
   }, []);
 
   useEffect(() => {
     if (meals === null) setFilteredRecommendedMeals(recommendedMeals);
     else if (meals === 'BREAKFAST')
-      setFilteredRecommendedMeals(filterMealsBasedOnType('breakfast'));
+      setFilteredRecommendedMeals(filterMealsBasedOnType('BREAKFAST'));
     else if (meals === 'LUNCH')
-      setFilteredRecommendedMeals(filterMealsBasedOnType('lunch'));
+      setFilteredRecommendedMeals(filterMealsBasedOnType('LUNCH'));
     else if (meals === 'DINNER')
-      setFilteredRecommendedMeals(filterMealsBasedOnType('dinner'));
+      setFilteredRecommendedMeals(filterMealsBasedOnType('DINNER'));
   }, [meals, recommendedMeals]);
 
   return (
@@ -258,8 +148,8 @@ const MealHome = () => {
               <MealContainer
                 key={meal._id}
                 img={require('../../../assets/images/sushi.png')}
-                title={meal?.name || ' '}
-                time={getTimeInAMPMFormat(new Date(meal.created_time))}
+                title={meal?.meal?.name || ' '}
+                time={getTimeInAMPMFormat(new Date(meal.date))}
                 date={'Today'}
                 onpress={() =>
                   navigation.navigate(SCREENS.MEALSCHEDULER, {

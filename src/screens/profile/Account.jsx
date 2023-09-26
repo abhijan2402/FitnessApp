@@ -9,8 +9,9 @@ import {
   ScrollView,
   TextInput,
   TouchableOpacity,
+  ActivityIndicator,
 } from 'react-native';
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useRef} from 'react';
 import Header from '../../components/header/Header';
 import ProfileCard from '../../components/profile/ProfileCard';
 import Group from '../../../assets/icons/Group.svg';
@@ -21,7 +22,7 @@ import Gender from '../../../assets/icons/Gender.svg';
 import Edit from '../../../assets/icons/Edit.svg';
 import {FONTS} from '../../constants/Fonts';
 import {GlobalContext} from '../../../App';
-import {getAge} from '../../utils/common';
+import {formatDate, getAge} from '../../utils/common';
 import {updateUser} from '../../backend/utilFunctions';
 import CalenderPicker from '../../components/Utils/CalenderPicker';
 import PickerLabel from '../../components/Label/PickerLabel';
@@ -29,6 +30,7 @@ import Calendar from '../../../assets/icons/Calendar.svg';
 import UserSvg from '../../../assets/icons/User.svg';
 import {FOOD_TYPE, GENDERS} from '../../constants/Data';
 import DropdownPicker from '../../components/Utils/DropdownPicker';
+import CustomToast from '../../components/common/Toast';
 const {width, height} = Dimensions.get('window');
 
 const Account = () => {
@@ -39,13 +41,18 @@ const Account = () => {
   const [height, setHeight] = useState(user.height);
   const [gender, setGender] = useState(user.gender);
   const [foodType, setFoodType] = useState('');
-  const [date, setDate] = useState(user.dob);
+  const [date, setDate] = useState(formatDate(user.dob));
   const [selectedInput, setSelectedInput] = useState('');
+  const [loading, setLoading] = useState(false);
+  const childRef = useRef(null);
+  const [toastColorState, setToastColorState] = useState('');
+  const [toastTextColorState, setToastTextColorState] = useState('');
+  const [toastMessage, setToastMessage] = useState('');
 
   const UpdateData = () => {
-
+    setLoading(true);
     // return console.log({...user, weight, height, gender})
-    updateUser({...user, weight, height, gender})
+    updateUser({...user, weight, height, gender, date})
       .then(res => {
         // update the global context
         setAge(getAge(date));
@@ -58,17 +65,34 @@ const Account = () => {
         });
 
         console.log(res);
+        setToastMessage(res.message);
+        setToastTextColorState('white');
+        setToastColorState('green');
+        childRef.current.showToast();
       })
-      .catch(err => {
-        // TODO : Add a toast error here
-        console.log(err);
+      .catch(error => {
+        console.log(error);
+        setToastMessage(error.message);
+        setToastTextColorState('white');
+        setToastColorState('red');
+        childRef.current.showToast();
+
+        setLoading(false);
       })
-      .finally(() => setModalVisible(false));
+      .finally(() => {
+        setModalVisible(false);
+        setLoading(false);
+      });
   };
 
-  
   return (
     <View style={styles.Mainview}>
+      <CustomToast
+        toastColor={toastColorState}
+        toastTextColor={toastTextColorState}
+        toastMessage={toastMessage}
+        ref={childRef}
+      />
       <Header title={'Profile'} />
       <ScrollView>
         <View style={styles.profile}>
@@ -167,7 +191,7 @@ const Account = () => {
                     marginBottom={5}
                     data={FOOD_TYPE}
                     value={foodType}
-                    setValue={setGender}
+                    setValue={setFoodType}
                     placeholder="Choose food type"
                     icon={<UserSvg width={20} height={20} />}
                   />
@@ -202,7 +226,7 @@ const Account = () => {
                     placeholder="Height (in ft.)"
                     placeholderTextColor={'grey'}
                     style={styles.InputFields}
-                    keyboardType='numeric'
+                    keyboardType="numeric"
                     onChangeText={value => setHeight(value)}
                     value={`${height}`}
                   />
@@ -220,9 +244,16 @@ const Account = () => {
                   />
                 )}
 
-                <TouchableOpacity style={styles.BtnUpdate} onPress={UpdateData}>
-                  <Text style={styles.BtnText}>Update Data</Text>
-                </TouchableOpacity>
+                {loading ? (
+                  <ActivityIndicator size={30} color={'blue'} />
+                ) : (
+                  <TouchableOpacity
+                    style={styles.BtnUpdate}
+                    onPress={UpdateData}>
+                    <Text style={styles.BtnText}>Update Data</Text>
+                  </TouchableOpacity>
+                )}
+
                 <TouchableOpacity
                   style={styles.BtnUpdate}
                   onPress={() => {
