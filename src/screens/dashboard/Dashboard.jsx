@@ -35,7 +35,7 @@ const BASE_TRACKER_CONTAINER_HEIGHT = 350;
 
 function Dashboard(props) {
     const navigation = useNavigation();
-    const {user} = useContext(GlobalContext)
+    const { user } = useContext(GlobalContext)
     const [meals, setMeals] = useState(MEALS[0])
     const [workout, setWorkout] = useState(WORKOUTS[0])
     return (
@@ -62,7 +62,7 @@ function Dashboard(props) {
                             title={'View More'}
                             containerStyle={{ width: 100, height: 40, elevation: 0 }}
                             textStyle={{ fontSize: 12 }}
-                            onPress={()=>navigation.navigate(SCREENS.PROGRESSTACK,{screen:SCREENS.WEIGHTTRACKER})}
+                            onPress={() => navigation.navigate(SCREENS.PROGRESSTACK, { screen: SCREENS.WEIGHTTRACKER })}
                         />
                     </View>
                     <View>
@@ -141,23 +141,23 @@ function Dashboard(props) {
                     containerStyle={{ width: 150, height: 40, borderRadius: 30 }}
                 />
             </SolidContainer>
-            <View style={{ paddingHorizontal: 10 }}>
+            <View style={{ paddingHorizontal: 10, marginBottom: "5%" }}>
                 <MealContainer
                     img={require('../../../assets/images/sushi.png')}
                     title={'Salmon Nigiri'}
                     time={'7am'}
                     date={'Today'}
-                    onpress={()=>navigation.navigate(SCREENS.MEALSTACK,{screen:SCREENS.MEALSCHEDULER})}
+                    onpress={() => navigation.navigate(SCREENS.MEALSTACK, { screen: SCREENS.MEALSCHEDULER })}
                 />
                 <MealContainer
                     img={require('../../../assets/images/glass-of-milk.png')}
                     title={'Lowfat Milk'}
                     time={'8am'}
                     date={'Today'}
-                    onpress={()=>navigation.navigate(SCREENS.MEALSTACK,{screen:SCREENS.MEALSCHEDULER})}
+                    onpress={() => navigation.navigate(SCREENS.MEALSTACK, { screen: SCREENS.MEALSCHEDULER })}
                 />
             </View>
-            <SolidContainer containerStyle={{ ...styles.solidcontainer, backgroundColor: 'white', paddingHorizontal: 10, marginBottom: 0 }}>
+            {/* <SolidContainer containerStyle={{ ...styles.solidcontainer, backgroundColor: 'white', paddingHorizontal: 10, marginBottom: 0 }}>
                 <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_SEMIBOLD, color: 'black', flexGrow: 1 }}>Workout Progress</LargeText>
                 <GradientDropdown
                     data={WORKOUTS}
@@ -175,8 +175,8 @@ function Dashboard(props) {
                 <TouchableOpacity>
                     <SmallText style={{ fontFamily: FONTS.FONT_POPPINS_MEDIUM }} >See More</SmallText>
                 </TouchableOpacity>
-            </SolidContainer>
-            <View style={{ marginBottom: 80, paddingHorizontal: 10 }}>
+            </SolidContainer> */}
+            {/* <View style={{ marginBottom: 80, paddingHorizontal: 10 }}>
                 <WorkoutContainer
                     img={require('../../../assets/images/sushi.png')}
                     imgBackground={COLORS.PRIMARY_BUTTON_GRADIENT.BLUE1}
@@ -193,7 +193,7 @@ function Dashboard(props) {
 
                     />
                 </View>
-            </View>
+            </View> */}
         </ScreenContainer>
     );
 }

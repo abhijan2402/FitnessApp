@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         marginBottom: "4%"
     },
     image: {
-        marginLeft: "6%",
+        marginLeft: "3%",
         marginTop: 8,
         display: "flex",
         flexDirection: "row"

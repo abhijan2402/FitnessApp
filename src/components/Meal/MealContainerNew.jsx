@@ -9,13 +9,13 @@ import GradientContainer from '../container/GradientContainer';
 import { SCREENS } from '../../constants/Screens';
 import { useNavigation } from '@react-navigation/native';
 
-function MealContainerNew({ containerStyle, img, title = "", time = "", colors,onPress }) {
+function MealContainerNew({ containerStyle, img, title = "", time = "", colors, onPress }) {
 
     const navigation = useNavigation();
     return (
         <DataContainer onPress={onPress} containerStyle={{ ...styles.container, ...containerStyle }}>
             <GradientContainer colors={colors} styles={{ borderRadius: 12, width: 70, height: 70, justifyContent: 'center', alignItems: "center" }}>
-                <Image source={img} style={{ width: 45, height: 45, resizeMode: 'contain' }} />
+                <Image source={img} style={{ width: 60, height: 60, borderRadius: 8 }} />
             </GradientContainer>
             <View style={styles.info}>
                 <TextMedium>{title}</TextMedium>

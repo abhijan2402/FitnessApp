@@ -7,14 +7,14 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import React from 'react';
-import {FONTS} from '../../constants/Fonts';
+import { FONTS } from '../../constants/Fonts';
 import Edit from '../../../assets/icons/Edit.svg';
-const {width, height} = Dimensions.get('window');
-const ProfileCard = ({type, value, icon, containerStyle, onPress}) => {
+const { width, height } = Dimensions.get('window');
+const ProfileCard = ({ type, value, icon, containerStyle, onPress }) => {
   return (
     <View style={[styles.Container, styles.shadowProp, containerStyle]}>
       <View style={styles.image}>{icon}</View>
-      <View style={{paddingHorizontal: 20, marginTop: 12, width: 220}}>
+      <View style={{ paddingHorizontal: 20, marginTop: 12, width: width / 1.8 }}>
         <Text
           style={[
             {
@@ -37,7 +37,7 @@ const ProfileCard = ({type, value, icon, containerStyle, onPress}) => {
         </Text>
       </View>
       <TouchableOpacity
-        style={{marginTop: 18, paddingTop: 9}}
+        style={{ marginTop: 18, paddingTop: 9 }}
         onPress={onPress}>
         <Edit />
       </TouchableOpacity>

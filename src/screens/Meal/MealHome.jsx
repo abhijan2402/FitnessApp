@@ -30,7 +30,7 @@ const MealHome = () => {
   const [recommendedMeals, setRecommendedMeals] = useState([]);
   const [filteredRecommendedMeals, setFilteredRecommendedMeals] = useState([]);
 
-  
+
   function filterMealsBasedOnType(type) {
     const filteredMeals = recommendedMeals.filter(
       meal => meal.meal_period === type,
@@ -46,8 +46,6 @@ const MealHome = () => {
         console.log(res?.data);
       })
     console.log('first');
-
- 
   }, []);
 
   useEffect(() => {
@@ -113,7 +111,7 @@ const MealHome = () => {
             containerStyle={styles.targetButton}
             textStyle={styles.targetButtonText}
             title={'Check'}
-            onPress={() => navigation.navigate(SCREENS.MEALSCHEDULER)}
+            onPress={() => navigation.navigate(SCREENS.MEALSCHEDULER, { filteredRecommendedMeals, })}
           />
         </SolidContainer>
       </View>
@@ -143,11 +141,12 @@ const MealHome = () => {
         </SolidContainer>
         <View style={{ paddingHorizontal: 10 }}>
           {filteredRecommendedMeals.map((meal, i) => {
-            console.log(i, meal);
+            // console.log(i, meal?.meal?.meal_image, "jjjj");
             return (
               <MealContainer
                 key={meal._id}
-                img={require('../../../assets/images/sushi.png')}
+                img={{ uri: meal?.meal?.meal_image }}
+                imgStyle={{ width: 50, height: 50, borderRadius: 8 }}
                 title={meal?.meal?.name || ' '}
                 time={getTimeInAMPMFormat(new Date(meal.date))}
                 date={'Today'}
@@ -210,7 +209,7 @@ const MealHome = () => {
           </ScrollView>
         </View>
       </View>
-      <View style={{ marginHorizontal: 15, marginBottom: '5%' }}>
+      {/* <View style={{ marginHorizontal: 15, marginBottom: '5%' }}>
         <SolidContainer
           containerStyle={{
             ...styles.solidcontainer,
@@ -250,7 +249,7 @@ const MealHome = () => {
             onpress={() => navigation.navigate(SCREENS.MEALSCHEDULER)}
           />
         </View>
-      </View>
+      </View> */}
     </ScrollView>
   );
 };
