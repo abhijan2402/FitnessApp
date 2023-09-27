@@ -47,14 +47,14 @@ const EditProfile = () => {
   }
   const UpdateData = () => {
     const updateData = { ...user, first_name: firstName, last_name: lastName }
-    if(photoResult)
-      updateData.image = {uri:photoResult.uri,name:photoResult.fileName,type:photoResult.type}
+    if (photoResult)
+      updateData.image = { uri: photoResult.uri, name: photoResult.fileName, type: photoResult.type }
     updateUser(updateData)
       .then(() => {
         setFirstName(tempFirstName)
         setLastName(tempLastName)
         // update the global context
-        setLoggedInUser({ ...user, first_name: tempFirstName, lastName: tempLastName,image:photoResult?galleryPhoto:user.image })
+        setLoggedInUser({ ...user, first_name: tempFirstName, lastName: tempLastName, image: photoResult ? galleryPhoto : user.image })
       })
       .catch((err) => {
         // TODO: Make a alert toast for the error
@@ -85,10 +85,10 @@ const EditProfile = () => {
           <EditPro value={user.email} icon={<Email1 width={18} height={18} Edit={"EditBtn"} />} />
           {/* <EditPro value={"Change Password"} icon={<Pass width={18} height={18} Edit={"EditBtn"} />} /> */}
         </View>
-        <View style={styles.card}>
+        {/* <View style={styles.card}>
           <EditCard value={"Connect"} icon={<Apple width={18} height={18} />} />
           <EditCard value={"Connect"} icon={<Google width={18} height={18} />} />
-        </View>
+        </View> */}
         <View style={{ alignItems: "center", marginTop: "25%" }}>
           <PrimaryButton containerStyle={{ width: width - 80, }} title={'Save Profile'} />
         </View>

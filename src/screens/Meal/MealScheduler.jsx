@@ -77,12 +77,14 @@ const MealScheduler = ({ navigation }) => {
             <MealContainerNew
               key={item._id}
               colors={['rgba(146, 163, 253, 0.2)', 'rgba(157, 206, 255, 0.2)']}
-              title={item && item.name ? item.name : 'Meal'}
-              time={getTimeInAMPMFormat(new Date(item.created_time))}
+              title={item && item.meal?.name ? item.meal?.name : 'Meal'}
+              time={getTimeInAMPMFormat(new Date(item?.meal?.created_time))}
               containerStyle={{ width: '98%', alignSelf: 'center' }}
-              img={require('../../../assets/images/sushi.png')}
-              onPress={() =>
+              img={{ uri: item?.meal?.meal_image }}
+              // img={require('../../../assets/images/sushi.png')}
+              onPress={() => {
                 navigation.navigate(SCREENS.DIETDETAILS, { id: item._id, meal: item })
+              }
               }
             />
           ))}

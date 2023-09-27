@@ -14,24 +14,24 @@ import SmallText from '../../components/Text/SmallText';
 import TextH4 from '../../components/Text/TextH4';
 import Email from '../../../assets/icons/email.svg';
 import Pass from '../../../assets/icons/Pass.svg';
-import {useNavigation} from '@react-navigation/native';
-import {Pressable} from 'react-native';
-import {SCREENS} from '../../constants/Screens';
-import {GlobalContext} from '../../../App';
-import {useContext} from 'react';
-import {useState} from 'react';
-import {getUser, loginUser} from '../../backend/utilFunctions';
-import {storeDataInAsyncStorage} from '../../utils/common';
-import {storageKeyName} from '../../constants/Data';
+import { useNavigation } from '@react-navigation/native';
+import { Pressable } from 'react-native';
+import { SCREENS } from '../../constants/Screens';
+import { GlobalContext } from '../../../App';
+import { useContext } from 'react';
+import { useState } from 'react';
+import { getUser, loginUser } from '../../backend/utilFunctions';
+import { storeDataInAsyncStorage } from '../../utils/common';
+import { storageKeyName } from '../../constants/Data';
 import CustomToast from '../../components/common/Toast';
-import {useRef} from 'react';
-import {fetch} from 'react-native-ssl-pinning';
+import { useRef } from 'react';
+import { fetch } from 'react-native-ssl-pinning';
 
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 const Login = () => {
   const navigation = useNavigation();
-  const {setLoggedInUser} = useContext(GlobalContext);
+  const { setLoggedInUser } = useContext(GlobalContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -42,55 +42,7 @@ const Login = () => {
 
   const Login = async () => {
     try {
-      // if(email==='')
-      //     throw "Enter Email";
-      // if(password==='')
-      //     throw "Enter password";
-      // const data = new FormData()
-      // data.append('email', credentials.email)
-      // data.append('password', credentials.password)
-      // console.log(data, "i amdata");
-      // fetch("https://ec2-15-206-239-93.ap-south-1.compute.amazonaws.com/api/login-user", {
-      //     method: "POST",
-      //     timeoutInterval: 10000,
-      //     headers: { "Content-Type": "multipart/form-data" },
-      //     sslPinning: {
-      //         certs: ["certificat"]
-      //     },
-      // })
-      //     .then(response => {
-      //         console.log(JSON.stringify(response, null, "\t"))
-      //     })
-      //     .catch(err => {
-      //         console.log(`error: ${err}`)
-      //     });
-      const credentials = {email, password};
-      // await fetch(`https://ec2-15-206-239-93.ap-south-1.compute.amazonaws.com/api/login-user`, {
-      //     method: 'POST',
-      //     timeoutInterval: 10000, // milliseconds
-      //     // your certificates array (needed only in android) ios will pick it automatically
-      //     sslPinning: {
-      //         // for example key = "sha256/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
-      //         certs: ['certificat'], // your certificates name (without extension), for example cert1.cer, cert2.cer
-      //     },
-      //     headers: {
-      //         Accept: 'application/json; charset=utf-8',
-      //         'Access-Control-Allow-Origin': '*',
-      //         e_platform: 'mobile',
-      //     },
-      //     body: JSON.stringify({
-      //         email: "abhishek.jangid643@gmail.com",
-      //         password: "abhi@123#k"
-      //     })
-      // })
-      //     .then(res => {
-      //         console.log("res->", res)
-      //         response = JSON.parse(res.bodyString);
-      //         console.log(response)
-      //         navigation.navigate(SCREENS.FINALAUTH)
-
-      //     })
-      //     .catch(err => console.log(err));
+      const credentials = { email, password };
       setLoading(true);
       loginUser(credentials)
         .then(res => {
@@ -133,19 +85,19 @@ const Login = () => {
         ref={childRef}
       />
       <View style={styles.Heading}>
-        <SmallText style={{fontWeight: '700', color: 'black', fontSize: 16}}>
+        <SmallText style={{ fontWeight: '700', color: 'black', fontSize: 16 }}>
           Hey there,
         </SmallText>
-        <TextH4 style={{marginTop: 7}}>Welcome Back</TextH4>
+        <TextH4 style={{ marginTop: 7 }}>Welcome Back</TextH4>
       </View>
-      <View style={{width: '85%', marginTop: 7}}>
+      <View style={{ width: '85%', marginTop: 7 }}>
         <Input
           placeholder={'Email'}
           onChangeText={value => setEmail(value)}
           icon={<Email width={20} height={20} />}
         />
       </View>
-      <View style={{width: '85%', marginTop: 15}}>
+      <View style={{ width: '85%', marginTop: 15 }}>
         <Input
           placeholder={'Password'}
           onChangeText={value => setPassword(value)}
@@ -154,25 +106,25 @@ const Login = () => {
       </View>
       <Pressable
         onPress={() => navigation.navigate(SCREENS.FORGOPASS)}
-        style={[styles.IconView, {alignItems: 'center'}]}>
-        <SmallText style={{fontSize: 14}}>Forgot Password ? </SmallText>
-        <TextH4 style={{fontSize: 14, color: '#C58BF2', marginLeft: 5}}>
+        style={[styles.IconView, { alignItems: 'center' }]}>
+        <SmallText style={{ fontSize: 14 }}>Forgot Password ? </SmallText>
+        <TextH4 style={{ fontSize: 14, color: '#C58BF2', marginLeft: 5 }}>
           Reset Now
         </TextH4>
       </Pressable>
-      <View style={{alignItems: 'center', marginTop: '25%'}}>
+      <View style={{ alignItems: 'center', marginTop: '25%' }}>
         {loading ? (
           <ActivityIndicator size={30} color={'blue'} />
         ) : (
           <PrimaryButton
-            containerStyle={{width: width - 30}}
+            containerStyle={{ width: width - 30 }}
             title={'Login'}
             onPress={() => Login()}
           />
         )}
       </View>
-      <Text style={{marginTop: '14%'}}>Or</Text>
-      <View style={[styles.IconView, {marginTop: '5%'}]}>
+      {/* <Text style={{ marginTop: '14%' }}>Or</Text> */}
+      {/* <View style={[styles.IconView, {marginTop: '5%'}]}>
         <View style={styles.iconContainer}>
           <Image
             source={{
@@ -189,12 +141,12 @@ const Login = () => {
             style={styles.icon}
           />
         </View>
-      </View>
+      </View> */}
       <Pressable
         onPress={() => navigation.navigate(SCREENS.REGISTEROTP)}
-        style={[styles.IconView, {alignItems: 'center'}]}>
-        <SmallText style={{fontSize: 14}}>Don't have an account yet?</SmallText>
-        <TextH4 style={{fontSize: 14, color: '#C58BF2', marginLeft: 5}}>
+        style={[styles.IconView, { alignItems: 'center', position: "absolute", bottom: "5%" }]}>
+        <SmallText style={{ fontSize: 14 }}>Don't have an account yet?</SmallText>
+        <TextH4 style={{ fontSize: 14, color: '#C58BF2', marginLeft: 5 }}>
           Register
         </TextH4>
       </Pressable>
@@ -228,6 +180,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginVertical: 15,
+    // position: "absolute",
+    // bottom: 20
   },
   iconContainer: {
     borderWidth: 1,

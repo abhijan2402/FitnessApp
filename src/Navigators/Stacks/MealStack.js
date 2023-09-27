@@ -5,6 +5,7 @@ import DietDetails from '../../screens/Meal/DietDetails';
 import { SCREENS } from '../../constants/Screens';
 import FinalMealScreen from '../../screens/Meal/FinalMealScreen';
 import DashboardStack from './DashboardStack';
+import FlnishMeal from '../../screens/Meal/FInishMeal';
 // import FinishWO from '../../screens/Dashboard/FinishWO';
 
 const Stack = createNativeStackNavigator();
@@ -20,6 +21,9 @@ function MealStack() {
             <Stack.Screen name={SCREENS.DIETDETAILS} component={DietDetails} />
             <Stack.Screen name={SCREENS.FINISHWO} component={FinalMealScreen} />
             <Stack.Screen name={SCREENS.DASHBOARDSTACK} component={DashboardStack} />
+            <Stack.Screen name={SCREENS.MEALFINAL} component={FlnishMeal} />
+
+
         </Stack.Navigator>
     );
 }

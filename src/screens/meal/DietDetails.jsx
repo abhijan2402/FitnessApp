@@ -52,7 +52,7 @@ const tags = [
 function DietDetails(props) {
     const route = useRoute()
     const { meal } = route.params
-    console.log(meal, "Heyy");
+    // console.log(meal, "Heyy");
     // const {id} = route.params;
     const navigation = useNavigation();
     const bottomSheetRef = useRef(null);
@@ -61,6 +61,7 @@ function DietDetails(props) {
         name: "", nutrient: [], description: "", steps: [], ingredients: []
     })
     function convertStepToArray(steps) {
+        console.log(steps, "I am step");
         const stepsArr = []
         let i = 1;
         Object.keys(steps).forEach(key => {
@@ -72,9 +73,12 @@ function DietDetails(props) {
             })
             i++;
         })
+        console.log(stepsArr, "I am stepsArrr");
         return stepsArr
+        // return 0
     }
     function convertIngrediantsToArray(ingredients) {
+        // console.log(ingredients, "Ingredients");
         const ingrediantsArr = []
         let i = 1;
         Object.keys(ingredients).forEach(key => {
@@ -89,9 +93,11 @@ function DietDetails(props) {
             i++;
         })
         return ingrediantsArr
+        // return 0
+
     }
     function convertNutrientsToArray(nutrients) {
-        console.log("I am in CNA", nutrients);
+        // console.log("I am in CNA", nutrients);
         const eliminatorIndex = nutrients.indexOf('/')
         const nutrientsArr = []
         let i = 1;
@@ -107,6 +113,8 @@ function DietDetails(props) {
         })
         console.log(nutrientsArr)
         return nutrientsArr
+        // return 0
+
     }
     useEffect(() => {
         // getMealDetails("64a9ce1d4c52b7ecf30477b7")
@@ -120,9 +128,9 @@ function DietDetails(props) {
 
         const details = meal
         console.log('====================================');
-        console.log(details, 'I am ss');
+        console.log(details?.meal.steps, 'I am ss');
         console.log('====================================');
-        setMealDetails({ ...mealDetails, name: details.name, description: details.description, steps: convertStepToArray(details.steps), ingredients: convertIngrediantsToArray(details.required_ingredients), nutrient: convertNutrientsToArray(details.nutritions) })
+        setMealDetails({ ...mealDetails, name: details.name, description: details.description, steps: convertStepToArray(details?.meal?.steps), ingredients: convertIngrediantsToArray(details?.meal?.required_ingredients), nutrient: convertNutrientsToArray(details?.meal?.nutritions) })
     }, [])
     // if (mealDetails.steps.length <= 0 || mealDetails.ingredients.length <= 0 || mealDetails.nutrient.length <= 0)
     //     return <ActivityIndicator />
@@ -196,7 +204,7 @@ function DietDetails(props) {
                         }
                         <View style={{ paddingBottom: 90, paddingRight: 30 }}>
                             <PrimaryButton
-                                onPress={() => navigation.navigate(SCREENS.FINISHWO)}
+                                onPress={() => navigation.navigate(SCREENS.MEALFINAL)}
                                 title={'Add to Breakfast Meal'}
                             />
                         </View>

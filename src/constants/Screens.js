@@ -39,6 +39,7 @@ export const SCREENS = {
     MEALSCHEDULER: "MealScheduler",
     DIETDETAILS: "DietDetails",
     FinalMeal: "FinalMeal",
+    MEALFINAL: "FinalMealPage",
 
     //sleep
     SLEEPTRACKER: "SleepTracker",
