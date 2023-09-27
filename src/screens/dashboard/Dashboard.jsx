@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ScreenContainer from '../../components/container/ScreenContainer';
 import { View, StyleSheet, Image } from 'react-native';
 import TextH4 from '../../components/Text/TextH4';
@@ -30,6 +30,8 @@ import { SCREENS } from '../../constants/Screens';
 import { TouchableOpacity } from 'react-native';
 import HomeSwiper from '../../components/Utils/HomeSwiper';
 import { GlobalContext } from '../../../App';
+import { getTimeInAMPMFormat } from '../../utils/common';
+import { getUserRecommendedMeal } from '../../backend/utilFunctions';
 
 const BASE_TRACKER_CONTAINER_HEIGHT = 350;
 
@@ -38,6 +40,37 @@ function Dashboard(props) {
     const { user } = useContext(GlobalContext)
     const [meals, setMeals] = useState(MEALS[0])
     const [workout, setWorkout] = useState(WORKOUTS[0])
+    const [recommendedMeals, setRecommendedMeals] = useState([]);
+  const [filteredRecommendedMeals, setFilteredRecommendedMeals] = useState([]);
+
+
+  function filterMealsBasedOnType(type) {
+    const filteredMeals = recommendedMeals.filter(
+      meal => meal.meal_period === type,
+    );
+    return filteredMeals;
+  }
+
+  useEffect(() => {
+    getUserRecommendedMeal()
+      .then(res => {
+        setRecommendedMeals(res?.data);
+
+        console.log(res?.data);
+      })
+    console.log('first');
+  }, []);
+
+  useEffect(() => {
+    if (meals === null) setFilteredRecommendedMeals(recommendedMeals);
+    else if (meals === 'BREAKFAST')
+      setFilteredRecommendedMeals(filterMealsBasedOnType('BREAKFAST'));
+    else if (meals === 'LUNCH')
+      setFilteredRecommendedMeals(filterMealsBasedOnType('LUNCH'));
+    else if (meals === 'DINNER')
+      setFilteredRecommendedMeals(filterMealsBasedOnType('DINNER'));
+  }, [meals, recommendedMeals]);
+
     return (
         <ScreenContainer scroll={true}>
             <View style={styles.profileInfo}>
@@ -142,20 +175,24 @@ function Dashboard(props) {
                 />
             </SolidContainer>
             <View style={{ paddingHorizontal: 10, marginBottom: "5%" }}>
-                <MealContainer
-                    img={require('../../../assets/images/sushi.png')}
-                    title={'Salmon Nigiri'}
-                    time={'7am'}
-                    date={'Today'}
-                    onpress={() => navigation.navigate(SCREENS.MEALSTACK, { screen: SCREENS.MEALSCHEDULER })}
-                />
-                <MealContainer
-                    img={require('../../../assets/images/glass-of-milk.png')}
-                    title={'Lowfat Milk'}
-                    time={'8am'}
-                    date={'Today'}
-                    onpress={() => navigation.navigate(SCREENS.MEALSTACK, { screen: SCREENS.MEALSCHEDULER })}
-                />
+            {filteredRecommendedMeals.map((meal, i) => {
+            // console.log(i, meal?.meal?.meal_image, "jjjj");
+            return (
+              <MealContainer
+                key={meal._id}
+                img={{ uri: meal?.meal?.meal_image }}
+                imgStyle={{ width: 50, height: 50, borderRadius: 8 }}
+                title={meal?.meal?.name || ' '}
+                time={getTimeInAMPMFormat(new Date(meal.date))}
+                date={'Today'}
+                onpress={() =>
+                  navigation.navigate(SCREENS.MEALSCHEDULER, {
+                    filteredRecommendedMeals,
+                  })
+                }
+              />
+            );
+          })}
             </View>
             {/* <SolidContainer containerStyle={{ ...styles.solidcontainer, backgroundColor: 'white', paddingHorizontal: 10, marginBottom: 0 }}>
                 <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_SEMIBOLD, color: 'black', flexGrow: 1 }}>Workout Progress</LargeText>
