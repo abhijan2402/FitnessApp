@@ -143,11 +143,10 @@ const MealHome = () => {
         </SolidContainer>
         <View style={{ paddingHorizontal: 10 }}>
           {filteredRecommendedMeals.map((meal, i) => {
-            console.log(i, meal);
             return (
               <MealContainer
                 key={meal._id}
-                img={require('../../../assets/images/sushi.png')}
+                img={{ uri: meal.meal.meal_image }}
                 title={meal?.meal?.name || ' '}
                 time={getTimeInAMPMFormat(new Date(meal.date))}
                 date={'Today'}

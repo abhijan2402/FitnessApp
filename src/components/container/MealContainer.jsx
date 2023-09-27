@@ -2,17 +2,18 @@ import React from 'react';
 import { View,StyleSheet,Text,Image } from 'react-native';
 
 import DataContainer from './DataContainer';
-import TextMedium from '../Text/TextMedium';
-import SmallText from '../Text/SmallText';
 import SwitchIconButton from '../Button/SwitchIconButton';
 import NoNotification from '../../../assets/icons/no_notification.svg';
 import Notification from '../../../assets/icons/Notification.svg';
 import SplitHeading from '../Text/SplitHeading';
 
-function MealContainer({containerStyle,img,imgStyle,title="",date="", time="",onpress}) {
+function MealContainer({containerStyle,img,title="",date="", time="",onpress}) {
     return (
         <DataContainer onPress={onpress} containerStyle={{...styles.container,...containerStyle}}>
-            <Image source={img} style={imgStyle}/>
+            <Image
+        source={img}
+        style={styles.imgStyle}
+      />
             <SplitHeading title={title} subtitle1={date} subtitle2={time} containerStyle={{marginLeft:15}}/>
             <SwitchIconButton
                 icon1={<Notification width={20} height={20}/>}
@@ -31,6 +32,10 @@ const styles = StyleSheet.create({
         marginBottom:12
     },
     
+    imgStyle: {
+        width: 40,
+        height: 40,
+    }
     
 })
 export default MealContainer;
