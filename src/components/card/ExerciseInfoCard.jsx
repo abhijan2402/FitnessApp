@@ -9,7 +9,7 @@ import TextMedium from '../Text/TextMedium'
 const ExerciseInfoCard = ({ title, img, Time }) => {
     return (
         <View style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", marginVertical: "5%" }}>
-            <Image source={img} style={{ width: 60, height: 60 }} />
+            <Image source={{uri:img}} style={{ width: 60, height: 60 }} />
             <View style={{ width: "70%", marginLeft: "3%", }}>
                 <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_SEMIBOLD, color: "black" }}>{title}</LargeText>
                 <TextMedium>{Time}</TextMedium>

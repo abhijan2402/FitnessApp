@@ -20,11 +20,16 @@ import { useNavigation } from '@react-navigation/native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import BottomSheet from '../../components/container/BottomSheet';
 import useLayout from '../../hooks/useLayout';
+import { useRoute } from '@react-navigation/native';
 
 function WorkOutInfo(props) {
     const navigation = useNavigation();
     
     const [viewHeight,getViewHeight] = useLayout()
+
+    const route = useRoute();
+    const moreInfo = route.params?.moreInfo;
+    console.log("dsadsdasdsadasdas",moreInfo?.workout_id.exercises[0]);
 
     return (
         <GestureHandlerRootView style={{flex:1}}>
@@ -35,9 +40,9 @@ function WorkOutInfo(props) {
                     <Image source={require('../../../assets/images/JumpBoy.png')} style={styles.image} />
                     <BottomSheet extraRequiredHeight={550}>
                         <View style={styles.detailContainer} onLayout={getViewHeight}>
-                            <WorkOutHeader title={"Fullbody Workout"} ExerciseInformation={"11 Exercises | 32mins | 320 Calories Burn"} />
+                            <WorkOutHeader title={moreInfo.workout_id.workout_name} ExerciseInformation={`${moreInfo.workout_id.exercises.length} Exercises | 32mins | ${moreInfo.workout_id.calorie_burn} Calories Burn`} />
                             <WorkoutOption title={"Schedule Workout"} icon={<CalenderOption width={22} height={22} />} Time={"5/27, 09:00 AM"} backgroundColor={"#E2EEFF"} />
-                            <WorkoutOption title={"Difficulty"} icon={<Updown width={22} height={22} />} Time={"Beginner"} backgroundColor={"#FFECF5"} />
+                            <WorkoutOption title={"Difficulty"} icon={<Updown width={22} height={22} />} Time={moreInfo.difficulty} backgroundColor={"#FFECF5"} />
                             <View style={{ marginTop: "3%", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginHorizontal: "5.3%" }}>
                                 <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_SEMIBOLD, color: "black" }}>You will need</LargeText>
                                 <TextMedium>5 Items</TextMedium>
@@ -55,12 +60,19 @@ function WorkOutInfo(props) {
                             </View>
                             <View style={{ marginTop: "3%", marginHorizontal: "5.3%", marginBottom: "20%" }}>
                                 <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_SEMIBOLD, color: "black" }}>Set 1</LargeText>
-                                <ExerciseInfoCard title={"Warm Up"} img={require('../../../assets/icons/Girl.png')} Time={"05:00 "} />
+                                {moreInfo && moreInfo?.workout_id?.exercises && moreInfo?.workout_id?.exercises.length > 0 ?
+                              <>
+                               {moreInfo?.workout_id?.exercises.map((item,ind)=>(
+                                <ExerciseInfoCard title={item.name} img={item.image} Time={`${item.repetition} x`} />
+                                ))}
+                                  </> : null
+                              }
+                                {/* <ExerciseInfoCard title={"Warm Up"} img={require('../../../assets/icons/Girl.png')} Time={"05:00 "} />
                                 <ExerciseInfoCard title={"Jumping Jack"} img={require('../../../assets/icons/Girl.png')} Time={"05:00 "} />
                                 <ExerciseInfoCard title={"Warm Up"} img={require('../../../assets/icons/Girl.png')} Time={"05:00 "} />
                                 <ExerciseInfoCard title={"Jumping Jack"} img={require('../../../assets/icons/Girl.png')} Time={"05:00 "} />
                                 <ExerciseInfoCard title={"Warm Up"} img={require('../../../assets/icons/Girl.png')} Time={"05:00 "} />
-                                <ExerciseInfoCard title={"Jumping Jack"} img={require('../../../assets/icons/Girl.png')} Time={"05:00 "} />
+                                <ExerciseInfoCard title={"Jumping Jack"} img={require('../../../assets/icons/Girl.png')} Time={"05:00 "} /> */}
                             </View>
                             <View style={{ position: "absolute", bottom: "4%", width: "100%" }}>
                                 <PrimaryButton onPress={() => navigation.navigate(SCREENS.WODKOUTDETAILS)} containerStyle={{ width: "80%", alignSelf: "center" }} title={'Start Workout'} />

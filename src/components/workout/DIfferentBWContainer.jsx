@@ -6,11 +6,12 @@ import { FONTS } from '../../constants/Fonts'
 import { SCREENS } from '../../constants/Screens'
 import { useNavigation } from '@react-navigation/native'
 
-const DIfferentBWContainer = ({ title, time, icon }) => {
+const DIfferentBWContainer = ({ moreInfo, title, time, icon }) => {
     const navigation = useNavigation();
+    console.log('moreInfo before navigation:', moreInfo);
 
     return (
-        <TouchableOpacity onPress={() => navigation.navigate(SCREENS.WORLOUTINFO)} style={{ display: "flex", flexDirection: "row", alignItems: "center", backgroundColor: "white", elevation: 3, marginVertical: 15, marginHorizontal: "5%", borderRadius: 15, padding: "3%" }}>
+        <TouchableOpacity onPress={() => navigation.navigate(SCREENS.WORLOUTINFO, {moreInfo})} style={{ display: "flex", flexDirection: "row", alignItems: "center", backgroundColor: "white", elevation: 3, marginVertical: 15, marginHorizontal: "5%", borderRadius: 15, padding: "3%" }}>
             {icon}
             <View style={{ marginLeft: "5%" }}>
                 <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_BOLD, color: 'black', marginBottom: "4%" }}>{title}</LargeText>
