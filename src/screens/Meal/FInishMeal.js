@@ -1,14 +1,40 @@
 import {StyleSheet, Text, View, Dimensions} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import FinsihWorkOut from '../../../assets/icons/FinishWorkOut.svg';
 import TextH4 from '../../components/Text/TextH4';
 import SmallText from '../../components/Text/SmallText';
 import PrimaryButton from '../../components/Button/PrimaryButton';
 import {SCREENS} from '../../constants/Screens';
 import {Image} from 'react-native';
+import {launchImageLibrary} from 'react-native-image-picker';
 const {width, height} = Dimensions.get('window');
+import StarFill from '../../../assets/images/Star35.svg'
+import Star from '../../../assets/images/Star37.svg'
+import { TextInput } from 'react-native';
+
 
 const FlnishMeal = ({navigation}) => {
+  // const [modalVisible, setModalVisible] = useState(false);
+  const [photoResult, setPhotoResult] = useState(null);
+  const [galleryPhoto, setGalleryPhoto] = useState();
+
+  const OpenGallery = async () => {
+    try {
+      // setPhoto(false)
+      const result = await launchImageLibrary(options);
+      const data = result.assets[0].uri;
+      setPhotoResult(
+        result && result.assets && result.assets[0] ? result.assets[0] : null,
+      );
+      setGalleryPhoto(data);
+      // setPhoto(true);
+    } catch (error) {
+      setPhotoResult(null);
+      console.log(error, 'error');
+      // setPhoto(false)
+    }
+  };
+
   return (
     <View style={{width: width, height: height, backgroundColor: 'white'}}>
       <View style={styles.imageContainer}>
@@ -38,6 +64,7 @@ const FlnishMeal = ({navigation}) => {
         <PrimaryButton
           containerStyle={{width: width - 30}}
           title={'Upload photos'}
+          onPress={OpenGallery}
         />
       </View>
 
@@ -50,10 +77,21 @@ const FlnishMeal = ({navigation}) => {
         </SmallText>
         {/* <SmallText style={{ width: "80%", textAlign: "center", marginTop: 7, }}>-Jack Lalanne</SmallText> */}
       </View>
-      <View style={{alignItems: 'center', marginTop: '30%'}}>
+      <View style={styles.rating}>
+        <StarFill />
+        <StarFill />
+        <Star />
+        <Star />
+        <Star />
+      </View>
+
+      <View style={{paddingHorizontal: 20, marginTop: 20}}>
+        <TextInput placeholder='Comment' multiline style={styles.commentBox} />
+      </View>
+      <View style={{alignItems: 'center', marginTop: '10%'}}>
         <PrimaryButton
           containerStyle={{width: width - 30}}
-          title={'Back To Home'}
+          title={'Update Meal'}
           onPress={() => navigation.navigate(SCREENS.MEALHOME)}
         />
       </View>
@@ -68,7 +106,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
-    marginTop: height / 8,
+    marginTop: 50,
   },
 
   imageBox: {
@@ -83,4 +121,20 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
+
+  rating: {
+    flexDirection: 'row',
+    paddingHorizontal: 20,
+    justifyContent: 'center',
+    marginTop: 30,
+    gap: 16
+  },
+
+  commentBox: {
+    borderWidth: 1,
+    borderColor: '#173430',
+    height: 90,
+    borderRadius: 20,
+    padding: 10
+  }
 });

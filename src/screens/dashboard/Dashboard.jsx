@@ -67,6 +67,7 @@ function Dashboard(props) {
       setFilteredRecommendedMeals(filterMealsBasedOnType('LUNCH'));
     else if (meals === 'DINNER')
       setFilteredRecommendedMeals(filterMealsBasedOnType('DINNER'));
+    else setFilteredRecommendedMeals(recommendedMeals)
   }, [meals, recommendedMeals]);
 
   return (
