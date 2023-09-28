@@ -7,8 +7,10 @@ import { FONTS } from '../../constants/Fonts'
 import { SCREENS } from '../../constants/Screens'
 import { useNavigation } from '@react-navigation/native'
 
-const WorkOutForms = ({ title, NOfExercise, Time, icon }) => {
+const WorkOutForms = ({ moreInfo, title, NOfExercise, Time, icon }) => {
     const navigation = useNavigation();
+
+    console.log("hehe", moreInfo);
     return (
         <View style={styles.mainConatiner}>
             <View>
@@ -17,7 +19,7 @@ const WorkOutForms = ({ title, NOfExercise, Time, icon }) => {
                     <SmallText style={{ fontFamily: FONTS.FONT_POPPINS_REGULAR }}>{NOfExercise} Exercises | </SmallText>
                     <SmallText>{Time}</SmallText>
                 </View>
-                <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate(SCREENS.WORLOUTINFO)}>
+                <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate(SCREENS.WORLOUTINFO, {moreInfo})}>
                     <Text style={styles.BtnText}>View More</Text>
                 </TouchableOpacity>
             </View>

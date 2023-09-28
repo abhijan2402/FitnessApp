@@ -29,7 +29,6 @@ function WorkOutInfo(props) {
 
     const route = useRoute();
     const moreInfo = route.params?.moreInfo;
-    console.log("dsadsdasdsadasdas",moreInfo?.workout_id.exercises[0]);
 
     return (
         <GestureHandlerRootView style={{flex:1}}>

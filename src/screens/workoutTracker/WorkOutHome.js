@@ -280,7 +280,7 @@ function WorkOutHome(props) {
                               {apiTempData && apiTempData?.data && apiTempData?.data.length>0 ?
                               <>
                               {apiTempData?.data?.map((item,ind)=>(
-                                <WorkOutForms key={item._id} title={item.workout_id.workout_name} NOfExercise={item.workout_id.exercises.length} Time={"35mins"} icon={<BoyJumping width={75} height={105} />} />
+                                <WorkOutForms  moreInfo={item} key={item._id} title={item.workout_id.workout_name} NOfExercise={item.workout_id.exercises.length} Time={"35mins"} icon={<BoyJumping width={75} height={105} />} />
                               ))}
 
                               </> : null
