@@ -29,6 +29,7 @@ const MealScheduler = ({ navigation }) => {
   const route = useRoute();
   const { filteredRecommendedMeals } = route?.params;
   console.log(filteredRecommendedMeals, "I am meal")
+
   function filterMealsBasedOnType(type) {
     const filteredMeals = filteredRecommendedMeals.filter(
       meal => meal.meal_period === type,
@@ -36,16 +37,16 @@ const MealScheduler = ({ navigation }) => {
     return filteredMeals;
   }
   const breakfastMeal = useMemo(() => {
-    return filterMealsBasedOnType('breakfast');
+    return filterMealsBasedOnType('BREAKFAST');
   });
   const lunchfastMeal = useMemo(() => {
-    return filterMealsBasedOnType('lunch');
+    return filterMealsBasedOnType('LUNCH');
   });
   const dinnerfastMeal = useMemo(() => {
-    return filterMealsBasedOnType('dinner');
+    return filterMealsBasedOnType('DINNER');
   });
   const snackfastMeal = useMemo(() => {
-    return filterMealsBasedOnType('snack');
+    return filterMealsBasedOnType('SNACKS');
   });
 
   return (
@@ -68,12 +69,12 @@ const MealScheduler = ({ navigation }) => {
           </SolidContainer>
         </View>
         <CustomDatePicker />
-        {/* <SubSectionTitle
-          mealgoal={`${breakfastMeal.length || 0} meals | 230 calories`}
+        <SubSectionTitle
+          mealgoal={`${breakfastMeal.length || 0} meals`}
           title={'Breakfast'}
-        /> */}
+        />
         <View>
-          {filteredRecommendedMeals.map(item => (
+          {breakfastMeal.map(item => (
             <MealContainerNew
               key={item._id}
               colors={['rgba(146, 163, 253, 0.2)', 'rgba(157, 206, 255, 0.2)']}
@@ -89,64 +90,61 @@ const MealScheduler = ({ navigation }) => {
             />
           ))}
         </View>
-        {/* <SubSectionTitle
-          mealgoal={`${lunchfastMeal.length || 0} meals | 500 calories`}
+        <SubSectionTitle
+          mealgoal={`${lunchfastMeal.length || 0} meals`}
           title={'Lunch'}
-        /> */}
-        {/* <View>
+        />
+        <View>
           {lunchfastMeal.map(item => (
             <MealContainerNew
               key={item._id}
               colors={['rgba(146, 163, 253, 0.2)', 'rgba(157, 206, 255, 0.2)']}
               title={item && item.meal ? item.meal.name : ''}
-              time={getTimeInAMPMFormat(new Date(item.meal_time))}
+              time={getTimeInAMPMFormat(new Date(item?.meal?.created_time))}
               containerStyle={{ width: '98%', alignSelf: 'center' }}
-              img={require('../../../assets/images/sushi.png')}
-              onPress={() =>
-                navigation.navigate(SCREENS.DIETDETAILS, { id: item._id })
+              img={{ uri: item?.meal?.meal_image }} onPress={() =>
+                navigation.navigate(SCREENS.DIETDETAILS, { id: item._id, meal: item })
               }
             />
           ))}
-        </View> */}
-        {/* <SubSectionTitle
-          mealgoal={`${snackfastMeal.length || 0} meals | 140 calories`}
+        </View>
+        <SubSectionTitle
+          mealgoal={`${snackfastMeal.length || 0} meals`}
           title={'Snack'}
-        /> */}
-        {/* <View>
+        />
+        <View>
           {snackfastMeal.map(item => (
             <MealContainerNew
               key={item._id}
               colors={['rgba(146, 163, 253, 0.2)', 'rgba(157, 206, 255, 0.2)']}
               title={item && item.meal ? item.meal.name : ''}
-              time={getTimeInAMPMFormat(new Date(item.meal_time))}
+              time={getTimeInAMPMFormat(new Date(item?.meal?.created_time))}
               containerStyle={{ width: '98%', alignSelf: 'center' }}
-              img={require('../../../assets/images/sushi.png')}
-              onPress={() =>
-                navigation.navigate(SCREENS.DIETDETAILS, { id: item._id })
+              img={{ uri: item?.meal?.meal_image }} onPress={() =>
+                navigation.navigate(SCREENS.DIETDETAILS, { id: item._id, meal: item })
               }
-            /> */}
-        {/* ))} */}
-        {/* </View> */}
-        {/* <SubSectionTitle
-          mealgoal={`${dinnerfastMeal.length || 0} meals | 120 calories`}
+            />
+          ))}
+        </View>
+        <SubSectionTitle
+          mealgoal={`${dinnerfastMeal.length || 0} meals`}
           title={'Dinner'}
-        /> */}
-        {/* <View>
+        />
+        <View>
           {dinnerfastMeal.map(item => (
             <MealContainerNew
               key={item._id}
               colors={['rgba(146, 163, 253, 0.2)', 'rgba(157, 206, 255, 0.2)']}
               title={item && item.meal ? item.meal.name : ''}
-              time={getTimeInAMPMFormat(new Date(item.meal_time))}
+              time={getTimeInAMPMFormat(new Date(item?.meal?.created_time))}
               containerStyle={{ width: '98%', alignSelf: 'center' }}
-              img={require('../../../assets/images/sushi.png')}
-              onPress={() =>
-                navigation.navigate(SCREENS.DIETDETAILS, { id: item._id })
+              img={{ uri: item?.meal?.meal_image }} onPress={() =>
+                navigation.navigate(SCREENS.DIETDETAILS, { id: item._id, meal: item })
               }
             />
           ))}
         </View>
-        <TextH4 style={{ fontSize: 16, fontWeight: '600', padding: 10 }}>
+        {/* <TextH4 style={{ fontSize: 16, fontWeight: '600', padding: 10 }}>
           Today Meal Nutritions
         </TextH4>
         <View style={{ marginBottom: 20 }}>

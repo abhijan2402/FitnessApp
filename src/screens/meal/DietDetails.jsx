@@ -52,7 +52,7 @@ const tags = [
 function DietDetails(props) {
     const route = useRoute()
     const { meal } = route.params
-    // console.log(meal, "Heyy");
+    console.log(meal, "Heyy");
     // const {id} = route.params;
     const navigation = useNavigation();
     const bottomSheetRef = useRef(null);

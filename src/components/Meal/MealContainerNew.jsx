@@ -21,7 +21,7 @@ function MealContainerNew({ containerStyle, img, title = "", time = "", colors, 
                 <TextMedium>{title}</TextMedium>
                 <SmallText>{time}</SmallText>
             </View>
-            <CicrleArrowRight width={30} height={30} onPress={() => navigation.navigate(SCREENS.DIETDETAILS)} />
+            <CicrleArrowRight width={30} height={30} />
         </DataContainer>
     );
 }
