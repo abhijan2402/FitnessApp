@@ -21,6 +21,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import BottomSheet from '../../components/container/BottomSheet';
 import useLayout from '../../hooks/useLayout';
 import { useRoute } from '@react-navigation/native';
+import { TouchableOpacity } from 'react-native';
 
 function WorkOutInfo(props) {
     const navigation = useNavigation();
@@ -62,7 +63,7 @@ function WorkOutInfo(props) {
                                 {moreInfo && moreInfo?.workout_id?.exercises && moreInfo?.workout_id?.exercises.length > 0 ?
                               <>
                                {moreInfo?.workout_id?.exercises.map((item,ind)=>(
-                                <ExerciseInfoCard title={item.name} img={item.image} Time={`${item.repetition} x`} />
+                                <TouchableOpacity onPress={()=> navigation.navigate(SCREENS.WODKOUTDETAILS, {item})}><ExerciseInfoCard title={item.name} img={item.image} Time={`${item.repetition} x`} /></TouchableOpacity>
                                 ))}
                                   </> : null
                               }
@@ -74,7 +75,7 @@ function WorkOutInfo(props) {
                                 <ExerciseInfoCard title={"Jumping Jack"} img={require('../../../assets/icons/Girl.png')} Time={"05:00 "} /> */}
                             </View>
                             <View style={{ position: "absolute", bottom: "4%", width: "100%" }}>
-                                <PrimaryButton onPress={() => navigation.navigate(SCREENS.WODKOUTDETAILS)} containerStyle={{ width: "80%", alignSelf: "center" }} title={'Start Workout'} />
+                                <PrimaryButton onPress={() => navigation.navigate(SCREENS.WODKOUTDETAILS, {moreInfo})} containerStyle={{ width: "80%", alignSelf: "center" }} title={'Start Workout'} />
                             </View>
                         </View>
                     </BottomSheet>

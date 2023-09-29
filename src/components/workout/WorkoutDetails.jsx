@@ -15,7 +15,7 @@ import FireSvg from '../../../assets/icons/Calories-Icon.svg';
 import TextMedium from '../Text/TextMedium';
 import { useState } from 'react';
 import PrimaryButton from '../Button/PrimaryButton';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { SCREENS } from '../../constants/Screens';
 const stepData = [
     {
@@ -59,6 +59,11 @@ function WorkoutDetails(props) {
     const navigation = useNavigation();
 
     const [selectedScrollIndex, setSelectedScrollIndex] = useState(1);
+
+    const route = useRoute();
+    const workOutDetail = route.params?.item;
+    console.log("egergedrgdrfgf", workOutDetail);
+    
     return (
         <ScreenContainer scroll={true}>
             <TextCenterHeader
@@ -67,7 +72,7 @@ function WorkoutDetails(props) {
             />
             <View style={styles.videoContainer}>
                 <VideoPlayer
-                    video={{ uri: 'https://res.cloudinary.com/codecafe/video/upload/v1649680754/6HR4pEcXoQw_720_gdkmxr.mp4' }}
+                    video={{ uri: workOutDetail.ytlink1 }}
                     videoWidth={300}
                     videoHeight={180}
                     resizeMode='contain'
@@ -75,25 +80,25 @@ function WorkoutDetails(props) {
                     fullScreenOnLongPress={true}
                 />
             </View>
-            <LargeText style={styles.boldText}>Jumping Jacks</LargeText>
-            <SmallText style={{ marginBottom: 30 }}>{'Easy'} | {'390 Calories Burn'}</SmallText>
+            <LargeText style={styles.boldText}>{workOutDetail.name}</LargeText>
+            <SmallText style={{ marginBottom: 30 }}>{workOutDetail.difficulty_level} | {`${workOutDetail.calorie_burn} Calories Burn`}</SmallText>
             <LargeText style={{ ...styles.boldText, marginBottom: 5 }}>Descriptions</LargeText>
             <SmallText style={{ marginBottom: 20 }}>
-                {description}
+                {workOutDetail.description}
                 <SmallText style={{ color: COLORS.PRIMARY_BUTTON_GRADIENT.BLUE1 }}>Read More ...</SmallText>
             </SmallText>
             <LargeText style={{ ...styles.boldText, marginBottom: 15 }}>How To Do It</LargeText>
             <View style={{ marginBottom: 30 }}>
                 {
-                    stepData.map((item, index) =>
+                    workOutDetail?.steps?.map((item, index) =>
                         <ActivePassiveList
                             width={340}
-                            key={index}
-                            id={`${index < 10 ? '0' + (index + 1) : index}`}
+                            key={item.__id}
+                            // id={`${index < 10 ? '0' + (index + 1) : index}`}
                             isComplete={item.isComplete}
                             title={item.title}
-                            subtitle={item.subtitle}
-                            showLine={(index === stepData.length - 1) ? false : true}
+                            subtitle={item.description}
+                            // showLine={(index === stepData.length - 1) ? false : true}
                         />)
                 }
             </View>
