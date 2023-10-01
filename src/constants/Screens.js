@@ -33,6 +33,8 @@ export const SCREENS = {
     SUBSCRIPTION: 'Subscription',
     EDITPROFILE: 'EditProfile',
     ADDITIONALINFO: "AdditionalInfo",
+    MAINCALORIE: 'MainCalorie',
+
 
     //meal
     MEALHOME: "MealHome",
@@ -45,6 +47,7 @@ export const SCREENS = {
     SLEEPTRACKER: "SleepTracker",
     SLEEPSCHEDULER: "SleepScheduler",
     REMINDERS: 'Reminders',
+    SLEEPFINALMODAL: "SleepFinalModal",
 
     //PROGRESS
     PROGRESSPHOTO: "ProgressPhoto",
