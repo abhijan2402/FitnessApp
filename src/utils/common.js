@@ -62,9 +62,20 @@ export function formatDate(isoDateString) {
   const day = date.getDate();
   const month = date.getMonth() + 1; // Note: Months are zero-based (0 = January)
   const year = date.getFullYear();
-  
+
   // Format the date components into "d/m/yyyy" format
   const formattedDate = `${day}/${month}/${year}`;
-  
+
+  return formattedDate;
+}
+
+export function dateFormat(isoDateString) {
+  const date = new Date(isoDateString);
+
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString();
+  const day = date.getDate().toString();
+
+  const formattedDate = `${year}-${month}-${day}`;
   return formattedDate;
 }

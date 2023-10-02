@@ -84,8 +84,9 @@ export async function updateUser(updateUser){
         data.append('profile_image',updateUser?.image)
     return await generateRequest("/update-user-profile","PUT",data)
 }
-export async function getUserRecommendedMeal(id){
-    return await generateRequest("/get-assigned-Meal/","GET");
+export async function getUserRecommendedMeal(date){
+    // return await generateRequest("/get-assigned-Meal/","GET");
+    return await generateRequest("/get-assigned-Meal?type=date&value="+date,"GET");
 }
 export async function getMealDetails(id){
  return await generateRequest("/fetch-meal/"+id)

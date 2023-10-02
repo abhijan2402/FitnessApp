@@ -19,7 +19,7 @@ import {
   getMealDetails,
   getUserRecommendedMeal,
 } from '../../backend/utilFunctions';
-import { getTimeInAMPMFormat } from '../../utils/common';
+import { dateFormat, getTimeInAMPMFormat } from '../../utils/common';
 import { GlobalContext } from '../../../App';
 const { width, height } = Dimensions.get('window');
 
@@ -39,7 +39,9 @@ const MealHome = () => {
   }
 
   useEffect(() => {
-    getUserRecommendedMeal()
+    const currentDate = new Date();
+
+    getUserRecommendedMeal(dateFormat(currentDate))
       .then(res => {
         setRecommendedMeals(res?.data);
 

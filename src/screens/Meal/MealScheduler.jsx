@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import {View, Text, StyleSheet, Dimensions} from 'react-native';
 import React from 'react';
 import ScreenContainer from '../../components/container/ScreenContainer';
 import TextH4 from '../../components/Text/TextH4';
@@ -21,14 +21,14 @@ import {
   MealScheduleDinner,
   MealScheduleOther,
 } from '../../data/Mealschedule';
-import { SCREENS } from '../../constants/Screens';
-import { useRoute } from '@react-navigation/native';
-import { getTimeInAMPMFormat } from '../../utils/common';
-import { useMemo } from 'react';
-const MealScheduler = ({ navigation }) => {
+import {SCREENS} from '../../constants/Screens';
+import {useRoute} from '@react-navigation/native';
+import {getTimeInAMPMFormat} from '../../utils/common';
+import {useMemo} from 'react';
+const MealScheduler = ({navigation}) => {
   const route = useRoute();
-  const { filteredRecommendedMeals } = route?.params;
-  console.log(filteredRecommendedMeals, "I am meal")
+  const {filteredRecommendedMeals} = route?.params;
+  console.log(filteredRecommendedMeals, 'I am meal');
 
   function filterMealsBasedOnType(type) {
     const filteredMeals = filteredRecommendedMeals.filter(
@@ -61,7 +61,7 @@ const MealScheduler = ({ navigation }) => {
           <SolidContainer containerStyle={styles.solidContainerStyle}>
             <Back width={16} height={16} />
           </SolidContainer>
-          <View style={{ marginLeft: 15 }}>
+          <View style={{marginLeft: 15}}>
             <TextH4>Meal Schedule</TextH4>
           </View>
           <SolidContainer containerStyle={styles.solidContainerStyle}>
@@ -80,13 +80,15 @@ const MealScheduler = ({ navigation }) => {
               colors={['rgba(146, 163, 253, 0.2)', 'rgba(157, 206, 255, 0.2)']}
               title={item && item.meal?.name ? item.meal?.name : 'Meal'}
               time={getTimeInAMPMFormat(new Date(item?.meal?.created_time))}
-              containerStyle={{ width: '98%', alignSelf: 'center' }}
-              img={{ uri: item?.meal?.meal_image }}
+              containerStyle={{width: '98%', alignSelf: 'center'}}
+              img={{uri: item?.meal?.meal_image}}
               // img={require('../../../assets/images/sushi.png')}
               onPress={() => {
-                navigation.navigate(SCREENS.DIETDETAILS, { id: item._id, meal: item })
-              }
-              }
+                navigation.navigate(SCREENS.DIETDETAILS, {
+                  id: item._id,
+                  meal: item,
+                });
+              }}
             />
           ))}
         </View>
@@ -101,9 +103,13 @@ const MealScheduler = ({ navigation }) => {
               colors={['rgba(146, 163, 253, 0.2)', 'rgba(157, 206, 255, 0.2)']}
               title={item && item.meal ? item.meal.name : ''}
               time={getTimeInAMPMFormat(new Date(item?.meal?.created_time))}
-              containerStyle={{ width: '98%', alignSelf: 'center' }}
-              img={{ uri: item?.meal?.meal_image }} onPress={() =>
-                navigation.navigate(SCREENS.DIETDETAILS, { id: item._id, meal: item })
+              containerStyle={{width: '98%', alignSelf: 'center'}}
+              img={{uri: item?.meal?.meal_image}}
+              onPress={() =>
+                navigation.navigate(SCREENS.DIETDETAILS, {
+                  id: item._id,
+                  meal: item,
+                })
               }
             />
           ))}
@@ -119,9 +125,13 @@ const MealScheduler = ({ navigation }) => {
               colors={['rgba(146, 163, 253, 0.2)', 'rgba(157, 206, 255, 0.2)']}
               title={item && item.meal ? item.meal.name : ''}
               time={getTimeInAMPMFormat(new Date(item?.meal?.created_time))}
-              containerStyle={{ width: '98%', alignSelf: 'center' }}
-              img={{ uri: item?.meal?.meal_image }} onPress={() =>
-                navigation.navigate(SCREENS.DIETDETAILS, { id: item._id, meal: item })
+              containerStyle={{width: '98%', alignSelf: 'center'}}
+              img={{uri: item?.meal?.meal_image}}
+              onPress={() =>
+                navigation.navigate(SCREENS.DIETDETAILS, {
+                  id: item._id,
+                  meal: item,
+                })
               }
             />
           ))}
@@ -130,16 +140,20 @@ const MealScheduler = ({ navigation }) => {
           mealgoal={`${dinnerfastMeal.length || 0} meals`}
           title={'Dinner'}
         />
-        <View>
+        <View style={{marginBottom: 30}}>
           {dinnerfastMeal.map(item => (
             <MealContainerNew
               key={item._id}
               colors={['rgba(146, 163, 253, 0.2)', 'rgba(157, 206, 255, 0.2)']}
               title={item && item.meal ? item.meal.name : ''}
               time={getTimeInAMPMFormat(new Date(item?.meal?.created_time))}
-              containerStyle={{ width: '98%', alignSelf: 'center' }}
-              img={{ uri: item?.meal?.meal_image }} onPress={() =>
-                navigation.navigate(SCREENS.DIETDETAILS, { id: item._id, meal: item })
+              containerStyle={{width: '98%', alignSelf: 'center'}}
+              img={{uri: item?.meal?.meal_image}}
+              onPress={() =>
+                navigation.navigate(SCREENS.DIETDETAILS, {
+                  id: item._id,
+                  meal: item,
+                })
               }
             />
           ))}
@@ -167,7 +181,7 @@ const MealScheduler = ({ navigation }) => {
             progress={150}
           />
         </View> */}
-      </ScreenContainer >
+      </ScreenContainer>
       {/* <FloatingGradingButton colors={['rgba(197, 139, 242, 1)', 'rgba(238, 164, 206, 1)']}>
                 <Add width={25} height={25} />
             </FloatingGradingButton> */}
