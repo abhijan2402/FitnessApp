@@ -1,5 +1,5 @@
 import {View, Text, StyleSheet, Dimensions} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import ScreenContainer from '../../components/container/ScreenContainer';
 import TextH4 from '../../components/Text/TextH4';
 import SolidContainer from '../../components/container/SolidContainer';
@@ -23,12 +23,22 @@ import {
 } from '../../data/Mealschedule';
 import {SCREENS} from '../../constants/Screens';
 import {useRoute} from '@react-navigation/native';
-import {getTimeInAMPMFormat} from '../../utils/common';
+import {dateFormat, getTimeInAMPMFormat} from '../../utils/common';
 import {useMemo} from 'react';
+import {getUserRecommendedMeal} from '../../backend/utilFunctions';
 const MealScheduler = ({navigation}) => {
   const route = useRoute();
-  const {filteredRecommendedMeals} = route?.params;
-  console.log(filteredRecommendedMeals, 'I am meal');
+  // const {filteredRecommendedMeals} = route?.params;
+  // console.log(filteredRecommendedMeals, 'I am meal');
+  const [filteredRecommendedMeals, setFilteredRecommendedMeals] = useState([]);
+  const [date, setDate] = useState(dateFormat(new Date()));
+
+  useEffect(() => {
+    getUserRecommendedMeal(date).then(res => {
+      setFilteredRecommendedMeals(res?.data);
+      console.log(res?.data);
+    });
+  }, [date]);
 
   function filterMealsBasedOnType(type) {
     const filteredMeals = filteredRecommendedMeals.filter(
@@ -68,7 +78,7 @@ const MealScheduler = ({navigation}) => {
             <TwoDot width={16} height={16} />
           </SolidContainer>
         </View>
-        <CustomDatePicker />
+        <CustomDatePicker setDate={setDate} />
         <SubSectionTitle
           mealgoal={`${breakfastMeal.length || 0} meals`}
           title={'Breakfast'}
