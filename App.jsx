@@ -16,6 +16,7 @@ import Name from './src/screens/newauth/Name';
 import Email from './src/screens/newauth/Email';
 import Otp from './src/screens/newauth/OTP';
 import DOB from './src/screens/newauth/DOB';
+import Password from './src/screens/newauth/Password';
 
 export const GlobalContext = createContext();
 
@@ -67,7 +68,8 @@ function App() {
     // <Name />
     // <Email />
     // <Otp />
-    <DOB />
+    // <DOB />
+    <Password />
 
   );
 }
