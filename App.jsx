@@ -12,6 +12,8 @@ import { getUser } from './src/backend/utilFunctions';
 import SIgnin from './src/screens/newauth/SIgnin';
 import ProfileImage from './src/screens/newauth/ProfileImage';
 import Welcome from './src/screens/newauth/Welcome';
+import Name from './src/screens/newauth/Name';
+import Email from './src/screens/newauth/Email';
 
 export const GlobalContext = createContext();
 
@@ -59,6 +61,8 @@ function App() {
     <SIgnin />
     // <ProfileImage />
     // <Welcome />
+    // <Name />
+    // <Email />
 
   );
 }

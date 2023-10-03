@@ -4,46 +4,35 @@ import SlideHeader from '../../components/header/SlideHeader';
 import Step from '../../components/new-auth/Step';
 import NewButtob from '../../components/Button/NewButtob';
 import {TextInput} from 'react-native';
-import Flag from '../../../assets/images/country-flag.svg';
-import {Dimensions} from 'react-native';
+import { Dimensions } from 'react-native';
 
 const {width} = Dimensions.get('window');
 
-const SIgnin = () => {
+const Name = () => {
   return (
     <View style={styles.container}>
-      <SlideHeader next={true} />
-      <Step text="STEP 1/12" />
-      <Text style={styles.heading}>Let’s start with your mobile number</Text>
-      <Text style={styles.subHeading}>Number we can use to reach you</Text>
+      <SlideHeader />
+      <Step text="STEP 5/12" />
+      <Text style={styles.heading}>Entre your Name</Text>
 
       <View style={styles.inputContainer}>
-        <View style={{flexDirection: 'row', gap: 11}}>
-          <Flag />
-          <Text style={styles.countryCode}>+62</Text>
-        </View>
-        <TextInput
-          placeholder="9093XXXXXX"
-          style={styles.input}
-          keyboardType="numeric"
-        />
+        <TextInput style={styles.input} />
       </View>
       <View
         style={{
-          marginTop: 70,
           marginTop: 150,
           position: 'absolute',
           bottom: 40,
           width,
           alignItems: 'center',
         }}>
-        <NewButtob title={'Verify Now'} />
+        <NewButtob title={'Continue'} />
       </View>
     </View>
   );
 };
 
-export default SIgnin;
+export default Name;
 
 const styles = StyleSheet.create({
   container: {
@@ -65,14 +54,6 @@ const styles = StyleSheet.create({
     gap: 20,
   },
 
-  countryCode: {
-    color: '#2D3142',
-    fontFamily: 'Rubik',
-    fontSize: 16,
-    fontWeight: '400',
-    letterSpacing: 0.4,
-  },
-
   input: {
     height: '100%',
 
@@ -81,7 +62,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '400',
     letterSpacing: 0.4,
-    width: 170,
+    width: '100%',
   },
 
   heading: {
@@ -92,17 +73,5 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     lineHeight: 32,
     width: 281,
-  },
-
-  subHeading: {
-    color: '#4C5980',
-    textAlign: 'center',
-    fontFamily: 'Rubik',
-    fontSize: 16,
-    fontStyle: 'normal',
-    fontWeight: '400',
-    lineHeight: 28,
-    letterSpacing: 0.2,
-    marginTop: 12,
   },
 });
