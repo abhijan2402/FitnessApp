@@ -10,6 +10,7 @@ import { getDataFromAsyncStorage } from './src/utils/common';
 import { storageKeyName } from './src/constants/Data';
 import { getUser } from './src/backend/utilFunctions';
 import SIgnin from './src/screens/newauth/SIgnin';
+import ProfileImage from './src/screens/newauth/ProfileImage';
 
 export const GlobalContext = createContext();
 
@@ -54,7 +55,8 @@ function App() {
     //     </Stack.Navigator>
     //   </NavigationContainer>
     // </GlobalContext.Provider>
-    <SIgnin />
+    // <SIgnin />
+    <ProfileImage />
   );
 }
 export default App;
