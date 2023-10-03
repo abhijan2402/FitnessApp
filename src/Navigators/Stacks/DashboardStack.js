@@ -14,6 +14,10 @@ import WorkoutStack from './WorkoutStack';
 import MealStack from './MealStack';
 import ProgressStack from './ProgressStask';
 import MainCalorie from '../../screens/Calories/MainCalorie';
+import MealScheduler from '../../screens/Meal/MealScheduler';
+import DietDetails from '../../screens/Meal/DietDetails';
+import FlnishMeal from '../../screens/Meal/FInishMeal';
+import MealHome from '../../screens/Meal/MealHome';
 
 const Stack = createNativeStackNavigator();
 
@@ -33,6 +37,14 @@ function DashboardStack() {
             <Stack.Screen name={SCREENS.MEALSTACK} component={MealStack} />
             <Stack.Screen name={SCREENS.PROGRESSTACK} component={ProgressStack} />
             <Stack.Screen name={SCREENS.MAINCALORIE} component={MainCalorie} />
+            <Stack.Screen name={SCREENS.MEALSCHEDULER} component={MealScheduler} />
+            <Stack.Screen name={SCREENS.DIETDETAILS} component={DietDetails} />
+            <Stack.Screen name={SCREENS.MEALFINAL} component={FlnishMeal} />
+            <Stack.Screen name={SCREENS.MEALHOME} component={MealHome} />
+
+
+
+
 
 
         </Stack.Navigator>
