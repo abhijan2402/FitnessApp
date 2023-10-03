@@ -14,6 +14,8 @@ import ProfileImage from './src/screens/newauth/ProfileImage';
 import Welcome from './src/screens/newauth/Welcome';
 import Name from './src/screens/newauth/Name';
 import Email from './src/screens/newauth/Email';
+import Otp from './src/screens/newauth/OTP';
+import DOB from './src/screens/newauth/DOB';
 
 export const GlobalContext = createContext();
 
@@ -58,11 +60,14 @@ function App() {
     //     </Stack.Navigator>
     //   </NavigationContainer>
     // </GlobalContext.Provider>
-    <SIgnin />
+
+    // <SIgnin /> 
     // <ProfileImage />
     // <Welcome />
     // <Name />
     // <Email />
+    // <Otp />
+    <DOB />
 
   );
 }
