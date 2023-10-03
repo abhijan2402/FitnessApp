@@ -4,7 +4,7 @@ import { getDataFromAsyncStorage } from "../utils/common";
 
 
 const baseURL = 'https://ec2-15-206-239-93.ap-south-1.compute.amazonaws.com/api';
-async function getBaseHeaders(){
+async function getBaseHeaders() {
     const baseHeaders = {
         Accept: 'application/json; charset=utf-8',
         'Access-Control-Allow-Origin': '*',
@@ -14,24 +14,24 @@ async function getBaseHeaders(){
     baseHeaders['Authorization'] = `Bearer ${jwt}`;
     return baseHeaders;
 }
-export async function generateRequest(url,method,body,headers={}){
+export async function generateRequest(url, method, body, headers = {}) {
     const config = {
-        method:method,
+        method: method,
         sslPinning: {
             certs: ['certificat'],
         },
-        headers:{...(await getBaseHeaders()),...headers}
+        headers: { ...(await getBaseHeaders()), ...headers }
     }
-    if((method === 'POST' || method === 'PUT' || method === 'DELETE') && body)
+    if ((method === 'POST' || method === 'PUT' || method === 'DELETE') && body)
         config.body = body;
-    
-    return new Promise(async(resolve,reject)=>{
-        try{
-            let result = await fetch(baseURL+url,config)
+
+    return new Promise(async (resolve, reject) => {
+        try {
+            let result = await fetch(baseURL + url, config)
             const data = JSON.parse(result.bodyString)
             resolve(data);
         }
-        catch(err){
+        catch (err) {
             const error = JSON.parse(err.bodyString)
             reject(error)
         }
@@ -41,7 +41,7 @@ export async function generateRequest(url,method,body,headers={}){
 export async function getOtp(phone) {
     const data = new FormData();
     data.append('phone', phone)
-    return await generateRequest("/sendotp","POST",data)
+    return await generateRequest("/sendotp", "POST", data)
 }
 export async function registerUser(user) {
     const data = new FormData();
@@ -57,47 +57,59 @@ export async function registerUser(user) {
     data.append('weight', user.weight)
     data.append('height', user.height)
     data.append('goal', 'improve shape')
-    data.append("profile_image",user.image);
-    return await generateRequest("/register-user","POST",data)
+    data.append("profile_image", user.image);
+    return await generateRequest("/register-user", "POST", data)
 }
 export async function loginUser(credentials) {
     const data = new FormData()
     data.append('email', credentials.email)
     data.append('password', credentials.password)
-    return await generateRequest("/login","POST",data)
+    return await generateRequest("/login", "POST", data)
 }
-export async function getUser(){
-    return await generateRequest("/get-user-detail","GET")
+export async function getUser() {
+    return await generateRequest("/get-user-detail", "GET")
 }
-export async function updateUser(updateUser){
+export async function updateUser(updateUser) {
     // return console.log('test', updateUser)
     const data = new FormData()
-    data.append('first_name',updateUser?.first_name)
-    data.append('last_name',updateUser?.last_name)
-    data.append('gender',updateUser?.gender)
-    data.append('dob',updateUser?.dob)
-    data.append('weight',updateUser?.weight?.toString())
-    data.append('height',updateUser?.height?.toString())
-    data.append('goal',updateUser?.goal)
-    
-    if(updateUser.image)
-        data.append('profile_image',updateUser?.image)
-    return await generateRequest("/update-user-profile","PUT",data)
+    data.append('first_name', updateUser?.first_name)
+    data.append('last_name', updateUser?.last_name)
+    data.append('gender', updateUser?.gender)
+    data.append('dob', updateUser?.dob)
+    data.append('weight', updateUser?.weight?.toString())
+    data.append('height', updateUser?.height?.toString())
+    data.append('goal', updateUser?.goal)
+
+    if (updateUser.image)
+        data.append('profile_image', updateUser?.image)
+    return await generateRequest("/update-user-profile", "PUT", data)
 }
-export async function getUserRecommendedMeal(date){
+export async function getUserRecommendedMeal(date) {
     // return await generateRequest("/get-assigned-Meal/","GET");
-    return await generateRequest("/get-assigned-Meal?type=date&value="+date,"GET");
+    return await generateRequest("/get-assigned-Meal?type=date&value=" + date, "GET");
 }
-export async function getMealDetails(id){
- return await generateRequest("/fetch-meal/"+id)
+export async function getMealDetails(id) {
+    return await generateRequest("/fetch-meal/" + id)
 }
-export async function forgotPassword(info){
+export async function forgotPassword(info) {
     const data = new FormData()
-    data.append('phone',info.phone)
-    data.append('hash',info.hash)
-    data.append('otp',info.otp)
-    data.append('email',info.email)
-    data.append('password',info.password)
-    data.append('confirm_password',info.confirmPassword)
-    return await generateRequest("/forget-password","PUT",data)
+    data.append('phone', info.phone)
+    data.append('hash', info.hash)
+    data.append('otp', info.otp)
+    data.append('email', info.email)
+    data.append('password', info.password)
+    data.append('confirm_password', info.confirmPassword)
+    return await generateRequest("/forget-password", "PUT", data)
+}
+
+
+
+export async function Updatemeal(info, mealid) {
+    const data = new FormData()
+    data.append('user_picked', "true")
+    data.append('comment', info.Comment)
+    data.append('rating', info.Rat)
+    data.append('meal_image_proof', info.Image)
+    console.log(data, "I AM DATA");
+    return await generateRequest(`/update-assigned-Meal-status/${mealid}`, "POST", data)
 }

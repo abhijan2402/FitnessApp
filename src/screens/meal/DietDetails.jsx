@@ -204,7 +204,7 @@ function DietDetails(props) {
                         }
                         <View style={{ paddingBottom: 90, paddingRight: 30 }}>
                             <PrimaryButton
-                                onPress={() => navigation.navigate(SCREENS.MEALFINAL)}
+                                onPress={() => navigation.navigate(SCREENS.MEALFINAL, { mealid: meal?._id })}
                                 title={'Add to Breakfast Meal'}
                             />
                         </View>
