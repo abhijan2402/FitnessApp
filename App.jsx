@@ -11,6 +11,7 @@ import { storageKeyName } from './src/constants/Data';
 import { getUser } from './src/backend/utilFunctions';
 import SIgnin from './src/screens/newauth/SIgnin';
 import ProfileImage from './src/screens/newauth/ProfileImage';
+import Welcome from './src/screens/newauth/Welcome';
 
 export const GlobalContext = createContext();
 
@@ -55,8 +56,10 @@ function App() {
     //     </Stack.Navigator>
     //   </NavigationContainer>
     // </GlobalContext.Provider>
-    // <SIgnin />
-    <ProfileImage />
+    <SIgnin />
+    // <ProfileImage />
+    // <Welcome />
+
   );
 }
 export default App;
