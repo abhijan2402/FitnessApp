@@ -9,6 +9,7 @@ import { ActivityIndicator, View } from 'react-native';
 import { getDataFromAsyncStorage } from './src/utils/common';
 import { storageKeyName } from './src/constants/Data';
 import { getUser } from './src/backend/utilFunctions';
+import SIgnin from './src/screens/newauth/SIgnin';
 
 export const GlobalContext = createContext();
 
@@ -37,22 +38,23 @@ function App() {
       </View>
     )
   return (
-    <GlobalContext.Provider value={{
-      user: user,
-      setLoggedInUser: (userObj) => setUser(userObj),
-    }}>
-      <NavigationContainer>
-        <Stack.Navigator screenOptions={{
-          headerShown: false
-        }}>
-          {
-            user ?
-              <Stack.Screen name={SCREENS.BOTTOMTAB} component={BottomTab} /> :
-              <Stack.Screen name={SCREENS.AUTHSTACK} component={AuthStack} />
-          }
-        </Stack.Navigator>
-      </NavigationContainer>
-    </GlobalContext.Provider>
+    // <GlobalContext.Provider value={{
+    //   user: user,
+    //   setLoggedInUser: (userObj) => setUser(userObj),
+    // }}>
+    //   <NavigationContainer>
+    //     <Stack.Navigator screenOptions={{
+    //       headerShown: false
+    //     }}>
+    //       {
+    //         user ?
+    //           <Stack.Screen name={SCREENS.BOTTOMTAB} component={BottomTab} /> :
+    //           <Stack.Screen name={SCREENS.AUTHSTACK} component={AuthStack} />
+    //       }
+    //     </Stack.Navigator>
+    //   </NavigationContainer>
+    // </GlobalContext.Provider>
+    <SIgnin />
   );
 }
 export default App;
