@@ -46,7 +46,7 @@ const Account = () => {
   const [loading, setLoading] = useState(false);
   const childRef = useRef(null);
   const [toastColorState, setToastColorState] = useState('');
-  const [toastTextColorState, setToastTextColorState] = useState('');
+  const [toastTextColorState, setToastTextColorState] = useState('white');
   const [toastMessage, setToastMessage] = useState('');
 
   const UpdateData = () => {
