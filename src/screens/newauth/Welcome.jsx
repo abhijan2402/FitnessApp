@@ -5,10 +5,11 @@ import {Dimensions} from 'react-native';
 import BannerImage from '../../../assets/images/welcome-banner.png';
 import NewButtob from '../../components/Button/NewButtob';
 import { Image } from 'react-native';
+import { Pressable } from 'react-native';
 
 const {width, height} = Dimensions.get('window');
 
-const Welcome = () => {
+const Welcome = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.welcomeText}>Welcome to Indyte</Text>
@@ -19,9 +20,9 @@ const Welcome = () => {
         <Image  style={{width}} source={BannerImage} />
       </View>
 
-      <View style={{marginTop: 40}}>
+      <Pressable onPress={() => navigation.navigate(SCREENS.FORGOPASS)} style={{marginTop: 40}}>
         <NewButtob title={'Get Started'} />
-      </View>
+      </Pressable>
       <View style={{flexDirection: 'row', alignItems: 'center', marginTop: 30}}>
         <Text style={styles.txt}>Already have account? </Text>
         <Text style={[styles.txt, {color: '#7265E3', fontWeight: '500'}]}>
