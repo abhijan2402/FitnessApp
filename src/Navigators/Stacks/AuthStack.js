@@ -3,6 +3,7 @@ import Register from '../../screens/auth/Register';
 import CreateProfile from '../../screens/profile/CreateProfile';
 import Goal from '../../screens/auth/Goal';
 import Otp from '../../screens/auth/Otp';
+import OTP from '../../screens/newauth/OTP';
 import FinalAuth from '../../screens/auth/FinalAuth';
 import { SCREENS } from '../../constants/Screens';
 import RegisterOTP from '../../screens/auth/RegisterOTP';
@@ -90,7 +91,7 @@ function AuthStack() {
             <Stack.Screen name={SCREENS.SKIPMEALPAGE} component={SkipMealPage} />
             <Stack.Screen name={SCREENS.SUPPLEMENT} component={SupplementMain} />
             <Stack.Screen name={SCREENS.WEIGHT} component={Weight} />
-            <Stack.Screen name={SCREENS.NOTP} component={Otp} />
+            <Stack.Screen name={SCREENS.NOTP} component={OTP} />
             <Stack.Screen name={SCREENS.NSIGNIN} component={SIgnin} />
             <Stack.Screen name={SCREENS.NWELCOME} component={Welcome} />
         </Stack.Navigator>

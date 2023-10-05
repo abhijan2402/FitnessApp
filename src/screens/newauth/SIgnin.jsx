@@ -38,7 +38,7 @@ const SIgnin = ({ navigation }) => {
           width,
           alignItems: 'center',
         }}>
-        <NewButtob title={'Verify Now'} onPress={() => { navigation.navigate(SCREENS.NOTP) }} />
+        <NewButtob onPress={() => navigation.navigate(SCREENS.NOTP)} title={'Verify Now'} onPress={() => { navigation.navigate(SCREENS.NOTP) }} />
       </View>
     </View>
   );
