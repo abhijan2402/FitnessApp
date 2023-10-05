@@ -62,5 +62,26 @@ export const SCREENS = {
     ADDSHCEDULE: "AddSchedule",
 
     //WEIGHT
-    WEIGHTTRACKER: "WeightProgress"
+    WEIGHTTRACKER: "WeightProgress",
+
+
+
+    //new Auth
+    FINALGOALMAIN: "finalGoalMain",
+    FOODALLERGY: "FoodAllergy",
+    FOODDISLIKE: "FoodDislike",
+    FOODFREQUENCY: "FoodFrequency",
+    GOALWEIGHT: "GoalWeight",
+    HEIGHT: "Height",
+    LOCATION: "Location",
+    MEDICALHISTORY: "MedicalHistory",
+    NEWGOAL: "NewGoal",
+    OCCUPATION: "Occupation",
+    OFFICETIMING: "OfficeTiming",
+    PROFILEIMAGE: "ProfileImage",
+    SELECTGENDER: "SelectGender",
+    SKIPMEALPAGE: "SkipMealPage",
+    SUPPLEMENT: "Supplement",
+    WEIGHT: "Weight"
+
 }

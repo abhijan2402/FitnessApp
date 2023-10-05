@@ -11,6 +11,23 @@ import { storageKeyName } from './src/constants/Data';
 import { getUser } from './src/backend/utilFunctions';
 import SIgnin from './src/screens/newauth/SIgnin';
 import ProfileImage from './src/screens/newauth/ProfileImage';
+import SelectGender from './src/screens/newauth/SelectGender';
+import Weight from './src/screens/newauth/Weight';
+import GoalWeight from './src/screens/newauth/GoalWeight';
+import Height from './src/screens/newauth/Height';
+import Heights from './src/screens/newauth/Height';
+import NewGoal from './src/screens/newauth/NewGoal';
+import FinalGoalMain from './src/screens/newauth/FinalGoalMain';
+import FoodDiskike from './src/screens/newauth/FoodDiskike';
+import FoodAllergy from './src/screens/newauth/FoodAllergy';
+import MedicalHistory from './src/screens/newauth/MedicalHistory';
+import Supplement from './src/screens/newauth/Supplement';
+import SupplementMain from './src/screens/newauth/Supplement';
+import SkipMealPage from './src/screens/newauth/SkipMealPage';
+import FoodFrequency from './src/screens/newauth/FoodFrequency';
+import OfficeTiming from './src/screens/newauth/OfficeTiming';
+import Occupation from './src/screens/newauth/Occupation';
+import Location from './src/screens/newauth/Location';
 
 export const GlobalContext = createContext();
 
@@ -56,7 +73,20 @@ function App() {
     //   </NavigationContainer>
     // </GlobalContext.Provider>
     // <SIgnin />
-    <ProfileImage />
+    // <ProfileImage />
+    // <SelectGender />
+    // <Weight />
+    // <NewGoal />
+    // <FinalGoalMain />
+    // <FoodDiskike />
+    // <FoodAllergy />
+    // <MedicalHistory />
+    // <SupplementMain />
+    // <SkipMealPage />
+    // <FoodFrequency />
+    // <OfficeTiming />
+    // <Occupation/>
+    <Location />
   );
 }
 export default App;

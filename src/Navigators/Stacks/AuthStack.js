@@ -9,6 +9,22 @@ import RegisterOTP from '../../screens/auth/RegisterOTP';
 import { useState } from 'react';
 import Login from '../../screens/auth/Login';
 import ForgotPass from '../../screens/auth/ForgotPass';
+import FinalGoalMain from '../../screens/newauth/FinalGoalMain';
+import FoodAllergy from '../../screens/newauth/FoodAllergy';
+import FoodDiskike from '../../screens/newauth/FoodDiskike';
+import FoodFrequency from '../../screens/newauth/FoodFrequency';
+import GoalWeight from '../../screens/newauth/GoalWeight';
+import Heights from '../../screens/newauth/Height';
+import Location from '../../screens/newauth/Location';
+import MedicalHistory from '../../screens/newauth/MedicalHistory';
+import NewGoal from '../../screens/newauth/NewGoal';
+import Occupation from '../../screens/newauth/Occupation';
+import OfficeTiming from '../../screens/newauth/OfficeTiming';
+import ProfileImage from '../../screens/newauth/ProfileImage';
+import SelectGender from '../../screens/newauth/SelectGender';
+import SkipMealPage from '../../screens/newauth/SkipMealPage';
+import SupplementMain from '../../screens/newauth/Supplement';
+import Weight from '../../screens/newauth/Weight';
 
 const Stack = createNativeStackNavigator();
 //register -> name,mobile,password
@@ -39,6 +55,26 @@ function AuthStack() {
             </Stack.Screen>
             <Stack.Screen name={SCREENS.OTP} component={Otp} />
             <Stack.Screen name={SCREENS.FINALAUTH} component={FinalAuth} />
+
+            {/* //newAuth */}
+            <Stack.Screen name={SCREENS.FINALGOALMAIN} component={FinalGoalMain} />
+            <Stack.Screen name={SCREENS.FOODALLERGY} component={FoodAllergy} />
+            <Stack.Screen name={SCREENS.FOODDISLIKE} component={FoodDiskike} />
+            <Stack.Screen name={SCREENS.FOODFREQUENCY} component={FoodFrequency} />
+            <Stack.Screen name={SCREENS.GOALWEIGHT} component={GoalWeight} />
+            <Stack.Screen name={SCREENS.HEIGHT} component={Heights} />
+            <Stack.Screen name={SCREENS.LOCATION} component={Location} />
+            <Stack.Screen name={SCREENS.MEDICALHISTORY} component={MedicalHistory} />
+            <Stack.Screen name={SCREENS.NEWGOAL} component={NewGoal} />
+            <Stack.Screen name={SCREENS.OCCUPATION} component={Occupation} />
+            <Stack.Screen name={SCREENS.OFFICETIMING} component={OfficeTiming} />
+            <Stack.Screen name={SCREENS.PROFILEIMAGE} component={ProfileImage} />
+            <Stack.Screen name={SCREENS.SELECTGENDER} component={SelectGender} />
+            <Stack.Screen name={SCREENS.SKIPMEALPAGE} component={SkipMealPage} />
+            <Stack.Screen name={SCREENS.SUPPLEMENT} component={SupplementMain} />
+            <Stack.Screen name={SCREENS.HEIGHT} component={Weight} />
+
+
         </Stack.Navigator>
     );
 }
