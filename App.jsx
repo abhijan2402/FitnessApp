@@ -56,23 +56,23 @@ function App() {
       </View>
     )
   return (
-    // <GlobalContext.Provider value={{
-    //   user: user,
-    //   setLoggedInUser: (userObj) => setUser(userObj),
-    // }}>
-    //   <NavigationContainer>
-    //     <Stack.Navigator screenOptions={{
-    //       headerShown: false
-    //     }}>
-    //       {
-    //         user ?
-    //           <Stack.Screen name={SCREENS.BOTTOMTAB} component={BottomTab} /> :
-    //           <Stack.Screen name={SCREENS.AUTHSTACK} component={AuthStack} />
-    //       }
-    //     </Stack.Navigator>
-    //   </NavigationContainer>
-    // </GlobalContext.Provider>
-    <SIgnin />
+    <GlobalContext.Provider value={{
+      user: user,
+      setLoggedInUser: (userObj) => setUser(userObj),
+    }}>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{
+          headerShown: false
+        }}>
+          {
+            user ?
+              <Stack.Screen name={SCREENS.BOTTOMTAB} component={BottomTab} /> :
+              <Stack.Screen name={SCREENS.AUTHSTACK} component={AuthStack} />
+          }
+        </Stack.Navigator>
+      </NavigationContainer>
+    </GlobalContext.Provider>
+    // <SIgnin />
     // <ProfileImage />
     // <SelectGender />
     // <Weight />

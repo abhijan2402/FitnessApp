@@ -2,7 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Register from '../../screens/auth/Register';
 import CreateProfile from '../../screens/profile/CreateProfile';
 import Goal from '../../screens/auth/Goal';
-import Otp from '../../screens/auth/Otp';
+// import Otp from '../../screens/auth/Otp';
 import FinalAuth from '../../screens/auth/FinalAuth';
 import { SCREENS } from '../../constants/Screens';
 import RegisterOTP from '../../screens/auth/RegisterOTP';
@@ -25,6 +25,8 @@ import SelectGender from '../../screens/newauth/SelectGender';
 import SkipMealPage from '../../screens/newauth/SkipMealPage';
 import SupplementMain from '../../screens/newauth/Supplement';
 import Weight from '../../screens/newauth/Weight';
+import SIgnin from '../../screens/newauth/SIgnin';
+import Otp from '../../screens/newauth/OTP';
 
 const Stack = createNativeStackNavigator();
 //register -> name,mobile,password
@@ -35,6 +37,7 @@ function AuthStack() {
         <Stack.Navigator screenOptions={{
             headerShown: false
         }}>
+            <Stack.Screen name={SCREENS.NSIGNIN} component={SIgnin} />
             <Stack.Screen name={SCREENS.LOGIN}>
                 {() => <Login user={user} setUser={setUser} />}
             </Stack.Screen>
@@ -72,7 +75,10 @@ function AuthStack() {
             <Stack.Screen name={SCREENS.SELECTGENDER} component={SelectGender} />
             <Stack.Screen name={SCREENS.SKIPMEALPAGE} component={SkipMealPage} />
             <Stack.Screen name={SCREENS.SUPPLEMENT} component={SupplementMain} />
-            <Stack.Screen name={SCREENS.HEIGHT} component={Weight} />
+            <Stack.Screen name={SCREENS.WEIGHT} component={Weight} />
+
+            <Stack.Screen name={SCREENS.NOTP} component={Otp} />
+
 
 
         </Stack.Navigator>

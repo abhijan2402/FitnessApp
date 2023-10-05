@@ -1,15 +1,16 @@
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import SlideHeader from '../../components/header/SlideHeader';
 import Step from '../../components/new-auth/Step';
 import NewButtob from '../../components/Button/NewButtob';
-import {TextInput} from 'react-native';
+import { TextInput } from 'react-native';
 import Flag from '../../../assets/images/country-flag.svg';
-import {Dimensions} from 'react-native';
+import { Dimensions } from 'react-native';
+import { SCREENS } from '../../constants/Screens';
 
-const {width} = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
-const SIgnin = () => {
+const SIgnin = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <SlideHeader next={true} />
@@ -18,7 +19,7 @@ const SIgnin = () => {
       <Text style={styles.subHeading}>Number we can use to reach you</Text>
 
       <View style={styles.inputContainer}>
-        <View style={{flexDirection: 'row', gap: 11}}>
+        <View style={{ flexDirection: 'row', gap: 11 }}>
           <Flag />
           <Text style={styles.countryCode}>+62</Text>
         </View>
@@ -37,7 +38,7 @@ const SIgnin = () => {
           width,
           alignItems: 'center',
         }}>
-        <NewButtob title={'Verify Now'} />
+        <NewButtob title={'Verify Now'} onPress={() => { navigation.navigate(SCREENS.NOTP) }} />
       </View>
     </View>
   );

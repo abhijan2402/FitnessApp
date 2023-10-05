@@ -22,7 +22,7 @@ export const SCREENS = {
     REGISTEROTP: "RegisterOTP",
     FORGOPASS: "ForgoPass",
 
-    
+
 
     //dashboard
     DASHBOARD: 'Dashboard',
@@ -84,6 +84,9 @@ export const SCREENS = {
     SELECTGENDER: "SelectGender",
     SKIPMEALPAGE: "SkipMealPage",
     SUPPLEMENT: "Supplement",
-    WEIGHT: "Weight"
+    WEIGHT: "Weight",
+    NSIGNIN: "NSignin",
+    NOTP: "NOtp"
+
 
 }
