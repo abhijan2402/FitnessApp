@@ -9,10 +9,11 @@ import NewBed from '../../../assets/images/NewBed.svg'
 import WMelon from '../../../assets/images/WMelon.svg'
 import Muscle from '../../../assets/images/Muscle.svg'
 import NewButtob from '../../components/Button/NewButtob'
+import { SCREENS } from '../../constants/Screens'
 
 
 
-const NewGoal = () => {
+const NewGoal = ({ navigation }) => {
     return (
         <View style={{ alignItems: "center" }}>
             <SlideHeader />
@@ -23,8 +24,7 @@ const NewGoal = () => {
             <NewGoalCard title={"Track my nutrition"} icon={<Avacado width={20} height={24} />} bacckground={"#FF9B90"} />
             <NewGoalCard title={"Improve overall fitness"} icon={<Muscle width={20} height={24} />} bacckground={"#4C5980"} />
             <View style={{ marginTop: "10%", width: "100%", alignItems: "center" }}>
-                <NewButtob title={"Continue"} />
-
+                <NewButtob title={"Continue"} onPress={() => { navigation.navigate(SCREENS.FINALGOALMAIN) }} />
             </View>
         </View>
     )

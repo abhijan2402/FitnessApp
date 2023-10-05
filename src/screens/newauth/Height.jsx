@@ -7,18 +7,19 @@ import SmallText from '../../components/Text/SmallText'
 import Height from '../../../assets/images/height.svg'
 import Input from '../../components/Form/Input'
 import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { SCREENS } from '../../constants/Screens'
 
 
-const Heights = () => {
+const Heights = ({ navigation }) => {
     const [lbs, setlbs] = useState(true)
     const [kg, setkg] = useState(false)
-    const [MainWeightVal, setMainWeightVal] = useState("")
+    const [heightVal, setheightVal] = useState("")
     return (
         <ScrollView style={{ backgroundColor: "white", height: "100%" }}>
             <SlideHeader />
             <Height width={170} height={189} style={{ alignSelf: "center", marginVertical: 20 }} />
             <View style={styles.ProfileView}>
-                <TextH4 style={{ marginTop: "20%" }}>What is your goal weight?</TextH4>
+                <TextH4 style={{ marginTop: "20%" }}>What is your Height?</TextH4>
                 <View style={styles.InnerMain}>
                     <TouchableOpacity onPress={() => { setlbs(true); setkg(false) }} style={[styles.InnerMainView, { backgroundColor: lbs ? "#8C80F8" : "white" }]}>
                         <Text style={{ fontSize: 13, color: lbs ? "white" : "black", fontWeight: "500" }}>CM</Text>
@@ -29,12 +30,12 @@ const Heights = () => {
                 </View>
                 <Input
                     placeholder={'Height'}
-                    onChangeText={value => setMainWeightVal(value)}
+                    onChangeText={value => setheightVal(value)}
                     customStyle={{ width: "60%", marginVertical: 15 }}
                     keyboardType='numeric'
                 />
 
-                <NewButtob title={"Continue"} />
+                <NewButtob title={"Continue"} onPress={() => { navigation.navigate(SCREENS.NEWGOAL) }} />
             </View>
         </ScrollView>
     )

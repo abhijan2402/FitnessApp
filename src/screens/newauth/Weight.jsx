@@ -7,7 +7,8 @@ import { Image } from 'react-native'
 import SmallText from '../../components/Text/SmallText'
 import LiftMan from '../../../assets/images/LiftMan.svg'
 import Input from '../../components/Form/Input'
-const Weight = () => {
+import { SCREENS } from '../../constants/Screens'
+const Weight = ({ navigation }) => {
     const [lbs, setlbs] = useState(true)
     const [kg, setkg] = useState(false)
     const [MainWeightVal, setMainWeightVal] = useState("")
@@ -32,7 +33,7 @@ const Weight = () => {
                     keyboardType='numeric'
                 />
 
-                <NewButtob title={"Continue"} />
+                <NewButtob title={"Continue"} onPress={() => { navigation.navigate(SCREENS.GOALWEIGHT) }} />
             </View>
         </ScrollView>
     )

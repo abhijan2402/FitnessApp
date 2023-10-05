@@ -37,6 +37,8 @@ function AuthStack() {
         <Stack.Navigator screenOptions={{
             headerShown: false
         }}>
+            <Stack.Screen name={SCREENS.PROFILEIMAGE} component={ProfileImage} />
+            <Stack.Screen name={SCREENS.SELECTGENDER} component={SelectGender} />
             <Stack.Screen name={SCREENS.NSIGNIN} component={SIgnin} />
             <Stack.Screen name={SCREENS.LOGIN}>
                 {() => <Login user={user} setUser={setUser} />}
@@ -71,8 +73,6 @@ function AuthStack() {
             <Stack.Screen name={SCREENS.NEWGOAL} component={NewGoal} />
             <Stack.Screen name={SCREENS.OCCUPATION} component={Occupation} />
             <Stack.Screen name={SCREENS.OFFICETIMING} component={OfficeTiming} />
-            <Stack.Screen name={SCREENS.PROFILEIMAGE} component={ProfileImage} />
-            <Stack.Screen name={SCREENS.SELECTGENDER} component={SelectGender} />
             <Stack.Screen name={SCREENS.SKIPMEALPAGE} component={SkipMealPage} />
             <Stack.Screen name={SCREENS.SUPPLEMENT} component={SupplementMain} />
             <Stack.Screen name={SCREENS.WEIGHT} component={Weight} />

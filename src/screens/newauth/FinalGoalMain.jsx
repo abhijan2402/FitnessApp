@@ -3,10 +3,10 @@ import React from 'react'
 import { ImageBackground } from 'react-native'
 import { TouchableOpacity } from 'react-native'
 
-const FinalGoalMain = () => {
+const FinalGoalMain = ({ navigation }) => {
     return (
         <ImageBackground source={require('../../../assets/images/FInalImage.png')} style={{ width: "100%", height: "100%" }}>
-            <TouchableOpacity style={styles.MainTxt}>
+            <TouchableOpacity style={styles.MainTxt} onPress={() => { navigation.navigate(SCREENS.FINALGOALMAIN) }}>
                 <Text style={{ color: "#7265E3", fontSize: 16, fontWeight: "500" }}>Get Statrted!</Text>
             </TouchableOpacity>
         </ImageBackground>
