@@ -22,6 +22,8 @@ export const SCREENS = {
     REGISTEROTP: "RegisterOTP",
     FORGOPASS: "ForgoPass",
 
+    
+
     //dashboard
     DASHBOARD: 'Dashboard',
     NOTIFICATION: 'Notification',

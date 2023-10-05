@@ -72,7 +72,7 @@ function App() {
     //     </Stack.Navigator>
     //   </NavigationContainer>
     // </GlobalContext.Provider>
-    // <SIgnin />
+    <SIgnin />
     // <ProfileImage />
     // <SelectGender />
     // <Weight />
@@ -86,7 +86,7 @@ function App() {
     // <FoodFrequency />
     // <OfficeTiming />
     // <Occupation/>
-    <Location />
+    // <Location />
   );
 }
 export default App;
