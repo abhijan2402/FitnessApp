@@ -2,7 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Register from '../../screens/auth/Register';
 import CreateProfile from '../../screens/profile/CreateProfile';
 import Goal from '../../screens/auth/Goal';
-// import Otp from '../../screens/auth/Otp';
+import Otp from '../../screens/auth/Otp';
 import FinalAuth from '../../screens/auth/FinalAuth';
 import { SCREENS } from '../../constants/Screens';
 import RegisterOTP from '../../screens/auth/RegisterOTP';
@@ -26,20 +26,32 @@ import SkipMealPage from '../../screens/newauth/SkipMealPage';
 import SupplementMain from '../../screens/newauth/Supplement';
 import Weight from '../../screens/newauth/Weight';
 import SIgnin from '../../screens/newauth/SIgnin';
-import Otp from '../../screens/newauth/OTP';
+import Welcome from '../../screens/newauth/Welcome';
 
 const Stack = createNativeStackNavigator();
 //register -> name,mobile,password
 // createProfile -> gender,dob,weight,height
 function AuthStack() {
-    const [user, setUser] = useState({ first_name: '', last_name: '', otp: '', hash: '', phone: '', email: '', password: '', gender: '', dob: '', weight: '', height: '', goal: '' })
+    const [user, setUser] = useState({
+        first_name: '',
+        last_name: '',
+        otp: '',
+        hash: '',
+        phone: '',
+        email: '',
+        password: '',
+        gender: '',
+        dob: '',
+        weight: '',
+        height: '',
+        goal: '',
+    });
     return (
-        <Stack.Navigator screenOptions={{
-            headerShown: false
-        }}>
-            <Stack.Screen name={SCREENS.PROFILEIMAGE} component={ProfileImage} />
-            <Stack.Screen name={SCREENS.SELECTGENDER} component={SelectGender} />
-            <Stack.Screen name={SCREENS.NSIGNIN} component={SIgnin} />
+        <Stack.Navigator
+            screenOptions={{
+                headerShown: false,
+            }}
+            initialRouteName={SCREENS.NWELCOME}>
             <Stack.Screen name={SCREENS.LOGIN}>
                 {() => <Login user={user} setUser={setUser} />}
             </Stack.Screen>
@@ -73,16 +85,15 @@ function AuthStack() {
             <Stack.Screen name={SCREENS.NEWGOAL} component={NewGoal} />
             <Stack.Screen name={SCREENS.OCCUPATION} component={Occupation} />
             <Stack.Screen name={SCREENS.OFFICETIMING} component={OfficeTiming} />
+            <Stack.Screen name={SCREENS.PROFILEIMAGE} component={ProfileImage} />
+            <Stack.Screen name={SCREENS.SELECTGENDER} component={SelectGender} />
             <Stack.Screen name={SCREENS.SKIPMEALPAGE} component={SkipMealPage} />
             <Stack.Screen name={SCREENS.SUPPLEMENT} component={SupplementMain} />
             <Stack.Screen name={SCREENS.WEIGHT} component={Weight} />
-
             <Stack.Screen name={SCREENS.NOTP} component={Otp} />
-
-
-
+            <Stack.Screen name={SCREENS.NSIGNIN} component={SIgnin} />
+            <Stack.Screen name={SCREENS.NWELCOME} component={Welcome} />
         </Stack.Navigator>
     );
 }
 export default AuthStack;
-

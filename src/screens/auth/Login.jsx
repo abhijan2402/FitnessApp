@@ -37,7 +37,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const childRef = useRef(null);
   const [toastColorState, setToastColorState] = useState('');
-  const [toastTextColorState, setToastTextColorState] = useState('');
+  const [toastTextColorState, setToastTextColorState] = useState('white');
   const [toastMessage, setToastMessage] = useState('');
 
   const Login = async () => {
@@ -85,7 +85,7 @@ const Login = () => {
         ref={childRef}
       />
       <View style={styles.Heading}>
-        <SmallText style={{ fontWeight: '700', color: 'black', fontSize: 16 }}>
+        <SmallText style={{ fontWeight: '700', color: '#000', fontSize: 16 }}>
           Hey there,
         </SmallText>
         <TextH4 style={{ marginTop: 7 }}>Welcome Back</TextH4>

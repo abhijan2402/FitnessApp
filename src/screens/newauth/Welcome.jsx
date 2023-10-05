@@ -4,11 +4,17 @@ import {Dimensions} from 'react-native';
 // import BannerImage from '../../../assets/images/welcome-banner.svg';
 import BannerImage from '../../../assets/images/welcome-banner.png';
 import NewButtob from '../../components/Button/NewButtob';
-import { Image } from 'react-native';
+import {Image} from 'react-native';
+import {Pressable} from 'react-native';
+import { SCREENS } from '../../constants/Screens';
 
 const {width, height} = Dimensions.get('window');
 
-const Welcome = () => {
+
+
+
+const Welcome = ({navigation}) => {
+
   return (
     <View style={styles.container}>
       <Text style={styles.welcomeText}>Welcome to Indyte</Text>
@@ -16,15 +22,16 @@ const Welcome = () => {
 
       <View style={{marginTop: 35}}>
         {/* <BannerImage style={{width: '100%'}} /> */}
-        <Image  style={{width}} source={BannerImage} />
+        <Image style={{width}} source={BannerImage} />
       </View>
 
-      <View style={{marginTop: 40}}>
-        <NewButtob title={'Get Started'} />
-      </View>
+      <Pressable
+        style={{marginTop: 40}}>
+        <NewButtob onPress={() => navigation.navigate(SCREENS.NSIGNIN)} title={'Get Started'} />
+      </Pressable>
       <View style={{flexDirection: 'row', alignItems: 'center', marginTop: 30}}>
         <Text style={styles.txt}>Already have account? </Text>
-        <Text style={[styles.txt, {color: '#7265E3', fontWeight: '500'}]}>
+        <Text onPress={() => navigation.navigate(SCREENS.LOGIN)} style={[styles.txt, {color: '#7265E3', fontWeight: '500'}]}>
           Sign in
         </Text>
       </View>
