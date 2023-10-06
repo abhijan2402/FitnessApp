@@ -20,6 +20,8 @@ const NewGoal = ({navigation}) => {
   const handleCreateUser = async () => {
     try {
       const res = await registerUser({...values, goal: 'improve weight'});
+console.log(res)
+    //   navigation.navigate(SCREENS.FINALGOALMAIN);
     } catch (error) {
       console.log(error);
     }
@@ -56,9 +58,7 @@ const NewGoal = ({navigation}) => {
       <View style={{marginTop: '10%', width: '100%', alignItems: 'center'}}>
         <NewButtob
           title={'Continue'}
-          onPress={() => {
-            navigation.navigate(SCREENS.FINALGOALMAIN);
-          }}
+          onPress={handleCreateUser}
         />
       </View>
     </View>
