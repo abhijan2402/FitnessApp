@@ -1,16 +1,29 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import React, {useState} from 'react';
 import SlideHeader from '../../components/header/SlideHeader';
 import Step from '../../components/new-auth/Step';
 import NewButtob from '../../components/Button/NewButtob';
-import { TextInput } from 'react-native';
+import {TextInput} from 'react-native';
 import Flag from '../../../assets/images/country-flag.svg';
-import { Dimensions } from 'react-native';
-import { SCREENS } from '../../constants/Screens';
+import {Dimensions} from 'react-native';
+import {SCREENS} from '../../constants/Screens';
+import { SendOTP } from '../../backend/utilFunctions';
 
-const { width } = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
-const SIgnin = ({ navigation }) => {
+const SIgnin = ({navigation}) => {
+  const [number, setNumber] = useState();
+
+  const handlePress = async () => {
+    navigation.navigate(SCREENS.NOTP, {phone: number});
+
+    try {
+      const {data} = await SendOTP(number)
+      console.log(data)
+    } catch (error) {
+      console.log(error)
+    }
+  };
   return (
     <View style={styles.container}>
       <SlideHeader next={true} />
@@ -19,7 +32,7 @@ const SIgnin = ({ navigation }) => {
       <Text style={styles.subHeading}>Number we can use to reach you</Text>
 
       <View style={styles.inputContainer}>
-        <View style={{ flexDirection: 'row', gap: 11 }}>
+        <View style={{flexDirection: 'row', gap: 11}}>
           <Flag />
           <Text style={styles.countryCode}>+62</Text>
         </View>
@@ -27,6 +40,7 @@ const SIgnin = ({ navigation }) => {
           placeholder="9093XXXXXX"
           style={styles.input}
           keyboardType="numeric"
+          onChangeText={text => setNumber(text)}
         />
       </View>
       <View
@@ -38,7 +52,11 @@ const SIgnin = ({ navigation }) => {
           width,
           alignItems: 'center',
         }}>
-        <NewButtob onPress={() => navigation.navigate(SCREENS.NOTP)} title={'Verify Now'} onPress={() => { navigation.navigate(SCREENS.NOTP) }} />
+        <NewButtob
+          onPress={() => navigation.navigate(SCREENS.NOTP)}
+          title={'Verify Now'}
+          onPress={handlePress}
+        />
       </View>
     </View>
   );

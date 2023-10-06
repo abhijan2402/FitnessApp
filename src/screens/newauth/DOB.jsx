@@ -14,10 +14,14 @@ import {useState} from 'react';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import CalendarNew from '../../../assets/images/calendar-new.svg';
 import {getAge} from '../../utils/common';
+import { SCREENS } from '../../constants/Screens';
 
 const {width} = Dimensions.get('window');
 
-const DOB = () => {
+const DOB = ({navigation}) => {
+  const handlePress = () => {
+    navigation.navigate(SCREENS.PROFILEIMAGE);
+  };
   const [date, setDate] = useState('dd/mm/yyyy');
   const [actualDate, setActualDate] = useState(null);
 
@@ -74,7 +78,7 @@ const DOB = () => {
           width,
           alignItems: 'center',
         }}>
-        <NewButtob title={'Continue'} />
+        <NewButtob onPress={handlePress} title={'Continue'} />
       </View>
     </View>
   );

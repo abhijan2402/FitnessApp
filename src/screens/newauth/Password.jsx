@@ -5,10 +5,14 @@ import Step from '../../components/new-auth/Step';
 import NewButtob from '../../components/Button/NewButtob';
 import {TextInput} from 'react-native';
 import {Dimensions} from 'react-native';
+import { SCREENS } from '../../constants/Screens';
 
 const {width} = Dimensions.get('window');
 
-const Password = () => {
+const Password = ({navigation}) => {
+  const handlePress = () => {
+    navigation.navigate(SCREENS.NNAME)
+  }
   return (
     <View style={styles.container}>
       <SlideHeader />
@@ -52,7 +56,7 @@ const Password = () => {
           width,
           alignItems: 'center',
         }}>
-        <NewButtob title={'Continue'} />
+        <NewButtob onPress={handlePress} title={'Continue'} />
       </View>
     </View>
   );

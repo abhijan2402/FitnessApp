@@ -1,14 +1,18 @@
-import { StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import SlideHeader from '../../components/header/SlideHeader';
 import Step from '../../components/new-auth/Step';
 import NewButtob from '../../components/Button/NewButtob';
 import {TextInput} from 'react-native';
-import { Dimensions } from 'react-native';
+import {Dimensions} from 'react-native';
+import {SCREENS} from '../../constants/Screens';
 
 const {width} = Dimensions.get('window');
 
-const Name = () => {
+const Name = ({navigation}) => {
+  const handlePress = () => {
+    navigation.navigate(SCREENS.NDOB);
+  };
   return (
     <View style={styles.container}>
       <SlideHeader />
@@ -26,7 +30,7 @@ const Name = () => {
           width,
           alignItems: 'center',
         }}>
-        <NewButtob title={'Continue'} />
+        <NewButtob onPress={handlePress} title={'Continue'} />
       </View>
     </View>
   );
