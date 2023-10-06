@@ -7,7 +7,7 @@ import SlideHeader from '../../components/header/SlideHeader';
 import Step from '../../components/new-auth/Step';
 import NewButtob from '../../components/Button/NewButtob';
 import {useRoute} from '@react-navigation/native';
-import { SCREENS } from '../../constants/Screens';
+import {SCREENS} from '../../constants/Screens';
 
 const {width, height} = Dimensions.get('window');
 
@@ -17,7 +17,7 @@ const SECONDS = 59;
 let timeInterval = null;
 const Otp = ({navigation}) => {
   const route = useRoute();
-  const phone = route.params?.phone;
+  const data = route.params?.data;
   // const navigation=useNavigation();
   const [timerSeconds, setTimerSeconds] = useState(TIMER_SECONDS);
   const [timerMinutes, setTimerMinutes] = useState(TIMER_MINUTES);
@@ -68,7 +68,6 @@ const Otp = ({navigation}) => {
     }
   }, [timerSeconds, timerMinutes]);
 
-
   const concatValues = otp => {
     let result = '';
     for (let i = 1; i <= 6; i++) {
@@ -79,7 +78,7 @@ const Otp = ({navigation}) => {
 
   const handlePress = () => {
     navigation.navigate(SCREENS.NEMAIL, {
-      data: {phone, otp: concatValues(otp)},
+      data: {...data, otp: concatValues(otp)},
     });
   };
 
@@ -89,7 +88,7 @@ const Otp = ({navigation}) => {
       <Step text="STEP 2/12" />
 
       <Text style={styles.heading}>Verify your number</Text>
-      <Text style={styles.subHeading}>Wel’ll text you on {phone}.</Text>
+      <Text style={styles.subHeading}>Wel’ll text you on {data?.phone}.</Text>
 
       <View style={styles.InputOTP}>
         <TextInput

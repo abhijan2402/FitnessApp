@@ -5,14 +5,19 @@ import Step from '../../components/new-auth/Step';
 import NewButtob from '../../components/Button/NewButtob';
 import {TextInput} from 'react-native';
 import {Dimensions} from 'react-native';
-import { SCREENS } from '../../constants/Screens';
+import {SCREENS} from '../../constants/Screens';
+import {useState} from 'react';
+import { useRoute } from '@react-navigation/native';
 
 const {width} = Dimensions.get('window');
 
 const Password = ({navigation}) => {
+  const route = useRoute();
+  const data = route.params?.data;
+  const [password, setPassword] = useState();
   const handlePress = () => {
-    navigation.navigate(SCREENS.NNAME)
-  }
+    navigation.navigate(SCREENS.NNAME, {data: {...data, password}});
+  };
   return (
     <View style={styles.container}>
       <SlideHeader />
@@ -20,7 +25,11 @@ const Password = ({navigation}) => {
       <Text style={styles.heading}>Set your password</Text>
 
       <View style={styles.inputContainer}>
-        <TextInput secureTextEntry={true} style={styles.input} />
+        <TextInput
+          onChangeText={text => setPassword(text)}
+          secureTextEntry={true}
+          style={styles.input}
+        />
       </View>
 
       <View

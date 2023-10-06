@@ -1,18 +1,25 @@
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import SlideHeader from '../../components/header/SlideHeader';
 import Step from '../../components/new-auth/Step';
 import NewButtob from '../../components/Button/NewButtob';
 import {TextInput} from 'react-native';
 import {Dimensions} from 'react-native';
 import { SCREENS } from '../../constants/Screens';
+import { useRoute } from '@react-navigation/native';
 
 const {width} = Dimensions.get('window');
 
 const Email = ({navigation}) => {
+  const route = useRoute();
+  const data = route.params?.data;
+  const [email, setEmail]  = useState()
   const handlePress = () => {
-    navigation.navigate(SCREENS.NPASSWORD)
+    navigation.navigate(SCREENS.NPASSWORD, {data: {...data, email}})
   }
+
+  
+
   return (
     <View style={styles.container}>
       <SlideHeader />
@@ -20,7 +27,7 @@ const Email = ({navigation}) => {
       <Text style={styles.heading}>Entre your Email Id</Text>
 
       <View style={styles.inputContainer}>
-        <TextInput style={styles.input} />
+        <TextInput onChangeText={(text) => setEmail(text)} style={styles.input} />
       </View>
       <View
         style={{

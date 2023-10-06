@@ -48,15 +48,18 @@ export async function registerUser(user) {
   data.append('otp', user.otp);
   data.append('phone', user.phone);
   data.append('email', user.email);
-  data.append('first_name', user.first_name);
-  data.append('last_name', user.last_name);
+  data.append('full_name', user.full_name);
+  // data.append('last_name', user.last_name);
   data.append('password', user.password);
   data.append('gender', user.gender);
   data.append('dob', user.dob);
   data.append('weight', user.weight);
+  data.append('weight_unit', user.weight_unit);
   data.append('height', user.height);
-  data.append('goal', 'improve shape');
-  data.append('profile_image', user.image);
+  data.append('goal_weight', user.height_unit);
+  data.append('goal', user.goal);
+  data.append('goal_weight', user.goal_weight);
+  data.append('profile_image', user.profile_image);
   return await generateRequest('/register-user', 'POST', data);
 }
 export async function loginUser(credentials) {
