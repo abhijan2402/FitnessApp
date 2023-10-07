@@ -1,6 +1,6 @@
-import {fetch} from 'react-native-ssl-pinning';
-import {storageKeyName} from '../constants/Data';
-import {getDataFromAsyncStorage} from '../utils/common';
+import { fetch } from 'react-native-ssl-pinning';
+import { storageKeyName } from '../constants/Data';
+import { getDataFromAsyncStorage } from '../utils/common';
 
 const baseURL =
   'https://ec2-15-206-239-93.ap-south-1.compute.amazonaws.com/api';
@@ -20,7 +20,7 @@ export async function generateRequest(url, method, body, headers = {}) {
     sslPinning: {
       certs: ['certificat'],
     },
-    headers: {...(await getBaseHeaders()), ...headers},
+    headers: { ...(await getBaseHeaders()), ...headers },
   };
   if ((method === 'POST' || method === 'PUT' || method === 'DELETE') && body)
     config.body = body;
@@ -43,6 +43,7 @@ export async function getOtp(phone) {
   return await generateRequest('/sendotp', 'POST', data);
 }
 export async function registerUser(user) {
+  console.log(user, "I ammm");
   const data = new FormData();
   data.append('hash', user.hash);
   data.append('otp', user.otp);
@@ -60,6 +61,12 @@ export async function registerUser(user) {
   data.append('goal', user.goal);
   data.append('goal_weight', user.goal_weight);
   data.append('profile_image', user.profile_image);
+  data.append('current_weight', user.current_weight);
+  data.append('height_unit', user.height_unit);
+
+  console.log(data, "i amd");
+  console.log(user.profile_image, "I am pro");
+
   return await generateRequest('/register-user', 'POST', data);
 }
 export async function loginUser(credentials) {
@@ -81,8 +88,8 @@ export async function updateUser(updateUser) {
   data.append('weight', updateUser?.weight?.toString());
   data.append('height', updateUser?.height?.toString());
   data.append('goal', updateUser?.goal);
-
-  if (updateUser.image) data.append('profile_image', updateUser?.image);
+  console.log(data, "i amd");
+  if (updateUser.profile_image) data.append('profile_image', updateUser?.profile_image);
   return await generateRequest('/update-user-profile', 'PUT', data);
 }
 export async function getUserRecommendedMeal(date) {

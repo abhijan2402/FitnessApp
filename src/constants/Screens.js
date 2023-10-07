@@ -34,6 +34,7 @@ export const SCREENS = {
   EDITPROFILE: 'EditProfile',
   ADDITIONALINFO: 'AdditionalInfo',
   MAINCALORIE: 'MainCalorie',
+  STEP_TRACKER: 'StepTracker',
 
   //meal
   MEALHOME: 'MealHome',

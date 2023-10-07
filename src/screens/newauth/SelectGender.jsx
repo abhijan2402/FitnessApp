@@ -11,15 +11,28 @@ import {SCREENS} from '../../constants/Screens';
 import {useState} from 'react';
 import {TouchableOpacity} from 'react-native';
 import {useRoute} from '@react-navigation/native';
+import CustomToast from '../../components/common/Toast';
+import { useRef } from 'react';
 
 const SelectGender = ({navigation}) => {
   const route = useRoute();
   const values = route.params?.values;
+  const childRef = useRef(null);
+  const [toastColorState, setToastColorState] = useState('');
+  const [toastTextColorState, setToastTextColorState] = useState('white');
+  const [toastMessage, setToastMessage] = useState('');
 
-  console.log(values)
+
+  console.log(values);
   const [selectedGen, setselectedGen] = useState('');
   return (
     <View style={{backgroundColor: 'white', height: '100%'}}>
+      <CustomToast
+        toastColor={toastColorState}
+        toastTextColor={toastTextColorState}
+        toastMessage={toastMessage}
+        ref={childRef}
+      />
       <SlideHeader />
       <View style={styles.ProfileView}>
         <TextH4 style={{marginTop: '20%'}}>Which one are you?</TextH4>
@@ -61,7 +74,16 @@ const SelectGender = ({navigation}) => {
         <NewButtob
           title={'CHOOSE'}
           onPress={() => {
-            navigation.navigate(SCREENS.WEIGHT, {values: {...values, gender: selectedGen}});
+            if(selectedGen.length < 1) {
+              setToastMessage('Gender is required');
+              setToastTextColorState('white');
+              setToastColorState('red');
+              childRef.current.showToast();
+              return
+            }
+            navigation.navigate(SCREENS.WEIGHT, {
+              values: {...values, gender: selectedGen},
+            });
           }}
         />
       </View>

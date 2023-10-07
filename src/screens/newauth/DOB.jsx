@@ -13,6 +13,7 @@ import {Dimensions} from 'react-native';
 import {useState} from 'react';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import CalendarNew from '../../../assets/images/calendar-new.svg';
+
 import {getAge} from '../../utils/common';
 import {SCREENS} from '../../constants/Screens';
 import {useRoute} from '@react-navigation/native';
@@ -38,9 +39,12 @@ const DOB = ({navigation}) => {
       childRef.current.showToast();
       return;
     }
-    navigation.navigate(SCREENS.PROFILEIMAGE, {
-      data: {...data, dob: actualDate},
-    });
+
+    console.log(actualDate);
+    const final = JSON.stringify(actualDate);
+    const yeh = final.slice(1, 11);
+    console.log(yeh, 'mj');
+    navigation.navigate(SCREENS.PROFILEIMAGE, {data: {...data, dob: yeh}});
   };
   const [date, setDate] = useState('dd/mm/yyyy');
 

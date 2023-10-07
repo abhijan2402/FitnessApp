@@ -40,7 +40,7 @@ const SIgnin = ({navigation}) => {
       const res = await SendOTP(number);
       console.log('data', res);
       navigation.navigate(SCREENS.NOTP, {
-        data: {phone: res?.phone, hash: res?.hash},
+        data: {phone: number, hash: res?.hash},
       });
     } catch (error) {
       console.log(error);

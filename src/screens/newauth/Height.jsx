@@ -16,6 +16,8 @@ import {
 } from 'react-native';
 import {SCREENS} from '../../constants/Screens';
 import {useRoute} from '@react-navigation/native';
+import CustomToast from '../../components/common/Toast';
+import { useRef } from 'react';
 
 const Heights = ({navigation}) => {
   const route = useRoute();
@@ -23,8 +25,20 @@ const Heights = ({navigation}) => {
   const [lbs, setlbs] = useState(true);
   const [kg, setkg] = useState(false);
   const [heightVal, setheightVal] = useState('');
+  const childRef = useRef(null);
+  const [toastColorState, setToastColorState] = useState('');
+  const [toastTextColorState, setToastTextColorState] = useState('white');
+  const [toastMessage, setToastMessage] = useState('');
+
+
   return (
     <ScrollView style={{backgroundColor: 'white', height: '100%'}}>
+      <CustomToast
+        toastColor={toastColorState}
+        toastTextColor={toastTextColorState}
+        toastMessage={toastMessage}
+        ref={childRef}
+      />
       <SlideHeader />
       <Height
         width={170}
@@ -81,7 +95,16 @@ const Heights = ({navigation}) => {
         <NewButtob
           title={'Continue'}
           onPress={() => {
+            if(heightVal.length < 1) {
+              setToastMessage('Height is required');
+              setToastTextColorState('white');
+              setToastColorState('red');
+              childRef.current.showToast();
+              return
+            }
+
             navigation.navigate(SCREENS.NEWGOAL,  {
+              
                 values: {
                   ...values,
                   height: heightVal,

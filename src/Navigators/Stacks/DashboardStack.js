@@ -18,6 +18,7 @@ import MealScheduler from '../../screens/Meal/MealScheduler';
 import DietDetails from '../../screens/Meal/DietDetails';
 import FlnishMeal from '../../screens/Meal/FInishMeal';
 import MealHome from '../../screens/Meal/MealHome';
+import StepTracker from '../../screens/DashBoard/StepTracker';
 
 const Stack = createNativeStackNavigator();
 
@@ -41,6 +42,7 @@ function DashboardStack() {
             <Stack.Screen name={SCREENS.DIETDETAILS} component={DietDetails} />
             <Stack.Screen name={SCREENS.MEALFINAL} component={FlnishMeal} />
             <Stack.Screen name={SCREENS.MEALHOME} component={MealHome} />
+            <Stack.Screen name={SCREENS.STEP_TRACKER} component={StepTracker} />
 
 
 
