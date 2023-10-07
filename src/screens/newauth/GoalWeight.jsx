@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import SlideHeader from '../../components/header/SlideHeader';
 import TextH4 from '../../components/Text/TextH4';
 import NewButtob from '../../components/Button/NewButtob';
-import {Image} from 'react-native';
+import { Image } from 'react-native';
 import SmallText from '../../components/Text/SmallText';
 import LiftMan from '../../../assets/images/LiftMan.svg';
 import Input from '../../components/Form/Input';
@@ -14,10 +14,10 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {SCREENS} from '../../constants/Screens';
-import {useRoute} from '@react-navigation/native';
+import { SCREENS } from '../../constants/Screens';
+import { useRoute } from '@react-navigation/native';
 
-const GoalWeight = ({navigation}) => {
+const GoalWeight = ({ navigation }) => {
   const route = useRoute();
   const values = route.params?.values;
 
@@ -25,15 +25,15 @@ const GoalWeight = ({navigation}) => {
   const [kg, setkg] = useState(false);
   const [MainWeightVal, setMainWeightVal] = useState('');
   return (
-    <ScrollView style={{backgroundColor: 'white', height: '100%'}}>
+    <ScrollView style={{ backgroundColor: 'white', height: '100%' }}>
       <SlideHeader />
       <LiftMan
         width={124}
         height={189}
-        style={{alignSelf: 'center', marginVertical: 20}}
+        style={{ alignSelf: 'center', marginVertical: 20 }}
       />
       <View style={styles.ProfileView}>
-        <TextH4 style={{marginTop: '20%'}}>What is your goal weight?</TextH4>
+        <TextH4 style={{ marginTop: '20%' }}>What is your goal weight?</TextH4>
         <View style={styles.InnerMain}>
           <TouchableOpacity
             onPress={() => {
@@ -42,7 +42,7 @@ const GoalWeight = ({navigation}) => {
             }}
             style={[
               styles.InnerMainView,
-              {backgroundColor: lbs ? '#8C80F8' : 'white'},
+              { backgroundColor: lbs ? '#8C80F8' : 'white' },
             ]}>
             <Text
               style={{
@@ -60,7 +60,7 @@ const GoalWeight = ({navigation}) => {
             }}
             style={[
               styles.InnerMainView,
-              {backgroundColor: kg ? '#8C80F8' : 'white'},
+              { backgroundColor: kg ? '#8C80F8' : 'white' },
             ]}>
             <Text
               style={{
@@ -75,7 +75,7 @@ const GoalWeight = ({navigation}) => {
         <Input
           placeholder={'Weight'}
           onChangeText={value => setMainWeightVal(value)}
-          customStyle={{width: '60%', marginVertical: 15}}
+          customStyle={{ width: '60%', marginVertical: 15 }}
           keyboardType="numeric"
         />
 
@@ -85,7 +85,7 @@ const GoalWeight = ({navigation}) => {
             navigation.navigate(SCREENS.HEIGHT, {
               values: {
                 ...values,
-                weight: MainWeightVal,
+                goal_weight: MainWeightVal,
                 weight_unit: 'kg',
               },
             });

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -24,7 +24,11 @@ import NewButtob from '../../components/Button/NewButtob';
 import SmallText from '../../components/Text/SmallText';
 import LiftMan from '../../../assets/images/LiftMan.svg';
 import Input from '../../components/Form/Input';
-const Weight = () => {
+import { SCREENS } from '../../constants/Screens';
+import { useRoute } from '@react-navigation/native';
+const Weight = ({ navigation }) => {
+  const route = useRoute();
+  const values = route.params?.values;
   const [lbs, setlbs] = useState(true);
   const [kg, setkg] = useState(false);
   const [MainWeightVal, setMainWeightVal] = useState('');
@@ -61,19 +65,24 @@ const Weight = () => {
     });
 
   const animatedStyles = useAnimatedStyle(() => ({
-    transform: [{translateX: offset.value}],
+    transform: [{ translateX: offset.value }],
   }));
 
+
+  const handlePress = () => {
+    navigation.navigate(SCREENS.GOALWEIGHT, { values: { ...values, current_weight: MainWeightVal, weight: MainWeightVal } });
+  };
+
   return (
-    <ScrollView style={{backgroundColor: 'white', height: '100%'}}>
+    <ScrollView style={{ backgroundColor: 'white', height: '100%' }}>
       <SlideHeader />
       <LiftMan
         width={124}
         height={189}
-        style={{alignSelf: 'center', marginVertical: 20}}
+        style={{ alignSelf: 'center', marginVertical: 20 }}
       />
       <View style={styles.ProfileView}>
-        <TextH4 style={{marginTop: '20%'}}>What is your current weight?</TextH4>
+        <TextH4 style={{ marginTop: '20%' }}>What is your current weight?</TextH4>
         <View style={styles.InnerMain}>
           <TouchableOpacity
             onPress={() => {
@@ -82,7 +91,7 @@ const Weight = () => {
             }}
             style={[
               styles.InnerMainView,
-              {backgroundColor: lbs ? '#8C80F8' : 'white'},
+              { backgroundColor: lbs ? '#8C80F8' : 'white' },
             ]}>
             <Text
               style={{
@@ -100,7 +109,7 @@ const Weight = () => {
             }}
             style={[
               styles.InnerMainView,
-              {backgroundColor: kg ? '#8C80F8' : 'white'},
+              { backgroundColor: kg ? '#8C80F8' : 'white' },
             ]}>
             <Text
               style={{
@@ -112,13 +121,13 @@ const Weight = () => {
             </Text>
           </TouchableOpacity>
         </View>
-        {/* <Input
-                    placeholder={'Weight'}
-                    onChangeText={value => setMainWeightVal(value)}
-                    customStyle={{ width: "60%", marginVertical: 15 }}
-                    keyboardType='numeric'
-                /> */}
-        <GestureHandlerRootView style={styles.container}>
+        <Input
+          placeholder={'Weight'}
+          onChangeText={value => setMainWeightVal(value)}
+          customStyle={{ width: "60%", marginVertical: 15 }}
+          keyboardType='numeric'
+        />
+        {/* <GestureHandlerRootView style={styles.container}>
           <View style={styles.container}>
             <GestureDetector
               gesture={pan}
@@ -154,9 +163,9 @@ const Weight = () => {
             <Image source={pointer} style={{height: 40}} resizeMode="contain" />
             <Animated.Text>{counter} </Animated.Text>
           </View>
-        </GestureHandlerRootView>
+        </GestureHandlerRootView> */}
 
-        <NewButtob title={'Continue'} />
+        <NewButtob title={'Continue'} onPress={handlePress} />
       </View>
     </ScrollView>
   );
@@ -165,21 +174,21 @@ const Weight = () => {
 export default Weight;
 
 const styles = StyleSheet.create({
-    ProfileView: {
-        alignItems: "center"
-    },
-    InnerMain: {
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-around",
-        marginVertical: 15
-    },
-    InnerMainView: {
-        width: "20%",
-        marginHorizontal: 20,
-        alignItems: "center",
-        paddingVertical: 10,
-        borderRadius: 11,
+  ProfileView: {
+    alignItems: "center"
+  },
+  InnerMain: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    marginVertical: 15
+  },
+  InnerMainView: {
+    width: "20%",
+    marginHorizontal: 20,
+    alignItems: "center",
+    paddingVertical: 10,
+    borderRadius: 11,
 
-    }
+  }
 })
