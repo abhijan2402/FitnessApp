@@ -7,14 +7,42 @@ import {TextInput} from 'react-native';
 import {Dimensions} from 'react-native';
 import { SCREENS } from '../../constants/Screens';
 import { useRoute } from '@react-navigation/native';
+import { useRef } from 'react';
+import CustomToast from '../../components/common/Toast';
 
 const {width} = Dimensions.get('window');
 
 const Email = ({navigation}) => {
   const route = useRoute();
   const data = route.params?.data;
-  const [email, setEmail]  = useState()
+  const [email, setEmail]  = useState('')
+  const childRef = useRef(null);
+  const [toastColorState, setToastColorState] = useState('');
+  const [toastTextColorState, setToastTextColorState] = useState('white');
+  const [toastMessage, setToastMessage] = useState('');
+
+  function validateEmail(email) {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return emailRegex.test(email);
+  }
+
   const handlePress = () => {
+    if(email.length < 1) {
+      setToastMessage('Email is required');
+      setToastTextColorState('white');
+      setToastColorState('red');
+      childRef.current.showToast();
+      return
+    }
+
+    if(!validateEmail(email)) {
+      setToastMessage('Enter a valid email');
+      setToastTextColorState('white');
+      setToastColorState('red');
+      childRef.current.showToast();
+      return
+    }
+
     navigation.navigate(SCREENS.NPASSWORD, {data: {...data, email}})
   }
 
@@ -22,6 +50,12 @@ const Email = ({navigation}) => {
 
   return (
     <View style={styles.container}>
+      <CustomToast
+        toastColor={toastColorState}
+        toastTextColor={toastTextColorState}
+        toastMessage={toastMessage}
+        ref={childRef}
+      />
       <SlideHeader />
       <Step text="STEP 3/12" />
       <Text style={styles.heading}>Entre your Email Id</Text>

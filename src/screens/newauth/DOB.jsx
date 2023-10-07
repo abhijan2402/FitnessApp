@@ -14,8 +14,10 @@ import {useState} from 'react';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import CalendarNew from '../../../assets/images/calendar-new.svg';
 import {getAge} from '../../utils/common';
-import { SCREENS } from '../../constants/Screens';
-import { useRoute } from '@react-navigation/native';
+import {SCREENS} from '../../constants/Screens';
+import {useRoute} from '@react-navigation/native';
+import CustomToast from '../../components/common/Toast';
+import {useRef} from 'react';
 
 const {width} = Dimensions.get('window');
 
@@ -23,8 +25,22 @@ const DOB = ({navigation}) => {
   const route = useRoute();
   const data = route.params?.data;
   const [actualDate, setActualDate] = useState(null);
+  const childRef = useRef(null);
+  const [toastColorState, setToastColorState] = useState('');
+  const [toastTextColorState, setToastTextColorState] = useState('white');
+  const [toastMessage, setToastMessage] = useState('');
+
   const handlePress = () => {
-    navigation.navigate(SCREENS.PROFILEIMAGE, {data: {...data, dob: actualDate}});
+    if (actualDate === null) {
+      setToastMessage('Date of birth is requires');
+      setToastTextColorState('white');
+      setToastColorState('red');
+      childRef.current.showToast();
+      return;
+    }
+    navigation.navigate(SCREENS.PROFILEIMAGE, {
+      data: {...data, dob: actualDate},
+    });
   };
   const [date, setDate] = useState('dd/mm/yyyy');
 
@@ -38,6 +54,14 @@ const DOB = ({navigation}) => {
   };
 
   const handleConfirm = date => {
+    if (Number(getAge(date)) < 5) {
+      setToastMessage('Age should be least 5 year');
+      setToastTextColorState('white');
+      setToastColorState('red');
+      childRef.current.showToast();
+      hideDatePicker();
+      return;
+    }
     setActualDate(date);
     const year = date.getFullYear();
     const month = 1 + date.getMonth();
@@ -49,6 +73,12 @@ const DOB = ({navigation}) => {
 
   return (
     <View style={styles.container}>
+      <CustomToast
+        toastColor={toastColorState}
+        toastTextColor={toastTextColorState}
+        toastMessage={toastMessage}
+        ref={childRef}
+      />
       <SlideHeader />
       <Step text="STEP 6/12" />
       <Text style={styles.heading}>Entre your Date of birth</Text>
@@ -166,6 +196,6 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     fontWeight: '500',
     letterSpacing: 0.2,
-    marginTop: 10
+    marginTop: 10,
   },
 });

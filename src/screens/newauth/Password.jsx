@@ -8,18 +8,48 @@ import {Dimensions} from 'react-native';
 import {SCREENS} from '../../constants/Screens';
 import {useState} from 'react';
 import { useRoute } from '@react-navigation/native';
+import { useRef } from 'react';
+import CustomToast from '../../components/common/Toast';
 
 const {width} = Dimensions.get('window');
 
 const Password = ({navigation}) => {
   const route = useRoute();
   const data = route.params?.data;
-  const [password, setPassword] = useState();
+  const [password, setPassword] = useState('');
+  const childRef = useRef(null);
+  const [toastColorState, setToastColorState] = useState('');
+  const [toastTextColorState, setToastTextColorState] = useState('white');
+  const [toastMessage, setToastMessage] = useState('');
+
+
   const handlePress = () => {
+    if(password.length < 1) {
+      setToastMessage('Password is required');
+      setToastTextColorState('white');
+      setToastColorState('red');
+      childRef.current.showToast();
+      return
+    }
+
+    if(password.length < 8) {
+      setToastMessage('Password should have at least 10 characters');
+      setToastTextColorState('white');
+      setToastColorState('red');
+      childRef.current.showToast();
+      return
+    }
+
     navigation.navigate(SCREENS.NNAME, {data: {...data, password}});
   };
   return (
     <View style={styles.container}>
+      <CustomToast
+        toastColor={toastColorState}
+        toastTextColor={toastTextColorState}
+        toastMessage={toastMessage}
+        ref={childRef}
+      />
       <SlideHeader />
       <Step text="STEP 4/12" />
       <Text style={styles.heading}>Set your password</Text>

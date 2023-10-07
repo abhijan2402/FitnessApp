@@ -8,6 +8,7 @@ import Step from '../../components/new-auth/Step';
 import NewButtob from '../../components/Button/NewButtob';
 import {useRoute} from '@react-navigation/native';
 import {SCREENS} from '../../constants/Screens';
+import CustomToast from '../../components/common/Toast';
 
 const {width, height} = Dimensions.get('window');
 
@@ -23,6 +24,10 @@ const Otp = ({navigation}) => {
   const [timerMinutes, setTimerMinutes] = useState(TIMER_MINUTES);
   const [resendAvailable, setResendAvailable] = useState(true);
   const [otp, setOtp] = useState({1: '', 2: '', 3: '', 4: '', 5: '', 6: ''});
+  const childRef = useRef(null);
+  const [toastColorState, setToastColorState] = useState('');
+  const [toastTextColorState, setToastTextColorState] = useState('white');
+  const [toastMessage, setToastMessage] = useState('');
   // request
   function getOtpByPhone() {
     //validation required
@@ -77,6 +82,21 @@ const Otp = ({navigation}) => {
   };
 
   const handlePress = () => {
+    if (concatValues(otp).length < 1) {
+      setToastMessage('OTP is required');
+      setToastTextColorState('white');
+      setToastColorState('red');
+      childRef.current.showToast();
+      return;
+    }
+
+    if (concatValues(otp).length !== 6) {
+      setToastMessage('OTP must be 6 digit');
+      setToastTextColorState('white');
+      setToastColorState('red');
+      childRef.current.showToast();
+      return;
+    }
     navigation.navigate(SCREENS.NEMAIL, {
       data: {...data, otp: concatValues(otp)},
     });
@@ -84,6 +104,12 @@ const Otp = ({navigation}) => {
 
   return (
     <View style={styles.MainView}>
+      <CustomToast
+        toastColor={toastColorState}
+        toastTextColor={toastTextColorState}
+        toastMessage={toastMessage}
+        ref={childRef}
+      />
       <SlideHeader />
       <Step text="STEP 2/12" />
 

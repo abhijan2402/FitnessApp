@@ -8,18 +8,43 @@ import {Dimensions} from 'react-native';
 import {SCREENS} from '../../constants/Screens';
 import {useRoute} from '@react-navigation/native';
 import {useState} from 'react';
+import { useRef } from 'react';
+import CustomToast from '../../components/common/Toast';
 
 const {width} = Dimensions.get('window');
 
 const Name = ({navigation}) => {
   const route = useRoute();
   const data = route.params?.data;
-  const [name, setName] = useState();
-  const handlePress = () => {
+  const [name, setName] = useState('');
+  const childRef = useRef(null);
+  const [toastColorState, setToastColorState] = useState('');
+  const [toastTextColorState, setToastTextColorState] = useState('white');
+  const [toastMessage, setToastMessage] = useState('');
+
+
+  const handlePress = async () => {
+
+      if(name.length < 1) {
+        setToastMessage('Name is required');
+        setToastTextColorState('white');
+        setToastColorState('red');
+        childRef.current.showToast();
+        return
+      }
+
+     
+
     navigation.navigate(SCREENS.NDOB, {data: {...data, full_name: name}});
   };
   return (
     <View style={styles.container}>
+      <CustomToast
+        toastColor={toastColorState}
+        toastTextColor={toastTextColorState}
+        toastMessage={toastMessage}
+        ref={childRef}
+      />
       <SlideHeader />
       <Step text="STEP 5/12" />
       <Text style={styles.heading}>Entre your Name</Text>

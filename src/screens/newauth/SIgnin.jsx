@@ -1,21 +1,42 @@
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import SlideHeader from '../../components/header/SlideHeader';
 import Step from '../../components/new-auth/Step';
 import NewButtob from '../../components/Button/NewButtob';
 import {TextInput} from 'react-native';
-import Flag from '../../../assets/images/country-flag.svg';
+import Flag from '../../../assets/images/india-flag-icon.svg';
 import {Dimensions} from 'react-native';
 import {SCREENS} from '../../constants/Screens';
 import {SendOTP} from '../../backend/utilFunctions';
+import CustomToast from '../../components/common/Toast';
 
 const {width} = Dimensions.get('window');
 
 const SIgnin = ({navigation}) => {
-  const [number, setNumber] = useState();
+  const [number, setNumber] = useState('');
+  const childRef = useRef(null);
+  const [toastColorState, setToastColorState] = useState('');
+  const [toastTextColorState, setToastTextColorState] = useState('white');
+  const [toastMessage, setToastMessage] = useState('');
+
 
   const handlePress = async () => {
     try {
+      if(number.length < 1) {
+        setToastMessage('Phone Number is required');
+        setToastTextColorState('white');
+        setToastColorState('red');
+        childRef.current.showToast();
+        return
+      }
+
+      if(number.length !== 10) {
+        setToastMessage('Phone Number must be 10 digit');
+        setToastTextColorState('white');
+        setToastColorState('red');
+        childRef.current.showToast();
+        return
+      }
       const res = await SendOTP(number);
       console.log('data', res);
       navigation.navigate(SCREENS.NOTP, {
@@ -27,6 +48,12 @@ const SIgnin = ({navigation}) => {
   };
   return (
     <View style={styles.container}>
+      <CustomToast
+        toastColor={toastColorState}
+        toastTextColor={toastTextColorState}
+        toastMessage={toastMessage}
+        ref={childRef}
+      />
       <SlideHeader next={true} />
       <Step text="STEP 1/12" />
       <Text style={styles.heading}>Let’s start with your mobile number</Text>
@@ -34,8 +61,8 @@ const SIgnin = ({navigation}) => {
 
       <View style={styles.inputContainer}>
         <View style={{flexDirection: 'row', gap: 11}}>
-          <Flag />
-          <Text style={styles.countryCode}>+62</Text>
+          <Flag width={25} />
+          <Text style={styles.countryCode}>+91</Text>
         </View>
         <TextInput
           placeholder="9093XXXXXX"
