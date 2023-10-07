@@ -34,7 +34,7 @@ const GoalWeight = ({ navigation }) => {
 
 
   return (
-    <ScrollView style={{ backgroundColor: 'white', height: '100%' }}>
+    <ScrollView style={{ backgroundColor: '#F4F6FA', height: '100%' }}>
       <CustomToast
         toastColor={toastColorState}
         toastTextColor={toastTextColorState}
@@ -97,7 +97,7 @@ const GoalWeight = ({ navigation }) => {
         <NewButtob
           title={'Continue'}
           onPress={() => {
-            if(MainWeightVal.length < 1) {
+            if (MainWeightVal.length < 1) {
               setToastMessage('Weight is required');
               setToastTextColorState('white');
               setToastColorState('red');
@@ -107,7 +107,7 @@ const GoalWeight = ({ navigation }) => {
             navigation.navigate(SCREENS.HEIGHT, {
               values: {
                 ...values,
-                goal_weight: String(MainWeightVal),
+                goal_weight: MainWeightVal,
                 weight_unit: 'kg',
               },
             });

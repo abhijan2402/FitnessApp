@@ -20,6 +20,7 @@ const NewGoal = ({ navigation }) => {
   const handleCreateUser = async () => {
     try {
       console.log(values, "i am value");
+
       const res = await registerUser({ ...values, goal: 'improve weight' });
       console.log(res)
       // navigation.navigate(SCREENS.FINALGOALMAIN);
@@ -28,7 +29,7 @@ const NewGoal = ({ navigation }) => {
     }
   };
   return (
-    <View style={{ alignItems: 'center' }}>
+    <View style={{ alignItems: 'center', backgroundColor: "#F4F6FA" }}>
       <SlideHeader />
       <TextH4 style={{ marginTop: '20%' }}>Choose your goal</TextH4>
       <SmallText

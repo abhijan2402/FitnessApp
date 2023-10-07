@@ -10,7 +10,7 @@ import { TouchableOpacity } from 'react-native'
 import TextMedium from '../../components/Text/TextMedium'
 const OfficeTiming = () => {
     return (
-        <View style={{ backgroundColor: "white", height: "100%" }}>
+        <View style={{ backgroundColor: "#F4F6FA", height: "100%" }}>
             <SlideHeader />
             <Running width={170} height={189} style={{ alignSelf: "center", marginVertical: 20 }} />
             <View style={{ alignItems: "center", marginVertical: 10 }}>

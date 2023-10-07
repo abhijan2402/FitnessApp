@@ -6,7 +6,7 @@ import Input from '../../components/Form/Input'
 import NewButtob from '../../components/Button/NewButtob'
 const Occupation = () => {
     return (
-        <View style={{ backgroundColor: "white", height: "100%" }}>
+        <View style={{ backgroundColor: "#F4F6FA", height: "100%" }}>
             <SlideHeader />
             <View style={{ alignItems: "center", marginVertical: 10 }}>
                 <TextH4 style={{ marginVertical: "10%", width: "80%", textAlign: "center" }}>Occupation</TextH4>

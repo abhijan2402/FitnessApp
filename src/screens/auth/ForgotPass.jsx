@@ -18,6 +18,7 @@ import CustomToast from '../../components/common/Toast';
 import { useRef } from 'react';
 import { fetch } from 'react-native-ssl-pinning';
 import { ScrollView } from 'react-native';
+import NewButtob from '../../components/Button/NewButtob';
 
 const { width, height } = Dimensions.get('window');
 const TIMER_SECONDS = 59;
@@ -39,58 +40,58 @@ const ForgotPass = () => {
     const [toastTextColorState, setToastTextColorState] = useState('white');
     const [toastMessage, setToastMessage] = useState('');
 
-    const [timerSeconds,setTimerSeconds] = useState(TIMER_SECONDS)
-    const [timerMinutes,setTimerMinutes] = useState(TIMER_MINUTES)
-    const [resendAvailable,setResendAvailable] = useState(true);
-    const [hash,setHash] = useState();
+    const [timerSeconds, setTimerSeconds] = useState(TIMER_SECONDS)
+    const [timerMinutes, setTimerMinutes] = useState(TIMER_MINUTES)
+    const [resendAvailable, setResendAvailable] = useState(true);
+    const [hash, setHash] = useState();
 
-    function getOtpByPhone(){
+    function getOtpByPhone() {
         setLoading(true)
         //validation required
         getOtp(phone)
-        .then(res=>setHash(res.hash))
-        .catch(error=>{
-            console.log(error.message);
-            console.log("Message ",error.message)
-        }).finally(()=>setLoading(false))
+            .then(res => setHash(res.hash))
+            .catch(error => {
+                console.log(error.message);
+                console.log("Message ", error.message)
+            }).finally(() => setLoading(false))
     }
-    function onPressSendOTP(){
+    function onPressSendOTP() {
         setTimerMinutes(TIMER_MINUTES)
         setTimerSeconds(TIMER_SECONDS)
         setResendAvailable(false);
         getOtpByPhone()
-        timeInterval = setInterval(()=>{
-            setTimerSeconds(prevTime=>prevTime - 1)
-        },1000)
+        timeInterval = setInterval(() => {
+            setTimerSeconds(prevTime => prevTime - 1)
+        }, 1000)
     }
-    useEffect(()=>{
-        if(timerSeconds === 0 && timerMinutes === 0){
+    useEffect(() => {
+        if (timerSeconds === 0 && timerMinutes === 0) {
             clearInterval(timeInterval)
             setResendAvailable(true);
         }
-        else if(timerSeconds === 0){
+        else if (timerSeconds === 0) {
             setTimerSeconds(SECONDS)
-            setTimerMinutes(prev=>prev - 1);
+            setTimerMinutes(prev => prev - 1);
         }
-        
-    },[timerSeconds,timerMinutes])
 
-    function onResetPassword(){
+    }, [timerSeconds, timerMinutes])
+
+    function onResetPassword() {
         setLoading(true);
         const info = {
-            phone,hash,otp,email,password,confirmPassword:confirmPass
+            phone, hash, otp, email, password, confirmPassword: confirmPass
         }
         forgotPassword(info)
-        .then(()=>{
-            navigation.navigate(SCREENS.LOGIN)
-        })
-        .catch(err=>console.log(err))
-        .finally(()=>setLoading(false))
+            .then(() => {
+                navigation.navigate(SCREENS.LOGIN)
+            })
+            .catch(err => console.log(err))
+            .finally(() => setLoading(false))
     }
     return (
         <View style={styles.MainView}>
             <ScrollView>
-                <View style={{ alignItems: "center" }}>
+                <View style={{ alignItems: "center", width: "100%" }}>
                     <CustomToast
                         toastColor={toastColorState}
                         toastTextColor={toastTextColorState}
@@ -103,7 +104,7 @@ const ForgotPass = () => {
                     </View>
                     <View style={{ width: "85%", marginTop: 7 }}>
                         <Input placeholder={"Phone"} value={phone} keyboardType='numeric' onChangeText={(value) => setPhone(value)} icon={<Email width={20} height={20} />} />
-                        {!resendAvailable && TIMER_SECONDS > 0 && <SmallText style={{ textAlign: "center", marginVertical: 20, color: "#92A3FD" }} onPress={onPressSendOTP}>{timerMinutes<10?`0${timerMinutes}`:timerMinutes}:{timerSeconds<10?`0${timerSeconds}`:timerSeconds}</SmallText>}
+                        {!resendAvailable && TIMER_SECONDS > 0 && <SmallText style={{ textAlign: "center", marginVertical: 20, color: "#92A3FD" }} onPress={onPressSendOTP}>{timerMinutes < 10 ? `0${timerMinutes}` : timerMinutes}:{timerSeconds < 10 ? `0${timerSeconds}` : timerSeconds}</SmallText>}
                         {phone.length === 10 && resendAvailable && <SmallText style={{ textAlign: "center", marginVertical: 20, color: "#92A3FD" }} onPress={onPressSendOTP}>Send OTP</SmallText>}
                     </View>
                     <View style={{ width: "85%", marginTop: 7 }}>
@@ -122,7 +123,12 @@ const ForgotPass = () => {
                         {
                             loading ?
                                 <ActivityIndicator size={30} color={'blue'} /> :
-                                <PrimaryButton containerStyle={{ width: width - 30, }} title={'Set Password'} onPress={() => onResetPassword()} />
+                                <NewButtob
+                                    title={'Set Password'}
+                                    onPress={onResetPassword}
+                                    width={width - 50}
+                                />
+                            // <PrimaryButton containerStyle={{ width: width - 30, }} title={'Set Password'} onPress={() => onResetPassword()} />
                         }
                     </View>
                     <Pressable onPress={() => navigation.navigate(SCREENS.LOGIN)} style={[styles.IconView, { alignItems: "center" }]}>
@@ -141,7 +147,7 @@ export default ForgotPass
 const styles = StyleSheet.create({
     MainView: {
         flex: 1,
-        backgroundColor: "white",
+        backgroundColor: "#F4F6FA",
         display: "flex",
         alignItems: "center"
     },

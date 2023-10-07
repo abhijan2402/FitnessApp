@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import SlideHeader from '../../components/header/SlideHeader';
 import TextH4 from '../../components/Text/TextH4';
 import NewButtob from '../../components/Button/NewButtob';
-import {Image} from 'react-native';
+import { Image } from 'react-native';
 import SmallText from '../../components/Text/SmallText';
 import Height from '../../../assets/images/height.svg';
 import Input from '../../components/Form/Input';
@@ -14,12 +14,12 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {SCREENS} from '../../constants/Screens';
-import {useRoute} from '@react-navigation/native';
+import { SCREENS } from '../../constants/Screens';
+import { useRoute } from '@react-navigation/native';
 import CustomToast from '../../components/common/Toast';
 import { useRef } from 'react';
 
-const Heights = ({navigation}) => {
+const Heights = ({ navigation }) => {
   const route = useRoute();
   const values = route.params?.values;
   const [lbs, setlbs] = useState(true);
@@ -32,7 +32,7 @@ const Heights = ({navigation}) => {
 
 
   return (
-    <ScrollView style={{backgroundColor: 'white', height: '100%'}}>
+    <ScrollView style={{ backgroundColor: '#F4F6FA', height: '100%' }}>
       <CustomToast
         toastColor={toastColorState}
         toastTextColor={toastTextColorState}
@@ -43,10 +43,10 @@ const Heights = ({navigation}) => {
       <Height
         width={170}
         height={189}
-        style={{alignSelf: 'center', marginVertical: 20}}
+        style={{ alignSelf: 'center', marginVertical: 20 }}
       />
       <View style={styles.ProfileView}>
-        <TextH4 style={{marginTop: '20%'}}>What is your Height?</TextH4>
+        <TextH4 style={{ marginTop: '20%' }}>What is your Height?</TextH4>
         <View style={styles.InnerMain}>
           <TouchableOpacity
             onPress={() => {
@@ -55,7 +55,7 @@ const Heights = ({navigation}) => {
             }}
             style={[
               styles.InnerMainView,
-              {backgroundColor: lbs ? '#8C80F8' : 'white'},
+              { backgroundColor: lbs ? '#8C80F8' : 'white' },
             ]}>
             <Text
               style={{
@@ -73,7 +73,7 @@ const Heights = ({navigation}) => {
             }}
             style={[
               styles.InnerMainView,
-              {backgroundColor: kg ? '#8C80F8' : 'white'},
+              { backgroundColor: kg ? '#8C80F8' : 'white' },
             ]}>
             <Text
               style={{
@@ -88,14 +88,14 @@ const Heights = ({navigation}) => {
         <Input
           placeholder={'Height'}
           onChangeText={value => setheightVal(value)}
-          customStyle={{width: '60%', marginVertical: 15}}
+          customStyle={{ width: '60%', marginVertical: 15 }}
           keyboardType="numeric"
         />
 
         <NewButtob
           title={'Continue'}
           onPress={() => {
-            if(heightVal.length < 1) {
+            if (heightVal.length < 1) {
               setToastMessage('Height is required');
               setToastTextColorState('white');
               setToastColorState('red');
@@ -103,14 +103,14 @@ const Heights = ({navigation}) => {
               return
             }
 
-            navigation.navigate(SCREENS.NEWGOAL,  {
-              
-                values: {
-                  ...values,
-                  height: heightVal,
-                  height_unit: 'cm',
-                },
-              });
+            navigation.navigate(SCREENS.NEWGOAL, {
+
+              values: {
+                ...values,
+                height: heightVal,
+                height_unit: 'cm',
+              },
+            });
           }}
         />
       </View>

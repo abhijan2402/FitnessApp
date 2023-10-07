@@ -26,6 +26,7 @@ import { storageKeyName } from '../../constants/Data';
 import CustomToast from '../../components/common/Toast';
 import { useRef } from 'react';
 import { fetch } from 'react-native-ssl-pinning';
+import NewButtob from '../../components/Button/NewButtob';
 
 const { width, height } = Dimensions.get('window');
 
@@ -112,7 +113,7 @@ const Login = () => {
           Reset Now
         </TextH4>
       </Pressable>
-      <View style={{ alignItems: 'center', marginTop: '25%' }}>
+      {/* <View style={{ alignItems: 'center', marginTop: '25%' }}>
         {loading ? (
           <ActivityIndicator size={30} color={'blue'} />
         ) : (
@@ -122,7 +123,13 @@ const Login = () => {
             onPress={() => Login()}
           />
         )}
-      </View>
+      </View> */}
+
+      <NewButtob
+        title={'Login'}
+        onPress={Login}
+        width={"80%"}
+      />
       {/* <Text style={{ marginTop: '14%' }}>Or</Text> */}
       {/* <View style={[styles.IconView, {marginTop: '5%'}]}>
         <View style={styles.iconContainer}>
@@ -143,7 +150,7 @@ const Login = () => {
         </View>
       </View> */}
       <Pressable
-        onPress={() => navigation.navigate(SCREENS.REGISTEROTP)}
+        onPress={() => navigation.navigate(SCREENS.NSIGNIN)}
         style={[styles.IconView, { alignItems: 'center', position: "absolute", bottom: "5%" }]}>
         <SmallText style={{ fontSize: 14 }}>Don't have an account yet?</SmallText>
         <TextH4 style={{ fontSize: 14, color: '#C58BF2', marginLeft: 5 }}>
@@ -159,7 +166,7 @@ export default Login;
 const styles = StyleSheet.create({
   MainView: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#F4F6FA',
     display: 'flex',
     alignItems: 'center',
   },

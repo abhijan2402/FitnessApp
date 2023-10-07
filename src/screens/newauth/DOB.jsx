@@ -9,20 +9,20 @@ import React from 'react';
 import SlideHeader from '../../components/header/SlideHeader';
 import Step from '../../components/new-auth/Step';
 import NewButtob from '../../components/Button/NewButtob';
-import {Dimensions} from 'react-native';
-import {useState} from 'react';
+import { Dimensions } from 'react-native';
+import { useState } from 'react';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import CalendarNew from '../../../assets/images/calendar-new.svg';
 
-import {getAge} from '../../utils/common';
-import {SCREENS} from '../../constants/Screens';
-import {useRoute} from '@react-navigation/native';
+import { getAge } from '../../utils/common';
+import { SCREENS } from '../../constants/Screens';
+import { useRoute } from '@react-navigation/native';
 import CustomToast from '../../components/common/Toast';
-import {useRef} from 'react';
+import { useRef } from 'react';
 
-const {width} = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
-const DOB = ({navigation}) => {
+const DOB = ({ navigation }) => {
   const route = useRoute();
   const data = route.params?.data;
   const [actualDate, setActualDate] = useState(null);
@@ -44,7 +44,7 @@ const DOB = ({navigation}) => {
     const final = JSON.stringify(actualDate);
     const yeh = final.slice(1, 11);
     console.log(yeh, 'mj');
-    navigation.navigate(SCREENS.PROFILEIMAGE, {data: {...data, dob: yeh}});
+    navigation.navigate(SCREENS.PROFILEIMAGE, { data: { ...data, dob: yeh } });
   };
   const [date, setDate] = useState('dd/mm/yyyy');
 
@@ -90,7 +90,7 @@ const DOB = ({navigation}) => {
       <View style={styles.inputContainer}>
         <Text style={styles.dateTxt}>{date}</Text>
 
-        <TouchableOpacity onPress={showDatePicker} style={{padding: 8}}>
+        <TouchableOpacity onPress={showDatePicker} style={{ padding: 8 }}>
           <CalendarNew />
         </TouchableOpacity>
         <DateTimePickerModal

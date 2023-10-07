@@ -1,9 +1,9 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 
-const NewButtob = ({ title, onPress }) => {
+const NewButtob = ({ title, onPress, width = "60%" }) => {
     return (
-        <TouchableOpacity style={styles.MainView} onPress={onPress}>
+        <TouchableOpacity style={[styles.MainView, { width: width }]} onPress={onPress}>
             <Text style={{ fontSize: 16, fontWeight: "600", color: "white" }} >{title}</Text>
         </TouchableOpacity>
     )

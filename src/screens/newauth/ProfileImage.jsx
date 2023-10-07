@@ -77,12 +77,12 @@ const ProfileImage = ({ navigation }) => {
   };
 
   const handlePress = () => {
-    if(!MainD.length) {
+    if (!MainD.length) {
       setToastMessage('Profile image is required');
-        setToastTextColorState('white');
-        setToastColorState('red');
-        childRef.current.showToast();
-        return
+      setToastTextColorState('white');
+      setToastColorState('red');
+      childRef.current.showToast();
+      return
     }
 
     const ImgData = {
@@ -93,8 +93,8 @@ const ProfileImage = ({ navigation }) => {
     navigation.navigate(SCREENS.SELECTGENDER, { values: { ...values, profile_image: ImgData } });
   };
   return (
-    <View style={{ backgroundColor: 'white', height: height }}>
-       <CustomToast
+    <View style={{ backgroundColor: '#F4F6FA', height: height }}>
+      <CustomToast
         toastColor={toastColorState}
         toastTextColor={toastTextColorState}
         toastMessage={toastMessage}
