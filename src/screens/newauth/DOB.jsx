@@ -15,15 +15,18 @@ import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import CalendarNew from '../../../assets/images/calendar-new.svg';
 import {getAge} from '../../utils/common';
 import { SCREENS } from '../../constants/Screens';
+import { useRoute } from '@react-navigation/native';
 
 const {width} = Dimensions.get('window');
 
 const DOB = ({navigation}) => {
+  const route = useRoute();
+  const data = route.params?.data;
+  const [actualDate, setActualDate] = useState(null);
   const handlePress = () => {
-    navigation.navigate(SCREENS.PROFILEIMAGE);
+    navigation.navigate(SCREENS.PROFILEIMAGE, {data: {...data, dob: actualDate}});
   };
   const [date, setDate] = useState('dd/mm/yyyy');
-  const [actualDate, setActualDate] = useState(null);
 
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const showDatePicker = () => {

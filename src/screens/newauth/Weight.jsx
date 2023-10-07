@@ -165,36 +165,21 @@ const Weight = () => {
 export default Weight;
 
 const styles = StyleSheet.create({
-  ProfileView: {
-    alignItems: 'center',
-  },
-  InnerMain: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginVertical: 15,
-  },
-  InnerMainView: {
-    width: '20%',
-    marginHorizontal: 20,
-    alignItems: 'center',
-    paddingVertical: 10,
-    borderRadius: 11,
-  },
-  container: {
-    overflow: 'hidden',
-    // margin:50,
-    height: 100,
-    margin: '5%',
-    // width:200,
-    // backgroundColor:"yellow",
-  },
-  circle: {
-    flexDirection: 'row',
-    height: 10,
-    width: 10000,
-    // backgroundColor: '#b58df1',
-    borderRadius: 500,
-    cursor: 'grab',
-  },
-});
+    ProfileView: {
+        alignItems: "center"
+    },
+    InnerMain: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-around",
+        marginVertical: 15
+    },
+    InnerMainView: {
+        width: "20%",
+        marginHorizontal: 20,
+        alignItems: "center",
+        paddingVertical: 10,
+        borderRadius: 11,
+
+    }
+})

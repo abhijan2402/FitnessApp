@@ -6,12 +6,17 @@ import NewButtob from '../../components/Button/NewButtob';
 import {TextInput} from 'react-native';
 import {Dimensions} from 'react-native';
 import {SCREENS} from '../../constants/Screens';
+import {useRoute} from '@react-navigation/native';
+import {useState} from 'react';
 
 const {width} = Dimensions.get('window');
 
 const Name = ({navigation}) => {
+  const route = useRoute();
+  const data = route.params?.data;
+  const [name, setName] = useState();
   const handlePress = () => {
-    navigation.navigate(SCREENS.NDOB);
+    navigation.navigate(SCREENS.NDOB, {data: {...data, full_name: name}});
   };
   return (
     <View style={styles.container}>
@@ -20,7 +25,7 @@ const Name = ({navigation}) => {
       <Text style={styles.heading}>Entre your Name</Text>
 
       <View style={styles.inputContainer}>
-        <TextInput style={styles.input} />
+        <TextInput onChangeText={text => setName(text)} style={styles.input} />
       </View>
       <View
         style={{

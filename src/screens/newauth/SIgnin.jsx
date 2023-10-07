@@ -7,7 +7,7 @@ import {TextInput} from 'react-native';
 import Flag from '../../../assets/images/country-flag.svg';
 import {Dimensions} from 'react-native';
 import {SCREENS} from '../../constants/Screens';
-import { SendOTP } from '../../backend/utilFunctions';
+import {SendOTP} from '../../backend/utilFunctions';
 
 const {width} = Dimensions.get('window');
 
@@ -15,13 +15,14 @@ const SIgnin = ({navigation}) => {
   const [number, setNumber] = useState();
 
   const handlePress = async () => {
-    navigation.navigate(SCREENS.NOTP, {phone: number});
-
     try {
-      const {data} = await SendOTP(number)
-      console.log(data)
+      const res = await SendOTP(number);
+      console.log('data', res);
+      navigation.navigate(SCREENS.NOTP, {
+        data: {phone: res?.phone, hash: res?.hash},
+      });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
   return (
