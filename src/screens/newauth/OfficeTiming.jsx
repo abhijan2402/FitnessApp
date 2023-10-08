@@ -8,7 +8,8 @@ import Running from '../../../assets/images/Running.svg'
 import { useState } from 'react'
 import { TouchableOpacity } from 'react-native'
 import TextMedium from '../../components/Text/TextMedium'
-const OfficeTiming = () => {
+import { SCREENS } from '../../constants/Screens'
+const OfficeTiming = ({navigation}) => {
     return (
         <View style={{ backgroundColor: "#F4F6FA", height: "100%" }}>
             <SlideHeader />
@@ -21,7 +22,7 @@ const OfficeTiming = () => {
                     onChangeText={{}}
                     customStyle={{ width: "80%", marginVertical: 20, backgroundColor: "white", elevation: 5 }} />
 
-                <NewButtob title={"Continue"} />
+                <NewButtob onPress={() => navigation.navigate(SCREENS.SUPPLEMENT)} title={"Continue"} />
             </View>
 
         </View>

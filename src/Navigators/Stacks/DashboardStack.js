@@ -21,6 +21,9 @@ import MealHome from '../../screens/Meal/MealHome';
 import StepTracker from '../../screens/DashBoard/StepTracker';
 import Occupation from '../../screens/newauth/Occupation';
 import MedicalHistory from '../../screens/newauth/MedicalHistory';
+import OfficeTiming from '../../screens/newauth/OfficeTiming';
+import SupplementMain from '../../screens/newauth/Supplement';
+import FoodDiskike from '../../screens/newauth/FoodDiskike';
 
 const Stack = createNativeStackNavigator();
 
@@ -47,6 +50,9 @@ function DashboardStack() {
             <Stack.Screen name={SCREENS.STEP_TRACKER} component={StepTracker} />
             <Stack.Screen name={SCREENS.OCCUPATION} component={Occupation} />
             <Stack.Screen name={SCREENS.MEDICALHISTORY} component={MedicalHistory} />
+            <Stack.Screen name={SCREENS.OFFICETIMING} component={OfficeTiming} />
+            <Stack.Screen name={SCREENS.SUPPLEMENT} component={SupplementMain} />
+            <Stack.Screen name={SCREENS.FOODDISLIKE} component={FoodDiskike} />
 
 
 

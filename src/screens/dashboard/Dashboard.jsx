@@ -95,7 +95,7 @@ function Dashboard(props) {
             Please complete your health details for better experiance
           </Text>
           <TouchableOpacity
-            onPress={() => navigation.navigate(SCREENS.OCCUPATION)}>
+            onPress={() => navigation.navigate(SCREENS.FOODDISLIKE)}>
             <Text style={styles.scoreBtn}>Complete</Text>
           </TouchableOpacity>
         </View>
