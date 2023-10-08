@@ -24,6 +24,7 @@ import MedicalHistory from '../../screens/newauth/MedicalHistory';
 import OfficeTiming from '../../screens/newauth/OfficeTiming';
 import SupplementMain from '../../screens/newauth/Supplement';
 import FoodDiskike from '../../screens/newauth/FoodDiskike';
+import Location from '../../screens/newauth/Location';
 
 const Stack = createNativeStackNavigator();
 
@@ -53,6 +54,8 @@ function DashboardStack() {
             <Stack.Screen name={SCREENS.OFFICETIMING} component={OfficeTiming} />
             <Stack.Screen name={SCREENS.SUPPLEMENT} component={SupplementMain} />
             <Stack.Screen name={SCREENS.FOODDISLIKE} component={FoodDiskike} />
+            <Stack.Screen name={SCREENS.LOCATION} component={Location} />
+
 
 
 

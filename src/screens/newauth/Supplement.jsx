@@ -8,8 +8,9 @@ import Supplement from '../../../assets/images/Supplement.svg'
 import { useState } from 'react'
 import { TouchableOpacity } from 'react-native'
 import TextMedium from '../../components/Text/TextMedium'
+import { SCREENS } from '../../constants/Screens'
 
-const SupplementMain = () => {
+const SupplementMain = ({ navigation }) => {
     const [lbs, setlbs] = useState(true)
     const [kg, setkg] = useState(false)
     const [MainWeightVal, setMainWeightVal] = useState("")
@@ -32,7 +33,7 @@ const SupplementMain = () => {
                     placeholder={"Mention here ...."}
                     onChangeText={{}}
                     customStyle={{ width: "80%", marginVertical: 20, backgroundColor: "white", elevation: 5 }} />
-                <NewButtob title={"Continue"} />
+                <NewButtob title={"Continue"} onPress={() => { navigation.navigate(SCREENS.LOCATION) }} />
             </View>
 
         </View>

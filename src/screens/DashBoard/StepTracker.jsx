@@ -33,10 +33,12 @@ import { Circle } from 'react-native-svg';
 // import {BarChart, LineChart} from 'react-native-chart-kit';
 import { LineChart, XAxis, Grid, YAxis, BarChart } from 'react-native-svg-charts';
 import * as scale from 'd3-scale';
+import CustomDatePicker from '../../components/common/CustomDatePicker';
+import { SCREENS } from '../../constants/Screens';
 
 const MAX_POINTS = 597;
 
-export default function StepTracker() {
+export default function StepTracker({ navigation }) {
     const data = [50, 10, 40, 95, 85, 35, 53, 24, 50, 10, 40, 95, 85, 35, 53, 24];
 
     const contentInset = { top: 20, bottom: 20 };
@@ -53,7 +55,7 @@ export default function StepTracker() {
                         <Image style={{ height: 40 }} source={Detail} />
                     </View>
                 </View>
-                <View style={[styles.dateList]}>
+                {/* <View style={[styles.dateList]}>
                     <View style={[styles.day]}>
                         <Text style={[styles.dayText]}>Wed</Text>
                         <Text style={[styles.dayText]}>12</Text>
@@ -74,7 +76,8 @@ export default function StepTracker() {
                         <Text style={[styles.dayText]}>Sun</Text>
                         <Text style={[styles.dayText]}>16</Text>
                     </View>
-                </View>
+                </View> */}
+                <CustomDatePicker />
                 <View style={[styles.dailystepsText]}>
                     <Text style={{ color: '#7265E3', fontWeight: '500' }}>DAILY STEPS</Text>
                 </View>
@@ -565,7 +568,7 @@ export default function StepTracker() {
                                     paddingHorizontal: 10,
                                 }}
                                 colors={['#92A3FD', '#9DCEFF']}>
-                                <TouchableOpacity>
+                                <TouchableOpacity onPress={() => { navigation.navigate(SCREENS.DASHBOARD) }}>
                                     <Text
                                         style={{
                                             textAlign: 'center',

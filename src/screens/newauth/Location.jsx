@@ -4,8 +4,9 @@ import SlideHeader from '../../components/header/SlideHeader'
 import TextH4 from '../../components/Text/TextH4'
 import Input from '../../components/Form/Input'
 import NewButtob from '../../components/Button/NewButtob'
+import { SCREENS } from '../../constants/Screens'
 
-const Location = () => {
+const Location = ({ navigation }) => {
     return (
         <View style={{ backgroundColor: "white", height: "100%" }}>
             <SlideHeader />
@@ -15,7 +16,7 @@ const Location = () => {
                     placeholder={"Jaipur"}
                     onChangeText={{}}
                     customStyle={{ width: "80%", marginVertical: 20, backgroundColor: "white", elevation: 5 }} />
-                <NewButtob title={"Continue"} />
+                <NewButtob title={"Continue"} onPress={() => { navigation.navigate(SCREENS.DASHBOARD) }} />
             </View>
         </View>
     )
