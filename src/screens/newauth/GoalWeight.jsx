@@ -14,6 +14,18 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  useDerivedValue,
+  useAnimatedGestureHandler,
+  runOnJS,
+} from 'react-native-reanimated';
+import {
+  Gesture,
+  GestureDetector,
+  GestureHandlerRootView,
+} from 'react-native-gesture-handler';
 import { SCREENS } from '../../constants/Screens';
 import { useRoute } from '@react-navigation/native';
 import CustomToast from '../../components/common/Toast';
@@ -22,14 +34,36 @@ import { useRef } from 'react';
 const GoalWeight = ({ navigation }) => {
   const route = useRoute();
   const values = route.params?.values;
+  const someFunc = val => {
+    setMainWeightVal(currentValue => currentValue + (parseInt(val) * -1));
+  };
 
   const [lbs, setlbs] = useState(true);
   const [kg, setkg] = useState(false);
-  const [MainWeightVal, setMainWeightVal] = useState('');
+  const [MainWeightVal, setMainWeightVal] = useState(50);
   const childRef = useRef(null);
   const [toastColorState, setToastColorState] = useState('');
   const [toastTextColorState, setToastTextColorState] = useState('white');
   const [toastMessage, setToastMessage] = useState('');
+
+  const pan = Gesture.Pan()
+    .onBegin(() => {
+      pressed.value = true;
+    })
+    .onChange(event => {
+      let newX = offset.value + event.changeX * 7.8;
+      if (newX > -1825 && newX < 148) {
+        offset.value = newX;
+        runOnJS(someFunc)(event.changeX);
+      }
+    })
+    .onFinalize(() => {
+      pressed.value = false;
+    });
+
+  const animatedStyles = useAnimatedStyle(() => ({
+    transform: [{ translateX: offset.value }],
+  }));
 
 
 
@@ -48,7 +82,7 @@ const GoalWeight = ({ navigation }) => {
         style={{ alignSelf: 'center', marginVertical: 20 }}
       />
       <View style={styles.ProfileView}>
-        <TextH4 style={{ marginTop: '20%' }}>What is your goal weight?</TextH4>
+        <TextH4 style={{ marginTop: '20%' }}>What is your Goal weight?</TextH4>
         <View style={styles.InnerMain}>
           <TouchableOpacity
             onPress={() => {
@@ -87,12 +121,50 @@ const GoalWeight = ({ navigation }) => {
             </Text>
           </TouchableOpacity>
         </View>
-        <Input
-          placeholder={'Weight'}
-          onChangeText={value => setMainWeightVal(value)}
-          customStyle={{ width: '60%', marginVertical: 15 }}
-          keyboardType="numeric"
-        />
+        <GestureHandlerRootView style={styles.container}>
+          <View style={styles.innerContainer}>
+            <GestureDetector gesture={pan}>
+              <View style={{marginHorizontal: '5%'}}>
+                <Animated.View
+                  style={{
+                    height: 0,
+                    width: '100%',
+                    // backgroundColor: 'red',
+                    zIndex: 100,
+                  }}
+                />
+                <Animated.View style={[styles.circle, animatedStyles]}>
+                  <Image
+                    source={tick}
+                    style={{
+                      height: 300,
+                      width: 2000,
+                      flexDirection: 'row',
+                      marginTop: -90,
+                    }}
+                    resizeMode="contain"
+                  />
+                </Animated.View>
+              </View>
+            </GestureDetector>
+          </View>
+          <View
+            style={{
+              position: 'absolute',
+              alignSelf: 'center',
+              alignItems: 'center',
+              width: '100%',
+              zIndex: -999,
+              bottom: -10,
+            }}>
+            <Image
+              source={pointer}
+              style={{height: 120}}
+              resizeMode="contain"
+            />
+            <Animated.Text style={{fontSize:28, color:"#000"}}>{MainWeightVal}</Animated.Text>
+          </View>
+        </GestureHandlerRootView>
 
         <NewButtob
           title={'Continue'}

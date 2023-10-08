@@ -36,7 +36,7 @@ const Weight = ({ navigation }) => {
   const values = route.params?.values;
   const [lbs, setlbs] = useState(true);
   const [kg, setkg] = useState(false);
-  const [MainWeightVal, setMainWeightVal] = useState('');
+  const [MainWeightVal, setMainWeightVal] = useState(50);
 
   const tick = require('../../../assets/images/strip.png');
   const pointer = require('../../../assets/images/pointer.png');
@@ -45,10 +45,8 @@ const Weight = ({ navigation }) => {
   const [counter, setCounter] = useState(50);
 
   const someFunc = val => {
-    setCounter(currentValue => currentValue + (parseInt(val) * -1));
+    setMainWeightVal(currentValue => currentValue + (parseInt(val) * -1));
   };
-
-  const logFunc = e => console.log('CHANGE', e);
 
   const childRef = useRef(null);
   const [toastColorState, setToastColorState] = useState('');
@@ -66,7 +64,6 @@ const Weight = ({ navigation }) => {
         offset.value = newX;
         // someWorklet(event.changeX);
         runOnJS(someFunc)(event.changeX);
-        runOnJS(logFunc)(newX);
       }
     })
     .onFinalize(() => {
@@ -144,12 +141,7 @@ const Weight = ({ navigation }) => {
             </Text>
           </TouchableOpacity>
         </View>
-        {/* <Input
-            placeholder={'Weight'}
-            onChangeText={value => setMainWeightVal(value)}
-            customStyle={{ width: "60%", marginVertical: 15 }}
-            keyboardType='numeric'
-            /> */}
+      
         <GestureHandlerRootView style={styles.container}>
           <View style={styles.innerContainer}>
             <GestureDetector gesture={pan}>
@@ -191,7 +183,7 @@ const Weight = ({ navigation }) => {
               style={{height: 120}}
               resizeMode="contain"
             />
-            <Animated.Text style={{fontSize:28, color:"#000"}}>{counter}</Animated.Text>
+            <Animated.Text style={{fontSize:28, color:"#000"}}>{MainWeightVal}</Animated.Text>
           </View>
         </GestureHandlerRootView> 
 

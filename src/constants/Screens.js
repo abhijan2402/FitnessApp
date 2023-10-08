@@ -81,6 +81,8 @@ export const SCREENS = {
   SKIPMEALPAGE: 'SkipMealPage',
   SUPPLEMENT: 'Supplement',
   WEIGHT: 'Weight',
+  HEIGHT: 'Height',
+  GOALWEIGHT:'GoalWeight',
   NSIGNIN: 'NSignin',
   NOTP: 'NOtp',
   NEMAIL: 'NEmail',
