@@ -4,7 +4,8 @@ import SlideHeader from '../../components/header/SlideHeader'
 import TextH4 from '../../components/Text/TextH4'
 import Input from '../../components/Form/Input'
 import NewButtob from '../../components/Button/NewButtob'
-const Occupation = () => {
+import { SCREENS } from '../../constants/Screens'
+const Occupation = ({navigation}) => {
     return (
         <View style={{ backgroundColor: "#F4F6FA", height: "100%" }}>
             <SlideHeader />
@@ -15,7 +16,7 @@ const Occupation = () => {
                     onChangeText={{}}
                     customStyle={{ width: "80%", marginVertical: 20, backgroundColor: "white", elevation: 5 }} />
 
-                <NewButtob title={"Continue"} />
+                <NewButtob onPress={() => navigation.navigate(SCREENS.MEDICALHISTORY)} title={"Continue"} />
             </View>
         </View>
     )

@@ -89,13 +89,13 @@ function Dashboard(props) {
 
       <View style={styles.scoreCard}>
         <Score />
-
         <View style={{width: 192}}>
           <Text style={styles.scoreHeading}>Incomplete profile</Text>
           <Text style={styles.scoreDesc}>
             Please complete your health details for better experiance
           </Text>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.navigate(SCREENS.OCCUPATION)}>
             <Text style={styles.scoreBtn}>Complete</Text>
           </TouchableOpacity>
         </View>
