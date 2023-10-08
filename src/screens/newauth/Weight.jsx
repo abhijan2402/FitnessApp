@@ -7,10 +7,13 @@ import {
   TouchableOpacity,
   View,
   Image,
+  Dimensions,
 } from 'react-native';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
+  useDerivedValue,
+  useAnimatedGestureHandler,
   runOnJS,
 } from 'react-native-reanimated';
 import {
@@ -35,11 +38,17 @@ const Weight = ({ navigation }) => {
   const [kg, setkg] = useState(false);
   const [MainWeightVal, setMainWeightVal] = useState('');
 
-  const tick = require('../../../assets/images/tick2.png');
+  const tick = require('../../../assets/images/strip.png');
   const pointer = require('../../../assets/images/pointer.png');
   const pressed = useSharedValue(false);
-  const offset = useSharedValue(-50);
-  const [counter, setCounter] = React.useState(50);
+  const offset = useSharedValue(-183);
+  const [counter, setCounter] = useState(50);
+
+  const someFunc = val => {
+    setCounter(currentValue => currentValue + (parseInt(val) * -1));
+  };
+
+  const logFunc = e => console.log('CHANGE', e);
 
   const childRef = useRef(null);
   const [toastColorState, setToastColorState] = useState('');
@@ -52,20 +61,12 @@ const Weight = ({ navigation }) => {
       pressed.value = true;
     })
     .onChange(event => {
-      let newX = offset.value + event.changeX;
-
-      runOnJS(value => {
-        console.log('newX', newX);
-      })(newX);
-
-      // abc.value = abc.value  + (event.changeX * -1)
-
-      // if(abc.value > -100 && abc.value<300){
-      if (newX > -201 && newX < 0) {
+      let newX = offset.value + event.changeX * 7.8;
+      if (newX > -1825 && newX < 148) {
         offset.value = newX;
-        runOnJS(value => {
-          setCounter(currentValue => currentValue + value * -1);
-        })(event.changeX);
+        // someWorklet(event.changeX);
+        runOnJS(someFunc)(event.changeX);
+        runOnJS(logFunc)(newX);
       }
     })
     .onFinalize(() => {
@@ -143,31 +144,34 @@ const Weight = ({ navigation }) => {
             </Text>
           </TouchableOpacity>
         </View>
-        <Input
-          placeholder={'Weight'}
-          onChangeText={value => setMainWeightVal(value)}
-          customStyle={{ width: "60%", marginVertical: 15 }}
-          keyboardType='numeric'
-        />
-        {/* <GestureHandlerRootView style={styles.container}>
-          <View style={styles.container}>
-            <GestureDetector
-              gesture={pan}
-              style={{backgroundColor: 'yellow', flex: 1}}>
-              <View>
+        {/* <Input
+            placeholder={'Weight'}
+            onChangeText={value => setMainWeightVal(value)}
+            customStyle={{ width: "60%", marginVertical: 15 }}
+            keyboardType='numeric'
+            /> */}
+        <GestureHandlerRootView style={styles.container}>
+          <View style={styles.innerContainer}>
+            <GestureDetector gesture={pan}>
+              <View style={{marginHorizontal: '5%'}}>
                 <Animated.View
                   style={{
-                    height: '100%',
+                    height: 0,
                     width: '100%',
-                    backgroundC2olor: 'red',
+                    // backgroundColor: 'red',
                     zIndex: 100,
                   }}
                 />
                 <Animated.View style={[styles.circle, animatedStyles]}>
                   <Image
                     source={tick}
-                    style={{height: 20, width: '100%'}}
-                    resizeMode="repeat"
+                    style={{
+                      height: 300,
+                      width: 2000,
+                      flexDirection: 'row',
+                      marginTop: -90,
+                    }}
+                    resizeMode="contain"
                   />
                 </Animated.View>
               </View>
@@ -180,12 +184,16 @@ const Weight = ({ navigation }) => {
               alignItems: 'center',
               width: '100%',
               zIndex: -999,
-              bottom: 20,
+              bottom: -10,
             }}>
-            <Image source={pointer} style={{height: 40}} resizeMode="contain" />
-            <Animated.Text>{counter} </Animated.Text>
+            <Image
+              source={pointer}
+              style={{height: 120}}
+              resizeMode="contain"
+            />
+            <Animated.Text style={{fontSize:28, color:"#000"}}>{counter}</Animated.Text>
           </View>
-        </GestureHandlerRootView> */}
+        </GestureHandlerRootView> 
 
         <NewButtob title={'Continue'} onPress={handlePress} />
       </View>
@@ -211,6 +219,29 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingVertical: 10,
     borderRadius: 11,
-
-  }
-})
+  },
+  container: {
+    // overflow: 'hidden',
+    // margin:50,
+    height: 150,
+    marginVertical: '5%',
+    width: Dimensions.get('window').width,
+    // backgroundColor:"yellow",
+  },
+  innerContainer: {
+    overflow: 'hidden',
+    // margin:50,
+    height: 100,
+    marginHorizontal: '5%',
+    // width:Dimensions.get("window").width,
+    // backgroundColor:"yellow",
+  },
+  circle: {
+    flexDirection: 'row',
+    height: 50,
+    width: 100,
+    // backgroundColor: 'blue',
+    borderRadius: 500,
+    cursor: 'grab',
+  },
+});

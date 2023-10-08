@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler'
 import { NavigationContainer } from '@react-navigation/native';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -56,26 +57,26 @@ function App() {
       </View>
     )
   return (
-    <GlobalContext.Provider value={{
-      user: user,
-      setLoggedInUser: (userObj) => setUser(userObj),
-    }}>
-      <NavigationContainer>
-        <Stack.Navigator screenOptions={{
-          headerShown: false
-        }}>
-          {
-            user ?
-              <Stack.Screen name={SCREENS.BOTTOMTAB} component={BottomTab} /> :
-              <Stack.Screen name={SCREENS.AUTHSTACK} component={AuthStack} />
-          }
-        </Stack.Navigator>
-      </NavigationContainer>
-    </GlobalContext.Provider>
+    // <GlobalContext.Provider value={{
+    //   user: user,
+    //   setLoggedInUser: (userObj) => setUser(userObj),
+    // }}>
+    //   <NavigationContainer>
+    //     <Stack.Navigator screenOptions={{
+    //       headerShown: false
+    //     }}>
+    //       {
+    //         user ?
+    //           <Stack.Screen name={SCREENS.BOTTOMTAB} component={BottomTab} /> :
+    //           <Stack.Screen name={SCREENS.AUTHSTACK} component={AuthStack} />
+    //       }
+    //     </Stack.Navigator>
+    //   </NavigationContainer>
+    // </GlobalContext.Provider>
     // <SIgnin />
     // <ProfileImage />
     // <SelectGender />
-    // <Weight />
+    <Weight />
     // <NewGoal />
     // <FinalGoalMain />
     // <FoodDiskike />
