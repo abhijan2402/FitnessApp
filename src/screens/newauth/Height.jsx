@@ -13,6 +13,7 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Dimensions
 } from 'react-native';
 import Animated, {
   useAnimatedStyle,
@@ -36,7 +37,7 @@ const Heights = ({ navigation }) => {
   const values = route.params?.values;
   const [lbs, setlbs] = useState(true);
   const [kg, setkg] = useState(false);
-  const [heightVal, setheightVal] = useState('');
+  const [heightVal, setheightVal] = useState(50);
   const childRef = useRef(null);
   const [toastColorState, setToastColorState] = useState('');
   const [toastTextColorState, setToastTextColorState] = useState('white');
@@ -44,6 +45,10 @@ const Heights = ({ navigation }) => {
   const someFunc = val => {
     setheightVal(currentValue => currentValue + (parseInt(val) * -1));
   };
+  const tick = require('../../../assets/images/strip.png');
+  const pointer = require('../../../assets/images/pointer.png');
+  const pressed = useSharedValue(false);
+  const offset = useSharedValue(-183);
 
   const pan = Gesture.Pan()
     .onBegin(() => {
@@ -212,4 +217,28 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 11,
   },
+  container: {
+    // overflow: 'hidden',
+    // margin:50,
+    height: 150,
+    marginVertical: '5%',
+    width: Dimensions.get('window').width,
+    // backgroundColor:"yellow",
+  },
+  innerContainer: {
+    overflow: 'hidden',
+    // margin:50,
+    height: 100,
+    marginHorizontal: '5%',
+    // width:Dimensions.get("window").width,
+    // backgroundColor:"yellow",
+  },
+  circle: {
+    flexDirection: 'row',
+    height: 50,
+    width: 100,
+    // backgroundColor: 'blue',
+    borderRadius: 500,
+    cursor: 'grab',
+  }
 });

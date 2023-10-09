@@ -71,7 +71,7 @@ function App() {
             <Stack.Screen name={SCREENS.BOTTOMTAB} component={BottomTab} />
           ) : (
             // <Stack.Screen name={SCREENS.AUTHSTACK} component={AuthStack} />
-            <Stack.Screen name={SCREENS.HEIGHT} component={GoalWeight} />
+            <Stack.Screen name={SCREENS.HEIGHT} component={Height} />
           )}
         </Stack.Navigator>
         {/* <Weight /> */}

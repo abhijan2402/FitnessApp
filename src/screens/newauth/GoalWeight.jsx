@@ -8,6 +8,7 @@ import LiftMan from '../../../assets/images/LiftMan.svg';
 import Input from '../../components/Form/Input';
 import {
   ScrollView,
+  Dimensions,
   StyleSheet,
   Text,
   TextInput,
@@ -45,6 +46,10 @@ const GoalWeight = ({ navigation }) => {
   const [toastColorState, setToastColorState] = useState('');
   const [toastTextColorState, setToastTextColorState] = useState('white');
   const [toastMessage, setToastMessage] = useState('');
+  const tick = require('../../../assets/images/strip.png');
+  const pointer = require('../../../assets/images/pointer.png');
+  const pressed = useSharedValue(false);
+  const offset = useSharedValue(-183);
 
   const pan = Gesture.Pan()
     .onBegin(() => {
@@ -208,5 +213,29 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 10,
     borderRadius: 11,
+  },
+  container: {
+    // overflow: 'hidden',
+    // margin:50,
+    height: 150,
+    marginVertical: '5%',
+    width: Dimensions.get('window').width,
+    // backgroundColor:"yellow",
+  },
+  innerContainer: {
+    overflow: 'hidden',
+    // margin:50,
+    height: 100,
+    marginHorizontal: '5%',
+    // width:Dimensions.get("window").width,
+    // backgroundColor:"yellow",
+  },
+  circle: {
+    flexDirection: 'row',
+    height: 50,
+    width: 100,
+    // backgroundColor: 'blue',
+    borderRadius: 500,
+    cursor: 'grab',
   },
 });
