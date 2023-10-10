@@ -67,7 +67,7 @@ function App() {
           screenOptions={{
             headerShown: false,
           }}>
-          {user ? (
+          {!user ? (
             <Stack.Screen name={SCREENS.BOTTOMTAB} component={BottomTab} />
           ) : (
             // <Stack.Screen name={SCREENS.AUTHSTACK} component={AuthStack} />
