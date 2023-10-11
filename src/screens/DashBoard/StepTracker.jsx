@@ -30,6 +30,8 @@ import Group from '../../../assets/images/Group.png';
 import LinearGradient from 'react-native-linear-gradient';
 import {AnimatedCircularProgress} from 'react-native-circular-progress';
 import {Circle} from 'react-native-svg';
+import Day from '../../../assets/images/day.svg';
+import Night from '../../../assets/images/night.svg';
 // import {BarChart, LineChart} from 'react-native-chart-kit';
 import {LineChart, XAxis, Grid, YAxis, BarChart} from 'react-native-svg-charts';
 import * as scale from 'd3-scale';
@@ -37,7 +39,7 @@ import CustomDatePicker from '../../components/common/CustomDatePicker';
 import {SCREENS} from '../../constants/Screens';
 import Back from '../../../assets/images/Close-Navs.svg';
 import Details from '../../../assets/images/Detail-Navs.svg';
-const {width} = Dimensions.get('window')
+const {width} = Dimensions.get('window');
 const MAX_POINTS = 597;
 
 export default function StepTracker({navigation}) {
@@ -91,15 +93,23 @@ export default function StepTracker({navigation}) {
         </View>
         <View style={{paddingHorizontal: 30}}>
           <View style={[styles.targets]}>
-            <Text style={{color: '#1D1617', margin: 10, marginBottom: 16, fontWeight: '600'}}>Todays Target</Text>
+            <Text
+              style={{
+                color: '#1D1617',
+                margin: 10,
+                marginBottom: 16,
+                fontWeight: '600',
+              }}>
+              Todays Target
+            </Text>
             <View style={[styles.targetItems]}>
               <View style={[styles.targetItem]}>
                 <View style={[styles.targetItemMain]}>
                   <Image source={glass1} />
                 </View>
                 <View>
-                  <Text>8 L</Text>
-                  <Text>Water Intake</Text>
+                  <Text style={styles.targetText1}>8 L</Text>
+                  <Text style={styles.targetText2}>Water Intake</Text>
                 </View>
               </View>
               <View style={[styles.targetItems]}>
@@ -111,8 +121,8 @@ export default function StepTracker({navigation}) {
                     />
                   </View>
                   <View>
-                    <Text>8 L</Text>
-                    <Text>Water Intake</Text>
+                    <Text style={styles.targetText1}>10,000</Text>
+                    <Text style={styles.targetText2}>Foot Steps</Text>
                   </View>
                 </View>
               </View>
@@ -252,12 +262,17 @@ export default function StepTracker({navigation}) {
             </View>
             <View>
               <View style={{flex: 1}}>
-                <View style={{height: 200, flexDirection: 'row'}}>
+                <View
+                  style={{
+                    height: 200,
+                    flexDirection: 'row',
+                    paddingHorizontal: 10,
+                  }}>
                   <YAxis
                     data={data}
                     contentInset={contentInset}
                     svg={{
-                      fill: 'grey',
+                      fill: '#FFF',
                       fontSize: 10,
                     }}
                     numberOfTicks={10}
@@ -273,15 +288,23 @@ export default function StepTracker({navigation}) {
                       spacingInner={0.1}>
                       <Grid />
                     </BarChart>
-                    <XAxis
+                    {/* <XAxis
                       style={{marginHorizontal: -10}}
                       data={data}
                       scale={scale.scaleBand}
                       formatLabel={(value, index) => index}
                       contentInset={{left: 10, right: 10}}
                       svg={{fontSize: 10, fill: 'black'}}
-                    />
+                    /> */}
                   </View>
+                </View>
+
+                <View style={styles.yAxis}>
+                  <Day />
+                  <Text style={styles.nAxisText}>6AM</Text>
+                  <Text style={styles.nAxisText}>12PM</Text>
+                  <Text style={styles.nAxisText}>6PM</Text>
+                  <Night />
                 </View>
               </View>
             </View>
@@ -457,7 +480,7 @@ export default function StepTracker({navigation}) {
                         data={data}
                         contentInset={contentInset}
                         svg={{
-                          fill: 'grey',
+                          fill: '#fff',
                           fontSize: 10,
                         }}
                         numberOfTicks={10}
@@ -479,7 +502,7 @@ export default function StepTracker({navigation}) {
                           scale={scale.scaleBand}
                           formatLabel={(value, index) => index}
                           contentInset={{left: 10, right: 10}}
-                          svg={{fontSize: 10, fill: 'black'}}
+                          svg={{fontSize: 10, fill: '#fff'}}
                         />
                       </View>
                     </View>
@@ -493,19 +516,23 @@ export default function StepTracker({navigation}) {
                 style={{
                   backgroundColor: '#92A3FD',
                   flexDirection: 'row',
-                  justifyContent: 'space-around',
-                  padding: 10,
+                  justifyContent: 'space-between',
+                  paddingVertical: 10,
+                  paddingHorizontal: 15,
                   alignItems: 'center',
                   borderRadius: 10,
                 }}>
                 <View
                   style={{
                     backgroundColor: '#8C80F8',
-                    padding: 10,
                     borderRadius: 10,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: 48,
+                    height: 57.562,
                   }}>
-                  <Text style={{color: 'white'}}>OCT</Text>
-                  <Text style={{color: 'white'}}>13</Text>
+                  <Text style={styles.stepsText}>OCT</Text>
+                  <Text style={styles.stepsText1}>13</Text>
                 </View>
                 <View>
                   <Text style={{fontSize: 16, fontWeight: 600}}>
@@ -526,23 +553,27 @@ export default function StepTracker({navigation}) {
                 style={{
                   backgroundColor: '#92A3FD',
                   flexDirection: 'row',
-                  justifyContent: 'space-around',
-                  padding: 10,
+                  justifyContent: 'space-between',
+                  paddingVertical: 10,
+                  paddingHorizontal: 15,
                   alignItems: 'center',
                   borderRadius: 10,
                 }}>
                 <View
                   style={{
                     backgroundColor: '#8C80F8',
-                    padding: 10,
                     borderRadius: 10,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: 48,
+                    height: 57.562,
                   }}>
-                  <Text style={{color: 'white'}}>OCT</Text>
-                  <Text style={{color: 'white'}}>10</Text>
+                  <Text style={styles.stepsText}>OCT</Text>
+                  <Text style={styles.stepsText1}>10</Text>
                 </View>
                 <View>
                   <Text style={{fontSize: 16, fontWeight: 600}}>
-                    Most steps
+                    Least steps
                   </Text>
                   <Text>Tuesday</Text>
                 </View>
@@ -558,16 +589,15 @@ export default function StepTracker({navigation}) {
               style={{
                 justifyContent: 'center',
                 marginTop: 10,
-                // alignItems: 'center',
-                // paddingHorizontal: 40,
                 marginVertical: 30,
               }}>
               <LinearGradient
                 style={{
                   padding: 10,
-                  borderRadius: 20,
+                  borderRadius: 50,
                   paddingVertical: 20,
                   paddingHorizontal: 10,
+                  marginTop: 50,
                 }}
                 colors={['#92A3FD', '#9DCEFF']}>
                 <TouchableOpacity
@@ -628,7 +658,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginVertical: 25,
-    fontSize: 14
+    fontSize: 14,
   },
   walk40percent: {
     fontSize: 28,
@@ -639,24 +669,24 @@ const styles = StyleSheet.create({
   targets: {
     backgroundColor: '#dde1f8',
     paddingVertical: 22,
-    paddingHorizontal: 20,
+    paddingHorizontal: 15,
     borderRadius: 20,
   },
   targetItems: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    gap: 15
+    gap: 10,
   },
   targetItem: {
     flexDirection: 'row',
     backgroundColor: 'white',
-    paddingHorizontal: 20,
-    borderRadius: 20,
+    paddingHorizontal: 10,
+    borderRadius: 15,
     padding: 5,
     paddingVertical: 20,
-    // justifyContent: 'space-evenly',
+    justifyContent: 'space-evenly',
 
-    width: (width - 115) / 2
+    width: (width - 105) / 2,
   },
   targetItemMain: {
     flexDirection: 'row',
@@ -668,7 +698,60 @@ const styles = StyleSheet.create({
     // bac,
   },
   image: {
-    // justifyContent: 'center',
-    // height: '100%',
+    borderRadius: 20,
+    overflow: 'hidden',
+  },
+
+  targetText2: {
+    color: '#7B6F72',
+    fontFamily: 'Poppins',
+    fontSize: 12,
+    fontWeight: 400,
+    lineHeight: 20,
+  },
+
+  targetText1: {
+    fontFamily: 'Poppins',
+    fontSize: 14,
+    fontWeight: '500',
+    lineHeight: 21,
+    color: '#9DCEFF',
+  },
+
+  yAxis: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+  },
+
+  nAxisText: {
+    color: '#E4DFFF',
+    fontFamily: 'Rubik',
+    fontSize: 12,
+    fontWeight: '400',
+    lineHeight: 20,
+  },
+
+  stepsText: {
+    color: '#FFF',
+    textAlign: 'center',
+    fontFamily: 'Rubik',
+    fontSize: 12,
+    fontWeight: '400',
+    lineHeight: 14,
+    letterSpacing: 1,
+    textTransform: 'uppercase',
+  },
+
+  stepsText1: {
+    color: '#FFF',
+    textAlign: 'center',
+    fontFamily: 'Rubik',
+    fontSize: 16,
+    fontWeight: '500',
+    letterSpacing: 0.229,
+    textTransform: 'uppercase',
   },
 });
