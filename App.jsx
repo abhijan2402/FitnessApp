@@ -1,15 +1,15 @@
 import 'react-native-gesture-handler';
-import {NavigationContainer} from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import BottomTab from './src/Navigators/BottomTab';
 import AuthStack from './src/Navigators/Stacks/AuthStack';
-import {SCREENS} from './src/constants/Screens';
-import {createContext, useEffect, useState} from 'react';
-import {ActivityIndicator, View} from 'react-native';
-import {getDataFromAsyncStorage} from './src/utils/common';
-import {storageKeyName} from './src/constants/Data';
-import {getUser} from './src/backend/utilFunctions';
+import { SCREENS } from './src/constants/Screens';
+import { createContext, useEffect, useState } from 'react';
+import { ActivityIndicator, View } from 'react-native';
+import { getDataFromAsyncStorage } from './src/utils/common';
+import { storageKeyName } from './src/constants/Data';
+import { getUser } from './src/backend/utilFunctions';
 import SIgnin from './src/screens/newauth/SIgnin';
 import ProfileImage from './src/screens/newauth/ProfileImage';
 import SelectGender from './src/screens/newauth/SelectGender';
@@ -52,7 +52,7 @@ function App() {
   }, []);
   if (autoLoginInProgress)
     return (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <ActivityIndicator color={'purple'} size={'large'} />
       </View>
     );
@@ -67,11 +67,11 @@ function App() {
           screenOptions={{
             headerShown: false,
           }}>
-          {!user ? (
+          {user ? (
             <Stack.Screen name={SCREENS.BOTTOMTAB} component={BottomTab} />
           ) : (
-            // <Stack.Screen name={SCREENS.AUTHSTACK} component={AuthStack} />
-            <Stack.Screen name={SCREENS.HEIGHT} component={Height} />
+            <Stack.Screen name={SCREENS.AUTHSTACK} component={AuthStack} />
+            // <Stack.Screen name={SCREENS.HEIGHT} component={Height} />
           )}
         </Stack.Navigator>
         {/* <Weight /> */}

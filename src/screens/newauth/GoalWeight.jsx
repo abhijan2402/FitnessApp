@@ -129,7 +129,7 @@ const GoalWeight = ({ navigation }) => {
         <GestureHandlerRootView style={styles.container}>
           <View style={styles.innerContainer}>
             <GestureDetector gesture={pan}>
-              <View style={{marginHorizontal: '5%'}}>
+              <View style={{ marginHorizontal: '5%' }}>
                 <Animated.View
                   style={{
                     height: 0,
@@ -164,10 +164,10 @@ const GoalWeight = ({ navigation }) => {
             }}>
             <Image
               source={pointer}
-              style={{height: 120}}
+              style={{ height: 120 }}
               resizeMode="contain"
             />
-            <Animated.Text style={{fontSize:28, color:"#000"}}>{MainWeightVal}</Animated.Text>
+            <Animated.Text style={{ fontSize: 28, color: "#000" }}>{MainWeightVal}</Animated.Text>
           </View>
         </GestureHandlerRootView>
 
@@ -184,7 +184,7 @@ const GoalWeight = ({ navigation }) => {
             navigation.navigate(SCREENS.HEIGHT, {
               values: {
                 ...values,
-                goal_weight: MainWeightVal,
+                goal_weight: JSON.stringify(MainWeightVal),
                 weight_unit: 'kg',
               },
             });

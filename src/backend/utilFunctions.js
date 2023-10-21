@@ -3,7 +3,7 @@ import { storageKeyName } from '../constants/Data';
 import { getDataFromAsyncStorage } from '../utils/common';
 
 const baseURL =
-  'https://ec2-15-206-239-93.ap-south-1.compute.amazonaws.com/api';
+  'https://13.127.229.77/api';
 async function getBaseHeaders() {
   const baseHeaders = {
     Accept: 'application/json; charset=utf-8',
@@ -57,12 +57,13 @@ export async function registerUser(user) {
   data.append('weight', user.weight);
   data.append('weight_unit', user.weight_unit);
   data.append('height', user.height);
-  data.append('goal_weight', user.height_unit);
+  // data.append('height_unit', user.height_unit);
   data.append('goal', user.goal);
   data.append('goal_weight', user.goal_weight);
   data.append('profile_image', user.profile_image);
   data.append('current_weight', user.current_weight);
   data.append('height_unit', user.height_unit);
+
 
   console.log(data, "i amd");
   console.log(user.profile_image, "I am pro");
@@ -130,6 +131,10 @@ export async function Updatemeal(info, mealid) {
 export async function SendOTP(phone) {
   const data = new FormData();
   data.append('phone', phone);
+  data.append('type', "REGISTRATION");
+
+
+
 
   return await generateRequest('/sendotp', 'POST', data);
 }

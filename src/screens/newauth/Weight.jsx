@@ -76,7 +76,7 @@ const Weight = ({ navigation }) => {
 
 
   const handlePress = () => {
-    if(MainWeightVal.length < 1) {
+    if (MainWeightVal.length < 1) {
       setToastMessage('Weight is required');
       setToastTextColorState('white');
       setToastColorState('red');
@@ -84,7 +84,7 @@ const Weight = ({ navigation }) => {
       return
     }
 
-    navigation.navigate(SCREENS.GOALWEIGHT, { values: { ...values, current_weight: MainWeightVal, weight: MainWeightVal } });
+    navigation.navigate(SCREENS.GOALWEIGHT, { values: { ...values, current_weight: JSON.stringify(MainWeightVal), weight: JSON.stringify(MainWeightVal) } });
   };
 
   return (
@@ -141,11 +141,11 @@ const Weight = ({ navigation }) => {
             </Text>
           </TouchableOpacity>
         </View>
-      
+
         <GestureHandlerRootView style={styles.container}>
           <View style={styles.innerContainer}>
             <GestureDetector gesture={pan}>
-              <View style={{marginHorizontal: '5%'}}>
+              <View style={{ marginHorizontal: '5%' }}>
                 <Animated.View
                   style={{
                     height: 0,
@@ -180,12 +180,12 @@ const Weight = ({ navigation }) => {
             }}>
             <Image
               source={pointer}
-              style={{height: 120}}
+              style={{ height: 120 }}
               resizeMode="contain"
             />
-            <Animated.Text style={{fontSize:28, color:"#000"}}>{MainWeightVal}</Animated.Text>
+            <Animated.Text style={{ fontSize: 28, color: "#000" }}>{MainWeightVal}</Animated.Text>
           </View>
-        </GestureHandlerRootView> 
+        </GestureHandlerRootView>
 
         <NewButtob title={'Continue'} onPress={handlePress} />
       </View>
