@@ -5,18 +5,25 @@ import TextH4 from '../../components/Text/TextH4'
 import Input from '../../components/Form/Input'
 import NewButtob from '../../components/Button/NewButtob'
 import { SCREENS } from '../../constants/Screens'
-const Occupation = ({navigation}) => {
+import { useState } from 'react'
+import { useRoute } from '@react-navigation/native'
+const Occupation = ({ navigation }) => {
+    const route = useRoute();
+    const data = route.params?.data;
+    const [Occupation, setOccupation] = useState("")
+    console.log("OCCCU", data);
     return (
+
         <View style={{ backgroundColor: "#F4F6FA", height: "100%" }}>
             <SlideHeader />
             <View style={{ alignItems: "center", marginVertical: 10 }}>
                 <TextH4 style={{ marginVertical: "10%", width: "80%", textAlign: "center" }}>Occupation</TextH4>
                 <Input
                     placeholder={"Developer"}
-                    onChangeText={{}}
+                    onChangeText={(val) => { setOccupation(val) }}
                     customStyle={{ width: "80%", marginVertical: 20, backgroundColor: "white", elevation: 5 }} />
 
-                <NewButtob onPress={() => navigation.navigate(SCREENS.MEDICALHISTORY)} title={"Continue"} />
+                <NewButtob onPress={() => navigation.navigate(SCREENS.MEDICALHISTORY, { data: { ...data, occupation: Occupation }, })} title={"Continue"} />
             </View>
         </View>
     )

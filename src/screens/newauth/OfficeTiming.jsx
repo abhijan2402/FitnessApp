@@ -9,7 +9,13 @@ import { useState } from 'react'
 import { TouchableOpacity } from 'react-native'
 import TextMedium from '../../components/Text/TextMedium'
 import { SCREENS } from '../../constants/Screens'
-const OfficeTiming = ({navigation}) => {
+import { useRoute } from '@react-navigation/native'
+const OfficeTiming = ({ navigation }) => {
+    const route = useRoute();
+    const data = route.params?.data;
+    const [OffTiming, setOffTiming] = useState("")
+    console.log("OCCCU", data);
+
     return (
         <View style={{ backgroundColor: "#F4F6FA", height: "100%" }}>
             <SlideHeader />
@@ -19,10 +25,10 @@ const OfficeTiming = ({navigation}) => {
                 <TextMedium>Eg- 9AM TO 5PM</TextMedium>
                 <Input
                     placeholder={"enter office timing"}
-                    onChangeText={{}}
+                    onChangeText={(val) => { setOffTiming(val) }}
                     customStyle={{ width: "80%", marginVertical: 20, backgroundColor: "white", elevation: 5 }} />
 
-                <NewButtob onPress={() => navigation.navigate(SCREENS.SUPPLEMENT)} title={"Continue"} />
+                <NewButtob onPress={() => navigation.navigate(SCREENS.SUPPLEMENT, { data: { ...data, office_timing: OffTiming } })} title={"Continue"} />
             </View>
 
         </View>

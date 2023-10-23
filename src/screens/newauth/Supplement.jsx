@@ -9,11 +9,18 @@ import { useState } from 'react'
 import { TouchableOpacity } from 'react-native'
 import TextMedium from '../../components/Text/TextMedium'
 import { SCREENS } from '../../constants/Screens'
+import { useRoute } from '@react-navigation/native'
 
 const SupplementMain = ({ navigation }) => {
+    const route = useRoute();
+    const data = route.params?.data;
     const [lbs, setlbs] = useState(true)
     const [kg, setkg] = useState(false)
     const [MainWeightVal, setMainWeightVal] = useState("")
+    // const [Supplement, setSupplement] = useState("")
+    const [SuppVal, setSuppVal] = useState("")
+    console.log("OCCCU", data);
+
     return (
         <View>
             <SlideHeader />
@@ -31,9 +38,9 @@ const SupplementMain = ({ navigation }) => {
                 <TextMedium>If yes please mention</TextMedium>
                 <Input
                     placeholder={"Mention here ...."}
-                    onChangeText={{}}
+                    onChangeText={(val) => { setSuppVal(val) }}
                     customStyle={{ width: "80%", marginVertical: 20, backgroundColor: "white", elevation: 5 }} />
-                <NewButtob title={"Continue"} onPress={() => { navigation.navigate(SCREENS.LOCATION) }} />
+                <NewButtob title={"Continue"} onPress={() => { navigation.navigate(SCREENS.LOCATION, { data: { ...data, supplements_or_herbs: SuppVal } }) }} />
             </View>
 
         </View>

@@ -138,3 +138,23 @@ export async function SendOTP(phone) {
 
   return await generateRequest('/sendotp', 'POST', data);
 }
+
+
+
+export async function updateSideProf(updateUser) {
+  // return console.log('test', updateUser)
+  console.log('====================================');
+  console.log(updateUser, "UOUSEE");
+  console.log('====================================');
+  const data = new FormData();
+  data.append('food_dislikes', updateUser?.food_dislikes);
+  data.append('medical_history', updateUser?.medical_history);
+  data.append('supplements_or_herbs', updateUser?.supplements_or_herbs);
+  data.append('occupation', updateUser?.occupation);
+  data.append('office_timing', updateUser?.office_timing?.toString());
+  data.append('location', updateUser?.location?.toString());
+  // data.append('goal', updateUser?.goal);
+  console.log(data, "i amd");
+  if (updateUser.profile_image) data.append('profile_image', updateUser?.profile_image);
+  return await generateRequest('/update-user-profile', 'PUT', data);
+}
