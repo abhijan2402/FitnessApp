@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
-import {MONTHS_NAME, WEEK_DAYS_NAMES} from '../../data/CalenderData';
+import { MONTHS_NAME, WEEK_DAYS_NAMES } from '../../data/CalenderData';
 import GradientContainer from '../container/GradientContainer';
 
 import Back from '../../../assets/icons/Back.svg';
@@ -17,7 +17,7 @@ let INCREASE = 'Increase';
 let NONE = 'None';
 
 var SELECTED_MONTH_INDEX = 0;
-const CustomDatePicker = ({showMonth = true, setDate}) => {
+const CustomDatePicker = ({ showMonth = true, setDate }) => {
   let newDayDateArray = [];
   const d = new Date();
 
@@ -132,7 +132,7 @@ const CustomDatePicker = ({showMonth = true, setDate}) => {
   };
 
   return (
-    <ScrollView style={{flex: 1, backgroundColor: 'white'}}>
+    <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
       {showMonth && (
         <View
           style={{
@@ -158,7 +158,7 @@ const CustomDatePicker = ({showMonth = true, setDate}) => {
             {MONTHS_NAME[selectedMonth]?.name} {year}
           </Text>
           <TouchableOpacity
-            style={{transform: [{rotateZ: '180deg'}]}}
+            style={{ transform: [{ rotateZ: '180deg' }] }}
             onPress={() => setMonthAsSelected(SELECTED_MONTH_INDEX, INCREASE)}>
             <Back width={30} height={30} />
           </TouchableOpacity>
@@ -168,40 +168,40 @@ const CustomDatePicker = ({showMonth = true, setDate}) => {
         {dateStateArray.length === 0
           ? null
           : dateStateArray.map((item, index) => (
-              <TouchableOpacity
-                key={index}
-                onPress={() => {
-                  setAsSelected(item, index);
-                  setDate(`${year}-${currentMonth.index + 1}-${item.date}`);
-                }}>
-                <GradientContainer
-                  colors={
+            <TouchableOpacity
+              key={index}
+              onPress={() => {
+                setAsSelected(item, index);
+                // setDate(`${year}-${currentMonth.index + 1}-${item.date}`);
+              }}>
+              <GradientContainer
+                colors={
+                  item.isSelected
+                    ? ['rgba(146, 163, 253, 1)', 'rgba(157, 206, 255, 1)']
+                    : ['rgba(247, 248, 248, 1)', 'rgba(247, 248, 248, 1)']
+                }
+                styles={styles.dateDayContainer}>
+                <Text
+                  style={[
+                    { fontWeight: 'bold', fontSize: 13 },
                     item.isSelected
-                      ? ['rgba(146, 163, 253, 1)', 'rgba(157, 206, 255, 1)']
-                      : ['rgba(247, 248, 248, 1)', 'rgba(247, 248, 248, 1)']
-                  }
-                  styles={styles.dateDayContainer}>
-                  <Text
-                    style={[
-                      {fontWeight: 'bold', fontSize: 13},
-                      item.isSelected
-                        ? {color: 'white'}
-                        : {color: 'rgba(173, 164, 165, 1)'},
-                    ]}>
-                    {item.day}
-                  </Text>
-                  <Text
-                    style={[
-                      {fontWeight: 'bold', fontSize: 23},
-                      item.isSelected
-                        ? {color: 'white'}
-                        : {color: 'rgba(173, 164, 165, 1)'},
-                    ]}>
-                    {item.date}
-                  </Text>
-                </GradientContainer>
-              </TouchableOpacity>
-            ))}
+                      ? { color: 'white' }
+                      : { color: 'rgba(173, 164, 165, 1)' },
+                  ]}>
+                  {item.day}
+                </Text>
+                <Text
+                  style={[
+                    { fontWeight: 'bold', fontSize: 23 },
+                    item.isSelected
+                      ? { color: 'white' }
+                      : { color: 'rgba(173, 164, 165, 1)' },
+                  ]}>
+                  {item.date}
+                </Text>
+              </GradientContainer>
+            </TouchableOpacity>
+          ))}
       </ScrollView>
     </ScrollView>
   );

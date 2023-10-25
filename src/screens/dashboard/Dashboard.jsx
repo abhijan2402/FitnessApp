@@ -30,7 +30,7 @@ import { SCREENS } from '../../constants/Screens';
 import { TouchableOpacity } from 'react-native';
 import HomeSwiper from '../../components/Utils/HomeSwiper';
 import { GlobalContext } from '../../../App';
-import { dateFormat, getTimeInAMPMFormat } from '../../utils/common';
+import { dateFormat, getDataFromAsyncStorage, getTimeInAMPMFormat } from '../../utils/common';
 import { getUserRecommendedMeal } from '../../backend/utilFunctions';
 import Score from '../../../assets/images/Score.svg';
 
@@ -39,6 +39,10 @@ const BASE_TRACKER_CONTAINER_HEIGHT = 350;
 function Dashboard(props) {
   const navigation = useNavigation();
   const { user } = useContext(GlobalContext);
+  const [ProfComplete, setProfComplete] = useState(false)
+  console.log('====================================');
+  console.log(user, "User::::::::::::::::");
+  console.log('====================================');
   const [meals, setMeals] = useState(MEALS[0]);
   const [workout, setWorkout] = useState(WORKOUTS[0]);
   const [recommendedMeals, setRecommendedMeals] = useState([]);
@@ -53,7 +57,7 @@ function Dashboard(props) {
 
   useEffect(() => {
     const currentDate = new Date();
-
+    ProfCom()
     getUserRecommendedMeal(dateFormat(currentDate)).then(res => {
       setRecommendedMeals(res?.data);
 
@@ -61,6 +65,17 @@ function Dashboard(props) {
     });
     console.log('first');
   }, []);
+
+  const ProfCom = async () => {
+    const final = await getDataFromAsyncStorage("profComp")
+    console.log(final, "I am final");
+    if (final == null) {
+      setProfComplete(false)
+    }
+    else {
+      setProfComplete(true)
+    }
+  }
 
   useEffect(() => {
     if (meals === null) setFilteredRecommendedMeals(recommendedMeals);
@@ -78,7 +93,7 @@ function Dashboard(props) {
       <View style={styles.profileInfo}>
         <View style={styles.userInfo}>
           <SmallText>Welcome Back,</SmallText>
-          <TextH4>{user?.first_name}</TextH4>
+          <TextH4>{user?.full_name}</TextH4>
         </View>
         <SolidButton
           onPress={() => navigation.navigate(SCREENS.NOTIFICATION)}
@@ -87,19 +102,23 @@ function Dashboard(props) {
         </SolidButton>
       </View>
 
-      <View style={styles.scoreCard}>
-        <Score />
-        <View style={{ width: 192 }}>
-          <Text style={styles.scoreHeading}>Incomplete profile</Text>
-          <Text style={styles.scoreDesc}>
-            Please complete your health details for better experiance
-          </Text>
-          <TouchableOpacity
-            onPress={() => navigation.navigate(SCREENS.FOODDISLIKE)}>
-            <Text style={styles.scoreBtn}>Complete</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+      {
+        ProfComplete ? null :
+          <View style={styles.scoreCard}>
+            <Score />
+            <View style={{ width: 192 }}>
+              <Text style={styles.scoreHeading}>Incomplete profile</Text>
+              <Text style={styles.scoreDesc}>
+                Please complete your health details for better experiance
+              </Text>
+              <TouchableOpacity
+                onPress={() => navigation.navigate(SCREENS.FOODDISLIKE)}>
+                <Text style={styles.scoreBtn}>Complete</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+
+      }
       <HomeSwiper />
       <GradientLabel
         colors={[
@@ -132,7 +151,7 @@ function Dashboard(props) {
         </View>
       </GradientLabel>
       <SolidContainer containerStyle={styles.solidcontainer}>
-        <TextMedium style={{ flexGrow: 1 }}>Today Target</TextMedium>
+        <TextMedium style={{ flexGrow: 1 }}>Activities</TextMedium>
         <PrimaryButton
           containerStyle={styles.targetButton}
           textStyle={styles.targetButtonText}

@@ -1,19 +1,19 @@
-import {StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import SlideHeader from '../../components/header/SlideHeader';
 import Step from '../../components/new-auth/Step';
 import NewButtob from '../../components/Button/NewButtob';
-import {TextInput} from 'react-native';
-import {Dimensions} from 'react-native';
-import {SCREENS} from '../../constants/Screens';
-import {useRoute} from '@react-navigation/native';
-import {useState} from 'react';
+import { TextInput } from 'react-native';
+import { Dimensions } from 'react-native';
+import { SCREENS } from '../../constants/Screens';
+import { useRoute } from '@react-navigation/native';
+import { useState } from 'react';
 import { useRef } from 'react';
 import CustomToast from '../../components/common/Toast';
 
-const {width} = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
-const Name = ({navigation}) => {
+const Name = ({ navigation }) => {
   const route = useRoute();
   const data = route.params?.data;
   const [name, setName] = useState('');
@@ -25,17 +25,17 @@ const Name = ({navigation}) => {
 
   const handlePress = async () => {
 
-      if(name.length < 1) {
-        setToastMessage('Name is required');
-        setToastTextColorState('white');
-        setToastColorState('red');
-        childRef.current.showToast();
-        return
-      }
+    if (name.length < 1) {
+      setToastMessage('Name is required');
+      setToastTextColorState('white');
+      setToastColorState('red');
+      childRef.current.showToast();
+      return
+    }
 
-     
 
-    navigation.navigate(SCREENS.NDOB, {data: {...data, full_name: name}});
+
+    navigation.navigate(SCREENS.NDOB, { data: { ...data, full_name: name } });
   };
   return (
     <View style={styles.container}>
@@ -47,7 +47,7 @@ const Name = ({navigation}) => {
       />
       <SlideHeader />
       <Step text="STEP 5/12" />
-      <Text style={styles.heading}>Entre your Name</Text>
+      <Text style={styles.heading}>Enter your Name</Text>
 
       <View style={styles.inputContainer}>
         <TextInput onChangeText={text => setName(text)} style={styles.input} />

@@ -8,6 +8,7 @@ import { SCREENS } from '../../constants/Screens'
 import { useState } from 'react'
 import { useRoute } from '@react-navigation/native'
 import { updateSideProf } from '../../backend/utilFunctions'
+import { storeDataInAsyncStorage } from '../../utils/common'
 
 const Location = ({ navigation }) => {
     const route = useRoute();
@@ -20,9 +21,15 @@ const Location = ({ navigation }) => {
         let d = {}
         { d = { ...data, location: LocVal } }
         await updateSideProf(d)
-            .then(res => {
+            .then(async res => {
                 console.log(res, "I M RES");
-                //   navigation.navigate(SCREENS.LOGIN)
+                if (res.message == "User details updated successfully") {
+                    navigation.navigate(SCREENS.DASHBOARD)
+                    await storeDataInAsyncStorage("profComp", "true")
+                }
+                else {
+                    alert(res?.message)
+                }
             })
         console.log(d, "IAM");
     }

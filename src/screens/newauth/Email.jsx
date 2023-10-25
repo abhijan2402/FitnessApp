@@ -1,21 +1,21 @@
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import React, { useState } from 'react';
 import SlideHeader from '../../components/header/SlideHeader';
 import Step from '../../components/new-auth/Step';
 import NewButtob from '../../components/Button/NewButtob';
-import {TextInput} from 'react-native';
-import {Dimensions} from 'react-native';
+import { TextInput } from 'react-native';
+import { Dimensions } from 'react-native';
 import { SCREENS } from '../../constants/Screens';
 import { useRoute } from '@react-navigation/native';
 import { useRef } from 'react';
 import CustomToast from '../../components/common/Toast';
 
-const {width} = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
-const Email = ({navigation}) => {
+const Email = ({ navigation }) => {
   const route = useRoute();
   const data = route.params?.data;
-  const [email, setEmail]  = useState('')
+  const [email, setEmail] = useState('')
   const childRef = useRef(null);
   const [toastColorState, setToastColorState] = useState('');
   const [toastTextColorState, setToastTextColorState] = useState('white');
@@ -27,7 +27,7 @@ const Email = ({navigation}) => {
   }
 
   const handlePress = () => {
-    if(email.length < 1) {
+    if (email.length < 1) {
       setToastMessage('Email is required');
       setToastTextColorState('white');
       setToastColorState('red');
@@ -35,7 +35,7 @@ const Email = ({navigation}) => {
       return
     }
 
-    if(!validateEmail(email)) {
+    if (!validateEmail(email)) {
       setToastMessage('Enter a valid email');
       setToastTextColorState('white');
       setToastColorState('red');
@@ -43,10 +43,10 @@ const Email = ({navigation}) => {
       return
     }
 
-    navigation.navigate(SCREENS.NPASSWORD, {data: {...data, email}})
+    navigation.navigate(SCREENS.NPASSWORD, { data: { ...data, email } })
   }
 
-  
+
 
   return (
     <View style={styles.container}>
@@ -58,10 +58,12 @@ const Email = ({navigation}) => {
       />
       <SlideHeader />
       <Step text="STEP 3/12" />
-      <Text style={styles.heading}>Entre your Email Id</Text>
+      <Text style={styles.heading}>Enter your Email Id</Text>
 
       <View style={styles.inputContainer}>
-        <TextInput onChangeText={(text) => setEmail(text)} style={styles.input} />
+        <TextInput
+          keyboardType='email-address'
+          onChangeText={(text) => setEmail(text)} style={styles.input} />
       </View>
       <View
         style={{

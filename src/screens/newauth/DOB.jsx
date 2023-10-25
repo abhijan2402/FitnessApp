@@ -85,7 +85,7 @@ const DOB = ({ navigation }) => {
       />
       <SlideHeader />
       <Step text="STEP 6/12" />
-      <Text style={styles.heading}>Entre your Date of birth</Text>
+      <Text style={styles.heading}>Enter your Date of birth</Text>
 
       <View style={styles.inputContainer}>
         <Text style={styles.dateTxt}>{date}</Text>

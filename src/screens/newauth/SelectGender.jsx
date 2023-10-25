@@ -45,15 +45,17 @@ const SelectGender = ({ navigation }) => {
             marginTop: '20%',
           }}>
           <TouchableOpacity
+            style={{ width: 150 }}
             onPress={() => {
               setselectedGen('Male');
             }}>
             <Image
               source={require('../../../assets/images/Male1.png')}
-              style={{ width: 180 }}
+              style={{ width: 150 }}
             />
           </TouchableOpacity>
           <TouchableOpacity
+            style={{ paddingTop: "4%", }}
             onPress={() => {
               setselectedGen('Female');
             }}>

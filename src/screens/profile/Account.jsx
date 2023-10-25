@@ -11,7 +11,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from 'react-native';
-import React, {useState, useContext, useRef} from 'react';
+import React, { useState, useContext, useRef } from 'react';
 import Header from '../../components/header/Header';
 import ProfileCard from '../../components/profile/ProfileCard';
 import Group from '../../../assets/icons/Group.svg';
@@ -20,24 +20,24 @@ import Weight from '../../../assets/icons/Weight.svg';
 import Height from '../../../assets/icons/Height.svg';
 import Gender from '../../../assets/icons/Gender.svg';
 import Edit from '../../../assets/icons/Edit.svg';
-import {FONTS} from '../../constants/Fonts';
-import {GlobalContext} from '../../../App';
-import {formatDate, getAge} from '../../utils/common';
-import {updateUser} from '../../backend/utilFunctions';
+import { FONTS } from '../../constants/Fonts';
+import { GlobalContext } from '../../../App';
+import { formatDate, getAge } from '../../utils/common';
+import { updateUser } from '../../backend/utilFunctions';
 import CalenderPicker from '../../components/Utils/CalenderPicker';
 import PickerLabel from '../../components/Label/PickerLabel';
 import Calendar from '../../../assets/icons/Calendar.svg';
 import UserSvg from '../../../assets/icons/User.svg';
-import {FOOD_TYPE, GENDERS} from '../../constants/Data';
+import { FOOD_TYPE, GENDERS } from '../../constants/Data';
 import DropdownPicker from '../../components/Utils/DropdownPicker';
 import CustomToast from '../../components/common/Toast';
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 const Account = () => {
   const [modalVisible, setModalVisible] = useState(false);
-  const {user, setLoggedInUser} = useContext(GlobalContext);
+  const { user, setLoggedInUser } = useContext(GlobalContext);
   const [age, setAge] = useState(getAge(user.dob));
-  const [weight, setWeight] = useState(user.weight);
+  const [weight, setWeight] = useState(user.current_weight);
   const [height, setHeight] = useState(user.height);
   const [gender, setGender] = useState(user.gender);
   const [foodType, setFoodType] = useState('');
@@ -52,7 +52,7 @@ const Account = () => {
   const UpdateData = () => {
     setLoading(true);
     // return console.log({...user, weight, height, gender})
-    updateUser({...user, weight, height, gender, date})
+    updateUser({ ...user, weight, height, gender, date })
       .then(res => {
         // update the global context
         setAge(getAge(date));
@@ -96,7 +96,7 @@ const Account = () => {
       <Header title={'Profile'} />
       <ScrollView>
         <View style={styles.profile}>
-          <View style={{marginHorizontal: 30, marginTop: 30}}>
+          <View style={{ marginHorizontal: 30, marginTop: 30 }}>
             <Text
               style={[
                 {
@@ -104,7 +104,7 @@ const Account = () => {
                   color: '#1D1617',
                   fontFamily: FONTS.FONT_POPPINS_SEMIBOLD,
                 },
-              ]}>{`${user.first_name} ${user.last_name}`}</Text>
+              ]}>{`${user?.full_name}`}</Text>
             <Text
               style={[
                 {
@@ -128,7 +128,7 @@ const Account = () => {
           ]}>
           Your Information
         </Text>
-        <View style={{marginVertical: 20, marginBottom: '20%'}}>
+        <View style={{ marginVertical: 20, marginBottom: '20%' }}>
           <ProfileCard
             type={'Food Type'}
             value={'Vegan'}
@@ -149,7 +149,7 @@ const Account = () => {
           />
           <ProfileCard
             type={'Weight'}
-            value={`${weight} Kg`}
+            value={`${weight} ${user?.weight_unit}`}
             icon={<Weight width={20} height={20} />}
             onPress={() => {
               setModalVisible(true);
@@ -158,7 +158,7 @@ const Account = () => {
           />
           <ProfileCard
             type={'Height'}
-            value={`${height} ft.`}
+            value={`${height} ${user?.height_unit}`}
             icon={<Height width={20} height={20} />}
             onPress={() => {
               setModalVisible(true);

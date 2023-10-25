@@ -1,10 +1,13 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 
-const NewButtob = ({ title, onPress, width = "60%" }) => {
+const NewButtob = ({ title, onPress, width = "60%", loading = false }) => {
     return (
         <TouchableOpacity style={[styles.MainView, { width: width }]} onPress={onPress}>
-            <Text style={{ fontSize: 16, fontWeight: "600", color: "white" }} >{title}</Text>
+            {
+                loading ? <ActivityIndicator size={22} color={"white"} /> :
+                    <Text style={{ fontSize: 16, fontWeight: "600", color: "white" }} >{title}</Text>
+            }
         </TouchableOpacity>
     )
 }

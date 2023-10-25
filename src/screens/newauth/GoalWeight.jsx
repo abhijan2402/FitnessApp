@@ -143,7 +143,7 @@ const GoalWeight = ({ navigation }) => {
                     source={tick}
                     style={{
                       height: 300,
-                      width: 2000,
+                      width: 1680,
                       flexDirection: 'row',
                       marginTop: -90,
                     }}
@@ -181,11 +181,13 @@ const GoalWeight = ({ navigation }) => {
               childRef.current.showToast();
               return
             }
+            console.log(lbs, kg, "TEST");
+            // return
             navigation.navigate(SCREENS.HEIGHT, {
               values: {
                 ...values,
                 goal_weight: JSON.stringify(MainWeightVal),
-                weight_unit: 'kg',
+                weight_unit: lbs ? 'lbs' : 'kg',
               },
             });
           }}

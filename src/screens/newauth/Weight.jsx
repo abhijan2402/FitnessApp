@@ -45,6 +45,9 @@ const Weight = ({ navigation }) => {
   const [counter, setCounter] = useState(50);
 
   const someFunc = val => {
+    // console.log('====================================');
+    // console.log(val, "Vak");
+    // console.log('====================================');
     setMainWeightVal(currentValue => currentValue + (parseInt(val) * -1));
   };
 
@@ -61,6 +64,7 @@ const Weight = ({ navigation }) => {
     .onChange(event => {
       let newX = offset.value + event.changeX * 7.8;
       if (newX > -1825 && newX < 148) {
+        console.log(newX, "NEWX");
         offset.value = newX;
         // someWorklet(event.changeX);
         runOnJS(someFunc)(event.changeX);
@@ -159,7 +163,7 @@ const Weight = ({ navigation }) => {
                     source={tick}
                     style={{
                       height: 300,
-                      width: 2000,
+                      width: 1680,
                       flexDirection: 'row',
                       marginTop: -90,
                     }}

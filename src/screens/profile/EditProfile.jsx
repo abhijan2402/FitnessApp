@@ -24,10 +24,10 @@ const EditProfile = () => {
     mediaType: 'photo',
   }
   // actual data
-  const [firstName, setFirstName] = useState(user.first_name)
+  const [firstName, setFirstName] = useState(user.full_name)
   const [lastName, setLastName] = useState(user.last_name)
   // temp data
-  const [tempFirstName, setTempFirstName] = useState(user.first_name);
+  const [tempFirstName, setTempFirstName] = useState(user?.full_name);
   const [tempLastName, setTempLastName] = useState(user.last_name);
   // const [password, setPassword] = useState("")
   const [modalVisible, setModalVisible] = useState(false);
@@ -46,7 +46,7 @@ const EditProfile = () => {
     }
   }
   const UpdateData = () => {
-    const updateData = { ...user, first_name: firstName, last_name: lastName }
+    const updateData = { ...user, first_name: tempFirstName }
     if (photoResult)
       updateData.image = { uri: photoResult.uri, name: photoResult.fileName, type: photoResult.type }
     updateUser(updateData)
@@ -54,7 +54,7 @@ const EditProfile = () => {
         setFirstName(tempFirstName)
         setLastName(tempLastName)
         // update the global context
-        setLoggedInUser({ ...user, first_name: tempFirstName, lastName: tempLastName, image: photoResult ? galleryPhoto : user.image })
+        setLoggedInUser({ ...user, full_name: tempFirstName, image: photoResult ? galleryPhoto : user.image })
       })
       .catch((err) => {
         // TODO: Make a alert toast for the error
@@ -81,7 +81,7 @@ const EditProfile = () => {
         </TouchableOpacity>
         <View>
           <EditPro value={firstName} icon={<Account width={18} height={18} Edit={"EditBtn"} />} />
-          <EditPro value={lastName} icon={<Account width={18} height={18} Edit={"EditBtn"} />} />
+          {/* <EditPro value={lastName} icon={<Account width={18} height={18} Edit={"EditBtn"} />} /> */}
           <EditPro value={user.email} icon={<Email1 width={18} height={18} Edit={"EditBtn"} />} />
           {/* <EditPro value={"Change Password"} icon={<Pass width={18} height={18} Edit={"EditBtn"} />} /> */}
         </View>
@@ -107,8 +107,8 @@ const EditProfile = () => {
           }}>
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
-              <TextInput placeholder='First Name' placeholderTextColor={"grey"} style={styles.InputFields} onChangeText={value => setTempFirstName(value)} value={tempFirstName} />
-              <TextInput placeholder='Last Name' placeholderTextColor={"grey"} style={styles.InputFields} onChangeText={value => setTempLastName(value)} value={tempLastName} />
+              <TextInput placeholder='Full Name' placeholderTextColor={"grey"} style={styles.InputFields} onChangeText={value => setTempFirstName(value)} value={tempFirstName} />
+              {/* <TextInput placeholder='Last Name' placeholderTextColor={"grey"} style={styles.InputFields} onChangeText={value => setTempLastName(value)} value={tempLastName} /> */}
               {/* <TextInput placeholder='Password (Optional)' placeholderTextColor={"grey"} style={styles.InputFields} onChangeText={value => setPassword(value)} /> */}
               <TouchableOpacity style={styles.BtnUpdate} onPress={UpdateData}>
                 <Text style={styles.BtnText}>Update Data</Text>

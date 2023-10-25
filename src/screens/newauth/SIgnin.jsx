@@ -21,6 +21,10 @@ const SIgnin = ({ navigation }) => {
 
 
   const handlePress = async () => {
+    console.log('====================================');
+    console.log("Test", number);
+    console.log('====================================');
+    // return
     try {
       if (number.length < 1) {
         setToastMessage('Phone Number is required');
@@ -37,13 +41,18 @@ const SIgnin = ({ navigation }) => {
         childRef.current.showToast();
         return
       }
-      const res = await SendOTP(number);
+      const res = await SendOTP(number, "REGISTRATION");
       console.log('data', res);
       navigation.navigate(SCREENS.NOTP, {
         data: { phone: number, hash: res?.hash },
       });
     } catch (error) {
       console.log(error);
+      setToastMessage(error?.message);
+      setToastTextColorState('white');
+      setToastColorState('red');
+      childRef.current.showToast();
+
     }
   };
   return (
@@ -65,6 +74,7 @@ const SIgnin = ({ navigation }) => {
           <Text style={styles.countryCode}>+91</Text>
         </View>
         <TextInput
+          maxLength={10}
           placeholder="9093XXXXXX"
           style={styles.input}
           keyboardType="numeric"

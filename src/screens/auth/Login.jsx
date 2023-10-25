@@ -20,7 +20,7 @@ import { SCREENS } from '../../constants/Screens';
 import { GlobalContext } from '../../../App';
 import { useContext } from 'react';
 import { useState } from 'react';
-import { getUser, loginUser } from '../../backend/utilFunctions';
+import { SendOTP, SendOTPLogin, VerifyOtp, getUser, loginUser } from '../../backend/utilFunctions';
 import { storeDataInAsyncStorage } from '../../utils/common';
 import { storageKeyName } from '../../constants/Data';
 import CustomToast from '../../components/common/Toast';
@@ -36,28 +36,29 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [loading1, setLoading1] = useState(false);
+
   const childRef = useRef(null);
   const [toastColorState, setToastColorState] = useState('');
   const [toastTextColorState, setToastTextColorState] = useState('white');
   const [toastMessage, setToastMessage] = useState('');
-
-  const Login = async () => {
+  const [PhoneHash, setPhoneHash] = useState("")
+  const [otp, setotp] = useState(0)
+  const [OtpVisible, setOtpVisible] = useState(false)
+  const SendOtp = async () => {
     try {
-      const credentials = { email, password };
+      const credentials = { email };
       setLoading(true);
-      loginUser(credentials)
+      SendOTPLogin(email)
         .then(res => {
-          storeDataInAsyncStorage(storageKeyName, res.token)
-            .then(res => {
-              // fetch user
-              getUser()
-                .then(res => {
-                  console.log(res);
-                  setLoggedInUser(res.user);
-                })
-                .catch(err => console.log(err));
-            })
-            .catch(err => console.log('error while storing', err));
+          console.log(res, "I am res");
+          setPhoneHash(res)
+          console.log(PhoneHash, "PHON ");
+          setToastMessage("OTP message sent successfully");
+          setToastTextColorState('white');
+          setToastColorState('green');
+          setOtpVisible(true)
+          childRef.current.showToast();
         })
         .catch(err => {
           console.log(err.message);
@@ -77,6 +78,58 @@ const Login = () => {
     }
   };
 
+
+
+  const Login = async () => {
+    console.log(otp, typeof (otp), "OYTP");
+    if (otp?.length < 6) {
+      setToastMessage("OTP must be 6 digit only");
+      setToastTextColorState('white');
+      setToastColorState('red');
+      childRef.current.showToast();
+    }
+    else {
+      try {
+        console.log(PhoneHash, "HAHS");
+        setLoading1(true);
+        VerifyOtp(email, otp, PhoneHash?.hash)
+          .then(res => {
+            console.log('====================================');
+            console.log(res, "I am res");
+            console.log('====================================');
+            console.log(res?.token, "LL");
+            storeDataInAsyncStorage(storageKeyName, res.token)
+              .then(res => {
+                // fetch user
+                getUser()
+                  .then(res => {
+                    console.log(res, "testt");
+                    setLoggedInUser(res.user);
+                    setLoading1(false)
+                  })
+                  .catch(err => { console.log(err); setLoading1(false) });
+              })
+              .catch(err => { console.log('error while storing', err); setLoading1(false) });
+          })
+          .catch(err => {
+            console.log(err.message);
+            setToastMessage(err.message);
+            setToastTextColorState('white');
+            setToastColorState('red');
+            childRef.current.showToast();
+            setLoading1(false);
+          })
+          .finally(() => setLoading(false));
+      } catch (error) {
+        setToastMessage(error);
+        setToastTextColorState('white');
+        setToastColorState('red');
+        childRef.current.showToast();
+        setLoading1(false);
+      }
+    }
+  };
+
   return (
     <View style={styles.MainView}>
       <CustomToast
@@ -93,18 +146,38 @@ const Login = () => {
       </View>
       <View style={{ width: '85%', marginTop: 7 }}>
         <Input
-          placeholder={'Email'}
+          keyboardType='numeric'
+          placeholder={'Phone number'}
           onChangeText={value => setEmail(value)}
           icon={<Email width={20} height={20} />}
         />
       </View>
-      <View style={{ width: '85%', marginTop: 15 }}>
-        <Input
-          placeholder={'Password'}
-          onChangeText={value => setPassword(value)}
-          icon={<Pass width={20} height={20} />}
-        />
-      </View>
+      <NewButtob
+        loading={loading}
+        title={'Send OTP'}
+        onPress={SendOtp}
+        width={"80%"}
+      />
+      {
+        OtpVisible ?
+          <>
+            <View style={{ width: '85%', marginTop: 15 }}>
+              <Input
+                maxlength={6}
+                keyboardType='numeric'
+                placeholder={'Enter OTP'}
+                onChangeText={value => setotp(value)}
+                icon={<Pass width={20} height={20} />}
+              />
+            </View>
+            <NewButtob
+              loading={loading1}
+              title={'Login'}
+              onPress={Login}
+              width={"80%"}
+            />
+          </> : null
+      }
       <Pressable
         onPress={() => navigation.navigate(SCREENS.FORGOPASS)}
         style={[styles.IconView, { alignItems: 'center' }]}>
@@ -125,11 +198,7 @@ const Login = () => {
         )}
       </View> */}
 
-      <NewButtob
-        title={'Login'}
-        onPress={Login}
-        width={"80%"}
-      />
+
       {/* <Text style={{ marginTop: '14%' }}>Or</Text> */}
       {/* <View style={[styles.IconView, {marginTop: '5%'}]}>
         <View style={styles.iconContainer}>

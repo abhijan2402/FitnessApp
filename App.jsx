@@ -60,7 +60,7 @@ function App() {
     <GlobalContext.Provider
       value={{
         user: user,
-        setLoggedInUser: userObj => setUser(userObj),
+        setLoggedInUser: userObj => { console.log(userObj, "userobj"); setUser(userObj) },
       }}>
       <NavigationContainer>
         <Stack.Navigator

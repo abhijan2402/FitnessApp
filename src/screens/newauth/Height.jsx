@@ -143,7 +143,7 @@ const Heights = ({ navigation }) => {
                     source={tick}
                     style={{
                       height: 300,
-                      width: 2000,
+                      width: 1680,
                       flexDirection: 'row',
                       marginTop: -90,
                     }}
@@ -188,7 +188,7 @@ const Heights = ({ navigation }) => {
               values: {
                 ...values,
                 height: JSON.stringify(heightVal),
-                height_unit: 'cm',
+                height_unit: lbs ? 'cm' : "ft",
               },
             });
           }}

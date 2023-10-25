@@ -31,7 +31,7 @@ const BottomTab = () => {
                 headerShown: false,
                 tabBarShowLabel: false,
                 borderColor: "white",
-
+                tabBarHideOnKeyboard: true,
                 tabBarStyle: {
 
                     backgroundColor: "white",

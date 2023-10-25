@@ -82,11 +82,11 @@ export async function getUser() {
 export async function updateUser(updateUser) {
   // return console.log('test', updateUser)
   const data = new FormData();
-  data.append('first_name', updateUser?.first_name);
-  data.append('last_name', updateUser?.last_name);
+  data.append('full_name', updateUser?.first_name);
+  // data.append('last_name', updateUser?.last_name);
   data.append('gender', updateUser?.gender);
   data.append('dob', updateUser?.dob);
-  data.append('weight', updateUser?.weight?.toString());
+  data.append('current_weight', updateUser?.current_weight?.toString());
   data.append('height', updateUser?.height?.toString());
   data.append('goal', updateUser?.goal);
   console.log(data, "i amd");
@@ -128,14 +128,10 @@ export async function Updatemeal(info, mealid) {
   );
 }
 
-export async function SendOTP(phone) {
+export async function SendOTP(phone, type) {
   const data = new FormData();
   data.append('phone', phone);
-  data.append('type', "REGISTRATION");
-
-
-
-
+  data.append('type', type);
   return await generateRequest('/sendotp', 'POST', data);
 }
 
@@ -157,4 +153,28 @@ export async function updateSideProf(updateUser) {
   console.log(data, "i amd");
   if (updateUser.profile_image) data.append('profile_image', updateUser?.profile_image);
   return await generateRequest('/update-user-profile', 'PUT', data);
+}
+
+
+
+export async function VerifyOtp(phone, otp, hash) {
+  console.log('====================================');
+  console.log(phone, otp, hash);
+  console.log('====================================');
+  const data = new FormData();
+  data.append('phone', phone);
+  data.append('otp', otp);
+  data.append('hash', hash);
+
+  return await generateRequest('/verify-otp-for-login', 'POST', data);
+}
+
+export async function SendOTPLogin(phone) {
+  console.log('====================================');
+  console.log(phone);
+  console.log('====================================');
+  const data = new FormData();
+  data.append('phone', phone);
+
+  return await generateRequest('/send-otp-for-login', 'POST', data);
 }
