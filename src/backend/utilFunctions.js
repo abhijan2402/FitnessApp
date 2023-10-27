@@ -1,9 +1,8 @@
-import { fetch } from 'react-native-ssl-pinning';
-import { storageKeyName } from '../constants/Data';
-import { getDataFromAsyncStorage } from '../utils/common';
+import {fetch} from 'react-native-ssl-pinning';
+import {storageKeyName} from '../constants/Data';
+import {getDataFromAsyncStorage} from '../utils/common';
 
-const baseURL =
-  'https://13.127.229.77/api';
+const baseURL = 'https://13.127.229.77/api';
 async function getBaseHeaders() {
   const baseHeaders = {
     Accept: 'application/json; charset=utf-8',
@@ -14,13 +13,14 @@ async function getBaseHeaders() {
   baseHeaders['Authorization'] = `Bearer ${jwt}`;
   return baseHeaders;
 }
+
 export async function generateRequest(url, method, body, headers = {}) {
   const config = {
     method: method,
     sslPinning: {
       certs: ['certificat'],
     },
-    headers: { ...(await getBaseHeaders()), ...headers },
+    headers: {...(await getBaseHeaders()), ...headers},
   };
   if ((method === 'POST' || method === 'PUT' || method === 'DELETE') && body)
     config.body = body;
@@ -43,7 +43,7 @@ export async function getOtp(phone) {
   return await generateRequest('/sendotp', 'POST', data);
 }
 export async function registerUser(user) {
-  console.log(user, "I ammm");
+  console.log(user.datas, 'I ammm');
   const data = new FormData();
   data.append('hash', user?.datas?.hash);
   data.append('otp', user?.datas?.otp);
@@ -64,11 +64,12 @@ export async function registerUser(user) {
   data.append('current_weight', user?.datas?.current_weight);
   data.append('height_unit', user?.datas?.height_unit);
 
-
-  console.log(data, "i amd");
-  console.log(user.profile_image, "I am pro");
+  console.log(data, 'i amd');
+  // console.log(user.profile_image, "I am pro");
 
   return await generateRequest('/register-user', 'POST', data);
+  // const res =  await generateRequest('/register-user', 'POST', data);
+  // console.log(res)
 }
 export async function loginUser(credentials) {
   const data = new FormData();
@@ -89,8 +90,9 @@ export async function updateUser(updateUser) {
   data.append('current_weight', updateUser?.current_weight?.toString());
   data.append('height', updateUser?.height?.toString());
   data.append('goal', updateUser?.goal);
-  console.log(data, "i amd");
-  if (updateUser.profile_image) data.append('profile_image', updateUser?.profile_image);
+  console.log(data, 'i amd');
+  if (updateUser.profile_image)
+    data.append('profile_image', updateUser?.profile_image);
   return await generateRequest('/update-user-profile', 'PUT', data);
 }
 export async function getUserRecommendedMeal(date) {
@@ -135,12 +137,10 @@ export async function SendOTP(phone, type) {
   return await generateRequest('/sendotp', 'POST', data);
 }
 
-
-
 export async function updateSideProf(updateUser) {
   // return console.log('test', updateUser)
   console.log('====================================');
-  console.log(updateUser, "UOUSEE");
+  console.log(updateUser, 'UOUSEE');
   console.log('====================================');
   const data = new FormData();
   data.append('food_dislikes', updateUser?.food_dislikes);
@@ -150,12 +150,11 @@ export async function updateSideProf(updateUser) {
   data.append('office_timing', updateUser?.office_timing?.toString());
   data.append('location', updateUser?.location?.toString());
   // data.append('goal', updateUser?.goal);
-  console.log(data, "i amd");
-  if (updateUser.profile_image) data.append('profile_image', updateUser?.profile_image);
+  console.log(data, 'i amd');
+  if (updateUser.profile_image)
+    data.append('profile_image', updateUser?.profile_image);
   return await generateRequest('/update-user-profile', 'PUT', data);
 }
-
-
 
 export async function VerifyOtp(phone, otp, hash) {
   console.log('====================================');

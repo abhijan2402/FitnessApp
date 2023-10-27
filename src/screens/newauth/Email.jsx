@@ -105,10 +105,14 @@ const Email = ({ navigation }) => {
         current_weight: WeightVals,
         height_unit: heightUnit?.label
       }
+
       console.log(datas, "DATA");
       const res = await registerUser({ datas });
       console.log(res)
-      navigation.navigate(SCREENS.LOGIN);
+      // if(res) {
+
+      //   navigation.navigate(SCREENS.LOGIN);
+      // }
     } catch (error) {
       alert(error?.message)
       console.log(error);
