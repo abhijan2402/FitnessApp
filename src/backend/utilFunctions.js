@@ -45,24 +45,24 @@ export async function getOtp(phone) {
 export async function registerUser(user) {
   console.log(user, "I ammm");
   const data = new FormData();
-  data.append('hash', user.hash);
-  data.append('otp', user.otp);
-  data.append('phone', user.phone);
-  data.append('email', user.email);
-  data.append('full_name', user.full_name);
-  // data.append('last_name', user.last_name);
-  data.append('password', user.password);
-  data.append('gender', user.gender);
-  data.append('dob', user.dob);
-  data.append('weight', user.weight);
-  data.append('weight_unit', user.weight_unit);
-  data.append('height', user.height);
-  // data.append('height_unit', user.height_unit);
-  data.append('goal', user.goal);
-  data.append('goal_weight', user.goal_weight);
-  data.append('profile_image', user.profile_image);
-  data.append('current_weight', user.current_weight);
-  data.append('height_unit', user.height_unit);
+  data.append('hash', user?.datas?.hash);
+  data.append('otp', user?.datas?.otp);
+  data.append('phone', user?.datas?.phone);
+  data.append('email', user?.datas?.email);
+  data.append('full_name', user?.datas?.full_name);
+  // data.append('last_name', user?.datas?.last_name);
+  data.append('password', user?.datas?.password);
+  data.append('gender', user?.datas?.gender);
+  data.append('dob', user?.datas?.dob);
+  data.append('weight', user?.datas?.weight);
+  data.append('weight_unit', user?.datas?.weight_unit);
+  data.append('height', user?.datas?.height);
+  // data.append('height_unit', user?.datas?.height_unit);
+  data.append('goal', user?.datas?.goal);
+  data.append('goal_weight', user?.datas?.goal_weight);
+  data.append('profile_image', user?.datas?.profile_image);
+  data.append('current_weight', user?.datas?.current_weight);
+  data.append('height_unit', user?.datas?.height_unit);
 
 
   console.log(data, "i amd");
