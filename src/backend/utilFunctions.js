@@ -1,6 +1,6 @@
-import {fetch} from 'react-native-ssl-pinning';
-import {storageKeyName} from '../constants/Data';
-import {getDataFromAsyncStorage} from '../utils/common';
+import { fetch } from 'react-native-ssl-pinning';
+import { storageKeyName } from '../constants/Data';
+import { getDataFromAsyncStorage } from '../utils/common';
 
 const baseURL = 'https://13.127.229.77/api';
 async function getBaseHeaders() {
@@ -20,7 +20,7 @@ export async function generateRequest(url, method, body, headers = {}) {
     sslPinning: {
       certs: ['certificat'],
     },
-    headers: {...(await getBaseHeaders()), ...headers},
+    headers: { ...(await getBaseHeaders()), ...headers },
   };
   if ((method === 'POST' || method === 'PUT' || method === 'DELETE') && body)
     config.body = body;
@@ -82,8 +82,9 @@ export async function getUser() {
 }
 export async function updateUser(updateUser) {
   // return console.log('test', updateUser)
+  console.log('test', updateUser)
   const data = new FormData();
-  data.append('full_name', updateUser?.first_name);
+  data.append('full_name', updateUser?.first_name || updateUser?.full_name);
   // data.append('last_name', updateUser?.last_name);
   data.append('gender', updateUser?.gender);
   data.append('dob', updateUser?.dob);
@@ -91,6 +92,7 @@ export async function updateUser(updateUser) {
   data.append('height', updateUser?.height?.toString());
   data.append('goal', updateUser?.goal);
   console.log(data, 'i amd');
+  // return
   if (updateUser.profile_image)
     data.append('profile_image', updateUser?.profile_image);
   return await generateRequest('/update-user-profile', 'PUT', data);

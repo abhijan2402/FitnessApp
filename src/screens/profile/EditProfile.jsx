@@ -46,11 +46,17 @@ const EditProfile = () => {
     }
   }
   const UpdateData = () => {
+    console.log(tempFirstName);
     const updateData = { ...user, first_name: tempFirstName }
+    console.log('====================================');
+    console.log(updateData, "UPDTE");
+    console.log('====================================');
+    // return
     if (photoResult)
       updateData.image = { uri: photoResult.uri, name: photoResult.fileName, type: photoResult.type }
     updateUser(updateData)
-      .then(() => {
+      .then((res) => {
+        console.log(res, "RES::::::::::");
         setFirstName(tempFirstName)
         setLastName(tempLastName)
         // update the global context

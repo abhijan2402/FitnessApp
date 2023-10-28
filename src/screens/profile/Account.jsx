@@ -36,7 +36,7 @@ const { width, height } = Dimensions.get('window');
 const Account = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const { user, setLoggedInUser } = useContext(GlobalContext);
-  const [age, setAge] = useState(getAge(user.dob));
+  const [age, setAge] = useState(getAge(user.age));
   const [weight, setWeight] = useState(user.current_weight);
   const [height, setHeight] = useState(user.height);
   const [gender, setGender] = useState(user.gender);
@@ -52,8 +52,11 @@ const Account = () => {
   const UpdateData = () => {
     setLoading(true);
     // return console.log({...user, weight, height, gender})
-    updateUser({ ...user, weight, height, gender, date })
+    updateUser({ ...user, current_weight: weight, height: height, gender: gender, date })
       .then(res => {
+        console.log('====================================');
+        console.log(res, "I AM RES");
+        console.log('====================================');
         // update the global context
         setAge(getAge(date));
         setLoggedInUser({
@@ -138,7 +141,7 @@ const Account = () => {
               setSelectedInput('food');
             }}
           />
-          <ProfileCard
+          {/* <ProfileCard
             type={'Age'}
             value={`${age} yo`}
             icon={<Age width={20} height={20} />}
@@ -146,7 +149,7 @@ const Account = () => {
               setModalVisible(true);
               setSelectedInput('age');
             }}
-          />
+          /> */}
           <ProfileCard
             type={'Weight'}
             value={`${weight} ${user?.weight_unit}`}

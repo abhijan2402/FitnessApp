@@ -39,10 +39,10 @@ const Email = ({ navigation }) => {
   const [date, setDate] = useState('dd/mm/yyyy');
   const [actualDate, setActualDate] = useState(null);
 
-  const [Gender, setGender] = useState(GENDER[0]);
-  const [GaolVal, setGaolVal] = useState(GOALS[0])
-  const [heightUnit, setheightUnit] = useState(HEIGHT[0])
-  const [WeightUnit, setWeightUnit] = useState(WEIGHT[0])
+  const [Gender, setGender] = useState(GENDER[0]?.label);
+  const [GaolVal, setGaolVal] = useState(GOALS[0]?.label)
+  const [heightUnit, setheightUnit] = useState(HEIGHT[0]?.label)
+  const [WeightUnit, setWeightUnit] = useState(WEIGHT[0]?.label)
   const [modalVisible, setModalVisible] = useState(false);
 
 
@@ -63,29 +63,35 @@ const Email = ({ navigation }) => {
   }
 
   const handlePress1 = async () => {
-    if (email.length < 1) {
-      setToastMessage('Email is required');
-      setToastTextColorState('white');
-      setToastColorState('red');
-      childRef.current.showToast();
-      return
-    }
+    // if (email.length < 1) {
+    //   setToastMessage('Email is required');
+    //   setToastTextColorState('white');
+    //   setToastColorState('red');
+    //   childRef.current.showToast();
+    //   return
+    // }
 
-    if (!validateEmail(email)) {
-      setToastMessage('Enter a valid email');
-      setToastTextColorState('white');
-      setToastColorState('red');
-      childRef.current.showToast();
-      return
-    }
+    // if (!validateEmail(email)) {
+    //   setToastMessage('Enter a valid email');
+    //   setToastTextColorState('white');
+    //   setToastColorState('red');
+    //   childRef.current.showToast();
+    //   return
+    // }
     const final = JSON.stringify(actualDate);
     const yeh = final.slice(1, 11);
     console.log(yeh, 'mj');
+    console.log(MainD, "MAIND");
     const ImgData = {
-      uri: MainD[0]?.uri,
-      name: MainD[0]?.fileName,
-      type: MainD[0]?.type,
+      uri: MainD[0]?.uri || "https://cdn-icons-png.flaticon.com/128/64/64572.png",
+      name: MainD[0]?.fileName || "https://cdn-icons-png.flaticon.com/128/64/64572.png",
+      type: MainD[0]?.type || "image/png",
     }
+    // return
+    console.log('====================================');
+    console.log(Gender, WeightUnit, heightUnit);
+    console.log('====================================');
+    // return
     try {
       let datas = {
         ...data,
@@ -94,25 +100,42 @@ const Email = ({ navigation }) => {
         email: email,
         dob: yeh,
         password: "12345678899",
-        gender: Gender?.label,
+        gender: Gender,
         weight: WeightVals,
-        weight_unit: WeightUnit?.label,
+        weight_unit: WeightUnit,
         height: HeightVals,
-        // height_unit: user.hei
-        goal: GaolVal?.label,
+        goal: GaolVal,
         goal_weight: GoalWeightVals,
         profile_image: ImgData,
         current_weight: WeightVals,
-        height_unit: heightUnit?.label
+        height_unit: heightUnit
+        // weight_unit: "cm",
+        // full_name: "ABhi",
+        // email: "abhishek.jangid641113@gmail.com",
+        // dob: yeh,
+        // password: "12345678899",
+        // gender: "Male",
+        // weight: "25",
+        // weight_unit: "kg",
+        // height: "25",
+        // // height_unit: user.hei
+        // goal: "Weight loss",
+        // goal_weight: "25",
+        // profile_image: ImgData,
+        // current_weight: "25",
+        // height_unit: "ft"
       }
 
       console.log(datas, "DATA");
+      // return
       const res = await registerUser({ datas });
       console.log(res)
-      // if(res) {
-
-      //   navigation.navigate(SCREENS.LOGIN);
-      // }
+      if (res?.success == true) {
+        navigation.navigate(SCREENS.LOGIN);
+      }
+      else {
+        alert(res?.message)
+      }
     } catch (error) {
       alert(error?.message)
       console.log(error);
@@ -286,22 +309,6 @@ const Email = ({ navigation }) => {
             containerStyle={{ width: "30%", height: 50, borderRadius: 10, marginTop: 20, marginHorizontal: 10 }}
           />
         </View>
-        <View style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
-          <View style={{ width: "45%" }}>
-            <SmallText>Height</SmallText>
-            <TextInput
-              placeholder='Height'
-              onChangeText={(text) => setHeightVals(text)} style={styles.input} />
-          </View>
-          <GradientDropdown
-            Tryies={false}
-            data={HEIGHT}
-            value={heightUnit}
-            setValue={setheightUnit}
-            placeholder="Height Unit"
-            containerStyle={{ width: "50%", height: 50, borderRadius: 10, marginTop: 20, marginHorizontal: 10 }}
-          />
-        </View>
         <View style={{}}>
           <SmallText>Goal</SmallText>
           {/* <TextInput
@@ -316,9 +323,26 @@ const Email = ({ navigation }) => {
             containerStyle={{ width: "100%", height: 45, borderRadius: 10 }}
           />
         </View>
-        <View style={{ alignItems: "center", marginTop: "10%" }}>
-          <NewButtob title={"Sign Up"} onPress={handlePress1} />
+        <View style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
+          <View style={{ width: "45%" }}>
+            <SmallText>Height</SmallText>
+            <TextInput
+              keyboardType='numeric'
+              placeholder='Height'
+              onChangeText={(text) => setHeightVals(text)} style={styles.input} />
+          </View>
+          <GradientDropdown
+            Tryies={false}
+            data={HEIGHT}
+            value={heightUnit}
+            setValue={setheightUnit}
+            placeholder="Height Unit"
+            containerStyle={{ width: "50%", height: 50, borderRadius: 10, marginTop: 20, marginHorizontal: 10 }}
+          />
+        </View>
 
+        <View style={{ alignItems: "center", marginTop: "25%", marginVertical: 20 }}>
+          <NewButtob title={"Sign Up"} onPress={handlePress1} />
         </View>
       </View>
       <View style={styles.centeredView}>
@@ -476,14 +500,16 @@ export const GOALS = [
 ]
 
 export const HEIGHT = [
-  { label: 'CM', value: "CM" },
-  { label: 'FEET', value: 'FEET' },
+  { label: 'cm', value: "cm" },
+  { label: 'ft', value: 'ft' },
 ]
 
 
 export const WEIGHT = [
-  { label: 'Kg', value: "Kg" },
-  { label: 'Lbs', value: 'Lbs' },
+  { label: 'kg', value: "kg" },
+
+
+  { label: 'lbs', value: 'lbs' },
 ]
 const WeiData = [{
   id: "1",
