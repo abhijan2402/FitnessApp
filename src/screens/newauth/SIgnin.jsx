@@ -19,6 +19,7 @@ const SIgnin = ({ navigation }) => {
   const [toastTextColorState, setToastTextColorState] = useState('white');
   const [toastMessage, setToastMessage] = useState('');
 
+  const [loading1, setLoading1] = useState(false);
 
   const handlePress = async () => {
     console.log('====================================');
@@ -26,11 +27,13 @@ const SIgnin = ({ navigation }) => {
     console.log('====================================');
     // return
     try {
+      setLoading1(true)
       if (number.length < 1) {
         setToastMessage('Phone Number is required');
         setToastTextColorState('white');
         setToastColorState('red');
         childRef.current.showToast();
+        setLoading1(false)
         return
       }
 
@@ -39,6 +42,7 @@ const SIgnin = ({ navigation }) => {
         setToastTextColorState('white');
         setToastColorState('red');
         childRef.current.showToast();
+        setLoading1(false)
         return
       }
       const res = await SendOTP(number, "REGISTRATION");
@@ -46,12 +50,15 @@ const SIgnin = ({ navigation }) => {
       navigation.navigate(SCREENS.NOTP, {
         data: { phone: number, hash: res?.hash },
       });
+      setLoading1(false)
     } catch (error) {
       console.log(error);
       setToastMessage(error?.message);
       setToastTextColorState('white');
       setToastColorState('red');
       childRef.current.showToast();
+      setLoading1(false)
+
 
     }
   };
@@ -91,6 +98,7 @@ const SIgnin = ({ navigation }) => {
           alignItems: 'center',
         }}>
         <NewButtob
+          loading={loading1}
           // onPress={() => navigation.navigate(SCREENS.NOTP)}
           title={'Verify Now'}
           onPress={handlePress}

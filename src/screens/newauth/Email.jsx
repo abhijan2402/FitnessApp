@@ -44,6 +44,7 @@ const Email = ({ navigation }) => {
   const [heightUnit, setheightUnit] = useState(HEIGHT[0]?.label)
   const [WeightUnit, setWeightUnit] = useState(WEIGHT[0]?.label)
   const [modalVisible, setModalVisible] = useState(false);
+  const [loading1, setLoading1] = useState(false);
 
 
   const [galleryPhoto, setGalleryPhoto] = useState();
@@ -63,21 +64,21 @@ const Email = ({ navigation }) => {
   }
 
   const handlePress1 = async () => {
-    // if (email.length < 1) {
-    //   setToastMessage('Email is required');
-    //   setToastTextColorState('white');
-    //   setToastColorState('red');
-    //   childRef.current.showToast();
-    //   return
-    // }
+    if (email.length < 1) {
+      setToastMessage('Email is required');
+      setToastTextColorState('white');
+      setToastColorState('red');
+      childRef.current.showToast();
+      return
+    }
 
-    // if (!validateEmail(email)) {
-    //   setToastMessage('Enter a valid email');
-    //   setToastTextColorState('white');
-    //   setToastColorState('red');
-    //   childRef.current.showToast();
-    //   return
-    // }
+    if (!validateEmail(email)) {
+      setToastMessage('Enter a valid email');
+      setToastTextColorState('white');
+      setToastColorState('red');
+      childRef.current.showToast();
+      return
+    }
     const final = JSON.stringify(actualDate);
     const yeh = final.slice(1, 11);
     console.log(yeh, 'mj');
@@ -92,6 +93,8 @@ const Email = ({ navigation }) => {
     console.log(Gender, WeightUnit, heightUnit);
     console.log('====================================');
     // return
+    setLoading1(true);
+
     try {
       let datas = {
         ...data,
@@ -109,21 +112,6 @@ const Email = ({ navigation }) => {
         profile_image: ImgData,
         current_weight: WeightVals,
         height_unit: heightUnit
-        // weight_unit: "cm",
-        // full_name: "ABhi",
-        // email: "abhishek.jangid641113@gmail.com",
-        // dob: yeh,
-        // password: "12345678899",
-        // gender: "Male",
-        // weight: "25",
-        // weight_unit: "kg",
-        // height: "25",
-        // // height_unit: user.hei
-        // goal: "Weight loss",
-        // goal_weight: "25",
-        // profile_image: ImgData,
-        // current_weight: "25",
-        // height_unit: "ft"
       }
 
       console.log(datas, "DATA");
@@ -132,13 +120,29 @@ const Email = ({ navigation }) => {
       console.log(res)
       if (res?.success == true) {
         navigation.navigate(SCREENS.LOGIN);
+        setToastMessage('Account Created');
+        setToastTextColorState('white');
+        setToastColorState('green');
+        childRef.current.showToast();
+        setLoading1(false);
+
       }
       else {
-        alert(res?.message)
+        setToastMessage(res?.message);
+        setToastTextColorState('white');
+        setToastColorState('red');
+        childRef.current.showToast();
+        setLoading1(false);
+
       }
     } catch (error) {
-      alert(error?.message)
       console.log(error);
+      setToastMessage(error?.message);
+      setToastTextColorState('white');
+      setToastColorState('red');
+      childRef.current.showToast();
+      setLoading1(false);
+
     }
     // navigation.navigate(SCREENS.NPASSWORD, { data: { ...data, email } })
   }
@@ -216,13 +220,8 @@ const Email = ({ navigation }) => {
 
   return (
     <ScrollView style={styles.container}>
-      <CustomToast
-        toastColor={toastColorState}
-        toastTextColor={toastTextColorState}
-        toastMessage={toastMessage}
-        ref={childRef}
-      />
-      <View style={{ alignItems: "center", marginTop: "10%", marginVertical: 30 }}>
+
+      <View style={{ alignItems: "center", marginTop: "5%", marginVertical: 20 }}>
         <TextH4>Welcome</TextH4>
         <TextMedium>We just need your following Information</TextMedium>
       </View>
@@ -238,7 +237,7 @@ const Email = ({ navigation }) => {
             </View>
         }
         <TouchableOpacity onPress={OpenGallery}>
-          <TextMedium style={{ color: '#7265E3', marginVertical: '5%' }}>
+          <TextMedium style={{ color: '#7265E3', marginVertical: '2%' }}>
             Add Photo
           </TextMedium>
         </TouchableOpacity>
@@ -341,8 +340,8 @@ const Email = ({ navigation }) => {
           />
         </View>
 
-        <View style={{ alignItems: "center", marginTop: "25%", marginVertical: 20 }}>
-          <NewButtob title={"Sign Up"} onPress={handlePress1} />
+        <View style={{ alignItems: "center", marginTop: "15%", marginVertical: 20 }}>
+          <NewButtob loading={loading1} title={"Sign Up"} onPress={handlePress1} />
         </View>
       </View>
       <View style={styles.centeredView}>
@@ -394,6 +393,12 @@ const Email = ({ navigation }) => {
           <Text style={styles.textStyle}>Show Modal</Text>
         </Pressable> */}
       </View>
+      <CustomToast
+        toastColor={toastColorState}
+        toastTextColor={toastTextColorState}
+        toastMessage={toastMessage}
+        ref={childRef}
+      />
     </ScrollView>
   );
 };
