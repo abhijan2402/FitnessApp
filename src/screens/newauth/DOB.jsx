@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
     height: '100%',
 
     color: '#2D3142',
-    fontFamily: 'Rubik',
+    fontFamily: 'Rubik-Regular-Regular',
     fontSize: 16,
     fontWeight: '400',
     letterSpacing: 0.4,
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
 
   dateTxt: {
     color: '#173430',
-    fontFamily: 'Rubik',
+    fontFamily: 'Rubik-Regular-Regular',
     fontSize: 12,
     fontWeight: 700,
     letterSpacing: -0.12,
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
   heading: {
     color: '#2D3142',
     textAlign: 'center',
-    fontFamily: 'Rubik',
+    fontFamily: 'Rubik-Regular-Regular',
     fontSize: 24,
     fontWeight: '500',
     lineHeight: 32,
@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
   age: {
     color: '#7265E3',
     textAlign: 'center',
-    fontFamily: 'Rubik',
+    fontFamily: 'Rubik-Regular-Regular',
     fontSize: 16,
     fontStyle: 'normal',
     fontWeight: '500',

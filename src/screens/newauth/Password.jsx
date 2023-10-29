@@ -7,8 +7,8 @@ import {TextInput} from 'react-native';
 import {Dimensions} from 'react-native';
 import {SCREENS} from '../../constants/Screens';
 import {useState} from 'react';
-import { useRoute } from '@react-navigation/native';
-import { useRef } from 'react';
+import {useRoute} from '@react-navigation/native';
+import {useRef} from 'react';
 import CustomToast from '../../components/common/Toast';
 
 const {width} = Dimensions.get('window');
@@ -22,22 +22,21 @@ const Password = ({navigation}) => {
   const [toastTextColorState, setToastTextColorState] = useState('white');
   const [toastMessage, setToastMessage] = useState('');
 
-
   const handlePress = () => {
-    if(password.length < 1) {
+    if (password.length < 1) {
       setToastMessage('Password is required');
       setToastTextColorState('white');
       setToastColorState('red');
       childRef.current.showToast();
-      return
+      return;
     }
 
-    if(password.length < 8) {
+    if (password.length < 8) {
       setToastMessage('Password should have at least 10 characters');
       setToastTextColorState('white');
       setToastColorState('red');
       childRef.current.showToast();
-      return
+      return;
     }
 
     navigation.navigate(SCREENS.NNAME, {data: {...data, password}});
@@ -127,7 +126,7 @@ const styles = StyleSheet.create({
     height: '100%',
 
     color: '#2D3142',
-    fontFamily: 'Rubik',
+    fontFamily: 'Rubik-Regular',
     fontSize: 16,
     fontWeight: '400',
     letterSpacing: 0.4,
@@ -137,7 +136,7 @@ const styles = StyleSheet.create({
   heading: {
     color: '#2D3142',
     textAlign: 'center',
-    fontFamily: 'Rubik',
+    fontFamily: 'Rubik-Regular',
     fontSize: 24,
     fontWeight: '500',
     lineHeight: 32,
@@ -157,7 +156,7 @@ const styles = StyleSheet.create({
 
   text: {
     color: '#4C5980',
-    fontFamily: 'Rubik',
+    fontFamily: 'Rubik-Regular',
     fontSize: 14,
     fontWeight: '400',
     lineHeight: 28,

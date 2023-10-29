@@ -1,19 +1,19 @@
-import { StyleSheet, Text, View } from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import SlideHeader from '../../components/header/SlideHeader';
 import Step from '../../components/new-auth/Step';
 import NewButtob from '../../components/Button/NewButtob';
-import { TextInput } from 'react-native';
-import { Dimensions } from 'react-native';
-import { SCREENS } from '../../constants/Screens';
-import { useRoute } from '@react-navigation/native';
-import { useState } from 'react';
-import { useRef } from 'react';
+import {TextInput} from 'react-native';
+import {Dimensions} from 'react-native';
+import {SCREENS} from '../../constants/Screens';
+import {useRoute} from '@react-navigation/native';
+import {useState} from 'react';
+import {useRef} from 'react';
 import CustomToast from '../../components/common/Toast';
 
-const { width } = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
-const Name = ({ navigation }) => {
+const Name = ({navigation}) => {
   const route = useRoute();
   const data = route.params?.data;
   const [name, setName] = useState('');
@@ -22,20 +22,16 @@ const Name = ({ navigation }) => {
   const [toastTextColorState, setToastTextColorState] = useState('white');
   const [toastMessage, setToastMessage] = useState('');
 
-
   const handlePress = async () => {
-
     if (name.length < 1) {
       setToastMessage('Name is required');
       setToastTextColorState('white');
       setToastColorState('red');
       childRef.current.showToast();
-      return
+      return;
     }
 
-
-
-    navigation.navigate(SCREENS.NDOB, { data: { ...data, full_name: name } });
+    navigation.navigate(SCREENS.NDOB, {data: {...data, full_name: name}});
   };
   return (
     <View style={styles.container}>
@@ -92,7 +88,7 @@ const styles = StyleSheet.create({
     height: '100%',
 
     color: '#2D3142',
-    fontFamily: 'Rubik',
+    fontFamily: 'Rubik-Regular',
     fontSize: 16,
     fontWeight: '400',
     letterSpacing: 0.4,
@@ -102,7 +98,7 @@ const styles = StyleSheet.create({
   heading: {
     color: '#2D3142',
     textAlign: 'center',
-    fontFamily: 'Rubik',
+    fontFamily: 'Rubik-Regular',
     fontSize: 24,
     fontWeight: '500',
     lineHeight: 32,

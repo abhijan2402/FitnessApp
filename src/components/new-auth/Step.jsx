@@ -14,7 +14,7 @@ export default Step;
 const styles = StyleSheet.create({
   text: {
     color: '#7265E3',
-    fontFamily: 'Rubik',
+    fontFamily: 'Rubik-Regular',
     fontSize: 12,
     fontWeight: 500,
     lineHeight: 14,

@@ -1,15 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import ScreenContainer from '../../components/container/ScreenContainer';
-import { View, StyleSheet, Image, Text } from 'react-native';
+import {View, StyleSheet, Image, Text} from 'react-native';
 import TextH4 from '../../components/Text/TextH4';
 import SmallText from '../../components/Text/SmallText';
 import SolidButton from '../../components/Button/SolidButton';
 import Notification from '../../../assets/icons/Notification.svg';
 import GradientLabel from '../../components/Label/GradientLabel';
-import { COLORS } from '../../constants/Colors';
+import {COLORS} from '../../constants/Colors';
 import TextMedium from '../../components/Text/TextMedium';
 import SecondaryButton from '../../components/Button/SecondaryButton';
-import { FONTS } from '../../constants/Fonts';
+import {FONTS} from '../../constants/Fonts';
 import SolidContainer from '../../components/container/SolidContainer';
 import PrimaryButton from '../../components/Button/PrimaryButton';
 import LargeText from '../../components/Text/LargeText';
@@ -18,30 +18,34 @@ import ProgressBar from '../../components/progress/ProgressBar';
 import ListBullet from '../../components/list/ListBullet';
 import DataContainer from '../../components/container/DataContainer';
 import CircularRing from '../../components/progress/CircularRing';
-import { MEALS, WORKOUTS } from '../../constants/Data';
+import {MEALS, WORKOUTS} from '../../constants/Data';
 import GradientDropdown from '../../components/Utils/GradientDropdown';
 import MealContainer from '../../components/container/MealContainer';
 import AnimatedLineChart from '../../components/Utils/LineChart';
 import WorkoutContainer from '../../components/container/WorkoutContainer';
 import CustomPieChart from '../../components/Utils/PieChart';
 import LineGraphWithoutLabel from '../../components/Utils/LineGraphWithoutLabel';
-import { useNavigation } from '@react-navigation/native';
-import { SCREENS } from '../../constants/Screens';
-import { TouchableOpacity } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {SCREENS} from '../../constants/Screens';
+import {TouchableOpacity} from 'react-native';
 import HomeSwiper from '../../components/Utils/HomeSwiper';
-import { GlobalContext } from '../../../App';
-import { dateFormat, getDataFromAsyncStorage, getTimeInAMPMFormat } from '../../utils/common';
-import { getUserRecommendedMeal } from '../../backend/utilFunctions';
+import {GlobalContext} from '../../../App';
+import {
+  dateFormat,
+  getDataFromAsyncStorage,
+  getTimeInAMPMFormat,
+} from '../../utils/common';
+import {getUserRecommendedMeal} from '../../backend/utilFunctions';
 import Score from '../../../assets/images/Score.svg';
 
 const BASE_TRACKER_CONTAINER_HEIGHT = 350;
 
 function Dashboard(props) {
   const navigation = useNavigation();
-  const { user } = useContext(GlobalContext);
-  const [ProfComplete, setProfComplete] = useState(false)
+  const {user} = useContext(GlobalContext);
+  const [ProfComplete, setProfComplete] = useState(false);
   console.log('====================================');
-  console.log(user, "User::::::::::::::::");
+  console.log(user, 'User::::::::::::::::');
   console.log('====================================');
   const [meals, setMeals] = useState(MEALS[0]);
   const [workout, setWorkout] = useState(WORKOUTS[0]);
@@ -57,7 +61,7 @@ function Dashboard(props) {
 
   useEffect(() => {
     const currentDate = new Date();
-    ProfCom()
+    ProfCom();
     getUserRecommendedMeal(dateFormat(currentDate)).then(res => {
       setRecommendedMeals(res?.data);
 
@@ -67,15 +71,14 @@ function Dashboard(props) {
   }, []);
 
   const ProfCom = async () => {
-    const final = await getDataFromAsyncStorage("profComp")
-    console.log(final, "I am final");
+    const final = await getDataFromAsyncStorage('profComp');
+    console.log(final, 'I am final');
     if (final == null) {
-      setProfComplete(false)
+      setProfComplete(false);
+    } else {
+      setProfComplete(true);
     }
-    else {
-      setProfComplete(true)
-    }
-  }
+  };
 
   useEffect(() => {
     if (meals === null) setFilteredRecommendedMeals(recommendedMeals);
@@ -102,23 +105,21 @@ function Dashboard(props) {
         </SolidButton>
       </View>
 
-      {
-        ProfComplete ? null :
-          <View style={styles.scoreCard}>
-            <Score />
-            <View style={{ width: 192 }}>
-              <Text style={styles.scoreHeading}>Incomplete profile</Text>
-              <Text style={styles.scoreDesc}>
-                Please complete your health details for better experiance
-              </Text>
-              <TouchableOpacity
-                onPress={() => navigation.navigate(SCREENS.FOODDISLIKE)}>
-                <Text style={styles.scoreBtn}>Complete</Text>
-              </TouchableOpacity>
-            </View>
+      {ProfComplete ? null : (
+        <View style={styles.scoreCard}>
+          <Score />
+          <View style={{width: 192}}>
+            <Text style={styles.scoreHeading}>Incomplete profile</Text>
+            <Text style={styles.scoreDesc}>
+              Please complete your health details for better experiance
+            </Text>
+            <TouchableOpacity
+              onPress={() => navigation.navigate(SCREENS.FOODDISLIKE)}>
+              <Text style={styles.scoreBtn}>Complete</Text>
+            </TouchableOpacity>
           </View>
-
-      }
+        </View>
+      )}
       <HomeSwiper />
       <GradientLabel
         colors={[
@@ -127,17 +128,17 @@ function Dashboard(props) {
         ]}
         conatinerStyle={styles.gradientContainer}>
         <View style={styles.bmiContainer}>
-          <View style={{ flexGrow: 1 }}>
-            <TextMedium style={{ color: 'white' }}>
+          <View style={{flexGrow: 1}}>
+            <TextMedium style={{color: 'white'}}>
               BMI (Body Mass Index)
             </TextMedium>
-            <SmallText style={{ color: 'white', marginBottom: 15 }}>
+            <SmallText style={{color: 'white', marginBottom: 15}}>
               You have a normal weight
             </SmallText>
             <SecondaryButton
               title={'View More'}
-              containerStyle={{ width: 100, height: 40, elevation: 0 }}
-              textStyle={{ fontSize: 12 }}
+              containerStyle={{width: 100, height: 40, elevation: 0}}
+              textStyle={{fontSize: 12}}
               onPress={() =>
                 navigation.navigate(SCREENS.PROGRESSTACK, {
                   screen: SCREENS.WEIGHTTRACKER,
@@ -151,7 +152,7 @@ function Dashboard(props) {
         </View>
       </GradientLabel>
       <SolidContainer containerStyle={styles.solidcontainer}>
-        <TextMedium style={{ flexGrow: 1 }}>Activities</TextMedium>
+        <TextMedium style={{flexGrow: 1}}>Activities</TextMedium>
         <PrimaryButton
           containerStyle={styles.targetButton}
           textStyle={styles.targetButtonText}
@@ -189,10 +190,10 @@ function Dashboard(props) {
             />
           </View>
           <TouchableOpacity
-            style={{ alignSelf: 'flex-start', paddingTop: 15, marginLeft: 10 }}
+            style={{alignSelf: 'flex-start', paddingTop: 15, marginLeft: 10}}
             onPress={() => navigation.navigate(SCREENS.WATERDRINK)}>
             <PairText heading={'Water Intake'} subHeading="4 Liters" />
-            <SmallText style={{ marginTop: 10, marginBottom: 10 }}>
+            <SmallText style={{marginTop: 10, marginBottom: 10}}>
               Real time updates
             </SmallText>
             <ListBullet title={'6am - 8am'} subTitle={'600ml'} />
@@ -217,15 +218,15 @@ function Dashboard(props) {
             onPress={() => navigation.navigate(SCREENS.SLEEPSTACK)}>
             <PairText heading="Sleep" subHeading="8h 20m" />
             <Image
-              style={{ marginTop: 15 }}
+              style={{marginTop: 15}}
               source={require('../../../assets/images/Sleep-Graph.png')}
             />
           </DataContainer>
           <DataContainer
-            containerStyle={{ ...styles.sleepContainer, ...{ marginBottom: 0 } }}
+            containerStyle={{...styles.sleepContainer, ...{marginBottom: 0}}}
             onPress={() => navigation.navigate(SCREENS.ACTIVITYTRACKER)}>
             <PairText heading="Calories" subHeading="760 kCal" />
-            <View style={{ alignItems: 'center', marginTop: 10 }}>
+            <View style={{alignItems: 'center', marginTop: 10}}>
               <CircularRing
                 radius={45}
                 fontSize={11}
@@ -256,17 +257,17 @@ function Dashboard(props) {
           value={meals}
           setValue={setMeals}
           placeholder="Select Item"
-          containerStyle={{ width: 150, height: 40, borderRadius: 30 }}
+          containerStyle={{width: 150, height: 40, borderRadius: 30}}
         />
       </SolidContainer>
-      <View style={{ paddingHorizontal: 10, marginBottom: '5%' }}>
+      <View style={{paddingHorizontal: 10, marginBottom: '5%'}}>
         {filteredRecommendedMeals.map((meal, i) => {
           // console.log(i, meal?.meal?.meal_image, "jjjj");
           return (
             <MealContainer
               key={meal._id}
-              img={{ uri: meal?.meal?.meal_image }}
-              imgStyle={{ width: 50, height: 50, borderRadius: 8 }}
+              img={{uri: meal?.meal?.meal_image}}
+              imgStyle={{width: 50, height: 50, borderRadius: 8}}
               title={meal?.meal?.name || ' '}
               time={getTimeInAMPMFormat(new Date(meal.date))}
               date={'Today'}
@@ -413,7 +414,7 @@ const styles = StyleSheet.create({
 
   scoreHeading: {
     color: '#2D3142',
-    fontFamily: 'Rubik',
+    fontFamily: 'Rubik-Regular',
     fontSize: 18,
     fontWeight: '500',
     lineHeight: 24 /* 133.333% */,
@@ -422,7 +423,7 @@ const styles = StyleSheet.create({
 
   scoreDesc: {
     color: '#4C5980',
-    fontFamily: 'Rubik',
+    fontFamily: 'Rubik-Regular',
     fontSize: 14,
     fontWeight: '400',
     lineHeight: 24 /* 171.429% */,
@@ -432,7 +433,7 @@ const styles = StyleSheet.create({
 
   scoreBtn: {
     color: '#7265E3',
-    fontamily: 'Rubik',
+    fontamily: 'Rubik-Regular',
     fontSize: 14,
     fontWeight: '500',
     lineHeight: 14 /* 100% */,
