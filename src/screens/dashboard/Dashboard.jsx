@@ -260,24 +260,26 @@ function Dashboard(props) {
         />
       </SolidContainer>
       <View style={{ paddingHorizontal: 10, marginBottom: '5%' }}>
-        {filteredRecommendedMeals.map((meal, i) => {
-          // console.log(i, meal?.meal?.meal_image, "jjjj");
-          return (
-            <MealContainer
-              key={meal._id}
-              img={{ uri: meal?.meal?.meal_image }}
-              imgStyle={{ width: 50, height: 50, borderRadius: 8 }}
-              title={meal?.meal?.name || ' '}
-              time={getTimeInAMPMFormat(new Date(meal.date))}
-              date={'Today'}
-              onpress={() =>
-                navigation.navigate(SCREENS.MEALSCHEDULER, {
-                  filteredRecommendedMeals,
-                })
-              }
-            />
-          );
-        })}
+        {filteredRecommendedMeals.length == 0 ?
+          <TextH4 style={{ marginVertical: 20 }}>No meals assigned for today</TextH4> :
+          filteredRecommendedMeals.map((meal, i) => {
+            // console.log(i, meal?.meal?.meal_image, "jjjj");
+            return (
+              <MealContainer
+                key={meal._id}
+                img={{ uri: meal?.meal?.meal_image }}
+                imgStyle={{ width: 50, height: 50, borderRadius: 8 }}
+                title={meal?.meal?.name || ' '}
+                time={getTimeInAMPMFormat(new Date(meal.date))}
+                date={'Today'}
+                onpress={() =>
+                  navigation.navigate(SCREENS.MEALSCHEDULER, {
+                    filteredRecommendedMeals,
+                  })
+                }
+              />
+            );
+          })}
       </View>
       {/* <SolidContainer containerStyle={{ ...styles.solidcontainer, backgroundColor: 'white', paddingHorizontal: 10, marginBottom: 0 }}>
                 <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_SEMIBOLD, color: 'black', flexGrow: 1 }}>Workout Progress</LargeText>

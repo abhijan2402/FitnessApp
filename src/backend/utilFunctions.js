@@ -131,6 +131,16 @@ export async function Updatemeal(info, mealid) {
     data,
   );
 }
+export async function Updatemealskip(mealid) {
+  const data = new FormData();
+  data.append('user_skip', 'false');
+  console.log(data, 'I AM DATA');
+  return await generateRequest(
+    `/update-assigned-Meal-status/${mealid}`,
+    'POST',
+    data,
+  );
+}
 
 export async function SendOTP(phone, type) {
   const data = new FormData();

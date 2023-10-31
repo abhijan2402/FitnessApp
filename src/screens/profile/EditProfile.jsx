@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Dimensions, Alert, Modal, Pressable, ScrollView, TextInput, TouchableOpacity, Image } from 'react-native'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import Header from '../../components/header/Header'
 import EditPro from '../../components/profile/EditPro'
 import EditCard from '../../components/profile/EditCard'
@@ -14,8 +14,14 @@ import { GlobalContext } from '../../../App'
 import { updateUser } from '../../backend/utilFunctions'
 const { height, width } = Dimensions.get("window")
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import TextMedium from '../../components/Text/TextMedium'
+import CustomToast from '../../components/common/Toast'
 const EditProfile = () => {
   const { user, setLoggedInUser } = useContext(GlobalContext)
+  const childRef = useRef(null);
+  const [toastColorState, setToastColorState] = useState('');
+  const [toastTextColorState, setToastTextColorState] = useState('white');
+  const [toastMessage, setToastMessage] = useState('');
   const [galleryPhoto, setGalleryPhoto] = useState();
   const [Photo, setPhoto] = useState(false)
   const [photoResult, setPhotoResult] = useState(null)
@@ -52,8 +58,10 @@ const EditProfile = () => {
     console.log(updateData, "UPDTE");
     console.log('====================================');
     // return
-    if (photoResult)
+    if (photoResult) {
+      console.log(photoResult, "PHOTORESULT");
       updateData.image = { uri: photoResult.uri, name: photoResult.fileName, type: photoResult.type }
+    }
     updateUser(updateData)
       .then((res) => {
         console.log(res, "RES::::::::::");
@@ -61,9 +69,17 @@ const EditProfile = () => {
         setLastName(tempLastName)
         // update the global context
         setLoggedInUser({ ...user, full_name: tempFirstName, image: photoResult ? galleryPhoto : user.image })
+        setToastMessage('Updated successfully');
+        setToastTextColorState('white');
+        setToastColorState('green');
+        childRef.current.showToast();
       })
       .catch((err) => {
         // TODO: Make a alert toast for the error
+        setToastMessage('Something went wrong');
+        setToastTextColorState('white');
+        setToastColorState('red');
+        childRef.current.showToast();
         console.log(err)
       })
       .finally(() => {
@@ -75,15 +91,28 @@ const EditProfile = () => {
     <>
       <ScrollView style={styles.MainView}>
         <Header title={"Edit Profile"} />
+        <CustomToast
+          toastColor={toastColorState}
+          toastTextColor={toastTextColorState}
+          toastMessage={toastMessage}
+          ref={childRef}
+        />
         {/* <View style={styles.image}>
           <Image source={{ uri: user.image }} width={150} height={150} />
         </View> */}
-        <TouchableOpacity style={styles.image} onPress={OpenGallery}>
+        <TouchableOpacity style={styles.image} >
           {
             !Photo ?
               <Image source={{ uri: user.image }} style={{ width: 150, height: 150 }} /> :
               <Image source={{ uri: galleryPhoto }} style={{ width: 150, height: 150, borderRadius: 70 }} />
           }
+        </TouchableOpacity>
+        <TouchableOpacity style={{ position: "absolute", right: 120, top: 180 }} onPress={OpenGallery}>
+          <Image source={{ uri: "https://cdn-icons-png.flaticon.com/128/1159/1159633.png" }} style={{ width: 30, height: 30, }} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={UpdateData}>
+          <TextMedium style={{ textAlign: "center", marginVertical: 20, marginBottom: 50, color: "purple" }}>Update Profile Image</TextMedium>
+
         </TouchableOpacity>
         <View>
           <EditPro value={firstName} icon={<Account width={18} height={18} Edit={"EditBtn"} />} />
@@ -98,7 +127,7 @@ const EditProfile = () => {
         <View style={{ alignItems: "center", marginTop: "25%" }}>
           <PrimaryButton containerStyle={{ width: width - 80, }} title={'Save Profile'} />
         </View>
-        <View style={{ alignItems: "center", marginTop: "5%" }}>
+        <View style={{ alignItems: "center", marginTop: "5%", marginBottom: "15%" }}>
           <PrimaryButton containerStyle={{ width: width - 80, }} title={'Edit Profile'} onPress={() => setModalVisible(true)} />
         </View>
       </ScrollView>
@@ -140,7 +169,7 @@ const styles = StyleSheet.create({
   },
   image: {
     alignSelf: "center",
-    marginVertical: 50,
+    // marginVertical: 50,
     elevation: 5,
     overflow: 'hidden',
     borderRadius: 9999
