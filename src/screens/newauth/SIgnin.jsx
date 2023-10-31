@@ -1,18 +1,18 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import React, { useRef, useState } from 'react';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import React, {useRef, useState} from 'react';
 import SlideHeader from '../../components/header/SlideHeader';
 import Step from '../../components/new-auth/Step';
 import NewButtob from '../../components/Button/NewButtob';
-import { TextInput } from 'react-native';
+import {TextInput} from 'react-native';
 import Flag from '../../../assets/images/india-flag-icon.svg';
-import { Dimensions } from 'react-native';
-import { SCREENS } from '../../constants/Screens';
-import { SendOTP } from '../../backend/utilFunctions';
+import {Dimensions} from 'react-native';
+import {SCREENS} from '../../constants/Screens';
+import {SendOTP} from '../../backend/utilFunctions';
 import CustomToast from '../../components/common/Toast';
 
-const { width } = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
-const SIgnin = ({ navigation }) => {
+const SIgnin = ({navigation}) => {
   const [number, setNumber] = useState('');
   const childRef = useRef(null);
   const [toastColorState, setToastColorState] = useState('');
@@ -23,18 +23,18 @@ const SIgnin = ({ navigation }) => {
 
   const handlePress = async () => {
     console.log('====================================');
-    console.log("Test", number);
+    console.log('Test', number);
     console.log('====================================');
     // return
     try {
-      setLoading1(true)
+      setLoading1(true);
       if (number.length < 1) {
         setToastMessage('Phone Number is required');
         setToastTextColorState('white');
         setToastColorState('red');
         childRef.current.showToast();
-        setLoading1(false)
-        return
+        setLoading1(false);
+        return;
       }
 
       if (number.length !== 10) {
@@ -42,24 +42,22 @@ const SIgnin = ({ navigation }) => {
         setToastTextColorState('white');
         setToastColorState('red');
         childRef.current.showToast();
-        setLoading1(false)
-        return
+        setLoading1(false);
+        return;
       }
-      const res = await SendOTP(number, "REGISTRATION");
+      const res = await SendOTP(number, 'REGISTRATION');
       console.log('data', res);
       navigation.navigate(SCREENS.NOTP, {
-        data: { phone: number, hash: res?.hash },
+        data: {phone: number, hash: res?.hash},
       });
-      setLoading1(false)
+      setLoading1(false);
     } catch (error) {
       console.log(error);
       setToastMessage(error?.message);
       setToastTextColorState('white');
       setToastColorState('red');
       childRef.current.showToast();
-      setLoading1(false)
-
-
+      setLoading1(false);
     }
   };
   return (
@@ -76,7 +74,7 @@ const SIgnin = ({ navigation }) => {
       <Text style={styles.subHeading}>Number we can use to reach you</Text>
 
       <View style={styles.inputContainer}>
-        <View style={{ flexDirection: 'row', gap: 11 }}>
+        <View style={{flexDirection: 'row', gap: 11}}>
           <Flag width={25} />
           <Text style={styles.countryCode}>+91</Text>
         </View>
@@ -132,7 +130,7 @@ const styles = StyleSheet.create({
 
   countryCode: {
     color: '#2D3142',
-    fontFamily: 'Rubik',
+    fontFamily: 'Rubik-Regular',
     fontSize: 16,
     fontWeight: '400',
     letterSpacing: 0.4,
@@ -142,7 +140,7 @@ const styles = StyleSheet.create({
     height: '100%',
 
     color: '#2D3142',
-    fontFamily: 'Rubik',
+    fontFamily: 'Rubik-Regular',
     fontSize: 16,
     fontWeight: '400',
     letterSpacing: 0.4,
@@ -152,7 +150,7 @@ const styles = StyleSheet.create({
   heading: {
     color: '#2D3142',
     textAlign: 'center',
-    fontFamily: 'Rubik',
+    fontFamily: 'Rubik-Regular',
     fontSize: 24,
     fontWeight: '500',
     lineHeight: 32,
@@ -162,7 +160,7 @@ const styles = StyleSheet.create({
   subHeading: {
     color: '#4C5980',
     textAlign: 'center',
-    fontFamily: 'Rubik',
+    fontFamily: 'Rubik-Regular',
     fontSize: 16,
     fontStyle: 'normal',
     fontWeight: '400',

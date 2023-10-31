@@ -213,7 +213,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ECF2FF',
     color: '#2D3142',
     textAlign: 'center',
-    fontFamily: 'Rubik',
+    fontFamily: 'Rubik-Regular',
     fontSize: 25,
     fontWeight: '500',
     lineHeight: 32,
@@ -224,7 +224,7 @@ const styles = StyleSheet.create({
   heading: {
     color: '#2D3142',
     textAlign: 'center',
-    fontFamily: 'Rubik',
+    fontFamily: 'Rubik-Regular',
     fontSize: 24,
     fontWeight: '500',
     lineHeight: 32,
@@ -234,7 +234,7 @@ const styles = StyleSheet.create({
   subHeading: {
     color: '#4C5980',
     textAlign: 'center',
-    fontFamily: 'Rubik',
+    fontFamily: 'Rubik-Regular',
     fontSize: 16,
     fontStyle: 'normal',
     fontWeight: '400',
@@ -246,7 +246,7 @@ const styles = StyleSheet.create({
   text: {
     color: '#7265E3',
     textAlign: 'center',
-    fontFamily: 'Rubik',
+    fontFamily: 'Rubik-Regular',
     fontSize: 14,
     fontWeight: '500',
     letterSpacing: 0.2,
