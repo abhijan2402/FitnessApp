@@ -253,13 +253,13 @@ function DietDetails(props) {
                                 />)
                         }
                         {
-                            meal?.user_skip || meal?.user_picked ? <View style={{ height: 100 }}></View> :
-                                <View style={{ paddingBottom: 30, paddingRight: 30 }}>
-                                    <PrimaryButton
-                                        onPress={() => navigation.navigate(SCREENS.MEALFINAL, { mealid: meal?._id })}
-                                        title={'Complete the meal'}
-                                    />
-                                </View>
+
+                            <View style={{ paddingBottom: 30, paddingRight: 30 }}>
+                                <PrimaryButton
+                                    onPress={() => navigation.navigate(SCREENS.MEALFINAL, { mealid: meal?._id, meal: meal })}
+                                    title={'Complete the meal'}
+                                />
+                            </View>
                         }
                         {
                             meal?.user_picked || meal?.user_skip ? <View style={{ height: 100 }}></View> :
