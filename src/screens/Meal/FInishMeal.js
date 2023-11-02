@@ -18,12 +18,12 @@ import { TouchableOpacity } from 'react-native';
 const FlnishMeal = ({ navigation, route }) => {
   // const [modalVisible, setModalVisible] = useState(false);
   // const [photoResult, setPhotoResult] = useState(null);
-  const { mealid } = route.params
-  // console.log(mealid, "i am mesl");
-  const [galleryPhoto, setGalleryPhoto] = useState("");
-  const [Comment, setComment] = useState("")
+  const { mealid, meal } = route.params
+  console.log(mealid, meal?.rating, "i am mesl");
+  const [galleryPhoto, setGalleryPhoto] = useState(meal?.meal_image_proof == undefined ? "" : meal?.meal_image_proof);
+  const [Comment, setComment] = useState(meal?.comment == undefined ? "" : meal?.comment)
   const [Rating, setRating] = useState(Data)
-  const [RatVal, setRatVal] = useState("")
+  const [RatVal, setRatVal] = useState(meal?.rating == undefined ? "" : meal?.rating)
   const [Photo, setPhoto] = useState(false)
   const [photoResult, setPhotoResult] = useState(null)
   const [MainImageVal, setMainImageVal] = useState([])
@@ -144,9 +144,12 @@ const FlnishMeal = ({ navigation, route }) => {
 
         }
       </View>
-
+      {
+        meal?.rating ?
+          <Text style={{ fontSize: 15, color: "black", fontWeight: "500", textAlign: "center", marginVertical: 15 }}> Rating is : {meal?.rating}</Text> : null
+      }
       <View style={{ paddingHorizontal: 20, marginTop: 20 }}>
-        <TextInput placeholder='Comment' multiline style={styles.commentBox} onChangeText={(val) => { setComment(val) }} />
+        <TextInput placeholder='Comment' value={Comment} multiline style={styles.commentBox} onChangeText={(val) => { setComment(val) }} />
       </View>
       <View style={{ alignItems: 'center', marginTop: '10%' }}>
         {
