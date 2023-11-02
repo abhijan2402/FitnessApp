@@ -6,6 +6,17 @@ export const GENDERS = [
     { label: 'OTHER', value: 'OTHER' },
 ]
 
+export const HEIGHT_UNIT = [
+    { label: 'CM', value: 'cm' },
+    { label: 'FT', value: 'ft' },
+]
+
+export const WEIGHT_UNIT = [
+    {label: 'kg', value: 'kg'},
+  
+    {label: 'lbs', value: 'lbs'},
+  ];
+  
 export const FOOD_TYPE = [
     { label: 'VEGAN', value: 'VEGAN' },
     { label: 'NON VEGAN', value: 'NON VEGAN' },

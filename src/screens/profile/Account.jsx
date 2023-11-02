@@ -11,7 +11,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from 'react-native';
-import React, { useState, useContext, useRef } from 'react';
+import React, {useState, useContext, useRef} from 'react';
 import Header from '../../components/header/Header';
 import ProfileCard from '../../components/profile/ProfileCard';
 import Group from '../../../assets/icons/Group.svg';
@@ -20,25 +20,32 @@ import Weight from '../../../assets/icons/Weight.svg';
 import Height from '../../../assets/icons/Height.svg';
 import Gender from '../../../assets/icons/Gender.svg';
 import Edit from '../../../assets/icons/Edit.svg';
-import { FONTS } from '../../constants/Fonts';
-import { GlobalContext } from '../../../App';
-import { formatDate, getAge } from '../../utils/common';
-import { updateUser } from '../../backend/utilFunctions';
+import {FONTS} from '../../constants/Fonts';
+import {GlobalContext} from '../../../App';
+import {formatDate, getAge} from '../../utils/common';
+import {updateUser} from '../../backend/utilFunctions';
 import CalenderPicker from '../../components/Utils/CalenderPicker';
 import PickerLabel from '../../components/Label/PickerLabel';
 import Calendar from '../../../assets/icons/Calendar.svg';
 import UserSvg from '../../../assets/icons/User.svg';
-import { FOOD_TYPE, GENDERS } from '../../constants/Data';
+import {
+  FOOD_TYPE,
+  GENDERS,
+  HEIGHT_UNIT,
+  WEIGHT_UNIT,
+} from '../../constants/Data';
 import DropdownPicker from '../../components/Utils/DropdownPicker';
 import CustomToast from '../../components/common/Toast';
-const { width, height } = Dimensions.get('window');
+const {width, height} = Dimensions.get('window');
 
 const Account = () => {
   const [modalVisible, setModalVisible] = useState(false);
-  const { user, setLoggedInUser } = useContext(GlobalContext);
+  const {user, setLoggedInUser} = useContext(GlobalContext);
   const [age, setAge] = useState(getAge(user.age));
   const [weight, setWeight] = useState(user.current_weight);
+  const [weight_unit, setWeight_Unit] = useState(user.weight_unit);
   const [height, setHeight] = useState(user.height);
+  const [height_unit, setHeight_unit] = useState(user.height_unit);
   const [gender, setGender] = useState(user.gender);
   const [foodType, setFoodType] = useState('');
   const [date, setDate] = useState(formatDate(user.dob));
@@ -52,10 +59,18 @@ const Account = () => {
   const UpdateData = () => {
     setLoading(true);
     // return console.log({...user, weight, height, gender})
-    updateUser({ ...user, current_weight: weight, height: height, gender: gender, date })
+    updateUser({
+      ...user,
+      current_weight: weight,
+      height: height,
+      gender: gender,
+      date,
+      height_unit: height_unit,
+      weight_unit: weight_unit,
+    })
       .then(res => {
         console.log('====================================');
-        console.log(res, "I AM RES");
+        console.log(res, 'I AM RES');
         console.log('====================================');
         // update the global context
         setAge(getAge(date));
@@ -65,6 +80,8 @@ const Account = () => {
           height,
           gender,
           age,
+          height_unit,
+          weight_unit
         });
 
         console.log(res);
@@ -99,7 +116,7 @@ const Account = () => {
       <Header title={'Profile'} />
       <ScrollView>
         <View style={styles.profile}>
-          <View style={{ marginHorizontal: 30, marginTop: 30 }}>
+          <View style={{marginHorizontal: 30, marginTop: 30}}>
             <Text
               style={[
                 {
@@ -131,7 +148,7 @@ const Account = () => {
           ]}>
           Your Information
         </Text>
-        <View style={{ marginVertical: 20, marginBottom: '20%' }}>
+        <View style={{marginVertical: 20, marginBottom: '20%'}}>
           <ProfileCard
             type={'Food Type'}
             value={'Vegan'}
@@ -214,25 +231,61 @@ const Account = () => {
                 )}
 
                 {selectedInput === 'weight' && (
-                  <TextInput
-                    placeholder="Weight (in kgs)"
-                    placeholderTextColor={'grey'}
-                    style={styles.InputFields}
-                    onChangeText={value => setWeight(value)}
-                    value={`${weight}`}
-                    keyboardType="numeric"
-                  />
+                  <View
+                    style={{
+                      width: '100%',
+                      alignItems: 'center',
+                      flexDirection: 'row',
+                      justifyContent: 'center',
+                      gap: 10,
+                    }}>
+                    <TextInput
+                      placeholder="Weight (in kgs)"
+                      placeholderTextColor={'grey'}
+                      style={[styles.InputFields, {width: '50%'}]}
+                      onChangeText={value => setWeight(value)}
+                      value={`${weight}`}
+                      keyboardType="numeric"
+                    />
+
+                    <DropdownPicker
+                      width={'25%'}
+                      marginBottom={5}
+                      data={WEIGHT_UNIT}
+                      value={weight_unit}
+                      setValue={setWeight_Unit}
+                      placeholder="Unit"
+                    />
+                  </View>
                 )}
 
                 {selectedInput === 'height' && (
-                  <TextInput
-                    placeholder="Height (in ft.)"
-                    placeholderTextColor={'grey'}
-                    style={styles.InputFields}
-                    keyboardType="numeric"
-                    onChangeText={value => setHeight(value)}
-                    value={`${height}`}
-                  />
+                  <View
+                    style={{
+                      width: '100%',
+                      alignItems: 'center',
+                      flexDirection: 'row',
+                      justifyContent: 'center',
+                      gap: 10,
+                    }}>
+                    <TextInput
+                      placeholder="Height (in ft.)"
+                      placeholderTextColor={'grey'}
+                      style={[styles.InputFields, {width: '50%'}]}
+                      keyboardType="numeric"
+                      onChangeText={value => setHeight(value)}
+                      value={`${height}`}
+                    />
+
+                    <DropdownPicker
+                      width={'25%'}
+                      marginBottom={5}
+                      data={HEIGHT_UNIT}
+                      value={height_unit}
+                      setValue={setHeight_unit}
+                      placeholder="Unit"
+                    />
+                  </View>
                 )}
 
                 {selectedInput === 'gender' && (
