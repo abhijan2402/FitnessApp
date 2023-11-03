@@ -30,6 +30,8 @@
 		CEC054502AEE518F00A1EFAA /* Rubik-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEC054422AEE518E00A1EFAA /* Rubik-MediumItalic.ttf */; };
 		CEC054512AEE518F00A1EFAA /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEC054432AEE518E00A1EFAA /* Rubik-Regular.ttf */; };
 		CEC054522AEE518F00A1EFAA /* Rubik-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEC054442AEE518F00A1EFAA /* Rubik-SemiBoldItalic.ttf */; };
+		CEC51E7F2AF36DA600F53258 /* ssl-cert.cer in Resources */ = {isa = PBXBuildFile; fileRef = CEC51E7E2AF36DA600F53258 /* ssl-cert.cer */; };
+		CEC51E812AF36EEF00F53258 /* libRNSslPinning.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC51E802AF36EEF00F53258 /* libRNSslPinning.a */; };
 		D408080F44D34F3A8F2C450E /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 26F92D13691B4DC38B90FF37 /* Poppins-SemiBold.ttf */; };
 		E3FB2F2840FF48AF9A98B971 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9E30C014BC564DC88F84B4C7 /* Poppins-Medium.ttf */; };
 /* End PBXBuildFile section */
@@ -77,6 +79,8 @@
 		CEC054422AEE518E00A1EFAA /* Rubik-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-MediumItalic.ttf"; path = "../assets/fonts/en.Iproj/Rubik-MediumItalic.ttf"; sourceTree = "<group>"; };
 		CEC054432AEE518E00A1EFAA /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-Regular.ttf"; path = "../assets/fonts/en.Iproj/Rubik-Regular.ttf"; sourceTree = "<group>"; };
 		CEC054442AEE518F00A1EFAA /* Rubik-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-SemiBoldItalic.ttf"; path = "../assets/fonts/en.Iproj/Rubik-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		CEC51E7E2AF36DA600F53258 /* ssl-cert.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ssl-cert.cer"; sourceTree = "<group>"; };
+		CEC51E802AF36EEF00F53258 /* libRNSslPinning.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNSslPinning.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D51B1C90F8B84787B7267C2C /* Poppins-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Bold.ttf"; path = "../assets/fonts/Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		E7CE6CF6B5BB31979F8A8679 /* Pods-DietAndCare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietAndCare.debug.xcconfig"; path = "Target Support Files/Pods-DietAndCare/Pods-DietAndCare.debug.xcconfig"; sourceTree = "<group>"; };
 		E9B0A8C20871181EF9BCE20F /* libPods-DietAndCare.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DietAndCare.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEC51E812AF36EEF00F53258 /* libRNSslPinning.a in Frameworks */,
 				0371D941075D2D251C3C7CD3 /* libPods-DietAndCare.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -123,6 +128,7 @@
 		13B07FAE1A68108700A75B9A /* DietAndCare */ = {
 			isa = PBXGroup;
 			children = (
+				CEC51E7E2AF36DA600F53258 /* ssl-cert.cer */,
 				CEC0540C2AEE49E000A1EFAA /* DietAndCare.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
@@ -137,6 +143,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CEC51E802AF36EEF00F53258 /* libRNSslPinning.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				E9B0A8C20871181EF9BCE20F /* libPods-DietAndCare.a */,
 				4E44C5EBC054AE13A26F792C /* libPods-DietAndCare-DietAndCareTests.a */,
@@ -311,6 +318,7 @@
 				CEC054472AEE518F00A1EFAA /* Rubik-SemiBold.ttf in Resources */,
 				CEC054482AEE518F00A1EFAA /* Rubik-ExtraBold.ttf in Resources */,
 				CEC054492AEE518F00A1EFAA /* Rubik-Italic.ttf in Resources */,
+				CEC51E7F2AF36DA600F53258 /* ssl-cert.cer in Resources */,
 				CEC0544A2AEE518F00A1EFAA /* Rubik-Black.ttf in Resources */,
 				CEC0544B2AEE518F00A1EFAA /* Rubik-BoldItalic.ttf in Resources */,
 				CEC0544C2AEE518F00A1EFAA /* Rubik-BlackItalic.ttf in Resources */,
@@ -515,6 +523,7 @@
 			baseConfigurationReference = 6C3BB3689CF9BF5EB27B9C84 /* Pods-DietAndCare-DietAndCareTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				DEVELOPMENT_TEAM = R8LZGT4R94;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -543,6 +552,7 @@
 			baseConfigurationReference = 2A1FF10FFD33C9B5612E8E5D /* Pods-DietAndCare-DietAndCareTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = R8LZGT4R94;
 				INFOPLIST_FILE = DietAndCareTests/Info.plist;
@@ -578,23 +588,28 @@
 				ENABLE_BITCODE = NO;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
 				INFOPLIST_FILE = DietAndCare/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Indyte - Diet Plan & Fitness";
+				INFOPLIST_KEY_CFBundleDisplayName = "Indyte: Diet Plan & Fitness";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.DietAndCare.Indyte;
 				PRODUCT_NAME = DietAndCare;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -613,22 +628,27 @@
 				ENABLE_APP_SANDBOX = YES;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
 				INFOPLIST_FILE = DietAndCare/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Indyte - Diet Plan & Fitness";
+				INFOPLIST_KEY_CFBundleDisplayName = "Indyte: Diet Plan & Fitness";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.DietAndCare.Indyte;
 				PRODUCT_NAME = DietAndCare;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -664,6 +684,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
@@ -736,6 +757,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;

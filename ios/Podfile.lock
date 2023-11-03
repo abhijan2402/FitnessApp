@@ -484,6 +484,7 @@ PODS:
   - RNVectorIcons (9.2.0):
     - React-Core
   - SocketRocket (0.6.1)
+  - TrustKit (3.0.3)
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -559,6 +560,7 @@ DEPENDENCIES:
   - RNSslPinning (from `../node_modules/react-native-ssl-pinning`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
+  - TrustKit
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -579,6 +581,7 @@ SPEC REPOS:
     - libevent
     - OpenSSL-Universal
     - SocketRocket
+    - TrustKit
     - YogaKit
 
 EXTERNAL SOURCES:
@@ -737,9 +740,10 @@ SPEC CHECKSUMS:
   RNSVG: d00c8f91c3cbf6d476451313a18f04d220d4f396
   RNVectorIcons: fcc2f6cb32f5735b586e66d14103a74ce6ad61f8
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
+  TrustKit: 7858ea59d0e226b1457b2e9cc8b95d77ab21d471
   Yoga: f7decafdc5e8c125e6fa0da38a687e35238420fa
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 37a032c482b9c99dbccb95c773f3ae2bffe716ae
+PODFILE CHECKSUM: 5f1f61c9ae97f15d5fd54406a6462f3143caf829
 
 COCOAPODS: 1.12.1
