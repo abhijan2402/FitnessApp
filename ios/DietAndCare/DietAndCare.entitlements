@@ -4,19 +4,9 @@
 <dict>
 	<key>com.apple.security.app-sandbox</key>
 	<true/>
-	<key>com.apple.developer.networking.networkextension</key>
+	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>dns-proxy</string>
-		<string>dns-settings</string>
+		<string>group.indyte.dietandcare</string>
 	</array>
-	<key>com.apple.developer.networking.wifi-info</key>
-	<true/>
-	<key>com.apple.developer.user-fonts</key>
-	<array>
-		<string>app-usage</string>
-		<string>system-installation</string>
-	</array>
-	<key>com.apple.security.network.client</key>
-	<true/>
 </dict>
 </plist>

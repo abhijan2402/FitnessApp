@@ -1,6 +1,7 @@
 #import "AppDelegate.h"
 
 #import <React/RCTBundleURLProvider.h>
+#import <TrustKit/TrustKit.h>
 
 @implementation AppDelegate
 
