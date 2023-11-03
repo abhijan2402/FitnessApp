@@ -18,7 +18,7 @@ let INCREASE = 'Increase';
 let NONE = 'None';
 
 var SELECTED_MONTH_INDEX = 0;
-const CustomDatePicker = ({ showMonth = true, setDate }) => {
+const CustomDatePicker = ({ showMonth = true, setDate, FetchMeal }) => {
   let newDayDateArray = [];
   const d = new Date();
 
@@ -172,7 +172,7 @@ const CustomDatePicker = ({ showMonth = true, setDate }) => {
             paddingVertical: 20,
           }}>
           <TouchableOpacity
-            onPress={() => setMonthAsSelected(SELECTED_MONTH_INDEX, DECREASE)}>
+            onPress={() => { setMonthAsSelected(SELECTED_MONTH_INDEX, DECREASE); }}>
             <Back width={30} height={30} />
           </TouchableOpacity>
           <Text
@@ -202,6 +202,7 @@ const CustomDatePicker = ({ showMonth = true, setDate }) => {
               onPress={() => {
                 setAsSelected(item, index);
                 // setDate(`${year}-${currentMonth.index + 1}-${item.date}`);
+                FetchMeal(`${year}-${currentMonth.index + 1}-${item.date}`);
               }}>
               <GradientContainer
                 colors={
