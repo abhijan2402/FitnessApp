@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, Image } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import ScreenContainer from '../../components/container/ScreenContainer';
 import TextH4 from '../../components/Text/TextH4';
@@ -26,6 +26,7 @@ import { useRoute } from '@react-navigation/native';
 import { dateFormat, getTimeInAMPMFormat } from '../../utils/common';
 import { useMemo } from 'react';
 import { getUserRecommendedMeal } from '../../backend/utilFunctions';
+import TextMedium from '../../components/Text/TextMedium';
 const MealScheduler = ({ navigation }) => {
   const route = useRoute();
   // const {filteredRecommendedMeals} = route?.params;
@@ -34,11 +35,26 @@ const MealScheduler = ({ navigation }) => {
   const [date, setDate] = useState(dateFormat(new Date()));
 
   useEffect(() => {
+    console.log(date, 'DAAAAA');
     getUserRecommendedMeal(date).then(res => {
       setFilteredRecommendedMeals(res?.data);
-      console.log(res?.data);
+      console.log(res?.data, "RESS");
     });
   }, [date]);
+
+
+
+  const FetchMeal = (date) => {
+    console.log(date, 'DAAAAA');
+    getUserRecommendedMeal(date).then(res => {
+      setFilteredRecommendedMeals(res?.data);
+      console.log(res?.data, "RESS");
+    });
+  }
+
+
+
+
 
   function filterMealsBasedOnType(type) {
     const filteredMeals = filteredRecommendedMeals.filter(
@@ -59,6 +75,36 @@ const MealScheduler = ({ navigation }) => {
     return filterMealsBasedOnType('SNACKS');
   });
 
+  const UpdateMeal = () => {
+    try {
+
+      if (RatVal == "" || MainImageVal == "" || Comment == "") {
+        alert("Please fill all the required data")
+      }
+      else {
+        const Rat = JSON.stringify(RatVal)
+        const finalimage = MainImageVal?.assets[0]
+        const Image = { uri: finalimage.uri, name: finalimage.fileName, type: finalimage.type }
+        const credentials = { Comment, Rat, Image };
+        setLoader(true)
+        Updatemeal(credentials, mealid)
+          .then(res => {
+            console.log(res, "i am res");
+            setLoader(false)
+            navigation.navigate(SCREENS.MEALHOME)
+          })
+          .catch(err => {
+            console.log(err.message);
+            setLoader(false)
+
+          })
+      }
+    } catch (error) {
+      console.log(error, "I am error");
+      setLoader(false)
+    }
+
+  }
   return (
     <>
       <ScreenContainer scroll={true}>
@@ -78,12 +124,15 @@ const MealScheduler = ({ navigation }) => {
             <TwoDot width={16} height={16} />
           </SolidContainer>
         </View>
-        <CustomDatePicker setDate={setDate} />
+        <CustomDatePicker FetchMeal={(date) => { console.log(date, "DATEEE"); FetchMeal(date) }} setDate={() => { console.log('HI'); setDate }} />
         <View style={{}}>
 
           {
             breakfastMeal.length == 0 && lunchfastMeal.length == 0 && snackfastMeal.length == 0 && dinnerfastMeal.length == 0 ?
-              <TextH4 style={{ textAlign: "center" }}>No Meals assigned today</TextH4> :
+              <View style={{ justifyContent: "center" }}>
+                <Image style={{ width: 300, height: 200 }} source={{ uri: "https://pbs.twimg.com/profile_images/413604830402211840/jJ1Gd3Ul_400x400.png" }} />
+                {/* <TextMedium style={{ textAlign: "center", justifyContent: "center" }}>No Meals assigned today</TextMedium> */}
+              </View> :
               <>
 
                 <SubSectionTitle
