@@ -49,7 +49,7 @@ const apiTempData = {
       workout_id: {
         _id: '64f59c25f3661342ce8053cc',
         name: 'Mohit soni',
-        description: 'shshush',
+        description: 'Push Ups',
         image: 'ssss',
         physical_equipments: [],
         calorie_burn: 22,
@@ -124,7 +124,7 @@ const apiTempData = {
         createdAt: '2023-09-04T08:58:13.811Z',
         updatedAt: '2023-09-04T18:04:31.649Z',
         __v: 0,
-        workout_name: 'sjhjhsjsss',
+        workout_name: 'Push Ups',
       },
       difficulty: 'BEGINNER',
       user_picked: false,
@@ -141,7 +141,7 @@ const apiTempData = {
       workout_id: {
         _id: '64f59c25f3661342ce8053cc',
         name: 'Mohit soni',
-        description: 'shshush',
+        description: 'Weight lifting',
         image: 'ssss',
         physical_equipments: [],
         calorie_burn: 22,
@@ -216,7 +216,7 @@ const apiTempData = {
         createdAt: '2023-09-04T08:58:13.811Z',
         updatedAt: '2023-09-04T18:04:31.649Z',
         __v: 0,
-        workout_name: 'sjhjhsjsss',
+        workout_name: 'Weight lifting',
       },
       difficulty: 'BEGINNER',
       user_picked: false,
@@ -230,121 +230,121 @@ const apiTempData = {
 };
 function WorkOutHome(props) {
 
-    const [workoutdata, setWorkoutdata] = useState(apiTempData)
+  const [workoutdata, setWorkoutdata] = useState(apiTempData)
 
-    const navigation = useNavigation();
-    const sheetRef = useRef(null);
-    const [viewHeight,getViewHeight] = useLayout()
-    return (
-        <GestureHandlerRootView style={{flex:1}}>
-                <GradientLabel
-                    colors={[COLORS.PRIMARY_BUTTON_GRADIENT.BLUE1, COLORS.PRIMARY_BUTTON_GRADIENT.BLUE2]}
-                    conatinerStyle={styles.container}
-                >
-                    {/* <Image source={require('../../../assets/images/cake.png')} style={styles.image} /> */}
-                    <View style={{ overflow: "hidden", width: "90%", marginTop: "5%", marginBottom: "5%" }}>
-                        <TextH4 style={{ textAlign: "center", marginVertical: 10 }} >Workout Tracker</TextH4>
-                        <AnimatedLineChart />
-                    </View>
-                </GradientLabel>
-                <BottomSheet ref={sheetRef} extraRequiredHeight={viewHeight}>
-                        <View style={styles.detailContainer} onLayout={getViewHeight}>
-                        <View style={{ display: "flex", flexDirection: "column", alignItems: "center", marginVertical: "8%" }}>
-                                <SolidContainer containerStyle={[styles.solidcontainer]}>
-                                    <TextMedium style={{ flexGrow: 1 }}>Daily Workout Schedule</TextMedium>
-                                    <PrimaryButton
-                                        onPress={() => navigation.navigate(SCREENS.WODKOUTSCHEDULE)}
-                                        containerStyle={styles.targetButton}
-                                        textStyle={styles.targetButtonText}
-                                        title={'Check'} />
-                                </SolidContainer>
-                            </View>
-                            <View style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginHorizontal: "5%" }}>
-                                <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_BOLD, color: 'black' }}>Upcoming Workout</LargeText>
-                                <TextMedium style={{}}>See more</TextMedium>
-                            </View>
-                            <View>
-                            {apiTempData && apiTempData?.data && apiTempData?.data.length > 0 ?
-                              <>
-                               {apiTempData?.data?.map((item,ind)=>(
-                                <DIfferentBWContainer moreInfo={item} key={item._id} title={item.workout_id.workout_name} time={"Today, 03pm"} icon={<WorkoutPic width={50} height={50} />} />
-                                ))}
-                                  </> : null
-                              }
-                                {/* <DIfferentBWContainer title={"Diabetes Workout"} time={"Today, 03pm"} icon={<WorkoutPic width={50} height={50} />} />
+  const navigation = useNavigation();
+  const sheetRef = useRef(null);
+  const [viewHeight, getViewHeight] = useLayout()
+  return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <GradientLabel
+        colors={[COLORS.PRIMARY_BUTTON_GRADIENT.BLUE1, COLORS.PRIMARY_BUTTON_GRADIENT.BLUE2]}
+        conatinerStyle={styles.container}
+      >
+        {/* <Image source={require('../../../assets/images/cake.png')} style={styles.image} /> */}
+        <View style={{ overflow: "hidden", width: "90%", marginTop: "5%", marginBottom: "5%" }}>
+          <TextH4 style={{ textAlign: "center", marginVertical: 10 }} >Workout Tracker</TextH4>
+          <AnimatedLineChart />
+        </View>
+      </GradientLabel>
+      <BottomSheet ref={sheetRef} extraRequiredHeight={viewHeight}>
+        <View style={styles.detailContainer} onLayout={getViewHeight}>
+          <View style={{ display: "flex", flexDirection: "column", alignItems: "center", marginVertical: "8%" }}>
+            <SolidContainer containerStyle={[styles.solidcontainer]}>
+              <TextMedium style={{ flexGrow: 1 }}>Daily Workout Schedule</TextMedium>
+              <PrimaryButton
+                onPress={() => navigation.navigate(SCREENS.WODKOUTSCHEDULE)}
+                containerStyle={styles.targetButton}
+                textStyle={styles.targetButtonText}
+                title={'Check'} />
+            </SolidContainer>
+          </View>
+          <View style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginHorizontal: "5%" }}>
+            <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_BOLD, color: 'black' }}>Upcoming Workout</LargeText>
+            <TextMedium style={{}}>See more</TextMedium>
+          </View>
+          <View>
+            {apiTempData && apiTempData?.data && apiTempData?.data.length > 0 ?
+              <>
+                {apiTempData?.data?.map((item, ind) => (
+                  <DIfferentBWContainer moreInfo={item} key={item._id} title={item.workout_id.workout_name} time={"Today, 03pm"} icon={<WorkoutPic width={50} height={50} />} />
+                ))}
+              </> : null
+            }
+            {/* <DIfferentBWContainer title={"Diabetes Workout"} time={"Today, 03pm"} icon={<WorkoutPic width={50} height={50} />} />
                                 <DIfferentBWContainer title={"Upperbody Workout"} time={"Today, 03pm"} icon={<WorkoutPic1 width={50} height={50} />} /> */}
-                            </View>
-                            <View style={{ marginHorizontal: "5%", marginTop: "5%",paddingBottom:90 }}>
-                            <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_BOLD, color: 'black' }}>What Do You Want to Train</LargeText>
+          </View>
+          <View style={{ marginHorizontal: "5%", marginTop: "5%", paddingBottom: 90 }}>
+            <LargeText style={{ fontFamily: FONTS.FONT_POPPINS_BOLD, color: 'black' }}>What Do You Want to Train</LargeText>
 
-                              {apiTempData && apiTempData?.data && apiTempData?.data.length>0 ?
-                              <>
-                              {apiTempData?.data?.map((item,ind)=>(
-                                <WorkOutForms  moreInfo={item} key={item._id} title={item.workout_id.workout_name} NOfExercise={item.workout_id.exercises.length} Time={"35mins"} icon={<BoyJumping width={75} height={105} />} />
-                              ))}
+            {apiTempData && apiTempData?.data && apiTempData?.data.length > 0 ?
+              <>
+                {apiTempData?.data?.map((item, ind) => (
+                  <WorkOutForms moreInfo={item} key={item._id} title={item.workout_id.workout_name} NOfExercise={item.workout_id.exercises.length} Time={"35mins"} icon={<BoyJumping width={75} height={105} />} />
+                ))}
 
-                              </> : null
-                              } 
-                                {/* <WorkOutForms title={"Fullbody Workout"} NOfExercise={"10"} Time={"30mins"} icon={<BoyJumping width={75} height={105} />} />
+              </> : null
+            }
+            {/* <WorkOutForms title={"Fullbody Workout"} NOfExercise={"10"} Time={"30mins"} icon={<BoyJumping width={75} height={105} />} />
                                 <WorkOutForms title={"Lowebody Workout"} NOfExercise={"10"} Time={"30mins"} icon={<GirlLifting width={75} height={105} />} />
                                 <WorkOutForms title={"AB Workout"} NOfExercise={"10"} Time={"30mins"} icon={<BoyLifting width={75} height={105} />} /> */}
-                            </View>
-                        </View>
-                    </BottomSheet>
-        </GestureHandlerRootView>
-    );
+          </View>
+        </View>
+      </BottomSheet>
+    </GestureHandlerRootView>
+  );
 }
 const styles = StyleSheet.create({
-    container: {
-        alignItems: 'center',
-        flex: 1,
-    },
-    detailContainer: {
-        borderTopRightRadius: 30,
-        borderTopLeftRadius: 30,
-        backgroundColor: 'white',
-        width: width
-        // paddingTop: 50,
-        // paddingLeft: 15,
+  container: {
+    alignItems: 'center',
+    flex: 1,
+  },
+  detailContainer: {
+    borderTopRightRadius: 30,
+    borderTopLeftRadius: 30,
+    backgroundColor: 'white',
+    width: width
+    // paddingTop: 50,
+    // paddingLeft: 15,
 
-    },
-    image: {
-        marginTop: 20
-    },
-    solidcontainer: {
-        marginTop: 20,
-        paddingRight: 35,
-        backgroundColor: 'white',
-        flexDirection: 'row',
-        marginBottom: 10
-    },
-    solidContainerStyle: {
-        borderRadius: 10,
-        width: 32,
-        height: 32,
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    solidcontainer: {
-        flexDirection: 'row',
-        borderRadius: 15,
-        height: 70,
-        padding: 15,
-        paddingHorizontal: 20,
-        marginTop: 10,
-        backgroundColor: 'rgba(157,206,255,0.2)',
-        marginBottom: 10,
-        alignItems: "center",
-        justifyContent: "center",
-        width: width / 1.111
-    },
-    targetButton: {
-        width: width / 3.6,
-        height: 40,
-        elevation: 0
-    },
-    targetButtonText: {
-        fontSize: 14
-    },
+  },
+  image: {
+    marginTop: 20
+  },
+  solidcontainer: {
+    marginTop: 20,
+    paddingRight: 35,
+    backgroundColor: 'white',
+    flexDirection: 'row',
+    marginBottom: 10
+  },
+  solidContainerStyle: {
+    borderRadius: 10,
+    width: 32,
+    height: 32,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  solidcontainer: {
+    flexDirection: 'row',
+    borderRadius: 15,
+    height: 70,
+    padding: 15,
+    paddingHorizontal: 20,
+    marginTop: 10,
+    backgroundColor: 'rgba(157,206,255,0.2)',
+    marginBottom: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    width: width / 1.111
+  },
+  targetButton: {
+    width: width / 3.6,
+    height: 40,
+    elevation: 0
+  },
+  targetButtonText: {
+    fontSize: 14
+  },
 })
 export default WorkOutHome;
