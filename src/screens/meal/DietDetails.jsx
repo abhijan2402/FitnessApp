@@ -75,7 +75,7 @@ function DietDetails(props) {
             // console.log(key, steps, "jj");
             stepsArr.push({
                 title: 'Step ' + i,
-                subtitle: steps[0].description,
+                subtitle: steps[key]?.description,
                 isComplete: false
             })
             i++;

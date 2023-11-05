@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Dimensions, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, ScrollView, RefreshControl } from 'react-native';
 import React, { useContext, useState } from 'react';
 import Header from '../../components/header/Header';
 import SolidContainer from '../../components/container/SolidContainer';
@@ -30,7 +30,21 @@ const MealHome = () => {
   const [meals, setMeals] = useState(null);
   const [recommendedMeals, setRecommendedMeals] = useState([]);
   const [filteredRecommendedMeals, setFilteredRecommendedMeals] = useState([]);
+  const [refreshing, setRefreshing] = React.useState(false);
 
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    setTimeout(() => {
+      const currentDate = new Date();
+      getUserRecommendedMeal(dateFormat(currentDate))
+        .then(res => {
+          setRecommendedMeals(res?.data);
+
+          console.log(res?.data);
+        })
+      setRefreshing(false);
+    }, 2000);
+  }, []);
 
   function filterMealsBasedOnType(type) {
     const filteredMeals = recommendedMeals.filter(
@@ -64,7 +78,10 @@ const MealHome = () => {
   }, [meals, recommendedMeals]);
 
   return (
-    <ScrollView style={{ backgroundColor: 'white' }}>
+    <ScrollView style={{ backgroundColor: 'white' }}
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+    >
       <Header title={'Meal Planner'} />
       <View
         style={{
@@ -148,20 +165,26 @@ const MealHome = () => {
           {filteredRecommendedMeals.length == 0 ? <TextH4 style={{ marginVertical: 20 }}>No meals assigned today</TextH4> :
             filteredRecommendedMeals.map((meal, i) => {
               // console.log(i, meal?.meal?.meal_image, "jjjj");
+
               return (
-                <MealContainer
-                  key={meal._id}
-                  img={{ uri: meal?.meal?.meal_image }}
-                  imgStyle={{ width: 50, height: 50, borderRadius: 8 }}
-                  title={meal?.meal?.name || ' '}
-                  time={getTimeInAMPMFormat(new Date(meal.date))}
-                  date={'Today'}
-                  onpress={() =>
-                    navigation.navigate(SCREENS.MEALSCHEDULER, {
-                      filteredRecommendedMeals,
-                    })
+                <View>
+                  {
+                    meal?.user_skip ?
+                      <MealContainer
+                        key={meal._id}
+                        img={{ uri: meal?.meal?.meal_image }}
+                        imgStyle={{ width: 50, height: 50, borderRadius: 8 }}
+                        title={meal?.meal?.name || ' '}
+                        time={getTimeInAMPMFormat(new Date(meal.date))}
+                        date={'Today'}
+                        onpress={() =>
+                          navigation.navigate(SCREENS.MEALSCHEDULER, {
+                            filteredRecommendedMeals,
+                          })
+                        }
+                      /> : null
                   }
-                />
+                </View>
               );
             })}
         </View>
@@ -216,7 +239,7 @@ const MealHome = () => {
           </ScrollView>
         </View>
       </View>
-      {/* <View style={{ marginHorizontal: 15, marginBottom: '5%' }}>
+      <View style={{ marginHorizontal: 15, marginBottom: '5%' }}>
         <SolidContainer
           containerStyle={{
             ...styles.solidcontainer,
@@ -232,15 +255,15 @@ const MealHome = () => {
             }}>
             Skipped Meals
           </LargeText>
-          <GradientDropdown
+          {/* <GradientDropdown
             data={MEALS}
             value={meals}
             setValue={setMeals}
             placeholder="Select"
             containerStyle={{ width: width / 2.8, height: 40, borderRadius: 30 }}
-          />
+          /> */}
         </SolidContainer>
-        <View style={{ paddingHorizontal: 10 }}>
+        {/* <View style={{ paddingHorizontal: 10 }}>
           <MealContainer
             img={require('../../../assets/images/sushi.png')}
             title={'Salmon Nigiri'}
@@ -255,8 +278,36 @@ const MealHome = () => {
             date={'Today'}
             onpress={() => navigation.navigate(SCREENS.MEALSCHEDULER)}
           />
+        </View> */}
+        <View style={{ paddingHorizontal: 10 }}>
+          {filteredRecommendedMeals.length == 0 ? <TextH4 style={{ marginVertical: 20 }}>No meals assigned today</TextH4> :
+            filteredRecommendedMeals.map((meal, i) => {
+              console.log(i, meal?.user_skip, "jjjj");
+              return (
+
+                <View>
+                  {
+                    meal?.user_skip ?
+                      <MealContainer
+                        key={meal._id}
+                        img={{ uri: meal?.meal?.meal_image }}
+                        imgStyle={{ width: 50, height: 50, borderRadius: 8 }}
+                        title={meal?.meal?.name || ' '}
+                        time={getTimeInAMPMFormat(new Date(meal.date))}
+                        date={'Today'}
+                        onpress={() =>
+                          navigation.navigate(SCREENS.MEALSCHEDULER, {
+                            filteredRecommendedMeals,
+                          })
+                        }
+                      />
+                      : null
+                  }
+                </View>
+              );
+            })}
         </View>
-      </View> */}
+      </View>
     </ScrollView>
   );
 };
