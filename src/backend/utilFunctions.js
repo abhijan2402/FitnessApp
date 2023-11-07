@@ -90,6 +90,8 @@ export async function updateUser(updateUser) {
   data.append('dob', updateUser?.dob);
   data.append('current_weight', updateUser?.current_weight?.toString());
   data.append('height', updateUser?.height?.toString());
+  data.append('height_unit', updateUser?.height_unit);
+  data.append('weight_unit', updateUser?.weight_unit);
   data.append('goal', updateUser?.goal);
   console.log(data, 'i amd');
   // return
