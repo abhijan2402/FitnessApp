@@ -11,6 +11,7 @@ import { MONTHS_NAME, WEEK_DAYS_NAMES } from '../../data/CalenderData';
 import GradientContainer from '../container/GradientContainer';
 
 import Back from '../../../assets/icons/Back.svg';
+import moment from 'moment/moment';
 
 let DECREASE = 'Decrease';
 let INCREASE = 'Increase';
@@ -28,7 +29,7 @@ const CustomDatePicker = ({ showMonth = true, setDate }) => {
 
   const [currentMonth, setCurrentMonth] = useState(null);
   const [year, setYear] = useState(new Date().getFullYear());
-
+  const [contentOffset, setcontentOffset] = useState(1100.3333129882812)
   useEffect(() => {
     setMonthArray(MONTHS_NAME);
     var currentMonthsObject = MONTHS_NAME.filter(item => {
@@ -131,8 +132,36 @@ const CustomDatePicker = ({ showMonth = true, setDate }) => {
     );
   };
 
+  const SetDateIndex = () => {
+    // console.log('====================================');
+    // console.log(moment(d).format('DD'), "DDDDDDDDDDDDDDDDDDDATE");
+    // console.log('====================================');
+    if (moment(d).format('DD') < 10) {
+      if (moment(d).format('DD') <= 5) {
+        setcontentOffset(0.3333129882812);
+      } else {
+        setcontentOffset(250.3333129882812);
+      }
+    } else if (moment(d).format('DD') < 20) {
+      if (moment(d).format('DD') <= 15) {
+        setcontentOffset(550.3333129882812);
+      } else {
+        setcontentOffset(800.3333129882812);
+      }
+    } else {
+      if (moment(d).format('DD') <= 25) {
+        setcontentOffset(2500.3333129882812);
+      } else {
+        setcontentOffset(2900.3333129882812);
+      }
+    }
+  };
+  useEffect(() => {
+    SetDateIndex()
+  }, []);
+
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
+    <ScrollView style={{ flex: 1, backgroundColor: 'white' }} >
       {showMonth && (
         <View
           style={{
@@ -164,7 +193,7 @@ const CustomDatePicker = ({ showMonth = true, setDate }) => {
           </TouchableOpacity>
         </View>
       )}
-      <ScrollView style={styles.container} horizontal={true} zIndex={-5}>
+      <ScrollView style={styles.container} horizontal={true} zIndex={-5} contentOffset={{ x: contentOffset, y: contentOffset }}>
         {dateStateArray.length === 0
           ? null
           : dateStateArray.map((item, index) => (
@@ -192,7 +221,7 @@ const CustomDatePicker = ({ showMonth = true, setDate }) => {
                 </Text>
                 <Text
                   style={[
-                    { fontWeight: 'bold', fontSize: 23 },
+                    { fontWeight: 'bold', fontSize: 20 },
                     item.isSelected
                       ? { color: 'white' }
                       : { color: 'rgba(173, 164, 165, 1)' },
@@ -211,21 +240,21 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   dateDayContainer: {
-    width: 80,
-    paddingHorizontal: 10,
-    paddingVertical: 20,
-    margin: 10,
+    width: 70,
+    paddingHorizontal: 5,
+    paddingVertical: 15,
+    margin: 4,
     borderRadius: 20,
     alignItems: 'center',
     justifyContent: 'center',
-    height: 100,
+    height: 85,
   },
   monthBox: {
-    width: 100,
+    width: 50,
     height: 40,
     alignItems: 'center',
     justifyContent: 'center',
-    marginHorizontal: 10,
+    marginHorizontal: 5,
     borderRadius: 5,
     shadowColor: '#000',
     shadowOffset: {

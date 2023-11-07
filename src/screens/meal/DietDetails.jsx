@@ -25,8 +25,9 @@ import { SCREENS } from '../../constants/Screens';
 import { GestureHandlerRootView, FlatList } from 'react-native-gesture-handler';
 import BottomSheet from '../../components/container/BottomSheet';
 import useLayout from '../../hooks/useLayout';
-import { getMealDetails } from '../../backend/utilFunctions';
+import { Updatemeal, Updatemealskip, getMealDetails } from '../../backend/utilFunctions';
 import { ActivityIndicator } from 'react-native';
+import CustomToast from '../../components/common/Toast';
 const tags = [
     {
         id: 1,
@@ -50,6 +51,8 @@ const tags = [
     },
 ]
 function DietDetails(props) {
+    const [Loader, setLoader] = useState(false)
+
     const route = useRoute()
     const { meal } = route.params
     console.log(meal, "Heyy");
@@ -60,6 +63,10 @@ function DietDetails(props) {
     const [mealDetails, setMealDetails] = useState({
         name: "", nutrient: [], description: "", steps: [], ingredients: []
     })
+    const childRef = useRef(null);
+    const [toastColorState, setToastColorState] = useState('');
+    const [toastTextColorState, setToastTextColorState] = useState('white');
+    const [toastMessage, setToastMessage] = useState('');
     function convertStepToArray(steps) {
         console.log(steps, "I am step");
         const stepsArr = []
@@ -116,6 +123,43 @@ function DietDetails(props) {
         // return 0
 
     }
+    const UpdateMeal = async (mealid) => {
+        try {
+            console.log('====================================');
+            console.log("HYYYYYYYYYYy");
+            console.log('====================================');
+            setLoader(true)
+            await Updatemealskip(mealid)
+                .then(res => {
+                    console.log(res, "i am res");
+                    setLoader(false)
+                    setToastMessage("Meal is skipped");
+                    setToastTextColorState('white');
+                    setToastColorState('green');
+                    navigation.navigate(SCREENS.MEALHOME)
+                })
+                .catch(err => {
+                    console.log(err.message);
+                    setLoader(false)
+                    setToastMessage(err.message);
+                    setToastTextColorState('white');
+                    setToastColorState('red');
+                    childRef.current.showToast();
+
+                })
+
+        } catch (error) {
+            console.log(error, "I am error");
+            setToastMessage(error);
+            setToastTextColorState('white');
+            setToastColorState('red');
+            childRef.current.showToast();
+            setLoader(false)
+        }
+
+    }
+
+
     useEffect(() => {
         // getMealDetails("64a9ce1d4c52b7ecf30477b7")
         //     .then(res => {
@@ -137,6 +181,12 @@ function DietDetails(props) {
     return (
         <>
             <GestureHandlerRootView style={{ flex: 1 }}>
+                <CustomToast
+                    toastColor={toastColorState}
+                    toastTextColor={toastTextColorState}
+                    toastMessage={toastMessage}
+                    ref={childRef}
+                />
                 <GradientLabel
                     colors={[COLORS.PRIMARY_BUTTON_GRADIENT.BLUE1, COLORS.PRIMARY_BUTTON_GRADIENT.BLUE2]}
                     conatinerStyle={styles.container}
@@ -202,12 +252,29 @@ function DietDetails(props) {
                                     showLine={(index === mealDetails.steps.length - 1) ? false : true}
                                 />)
                         }
-                        <View style={{ paddingBottom: 90, paddingRight: 30 }}>
-                            <PrimaryButton
-                                onPress={() => navigation.navigate(SCREENS.MEALFINAL, { mealid: meal?._id })}
-                                title={'Add to Breakfast Meal'}
-                            />
-                        </View>
+                        {
+                            meal?.user_skip || meal?.user_picked ? <View style={{ height: 100 }}></View> :
+                                <View style={{ paddingBottom: 30, paddingRight: 30 }}>
+                                    <PrimaryButton
+                                        onPress={() => navigation.navigate(SCREENS.MEALFINAL, { mealid: meal?._id })}
+                                        title={'Complete the meal'}
+                                    />
+                                </View>
+                        }
+                        {
+                            meal?.user_picked || meal?.user_skip ? <View style={{ height: 100 }}></View> :
+                                <View style={{ paddingBottom: 90, paddingRight: 30 }}>
+                                    {
+                                        Loader ? <ActivityIndicator size={22} color={"Blue"} /> :
+                                            <PrimaryButton
+                                                containerStyle={{ width: "100%" }}
+                                                title={'Skip the meal'}
+                                                onPress={() => { UpdateMeal(meal?._id) }}
+                                            />
+                                    }
+
+                                </View>
+                        }
                     </View>
                 </BottomSheet>
 

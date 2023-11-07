@@ -43,7 +43,7 @@ function App() {
       return;
     }
     getUser()
-      .then(res => setUser(res.user))
+      .then(res => { setUser(res.user) })
       .catch(err => console.log(err))
       .finally(() => setAutoLoginInProgress(false));
   }
@@ -60,7 +60,7 @@ function App() {
     <GlobalContext.Provider
       value={{
         user: user,
-        setLoggedInUser: userObj => { console.log(userObj, "userobj"); setUser(userObj) },
+        setLoggedInUser: userObj => { setUser(userObj) },
       }}>
       <NavigationContainer>
         <Stack.Navigator

@@ -21,6 +21,7 @@ import {
 } from '../../backend/utilFunctions';
 import { dateFormat, getTimeInAMPMFormat } from '../../utils/common';
 import { GlobalContext } from '../../../App';
+import TextH4 from '../../components/Text/TextH4';
 const { width, height } = Dimensions.get('window');
 
 const MealHome = () => {
@@ -58,6 +59,8 @@ const MealHome = () => {
       setFilteredRecommendedMeals(filterMealsBasedOnType('LUNCH'));
     else if (meals === 'DINNER')
       setFilteredRecommendedMeals(filterMealsBasedOnType('DINNER'));
+    else if (meals === 'SNACKS')
+      setFilteredRecommendedMeals(filterMealsBasedOnType('SNACKS'));
   }, [meals, recommendedMeals]);
 
   return (
@@ -142,24 +145,25 @@ const MealHome = () => {
           />
         </SolidContainer>
         <View style={{ paddingHorizontal: 10 }}>
-          {filteredRecommendedMeals.map((meal, i) => {
-            // console.log(i, meal?.meal?.meal_image, "jjjj");
-            return (
-              <MealContainer
-                key={meal._id}
-                img={{ uri: meal?.meal?.meal_image }}
-                imgStyle={{ width: 50, height: 50, borderRadius: 8 }}
-                title={meal?.meal?.name || ' '}
-                time={getTimeInAMPMFormat(new Date(meal.date))}
-                date={'Today'}
-                onpress={() =>
-                  navigation.navigate(SCREENS.MEALSCHEDULER, {
-                    filteredRecommendedMeals,
-                  })
-                }
-              />
-            );
-          })}
+          {filteredRecommendedMeals.length == 0 ? <TextH4 style={{ marginVertical: 20 }}>No meals assigned today</TextH4> :
+            filteredRecommendedMeals.map((meal, i) => {
+              // console.log(i, meal?.meal?.meal_image, "jjjj");
+              return (
+                <MealContainer
+                  key={meal._id}
+                  img={{ uri: meal?.meal?.meal_image }}
+                  imgStyle={{ width: 50, height: 50, borderRadius: 8 }}
+                  title={meal?.meal?.name || ' '}
+                  time={getTimeInAMPMFormat(new Date(meal.date))}
+                  date={'Today'}
+                  onpress={() =>
+                    navigation.navigate(SCREENS.MEALSCHEDULER, {
+                      filteredRecommendedMeals,
+                    })
+                  }
+                />
+              );
+            })}
         </View>
         <View style={{ marginHorizontal: 20, marginVertical: '5%' }}>
           <LargeText
@@ -179,7 +183,7 @@ const MealHome = () => {
                 })
               }
               Type="BreakFast"
-              NOFood="120"
+              NOFood="0"
               backgroundColor={'#D9FFFD'}
               btnBackGround={'#82E1FF'}
               img={require('../../../assets/images/BreakFast_meal.png')}
@@ -191,11 +195,12 @@ const MealHome = () => {
                 })
               }
               Type="Lunch"
-              NOFood="102"
+              NOFood="0"
               backgroundColor={'#FFE0DC'}
               btnBackGround={'#FF8ECB'}
               img={require('../../../assets/images/BreakFast_meal.png')}
             />
+
             <MealCard
               onPress={() =>
                 navigation.navigate(SCREENS.MEALSCHEDULER, {
@@ -203,7 +208,7 @@ const MealHome = () => {
                 })
               }
               Type="Dinner"
-              NOFood="20"
+              NOFood="0"
               backgroundColor={'#D9FFFD'}
               btnBackGround={'#82E1FF'}
               img={require('../../../assets/images/BreakFast_meal.png')}

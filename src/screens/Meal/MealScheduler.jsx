@@ -1,5 +1,5 @@
-import {View, Text, StyleSheet, Dimensions} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import ScreenContainer from '../../components/container/ScreenContainer';
 import TextH4 from '../../components/Text/TextH4';
 import SolidContainer from '../../components/container/SolidContainer';
@@ -21,12 +21,12 @@ import {
   MealScheduleDinner,
   MealScheduleOther,
 } from '../../data/Mealschedule';
-import {SCREENS} from '../../constants/Screens';
-import {useRoute} from '@react-navigation/native';
-import {dateFormat, getTimeInAMPMFormat} from '../../utils/common';
-import {useMemo} from 'react';
-import {getUserRecommendedMeal} from '../../backend/utilFunctions';
-const MealScheduler = ({navigation}) => {
+import { SCREENS } from '../../constants/Screens';
+import { useRoute } from '@react-navigation/native';
+import { dateFormat, getTimeInAMPMFormat } from '../../utils/common';
+import { useMemo } from 'react';
+import { getUserRecommendedMeal } from '../../backend/utilFunctions';
+const MealScheduler = ({ navigation }) => {
   const route = useRoute();
   // const {filteredRecommendedMeals} = route?.params;
   // console.log(filteredRecommendedMeals, 'I am meal');
@@ -71,7 +71,7 @@ const MealScheduler = ({navigation}) => {
           <SolidContainer containerStyle={styles.solidContainerStyle}>
             <Back width={16} height={16} />
           </SolidContainer>
-          <View style={{marginLeft: 15}}>
+          <View style={{ marginLeft: 15 }}>
             <TextH4>Meal Schedule</TextH4>
           </View>
           <SolidContainer containerStyle={styles.solidContainerStyle}>
@@ -79,95 +79,107 @@ const MealScheduler = ({navigation}) => {
           </SolidContainer>
         </View>
         <CustomDatePicker setDate={setDate} />
-        <SubSectionTitle
-          mealgoal={`${breakfastMeal.length || 0} meals`}
-          title={'Breakfast'}
-        />
-        <View>
-          {breakfastMeal.map(item => (
-            <MealContainerNew
-              key={item._id}
-              colors={['rgba(146, 163, 253, 0.2)', 'rgba(157, 206, 255, 0.2)']}
-              title={item && item.meal?.name ? item.meal?.name : 'Meal'}
-              time={getTimeInAMPMFormat(new Date(item?.meal?.created_time))}
-              containerStyle={{width: '98%', alignSelf: 'center'}}
-              img={{uri: item?.meal?.meal_image}}
-              // img={require('../../../assets/images/sushi.png')}
-              onPress={() => {
-                navigation.navigate(SCREENS.DIETDETAILS, {
-                  id: item._id,
-                  meal: item,
-                });
-              }}
-            />
-          ))}
+        <View style={{}}>
+
+          {
+            breakfastMeal.length == 0 && lunchfastMeal.length == 0 && snackfastMeal.length == 0 && dinnerfastMeal.length == 0 ?
+              <TextH4 style={{ textAlign: "center" }}>No Meals assigned today</TextH4> :
+              <>
+
+                <SubSectionTitle
+                  mealgoal={`${breakfastMeal.length || 0} meals`}
+                  title={'Breakfast'}
+                />
+                <View>
+                  {breakfastMeal.map(item => (
+                    <MealContainerNew
+                      key={item._id}
+                      colors={['rgba(146, 163, 253, 0.2)', 'rgba(157, 206, 255, 0.2)']}
+                      title={item && item.meal?.name ? item.meal?.name : 'Meal'}
+                      time={getTimeInAMPMFormat(new Date(item?.meal?.created_time))}
+                      containerStyle={{ width: '98%', alignSelf: 'center' }}
+                      img={{ uri: item?.meal?.meal_image }}
+                      // img={require('../../../assets/images/sushi.png')}
+                      onPress={() => {
+                        navigation.navigate(SCREENS.DIETDETAILS, {
+                          id: item._id,
+                          meal: item,
+                        });
+                      }}
+                    />
+                  ))}
+                </View>
+                <SubSectionTitle
+                  mealgoal={`${lunchfastMeal.length || 0} meals`}
+                  title={'Lunch'}
+                />
+                <View>
+                  {lunchfastMeal.map(item => (
+                    <MealContainerNew
+                      key={item._id}
+                      colors={['rgba(146, 163, 253, 0.2)', 'rgba(157, 206, 255, 0.2)']}
+                      title={item && item.meal ? item.meal.name : ''}
+                      time={getTimeInAMPMFormat(new Date(item?.meal?.created_time))}
+                      containerStyle={{ width: '98%', alignSelf: 'center' }}
+                      img={{ uri: item?.meal?.meal_image }}
+                      onPress={() =>
+                        navigation.navigate(SCREENS.DIETDETAILS, {
+                          id: item._id,
+                          meal: item,
+                        })
+                      }
+                    />
+                  ))}
+                </View>
+                <SubSectionTitle
+                  mealgoal={`${snackfastMeal.length || 0} meals`}
+                  title={'Snack'}
+                />
+                <View>
+                  {snackfastMeal.map(item => (
+                    <MealContainerNew
+                      key={item._id}
+                      colors={['rgba(146, 163, 253, 0.2)', 'rgba(157, 206, 255, 0.2)']}
+                      title={item && item.meal ? item.meal.name : ''}
+                      time={getTimeInAMPMFormat(new Date(item?.meal?.created_time))}
+                      containerStyle={{ width: '98%', alignSelf: 'center' }}
+                      img={{ uri: item?.meal?.meal_image }}
+                      onPress={() =>
+                        navigation.navigate(SCREENS.DIETDETAILS, {
+                          id: item._id,
+                          meal: item,
+                        })
+                      }
+                    />
+                  ))}
+                </View>
+                <SubSectionTitle
+                  mealgoal={`${dinnerfastMeal.length || 0} meals`}
+                  title={'Dinner'}
+                />
+                <View style={{ marginBottom: 30 }}>
+                  {dinnerfastMeal.map(item => (
+                    <MealContainerNew
+                      key={item._id}
+                      colors={['rgba(146, 163, 253, 0.2)', 'rgba(157, 206, 255, 0.2)']}
+                      title={item && item.meal ? item.meal.name : ''}
+                      time={getTimeInAMPMFormat(new Date(item?.meal?.created_time))}
+                      containerStyle={{ width: '98%', alignSelf: 'center' }}
+                      img={{ uri: item?.meal?.meal_image }}
+                      onPress={() =>
+                        navigation.navigate(SCREENS.DIETDETAILS, {
+                          id: item._id,
+                          meal: item,
+                        })
+                      }
+                    />
+                  ))}
+                </View>
+              </>
+          }
         </View>
-        <SubSectionTitle
-          mealgoal={`${lunchfastMeal.length || 0} meals`}
-          title={'Lunch'}
-        />
-        <View>
-          {lunchfastMeal.map(item => (
-            <MealContainerNew
-              key={item._id}
-              colors={['rgba(146, 163, 253, 0.2)', 'rgba(157, 206, 255, 0.2)']}
-              title={item && item.meal ? item.meal.name : ''}
-              time={getTimeInAMPMFormat(new Date(item?.meal?.created_time))}
-              containerStyle={{width: '98%', alignSelf: 'center'}}
-              img={{uri: item?.meal?.meal_image}}
-              onPress={() =>
-                navigation.navigate(SCREENS.DIETDETAILS, {
-                  id: item._id,
-                  meal: item,
-                })
-              }
-            />
-          ))}
-        </View>
-        <SubSectionTitle
-          mealgoal={`${snackfastMeal.length || 0} meals`}
-          title={'Snack'}
-        />
-        <View>
-          {snackfastMeal.map(item => (
-            <MealContainerNew
-              key={item._id}
-              colors={['rgba(146, 163, 253, 0.2)', 'rgba(157, 206, 255, 0.2)']}
-              title={item && item.meal ? item.meal.name : ''}
-              time={getTimeInAMPMFormat(new Date(item?.meal?.created_time))}
-              containerStyle={{width: '98%', alignSelf: 'center'}}
-              img={{uri: item?.meal?.meal_image}}
-              onPress={() =>
-                navigation.navigate(SCREENS.DIETDETAILS, {
-                  id: item._id,
-                  meal: item,
-                })
-              }
-            />
-          ))}
-        </View>
-        <SubSectionTitle
-          mealgoal={`${dinnerfastMeal.length || 0} meals`}
-          title={'Dinner'}
-        />
-        <View style={{marginBottom: 30}}>
-          {dinnerfastMeal.map(item => (
-            <MealContainerNew
-              key={item._id}
-              colors={['rgba(146, 163, 253, 0.2)', 'rgba(157, 206, 255, 0.2)']}
-              title={item && item.meal ? item.meal.name : ''}
-              time={getTimeInAMPMFormat(new Date(item?.meal?.created_time))}
-              containerStyle={{width: '98%', alignSelf: 'center'}}
-              img={{uri: item?.meal?.meal_image}}
-              onPress={() =>
-                navigation.navigate(SCREENS.DIETDETAILS, {
-                  id: item._id,
-                  meal: item,
-                })
-              }
-            />
-          ))}
-        </View>
+
+
         {/* <TextH4 style={{ fontSize: 16, fontWeight: '600', padding: 10 }}>
           Today Meal Nutritions
         </TextH4>
