@@ -9,15 +9,32 @@
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* DietAndCareTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* DietAndCareTests.m */; };
 		0C80B921A6F3F58F76C31292 /* libPods-DietAndCare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-DietAndCare.a */; };
+		0EA648E84FB94462B32545AD /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D51B1C90F8B84787B7267C2C /* Poppins-Bold.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-DietAndCare-DietAndCareTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-DietAndCare-DietAndCareTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		0EA648E84FB94462B32545AD /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D51B1C90F8B84787B7267C2C /* Poppins-Bold.ttf */; };
-		E3FB2F2840FF48AF9A98B971 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9E30C014BC564DC88F84B4C7 /* Poppins-Medium.ttf */; };
 		CAAC0078B79649E6A4782524 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BCD0090C8DDB4662B48753ED /* Poppins-Regular.ttf */; };
+		CEEE05852AFA27D600CBD6EB /* libRNSslPinning.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CEEE05842AFA27D600CBD6EB /* libRNSslPinning.a */; };
+		CEEE05872AFA293600CBD6EB /* ssl-cert.cer in Resources */ = {isa = PBXBuildFile; fileRef = CEEE05862AFA293600CBD6EB /* ssl-cert.cer */; };
+		CEEE05962AFA2A8F00CBD6EB /* Rubik-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEEE05882AFA2A8D00CBD6EB /* Rubik-SemiBoldItalic.ttf */; };
+		CEEE05972AFA2A8F00CBD6EB /* Rubik-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEEE05892AFA2A8E00CBD6EB /* Rubik-Italic.ttf */; };
+		CEEE05982AFA2A8F00CBD6EB /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEEE058A2AFA2A8E00CBD6EB /* Rubik-Regular.ttf */; };
+		CEEE05992AFA2A8F00CBD6EB /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEEE058B2AFA2A8E00CBD6EB /* Rubik-Light.ttf */; };
+		CEEE059A2AFA2A8F00CBD6EB /* Rubik-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEEE058C2AFA2A8E00CBD6EB /* Rubik-BoldItalic.ttf */; };
+		CEEE059B2AFA2A8F00CBD6EB /* Rubik-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEEE058D2AFA2A8E00CBD6EB /* Rubik-BlackItalic.ttf */; };
+		CEEE059C2AFA2A8F00CBD6EB /* Rubik-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEEE058E2AFA2A8E00CBD6EB /* Rubik-LightItalic.ttf */; };
+		CEEE059D2AFA2A8F00CBD6EB /* Rubik-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEEE058F2AFA2A8E00CBD6EB /* Rubik-Black.ttf */; };
+		CEEE059E2AFA2A8F00CBD6EB /* Rubik-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEEE05902AFA2A8E00CBD6EB /* Rubik-SemiBold.ttf */; };
+		CEEE059F2AFA2A8F00CBD6EB /* Rubik-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEEE05912AFA2A8E00CBD6EB /* Rubik-ExtraBold.ttf */; };
+		CEEE05A02AFA2A8F00CBD6EB /* Rubik-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEEE05922AFA2A8E00CBD6EB /* Rubik-ExtraBoldItalic.ttf */; };
+		CEEE05A12AFA2A8F00CBD6EB /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEEE05932AFA2A8E00CBD6EB /* Rubik-Medium.ttf */; };
+		CEEE05A22AFA2A8F00CBD6EB /* Rubik-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEEE05942AFA2A8F00CBD6EB /* Rubik-MediumItalic.ttf */; };
+		CEEE05A32AFA2A8F00CBD6EB /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEEE05952AFA2A8F00CBD6EB /* Rubik-Bold.ttf */; };
+		CEEE05A52AFA3C9500CBD6EB /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = CEEE05A42AFA3C9500CBD6EB /* main.jsbundle */; };
 		D408080F44D34F3A8F2C450E /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 26F92D13691B4DC38B90FF37 /* Poppins-SemiBold.ttf */; };
+		E3FB2F2840FF48AF9A98B971 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9E30C014BC564DC88F84B4C7 /* Poppins-Medium.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,17 +58,34 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = DietAndCare/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = DietAndCare/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-DietAndCare-DietAndCareTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DietAndCare-DietAndCareTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		26F92D13691B4DC38B90FF37 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-SemiBold.ttf"; path = "../assets/fonts/Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-DietAndCare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietAndCare.debug.xcconfig"; path = "Target Support Files/Pods-DietAndCare/Pods-DietAndCare.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-DietAndCare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietAndCare.release.xcconfig"; path = "Target Support Files/Pods-DietAndCare/Pods-DietAndCare.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-DietAndCare-DietAndCareTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietAndCare-DietAndCareTests.debug.xcconfig"; path = "Target Support Files/Pods-DietAndCare-DietAndCareTests/Pods-DietAndCare-DietAndCareTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-DietAndCare.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DietAndCare.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = DietAndCare/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-DietAndCare-DietAndCareTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietAndCare-DietAndCareTests.release.xcconfig"; path = "Target Support Files/Pods-DietAndCare-DietAndCareTests/Pods-DietAndCare-DietAndCareTests.release.xcconfig"; sourceTree = "<group>"; };
+		9E30C014BC564DC88F84B4C7 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Medium.ttf"; path = "../assets/fonts/Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		BCD0090C8DDB4662B48753ED /* Poppins-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Regular.ttf"; path = "../assets/fonts/Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		CEEE05842AFA27D600CBD6EB /* libRNSslPinning.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNSslPinning.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEEE05862AFA293600CBD6EB /* ssl-cert.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ssl-cert.cer"; sourceTree = "<group>"; };
+		CEEE05882AFA2A8D00CBD6EB /* Rubik-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		CEEE05892AFA2A8E00CBD6EB /* Rubik-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Italic.ttf"; sourceTree = "<group>"; };
+		CEEE058A2AFA2A8E00CBD6EB /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
+		CEEE058B2AFA2A8E00CBD6EB /* Rubik-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Light.ttf"; sourceTree = "<group>"; };
+		CEEE058C2AFA2A8E00CBD6EB /* Rubik-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-BoldItalic.ttf"; sourceTree = "<group>"; };
+		CEEE058D2AFA2A8E00CBD6EB /* Rubik-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-BlackItalic.ttf"; sourceTree = "<group>"; };
+		CEEE058E2AFA2A8E00CBD6EB /* Rubik-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-LightItalic.ttf"; sourceTree = "<group>"; };
+		CEEE058F2AFA2A8E00CBD6EB /* Rubik-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Black.ttf"; sourceTree = "<group>"; };
+		CEEE05902AFA2A8E00CBD6EB /* Rubik-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-SemiBold.ttf"; sourceTree = "<group>"; };
+		CEEE05912AFA2A8E00CBD6EB /* Rubik-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-ExtraBold.ttf"; sourceTree = "<group>"; };
+		CEEE05922AFA2A8E00CBD6EB /* Rubik-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		CEEE05932AFA2A8E00CBD6EB /* Rubik-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Medium.ttf"; sourceTree = "<group>"; };
+		CEEE05942AFA2A8F00CBD6EB /* Rubik-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-MediumItalic.ttf"; sourceTree = "<group>"; };
+		CEEE05952AFA2A8F00CBD6EB /* Rubik-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Bold.ttf"; sourceTree = "<group>"; };
+		CEEE05A42AFA3C9500CBD6EB /* main.jsbundle */ = {isa = PBXFileReference; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
+		D51B1C90F8B84787B7267C2C /* Poppins-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Bold.ttf"; path = "../assets/fonts/Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		D51B1C90F8B84787B7267C2C /* Poppins-Bold.ttf */ = {isa = PBXFileReference; name = "Poppins-Bold.ttf"; path = "../assets/fonts/Poppins-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		9E30C014BC564DC88F84B4C7 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; name = "Poppins-Medium.ttf"; path = "../assets/fonts/Poppins-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		BCD0090C8DDB4662B48753ED /* Poppins-Regular.ttf */ = {isa = PBXFileReference; name = "Poppins-Regular.ttf"; path = "../assets/fonts/Poppins-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		26F92D13691B4DC38B90FF37 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; name = "Poppins-SemiBold.ttf"; path = "../assets/fonts/Poppins-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEEE05852AFA27D600CBD6EB /* libRNSslPinning.a in Frameworks */,
 				0C80B921A6F3F58F76C31292 /* libPods-DietAndCare.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -94,6 +129,7 @@
 		13B07FAE1A68108700A75B9A /* DietAndCare */ = {
 			isa = PBXGroup;
 			children = (
+				CEEE05862AFA293600CBD6EB /* ssl-cert.cer */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -107,6 +143,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CEEE05842AFA27D600CBD6EB /* libRNSslPinning.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				5DCACB8F33CDC322A6C60F78 /* libPods-DietAndCare.a */,
 				19F6CBCC0A4E27FBF8BF4A61 /* libPods-DietAndCare-DietAndCareTests.a */,
@@ -124,6 +161,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				CEEE05A42AFA3C9500CBD6EB /* main.jsbundle */,
 				13B07FAE1A68108700A75B9A /* DietAndCare */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* DietAndCareTests */,
@@ -146,6 +184,31 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		8579A10A7BB149C3B1D6F714 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CEEE058F2AFA2A8E00CBD6EB /* Rubik-Black.ttf */,
+				CEEE058D2AFA2A8E00CBD6EB /* Rubik-BlackItalic.ttf */,
+				CEEE05952AFA2A8F00CBD6EB /* Rubik-Bold.ttf */,
+				CEEE058C2AFA2A8E00CBD6EB /* Rubik-BoldItalic.ttf */,
+				CEEE05912AFA2A8E00CBD6EB /* Rubik-ExtraBold.ttf */,
+				CEEE05922AFA2A8E00CBD6EB /* Rubik-ExtraBoldItalic.ttf */,
+				CEEE05892AFA2A8E00CBD6EB /* Rubik-Italic.ttf */,
+				CEEE058B2AFA2A8E00CBD6EB /* Rubik-Light.ttf */,
+				CEEE058E2AFA2A8E00CBD6EB /* Rubik-LightItalic.ttf */,
+				CEEE05932AFA2A8E00CBD6EB /* Rubik-Medium.ttf */,
+				CEEE05942AFA2A8F00CBD6EB /* Rubik-MediumItalic.ttf */,
+				CEEE058A2AFA2A8E00CBD6EB /* Rubik-Regular.ttf */,
+				CEEE05902AFA2A8E00CBD6EB /* Rubik-SemiBold.ttf */,
+				CEEE05882AFA2A8D00CBD6EB /* Rubik-SemiBoldItalic.ttf */,
+				D51B1C90F8B84787B7267C2C /* Poppins-Bold.ttf */,
+				9E30C014BC564DC88F84B4C7 /* Poppins-Medium.ttf */,
+				BCD0090C8DDB4662B48753ED /* Poppins-Regular.ttf */,
+				26F92D13691B4DC38B90FF37 /* Poppins-SemiBold.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -156,18 +219,6 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
-		};
-		8579A10A7BB149C3B1D6F714 /* Resources */ = {
-			isa = "PBXGroup";
-			children = (
-				D51B1C90F8B84787B7267C2C /* Poppins-Bold.ttf */,
-				9E30C014BC564DC88F84B4C7 /* Poppins-Medium.ttf */,
-				BCD0090C8DDB4662B48753ED /* Poppins-Regular.ttf */,
-				26F92D13691B4DC38B90FF37 /* Poppins-SemiBold.ttf */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 
@@ -263,12 +314,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEEE05A52AFA3C9500CBD6EB /* main.jsbundle in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				CEEE059A2AFA2A8F00CBD6EB /* Rubik-BoldItalic.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				CEEE059D2AFA2A8F00CBD6EB /* Rubik-Black.ttf in Resources */,
+				CEEE05A32AFA2A8F00CBD6EB /* Rubik-Bold.ttf in Resources */,
 				0EA648E84FB94462B32545AD /* Poppins-Bold.ttf in Resources */,
+				CEEE05982AFA2A8F00CBD6EB /* Rubik-Regular.ttf in Resources */,
+				CEEE05962AFA2A8F00CBD6EB /* Rubik-SemiBoldItalic.ttf in Resources */,
+				CEEE05A22AFA2A8F00CBD6EB /* Rubik-MediumItalic.ttf in Resources */,
+				CEEE059E2AFA2A8F00CBD6EB /* Rubik-SemiBold.ttf in Resources */,
+				CEEE059F2AFA2A8F00CBD6EB /* Rubik-ExtraBold.ttf in Resources */,
 				E3FB2F2840FF48AF9A98B971 /* Poppins-Medium.ttf in Resources */,
+				CEEE05972AFA2A8F00CBD6EB /* Rubik-Italic.ttf in Resources */,
 				CAAC0078B79649E6A4782524 /* Poppins-Regular.ttf in Resources */,
+				CEEE05A02AFA2A8F00CBD6EB /* Rubik-ExtraBoldItalic.ttf in Resources */,
+				CEEE059C2AFA2A8F00CBD6EB /* Rubik-LightItalic.ttf in Resources */,
+				CEEE059B2AFA2A8F00CBD6EB /* Rubik-BlackItalic.ttf in Resources */,
+				CEEE05872AFA293600CBD6EB /* ssl-cert.cer in Resources */,
+				CEEE05A12AFA2A8F00CBD6EB /* Rubik-Medium.ttf in Resources */,
 				D408080F44D34F3A8F2C450E /* Poppins-SemiBold.ttf in Resources */,
+				CEEE05992AFA2A8F00CBD6EB /* Rubik-Light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,8 +578,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R8LZGT4R94;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DietAndCare/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Indyte: Diet Care & Fitness Plan";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -524,9 +594,14 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.DietCare.Indyte;
 				PRODUCT_NAME = DietAndCare;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -538,7 +613,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R8LZGT4R94;
 				INFOPLIST_FILE = DietAndCare/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Indyte: Diet Care & Fitness Plan";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -550,8 +628,13 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.DietCare.Indyte;
 				PRODUCT_NAME = DietAndCare;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -589,7 +672,7 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -597,6 +680,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
+					_LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION,
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -617,12 +701,19 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "$(inherited)";
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DFOLLY_NO_CONFIG",
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-Wl",
+					"-ld_classic",
+				);
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -660,9 +751,13 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					_LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION,
+				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -680,12 +775,19 @@
 					"\"$(inherited)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = "$(inherited)";
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DFOLLY_NO_CONFIG",
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-Wl",
+					"-ld_classic",
+				);
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
