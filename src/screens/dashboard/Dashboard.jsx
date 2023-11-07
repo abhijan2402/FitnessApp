@@ -30,7 +30,11 @@ import { SCREENS } from '../../constants/Screens';
 import { TouchableOpacity } from 'react-native';
 import HomeSwiper from '../../components/Utils/HomeSwiper';
 import { GlobalContext } from '../../../App';
-import { dateFormat, getDataFromAsyncStorage, getTimeInAMPMFormat } from '../../utils/common';
+import {
+  dateFormat,
+  getDataFromAsyncStorage,
+  getTimeInAMPMFormat,
+} from '../../utils/common';
 import { getUserRecommendedMeal } from '../../backend/utilFunctions';
 import Score from '../../../assets/images/Score.svg';
 
@@ -39,9 +43,9 @@ const BASE_TRACKER_CONTAINER_HEIGHT = 350;
 function Dashboard(props) {
   const navigation = useNavigation();
   const { user } = useContext(GlobalContext);
-  const [ProfComplete, setProfComplete] = useState(false)
+  const [ProfComplete, setProfComplete] = useState(false);
   console.log('====================================');
-  console.log(user, "User::::::::::::::::");
+  console.log(user, 'User::::::::::::::::');
   console.log('====================================');
   const [meals, setMeals] = useState(MEALS[0]);
   const [workout, setWorkout] = useState(WORKOUTS[0]);
@@ -57,7 +61,7 @@ function Dashboard(props) {
 
   useEffect(() => {
     const currentDate = new Date();
-    ProfCom()
+    ProfCom();
     getUserRecommendedMeal(dateFormat(currentDate)).then(res => {
       setRecommendedMeals(res?.data);
 
@@ -67,15 +71,14 @@ function Dashboard(props) {
   }, []);
 
   const ProfCom = async () => {
-    const final = await getDataFromAsyncStorage("profComp")
-    console.log(final, "I am final");
+    const final = await getDataFromAsyncStorage('profComp');
+    console.log(final, 'I am final');
     if (final == null) {
-      setProfComplete(false)
+      setProfComplete(false);
+    } else {
+      setProfComplete(true);
     }
-    else {
-      setProfComplete(true)
-    }
-  }
+  };
 
   useEffect(() => {
     if (meals === null) setFilteredRecommendedMeals(recommendedMeals);
@@ -102,23 +105,21 @@ function Dashboard(props) {
         </SolidButton>
       </View>
 
-      {
-        ProfComplete ? null :
-          <View style={styles.scoreCard}>
-            <Score />
-            <View style={{ width: 192 }}>
-              <Text style={styles.scoreHeading}>Incomplete profile</Text>
-              <Text style={styles.scoreDesc}>
-                Please complete your health details for better experiance
-              </Text>
-              <TouchableOpacity
-                onPress={() => navigation.navigate(SCREENS.FOODDISLIKE)}>
-                <Text style={styles.scoreBtn}>Complete</Text>
-              </TouchableOpacity>
-            </View>
+      {ProfComplete ? null : (
+        <View style={styles.scoreCard}>
+          <Score />
+          <View style={{ width: 192 }}>
+            <Text style={styles.scoreHeading}>Incomplete profile</Text>
+            <Text style={styles.scoreDesc}>
+              Please complete your health details for better experiance
+            </Text>
+            <TouchableOpacity
+              onPress={() => navigation.navigate(SCREENS.FOODDISLIKE)}>
+              <Text style={styles.scoreBtn}>Complete</Text>
+            </TouchableOpacity>
           </View>
-
-      }
+        </View>
+      )}
       <HomeSwiper />
       <GradientLabel
         colors={[
@@ -415,7 +416,7 @@ const styles = StyleSheet.create({
 
   scoreHeading: {
     color: '#2D3142',
-    fontFamily: 'Rubik',
+    fontFamily: 'Rubik-Regular',
     fontSize: 18,
     fontWeight: '500',
     lineHeight: 24 /* 133.333% */,
@@ -424,7 +425,7 @@ const styles = StyleSheet.create({
 
   scoreDesc: {
     color: '#4C5980',
-    fontFamily: 'Rubik',
+    fontFamily: 'Rubik-Regular',
     fontSize: 14,
     fontWeight: '400',
     lineHeight: 24 /* 171.429% */,
@@ -434,7 +435,7 @@ const styles = StyleSheet.create({
 
   scoreBtn: {
     color: '#7265E3',
-    fontamily: 'Rubik',
+    fontamily: 'Rubik-Regular',
     fontSize: 14,
     fontWeight: '500',
     lineHeight: 14 /* 100% */,

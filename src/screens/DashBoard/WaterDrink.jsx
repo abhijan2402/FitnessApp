@@ -385,7 +385,7 @@ const styles = StyleSheet.create({
   stepsText: {
     color: '#FFF',
     textAlign: 'center',
-    fontFamily: 'Rubik',
+    fontFamily: 'Rubik-Regular',
     fontSize: 12,
     fontWeight: '400',
     lineHeight: 14,
@@ -396,7 +396,7 @@ const styles = StyleSheet.create({
   stepsText1: {
     color: '#FFF',
     textAlign: 'center',
-    fontFamily: 'Rubik',
+    fontFamily: 'Rubik-Regular',
     fontSize: 16,
     fontWeight: '500',
     letterSpacing: 0.229,
@@ -429,6 +429,6 @@ const styles = StyleSheet.create({
     fontSize: 10,
     fontWeight: '400',
     lineHeight: 15,
-  }
+  },
 });
 export default WaterDrink;

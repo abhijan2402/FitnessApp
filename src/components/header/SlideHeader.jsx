@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
 
   nextBtn: {
     color: '#7265E3',
-    fontFamily: 'Rubik',
+    fontFamily: 'Rubik-Regular',
     fontSize: 16,
     fontWeight: 500,
     lineHeight: 14,
