@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSCameraUsageDescription</key>
+	<string>App requires access for the user to be able to upload pictures of his own to track the progress in physical health</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>App requires access for the user to be able to upload their profile picture and meal picture for trackinig the meals using the application</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>

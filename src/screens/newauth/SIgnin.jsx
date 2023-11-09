@@ -1,11 +1,10 @@
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {SafeAreaView, ScrollView, StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native';
 import React, {useRef, useState} from 'react';
 import SlideHeader from '../../components/header/SlideHeader';
 import Step from '../../components/new-auth/Step';
 import NewButtob from '../../components/Button/NewButtob';
-import {TextInput} from 'react-native';
+import {TextInput, Keyboard, Dimensions} from 'react-native';
 import Flag from '../../../assets/images/india-flag-icon.svg';
-import {Dimensions} from 'react-native';
 import {SCREENS} from '../../constants/Screens';
 import {SendOTP} from '../../backend/utilFunctions';
 import CustomToast from '../../components/common/Toast';
@@ -61,48 +60,57 @@ const SIgnin = ({navigation}) => {
     }
   };
   return (
-    <View style={styles.container}>
-      <CustomToast
-        toastColor={toastColorState}
-        toastTextColor={toastTextColorState}
-        toastMessage={toastMessage}
-        ref={childRef}
-      />
-      <SlideHeader next={true} />
-      <Step text="STEP 1/12" />
-      <Text style={styles.heading}>Let’s start with your mobile number</Text>
-      <Text style={styles.subHeading}>Number we can use to reach you</Text>
-
-      <View style={styles.inputContainer}>
-        <View style={{flexDirection: 'row', gap: 11}}>
-          <Flag width={25} />
-          <Text style={styles.countryCode}>+91</Text>
-        </View>
-        <TextInput
-          maxLength={10}
-          placeholder="9093XXXXXX"
-          style={styles.input}
-          keyboardType="numeric"
-          onChangeText={text => setNumber(text)}
-        />
-      </View>
-      <View
-        style={{
-          marginTop: 70,
-          marginTop: 150,
-          position: 'absolute',
-          bottom: 40,
-          width,
-          alignItems: 'center',
+    <SafeAreaView style={{flex: 1}}>
+      <TouchableWithoutFeedback
+        onPress={() => {
+          Keyboard.dismiss();
         }}>
-        <NewButtob
-          loading={loading1}
-          // onPress={() => navigation.navigate(SCREENS.NOTP)}
-          title={'Verify Now'}
-          onPress={handlePress}
-        />
-      </View>
-    </View>
+        <View style={styles.container}>
+          <CustomToast
+            toastColor={toastColorState}
+            toastTextColor={toastTextColorState}
+            toastMessage={toastMessage}
+            ref={childRef}
+          />
+          <SlideHeader next={true} />
+          <Step text="STEP 1/12" />
+          <Text style={styles.heading}>
+            Let’s start with your mobile number
+          </Text>
+          <Text style={styles.subHeading}>Number we can use to reach you</Text>
+
+          <View style={styles.inputContainer}>
+            <View style={{flexDirection: 'row', gap: 11}}>
+              <Flag width={25} />
+              <Text style={styles.countryCode}>+91</Text>
+            </View>
+            <TextInput
+              maxLength={10}
+              placeholder="9093XXXXXX"
+              style={styles.input}
+              keyboardType="numeric"
+              onChangeText={text => setNumber(text)}
+            />
+          </View>
+          <View
+            style={{
+              marginTop: 70,
+              marginTop: 150,
+              position: 'absolute',
+              bottom: 40,
+              width,
+              alignItems: 'center',
+            }}>
+            <NewButtob
+              loading={loading1}
+              // onPress={() => navigation.navigate(SCREENS.NOTP)}
+              title={'Verify Now'}
+              onPress={handlePress}
+            />
+          </View>
+        </View>
+      </TouchableWithoutFeedback>
+    </SafeAreaView>
   );
 };
 
