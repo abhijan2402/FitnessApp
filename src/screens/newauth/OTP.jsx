@@ -1,4 +1,13 @@
-import {StyleSheet, Text, View, Dimensions, TextInput} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Dimensions,
+  TextInput,
+  SafeAreaView,
+  Keyboard,
+  TouchableWithoutFeedback
+} from 'react-native';
 import React, {useEffect, useRef} from 'react';
 import SmallText from '../../components/Text/SmallText';
 import {useState} from 'react';
@@ -103,85 +112,94 @@ const Otp = ({navigation}) => {
   };
 
   return (
-    <View style={styles.MainView}>
-      <CustomToast
-        toastColor={toastColorState}
-        toastTextColor={toastTextColorState}
-        toastMessage={toastMessage}
-        ref={childRef}
-      />
-      <SlideHeader />
-      <Step text="STEP 2/12" />
-
-      <Text style={styles.heading}>Verify your number</Text>
-      <Text style={styles.subHeading}>Wel’ll text you on {data?.phone}.</Text>
-
-      <View style={styles.InputOTP}>
-        <TextInput
-          placeholderTextColor="grey"
-          style={styles.OTPInput}
-          onChangeText={value => updatePositionBasedOnOtp(1, value)}
-          maxLength={1}
-          ref={otpBox1}
-          keyboardType="numeric"
-        />
-        <TextInput
-          placeholderTextColor="grey"
-          style={styles.OTPInput}
-          onChangeText={value => updatePositionBasedOnOtp(2, value)}
-          maxLength={1}
-          ref={otpBox2}
-          keyboardType="numeric"
-        />
-        <TextInput
-          placeholderTextColor="grey"
-          style={styles.OTPInput}
-          onChangeText={value => updatePositionBasedOnOtp(3, value)}
-          maxLength={1}
-          ref={otpBox3}
-          keyboardType="numeric"
-        />
-        <TextInput
-          placeholderTextColor="grey"
-          style={styles.OTPInput}
-          onChangeText={value => updatePositionBasedOnOtp(4, value)}
-          maxLength={1}
-          ref={otpBox4}
-          keyboardType="numeric"
-        />
-        <TextInput
-          placeholderTextColor="grey"
-          style={styles.OTPInput}
-          onChangeText={value => updatePositionBasedOnOtp(5, value)}
-          maxLength={1}
-          ref={otpBox5}
-          keyboardType="numeric"
-        />
-        <TextInput
-          placeholderTextColor="grey"
-          style={styles.OTPInput}
-          onChangeText={value => updatePositionBasedOnOtp(6, value)}
-          maxLength={1}
-          ref={otpBox6}
-          keyboardType="numeric"
-        />
-      </View>
-      <View>
-        <Text style={styles.text}>Send me a new code</Text>
-      </View>
-
-      <View
-        style={{
-          marginTop: 70,
-          marginTop: 150,
-          position: 'absolute',
-          bottom: 40,
-          width,
-          alignItems: 'center',
+    <SafeAreaView style={{flex: 1}}>
+      <TouchableWithoutFeedback
+        onPress={() => {
+          Keyboard.dismiss();
         }}>
-        <NewButtob onPress={handlePress} title={'Continue'} />
-      </View>
-    </View>
+        <View style={styles.MainView}>
+          <CustomToast
+            toastColor={toastColorState}
+            toastTextColor={toastTextColorState}
+            toastMessage={toastMessage}
+            ref={childRef}
+          />
+          <SlideHeader />
+          <Step text="STEP 2/12" />
+
+          <Text style={styles.heading}>Verify your number</Text>
+          <Text style={styles.subHeading}>
+            Wel’ll text you on {data?.phone}.
+          </Text>
+
+          <View style={styles.InputOTP}>
+            <TextInput
+              placeholderTextColor="grey"
+              style={styles.OTPInput}
+              onChangeText={value => updatePositionBasedOnOtp(1, value)}
+              maxLength={1}
+              ref={otpBox1}
+              keyboardType="numeric"
+            />
+            <TextInput
+              placeholderTextColor="grey"
+              style={styles.OTPInput}
+              onChangeText={value => updatePositionBasedOnOtp(2, value)}
+              maxLength={1}
+              ref={otpBox2}
+              keyboardType="numeric"
+            />
+            <TextInput
+              placeholderTextColor="grey"
+              style={styles.OTPInput}
+              onChangeText={value => updatePositionBasedOnOtp(3, value)}
+              maxLength={1}
+              ref={otpBox3}
+              keyboardType="numeric"
+            />
+            <TextInput
+              placeholderTextColor="grey"
+              style={styles.OTPInput}
+              onChangeText={value => updatePositionBasedOnOtp(4, value)}
+              maxLength={1}
+              ref={otpBox4}
+              keyboardType="numeric"
+            />
+            <TextInput
+              placeholderTextColor="grey"
+              style={styles.OTPInput}
+              onChangeText={value => updatePositionBasedOnOtp(5, value)}
+              maxLength={1}
+              ref={otpBox5}
+              keyboardType="numeric"
+            />
+            <TextInput
+              placeholderTextColor="grey"
+              style={styles.OTPInput}
+              onChangeText={value => updatePositionBasedOnOtp(6, value)}
+              maxLength={1}
+              ref={otpBox6}
+              keyboardType="numeric"
+            />
+          </View>
+          <View>
+            <Text style={styles.text}>Send me a new code</Text>
+          </View>
+
+          <View
+            style={{
+              marginTop: 70,
+              marginTop: 150,
+              position: 'absolute',
+              bottom: 40,
+              width,
+              alignItems: 'center',
+            }}>
+            <NewButtob onPress={handlePress} title={'Continue'} />
+          </View>
+        </View>
+      </TouchableWithoutFeedback>
+    </SafeAreaView>
   );
 };
 
