@@ -5,6 +5,9 @@ import {
   Dimensions,
   Image,
   TextInput,
+  SafeAreaView,
+  TouchableWithoutFeedback,
+  Keyboard
 } from 'react-native';
 import React, {useEffect, useRef} from 'react';
 import PrimaryButton from '../../components/Button/PrimaryButton';
@@ -84,6 +87,11 @@ const Otp = () => {
   
 
   return (
+    <SafeAreaView style={{flex: 1}}>
+      <TouchableWithoutFeedback
+        onPress={() => {
+          Keyboard.dismiss();
+        }}>
     <View style={styles.MainView}>
       <View style={styles.Heading}>
         <SmallText style={{fontWeight: '700', color: 'black', fontSize: 16}}>
@@ -200,6 +208,7 @@ const Otp = () => {
         </TextH4>
       </Pressable>
     </View>
+    </TouchableWithoutFeedback></SafeAreaView>
   );
 };
 
