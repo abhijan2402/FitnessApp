@@ -280,7 +280,7 @@ const MealHome = () => {
           />
         </View> */}
         <View style={{ paddingHorizontal: 10 }}>
-          {filteredRecommendedMeals.length == 0 ? <TextH4 style={{ marginVertical: 20 }}>No meals assigned today</TextH4> :
+          {filteredRecommendedMeals.length == 0 ? <TextH4 style={{ marginVertical: 20 }}>No meals skipped today</TextH4> :
             filteredRecommendedMeals.map((meal, i) => {
               console.log(i, meal?.user_skip, "jjjj");
               return (
